@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+select {
+    -webkit-appearance: none;
+    /* Remove default styling for Safari */
+    -moz-appearance: none;
+    /* Remove default styling for Firefox */
+    appearance: none;
+    /* Remove default styling for modern browsers */
+}
+
+html {
+    scroll-behavior: smooth;
+}

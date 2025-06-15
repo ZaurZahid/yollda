@@ -1,0 +1,173 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About Us",
+    "features": "Main Features",
+    "shopping_centers": "Shopping Centers",
+    "faq": "FAQ",
+    "blog": "Blog",
+    "contact": "Contact",
+    "join": "Join Us"
+  },
+  "onboarding": {
+    "title_header": "Bringing",
+    "title_header_span": "local shopping",
+    "title_footer": "to the digital age.",
+    "subtitle": "Easily find stores in Bina, Sederek, and Absheron shopping centers. Save time with the AllVer map and quickly discover nearby stores.",
+    "options": {
+      "seller": "I am a seller",
+      "buyer": "I am a buyer"
+    }
+  },
+  "valuesSection": {
+    "title_header": "AllVer",
+    "title_header_span": "makes shopping",
+    "title_footer": "simpler and more accessible.",
+    "valuesTitle": "Our Values:",
+    "values": {
+      "convenience": "Convenience: The ability to preview stores in advance.",
+      "innovation": "Innovation: Interactive maps and other innovative features.",
+      "community": "Community: Supporting local traders and contributing to local shopping."
+    }
+  },
+  "howItWorks": {
+    "steps": {
+      "step_1": {
+        "title": "Search for Traders",
+        "description": "Easily find stores by category and popularity."
+      },
+      "step_2": {
+        "title": "Find Stores with the Map",
+        "description": "Locate stores in shopping centers using interactive maps."
+      },
+      "step_3": {
+        "title": "Discover Offers",
+        "description": "Explore exclusive discounts for users."
+      }
+    }
+  },
+  "faqSection": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about AllVer.",
+    "questions": [
+      {
+        "question": "What is AllVer?",
+        "answer": "AllVer is a platform that simplifies shopping by helping you find stores and exclusive offers in local shopping centers."
+      },
+      {
+        "question": "How can I search for a store?",
+        "answer": "You can use our interactive map or search by category and popularity to easily locate the store you're looking for."
+      },
+      {
+        "question": "Is AllVer free to use?",
+        "answer": "Yes, AllVer is completely free for buyers. Sellers may have additional options for premium listings."
+      },
+      {
+        "question": "Can I earn money through AllVer?",
+        "answer": "Yes, you can earn money through the AllVer platform by inviting your friends and traders. The more people you bring, the more you earn."
+      },
+      {
+        "question": "How do I support local traders through AllVer?",
+        "answer": "By shopping with local stores listed on AllVer, you directly support the local economy and community."
+      },
+      {
+        "question": "How can I add the AllVer app?",
+        "answer": "You can download the app from the Apple App Store and Google Play Store."
+      },
+      {
+        "question": "Are there any exclusive proposals?",
+        "answer": "Yes, there are many exclusive offers on the app, such as opportunities to promote yourself as a trader, earn rewards, and discover more unique features designed to help you grow."
+      }
+    ]
+  },
+  "blogSection": {
+    "title": "Interesting Information for You",
+    "subtitle": "Easily browse trader categories."
+  },
+  "contactUsSection": {
+    "title": "Have a question? You can ask us.",
+    "subtitle": "If you have any questions, get in touch with us.",
+    "contactMethods": {
+      "phone": {
+        "label": "Phone:"
+      },
+      "phoneNumber": {
+        "label": "Phone Number"
+      },
+      "email": {
+        "label": "Email:"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "All rights reserved",
+    "links": {
+      "privacyPolicy": "Privacy Policy",
+      "termsOfUse": "Terms of Use"
+    }
+  },
+  "joinListModal": {
+    "header": {
+      "title": "Join the List",
+      "subtitle": "Placeholder text... Mauris vestibulum viverra fames blandit suspendisse elementum diam. Purus nisi vestibulum amet nibh. Auctor sed donec at in praesent turpis."
+    },
+    "success_message": {
+      "title": "Congratulations! You have joined the waiting list!",
+      "subtitle": "Placeholder text... success Mauris vestibulum viverra fames blandit suspendisse elementum diam. Purus nisi vestibulum amet nibh. Auctor sed donec at in praesent turpis."
+    },
+    "waitingMessage": "1.5k+ people are waiting"
+  },
+  "cookieConsentModal": {
+    "message": "We use cookies to provide you with the best experience on our system.",
+    "disclaimer": "By continuing, you agree to accept all cookies on the allver.az website."
+  },
+  "mapSection": {
+    "location": "Address",
+    "inner_map_title": "Internal map of the shopping center"
+  },
+  "shoppingCenters": {
+    "title": "Shopping Centers",
+    "subtitle": "Easily browse trader categories.",
+    "centers": {
+      "center_1": {
+        "name": "Sederek Shopping Center",
+        "description": "Easily browse trader categories."
+      },
+      "center_2": {
+        "name": "Bina Shopping Center",
+        "description": "Easily browse trader categories."
+      },
+      "center_3": {
+        "name": "Absheron Shopping Center",
+        "description": "Easily browse trader categories."
+      }
+    }
+  },
+  "buttons": {
+    "register_now": "Register Now",
+    "about_us": "About Us",
+    "contact_us": "Contact Us",
+    "read_more": "Read More",
+    "send_now": "Send",
+    "join_the_list": "Join the List",
+    "sending": "Sending",
+    "decline": "Decline",
+    "accept": "Accept",
+    "share": "Share"
+  },
+  "form": {
+    "name": "Your Full Name",
+    "name_placeholder": "Enter your name",
+    "email": "Email",
+    "email_placeholder": "Enter your email",
+    "message": "Your Message",
+    "message_placeholder": "Enter your message",
+    "trade_center": "Shopping Center",
+    "select": "Select",
+    "required": "This field is required"
+  },
+  "payment":{
+    "success_message": "The transaction was successfully completed",
+    "failure_message": "The transaction failed"
+  }
+}
