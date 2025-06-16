@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     i18n: {
-        locales: ['az', 'en', 'ru'],
+        locales: ['az', 'en', 'ar-AE'],
         defaultLocale: 'az',
         localeDetection: false,
         localePath: path.resolve('./public/locales'), // Ensure this points to the locales folder

@@ -9,6 +9,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 // import BlogSection from '../src/components/layout/BlogSection'
 // import ContactForm from '../src/components/layout/ContactForm'
 import { useTranslation } from 'next-i18next'
+import Layout from '../src/components/layout/Layout';
 // import { fetchFromAPI } from './../src/hooks/apiFetcher';
 
 export default function HomePage({ /* shoppingCenters, faqData, siteData, onboardingData, featureData, blogsData, */ error }) {
@@ -19,7 +20,7 @@ export default function HomePage({ /* shoppingCenters, faqData, siteData, onboar
   }
 
   return (
-    <>
+    <Layout theme={"normal"}>{/* transparent */}
       <Head>
         <title>Yollda | {t('navigation.home')}</title>
         <meta name="description" content="This is a description of home page." />
@@ -34,7 +35,7 @@ export default function HomePage({ /* shoppingCenters, faqData, siteData, onboar
       <Fags fags={faqData} />
       <BlogSection blogsData={blogsData} />
       <ContactForm siteData={siteData} /> */}
-      </>
+    </Layout>
     // </Layout>
   );
 }

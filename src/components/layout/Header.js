@@ -8,7 +8,7 @@ import CloseIcon from '../ui/icons/Close';
 import { useTranslation } from 'next-i18next'
 
 
-const Header = ({ logo, onOpen }) => {
+const Header = ({ logo, theme = 'normal', onOpen }) => {
     const { t } = useTranslation('common')
     const headerRef = useRef(null);
 
@@ -59,24 +59,24 @@ const Header = ({ logo, onOpen }) => {
     return (
         <header
             ref={headerRef}
-            className="header w-full flex justify-center fixed top-0 left-0 z-30 transition-all duration-300"
+            className={`header w-full flex justify-center fixed top-0 left-0 z-30 transition-all duration-300 bg-white ${theme === 'transparent' ? 'bg-transparent' : ''}`}
         >
             <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
-                <div className="flex justify-between items-center py-8">
+                <div className="flex justify-between items-center py-4">
                     <Link href="/" passHref>
-                        <img src={`${logo || "/AllVer.svg"}`} alt="Logo" className="max-w-24 lg:max-w-32 cursor-pointer" />
+                        <img src={`${logo || "/yollda.svg"}`} alt="Logo" className="max-w-24 lg:max-w-32 cursor-pointer" />
                     </Link>
 
-                    <div className="lg:hidden">
+                    {/* <div className="lg:hidden">
                         <div className="flex items-center">
                             <LanguageSwitcher />
                             <button onClick={toggleMenu} className="ml-7">
                                 <img src={"/menu.svg"} alt="Menu" className="w-6 h-6" />
                             </button>
                         </div>
-                    </div>
+                    </div> */}
 
-                    <nav className={`${isOpen ? 'fixed inset-0 bg-white z-50' : 'hidden'} lg:flex lg:relative lg:bg-transparent lg:z-auto`}>
+                    {/* <nav className={`${isOpen ? 'fixed inset-0 bg-white z-50' : 'hidden'} lg:flex lg:relative lg:bg-transparent lg:z-auto`}>
                         <div className="lg:flex sm:justify-center lg:items-center flex-wrap xl:justify-between mx-4 mt-16 lg:mt-0">
                             {isOpen && (
                                 <div className="absolute top-0 right-0 p-4 flex justify-between w-full">
@@ -134,16 +134,21 @@ const Header = ({ logo, onOpen }) => {
                                 </div>
                             )}
                         </div>
-                    </nav>
+                    </nav> */}
 
-                    <div className="hidden lg:flex items-center space-x-4">
+                    <div className="flex items-center space-x-4 md:space-x-6 lg:space-x-8">
                         <LanguageSwitcher />
-                        <Button
-                            text={t('navigation.join')}
-                            IconComponent={<ArrowIcon strokeColor={"stroke-white"} />}
-                            onClick={onOpen}
-                            classes={"ml-4 bg-blue-600 hover:bg-blue-700 text-white whitespace-nowrap h-11"}
-                        />
+
+                        <div className="hidden md:flex items-center space-x-4 md:space-x-6 lg:space-x-8">
+                            <h5 class="text-span-responsive font-bold">Destek</h5>
+                            <Button
+                                text={t('navigation.join')}
+                                onClick={onOpen}
+                                classes={"ml-4 bg-green-dark hover:green-secondary-dark text-white whitespace-nowrap h-8"}
+                            />
+                        </div>
+
+                        <p>bg</p>
                     </div>
                 </div>
             </div>
