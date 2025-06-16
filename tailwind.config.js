@@ -10,6 +10,8 @@ module.exports = {
         'secondary': ['Idol', 'serif'],
       },
       fontSize: {
+        'section-lg-title-responsive': ['clamp(2.5rem, 6vw, 5rem)', { lineHeight: '1.1', fontWeight: '700' }],// 40px mobile, 80px tablet, 80px desktop
+
         // Responsive heading sizes
         'h1-responsive': ['clamp(2.5rem, 5vw, 3.75rem)', { lineHeight: '1.2', fontWeight: '700' }], // 40px mobile, 60px tablet, 60px desktop
         'h2-responsive': ['clamp(2rem, 4vw, 3rem)', { lineHeight: '1.3', fontWeight: '600' }], // 32px mobile, 48px tablet, 48px desktop

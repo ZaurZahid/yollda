@@ -10,6 +10,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 // import ContactForm from '../src/components/layout/ContactForm'
 import { useTranslation } from 'next-i18next'
 import Layout from '../src/components/layout/Layout';
+import TopIntroduction from '../src/components/home/TopIntroduction';
+import OurServices from '../src/components/home/OurServices';
 // import { fetchFromAPI } from './../src/hooks/apiFetcher';
 
 export default function HomePage({ /* shoppingCenters, faqData, siteData, onboardingData, featureData, blogsData, */ error }) {
@@ -26,8 +28,18 @@ export default function HomePage({ /* shoppingCenters, faqData, siteData, onboar
         <meta name="description" content="This is a description of home page." />
       </Head>
 
-      <h1 class="text-h1-responsive text-light-green">h1 responsive</h1>
-
+      <TopIntroduction siteData={''} />
+      <img
+        src="/frame.png"
+        alt="Beautiful image"
+        class="h-[530px] lg:h-[590px] w-full object-cover"
+      />
+      <OurServices siteData={''} />
+      <img
+        src="/frame.png"
+        alt="Beautiful image"
+        class="h-[530px] lg:h-[720px] w-full object-cover"
+      />
       {/* <OnboardingSection centers={shoppingCenters} />
       <ValueSection features={featureData} />
       <HowItWorks onboardingData={onboardingData} />
