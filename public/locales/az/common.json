@@ -9,6 +9,51 @@
     "contact": "Əlaqə",
     "join": "Qoşulun"
   },
+  "footer": {
+    "copyright": "Bütün hüquqlar qorunur",
+      "available_text": "AZ Available for iOS and Android devices.",
+     "headings": {
+        "products": "Mallar",
+        "earn": "Qazanc",
+        "company": "Shirket",
+        "support": "Komek",
+        "safety": "Tehlukesizlik",
+        "locations": "Lokasiyalar"
+      },
+    "links": {
+      "privacy": "Məxfilik",
+      "termAndCondition": "İstifadə Şərtləri",
+      "about": "Haqqımızda",
+      "careers": "Karyera",
+      "blogs": "Bloglar",
+      "brand_guideness": "Brand Telimati",
+      "security": "Guvenlik",
+      "cookies": "Cerezler",
+      "assist": {
+        "tow": "Tow",
+        "fuel": "Benzin",
+        "battery": "Batareya",
+        "tire": "Teker"
+      },
+      "earn_sub": {
+        "yollda_partners": "Yollda Partyorlari",
+        "tow_drivers": "Tow Suruculeri",
+        "yollda_fleets": "Yollda Fllet"
+      },
+      "support": {
+        "yollda_partners": "Yollda Partyorlari",
+        "tow_drivers": "Tow Suruculeri",
+        "yollda_fleets": "Yollda Fllet",
+        "contact_us": "Bizimle elaqe"
+      },
+      "safety": {
+        "driver_safety": "Surucu tehlukesizliyi"
+      },
+      "locations": {
+        "our_cities": "Bizim seherlerimiz"
+      }
+    }
+  },
   "onboarding": {
     "title_header": "Yerli",
     "title_header_span": "alış verişə",
@@ -99,13 +144,6 @@
       }
     }
   },
-  "footer": {
-    "copyright": "Bütün hüquqlar qorunur",
-    "links": {
-      "privacyPolicy": "Məxfilik Siyasəti",
-      "termsOfUse": "İstifadə Şərtləri"
-    }
-  },
   "joinListModal": {
     "header": {
       "title": "Siz də listə qoşulun",
@@ -166,7 +204,7 @@
     "select": "Seçin",
     "required": "Bu xananı doldurmaq vacibdir"
   },
-  "payment":{
+  "payment": {
     "success_message": "Əməliyyat uğurla tamamlandı",
     "failure_message": "Əməliyyat uğursuz oldu"
   }

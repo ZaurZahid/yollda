@@ -49,6 +49,7 @@ module.exports = {
         'green-dark': '#083426',
         'green-secondary-dark': '#19423C',
         'light-green': '#21D654',
+        'light-secondary-green': '#47CF71',
         'green-button-light': '#DDEEE2'
         // foreground: 'hsl(var(--foreground))',
         // card: {

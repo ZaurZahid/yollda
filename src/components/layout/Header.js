@@ -6,6 +6,7 @@ import LanguageSwitcher from '../ui/LanguageSwitcher';
 import { useRouter } from 'next/router';
 import CloseIcon from '../ui/icons/Close';
 import { useTranslation } from 'next-i18next'
+import YolldaLogo from '../ui/icons/Yollda';
 
 
 const Header = ({ logo, theme = 'normal', onOpen }) => {
@@ -64,7 +65,7 @@ const Header = ({ logo, theme = 'normal', onOpen }) => {
             <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
                 <div className="flex justify-between items-center py-4">
                     <Link href="/" passHref>
-                        <img src={`${logo || "/yollda.svg"}`} alt="Logo" className="max-w-24 lg:max-w-32 cursor-pointer" />
+                        <YolldaLogo className="max-w-24 lg:max-w-32 cursor-pointer fill-green-dark" />
                     </Link>
 
                     {/* <div className="lg:hidden">
