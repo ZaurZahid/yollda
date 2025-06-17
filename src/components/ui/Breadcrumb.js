@@ -11,7 +11,7 @@ const Breadcrumb = ({ items }) => {
                     <li key={index} className="flex items-center">
                         {index > 0 && <span className="mx-2 text-gray-300">/</span>} {/* Separator */}
                         {item.url ? (
-                            <Link href={item.url} className="text-gray-700">
+                            <Link href={item.url} className="text-light-green">
                                 {item.label}
                             </Link>
                         ) : (
