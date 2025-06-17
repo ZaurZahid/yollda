@@ -56,7 +56,7 @@ export default function DownloadApps() {
                             <img
                                 src={'/phone-4x.png'}
                                 alt="phone image 4x"
-                                className="w-[700px] w-full object-cover"
+                                className="w-[700px] object-cover"
                             />
                         </div>
 
@@ -64,8 +64,8 @@ export default function DownloadApps() {
                         <div className="hidden md:block lg:hidden -mt-12 select-none pointer-events-none">
                             <img
                                 src={'/phone-3x.png'}
-                                alt="phone image 4x"
-                                className="w-[600px] w-full object-cover"
+                                alt="phone image 3x"
+                                className="w-[600px] object-cover"
                             />
                         </div>
 
@@ -73,8 +73,8 @@ export default function DownloadApps() {
                         <div className="block md:hidden select-none pointer-events-none">
                             <img
                                 src={'/phone-2x.png'}
-                                alt="phone image 4x"
-                                className="w-[300px] w-full object-cover"
+                                alt="phone image 2x"
+                                className="w-[300px] object-cover"
                             />
                         </div>
                     </div>
