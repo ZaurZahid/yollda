@@ -7,8 +7,6 @@ const mobilitySlides = [
         title: "MOBILITY BY THE PEOPLE, FOR THE PEOPLE.",
         // subtitle: "FOR THE PEOPLE.",
         description: "Yollda's real-time roadside expertise and local network keep you—and your city—moving safely.",
-        linkText: "Learn more",
-        linkUrl: "#"
     },
     {
         id: 2,
@@ -16,8 +14,6 @@ const mobilitySlides = [
         title: "MOBILITY BY THE PEOPLE, FOR THE PEOPLE.",
         // subtitle: "FOR THE PEOPLE.",
         description: "Yollda's real-time roadside expertise and local network keep you—and your city—moving safely.",
-        linkText: "Safety features",
-        linkUrl: "#"
     },
     {
         id: 3,
@@ -25,8 +21,6 @@ const mobilitySlides = [
         title: "MOBILITY BY THE PEOPLE, FOR THE PEOPLE.",
         // subtitle: "FOR THE PEOPLE.",
         description: "Yollda's real-time roadside expertise and local network keep you—and your city—moving safely.",
-        linkText: "Join community",
-        linkUrl: "#"
     }
 ];
 

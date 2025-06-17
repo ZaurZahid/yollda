@@ -14,6 +14,7 @@ import TopIntroduction from '../src/components/home/TopIntroduction';
 import OurServices from '../src/components/home/OurServices';
 import MobilitySection from '../src/components/home/MobilitySection';
 import AboutUs from '../src/components/home/AboutUs';
+import EarnWithSection from '../src/components/home/EarnWithSection';
 // import { fetchFromAPI } from './../src/hooks/apiFetcher';
 
 export default function HomePage({ /* shoppingCenters, faqData, siteData, onboardingData, featureData, blogsData, */ error }) {
@@ -49,6 +50,7 @@ export default function HomePage({ /* shoppingCenters, faqData, siteData, onboar
         class="h-[300px] lg:h-[400px] w-full object-cover"
       />
       <AboutUs />
+      <EarnWithSection />
 
       {/* <OnboardingSection centers={shoppingCenters} />
       <ValueSection features={featureData} />
