@@ -77,7 +77,7 @@ export default function MobilitySection() {
                     <div className="space-y-4">
                         {/* Main Title - Always Visible */}
                         <div className="space-y-4">
-                            <h1 className="text-section-lg-title-responsive md:w-[90%] font-bold">
+                            <h1 className="text-section-lg-title-responsive font-extrabold">
                                 {mobilitySlides[currentSlide].title}
                             </h1>
                         </div>
@@ -148,5 +148,4 @@ export default function MobilitySection() {
             </div>
         </div>
     );
-}/*  <section className="py-16 lg:py-24 bg-green-dark text-white overflow-hidden">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"></div> */
+} 
