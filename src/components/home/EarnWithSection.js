@@ -49,7 +49,7 @@ export default function EarnWithSection() {
                         Earn with Yollda
                     </h1>
 
-                    <h6 className="text-h6-responsive mt-9 font-semibold text-gray-500 text-center">
+                    <h6 className="text-h6-responsive mt-9 text-gray-500 text-center">
                         Join thousands of partners who earn by keeping drivers on the move—tow‑truck operators (car & freight), tire techs, battery specialists, fuel couriers, and fleet owners.
                     </h6>
                 </div>

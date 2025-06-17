@@ -9,7 +9,7 @@ function OurServices({ siteData = '' }) {
                     Our Services IN
                 </h1>
 
-                <h6 className="text-h6-responsive mt-9 w-[80%] lg:w-[55%] m-auto font-semibold text-gray-500 text-center">
+                <h6 className="text-h6-responsive mt-9 w-[80%] lg:w-[55%] m-auto text-gray-500 text-center">
                     Services and features  may vary by region. Some features may not yet be available in your area.
                 </h6>
             </div>

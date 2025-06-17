@@ -8,7 +8,7 @@ function TopIntroduction({ siteData = '' }) {
                     Fast. Reliable. Wherever You Are
                 </h1>
 
-                <h6 className="text-h6-responsive mt-9 font-semibold text-gray-500 text-center">
+                <h6 className="text-h6-responsive mt-9 text-gray-500 text-center">
                     Yollda is your all-in-one road assistance  platform
                 </h6>
 
