@@ -14,3 +14,26 @@ select {
 html {
     scroll-behavior: smooth;
 }
+
+.custom-cookie-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.custom-cookie-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-cookie-scrollbar::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    /* Makes it blend in nicely */
+    background-clip: content-box;
+}
+
+/* Firefox support */
+.custom-cookie-scrollbar {
+    scrollbar-color: white transparent;
+    scrollbar-width: thin;
+}
