@@ -28,10 +28,10 @@ const Footer = ({ siteData }) => {
 
                             <div className="mb-6 lg:mb-8">
                                 <div className="inline-flex space-x-2 p-2 rounded-xl bg-green-secondary-dark">
-                                    <button className={`px-4 py-2 rounded-xl text-span-small-responsive duration-200 ${selectedApp === 'yollda' ? "bg-green-dark text-white font-medium" : 'text-gray-500'} `} onClick={() => setSelectedApp('yollda')}>
+                                    <button className={`px-6 py-1 rounded-xl text-span-small-responsive duration-200 ${selectedApp === 'yollda' ? "bg-green-dark text-white font-medium" : 'text-gray-500'} `} onClick={() => setSelectedApp('yollda')}>
                                         Yollda
                                     </button>
-                                    <button className={`px-4 py-2 rounded-xl text-span-small-responsive duration-200 ${selectedApp === 'yollda_partner' ? "bg-green-dark text-white font-medium" : 'text-gray-500'} `} onClick={() => setSelectedApp('yollda_partner')}>
+                                    <button className={`px-6 py-1 rounded-xl text-span-small-responsive duration-200 ${selectedApp === 'yollda_partner' ? "bg-green-dark text-white font-medium" : 'text-gray-500'} `} onClick={() => setSelectedApp('yollda_partner')}>
                                         Yollda Partner
                                     </button>
                                 </div>
@@ -45,7 +45,7 @@ const Footer = ({ siteData }) => {
                                 href={'siteData?.[0]?.linkedin'}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex bg-light-green text-white px-6 py-3 rounded-2xl text-button-responsive transition-all duration-200 transform hover:scale-105"
+                                className="inline-flex bg-light-green text-white font-bold px-6 py-3 rounded-2xl text-button-responsive transition-all duration-200 transform hover:scale-105"
                             >
                                 Get Yollda
                             </a>

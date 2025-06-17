@@ -38,7 +38,7 @@ export default function AboutUs() {
                         <div className="hidden lg:block select-none pointer-events-none">
                             <img
                                 src={'/app-4x.png'}
-                                alt="phone image 4x"
+                                alt="app image 4x"
                                 className="w-[800px] w-full object-cover"
                             />
                         </div>
@@ -47,7 +47,7 @@ export default function AboutUs() {
                         <div className="hidden md:block lg:hidden select-none pointer-events-none">
                             <img
                                 src={'/app-3x.png'}
-                                alt="phone image 4x"
+                                alt="app image 4x"
                                 className="w-[800px] w-full object-cover"
                             />
                         </div>
@@ -56,7 +56,7 @@ export default function AboutUs() {
                         <div className="block md:hidden select-none pointer-events-none">
                             <img
                                 src={'/app-2x.png'}
-                                alt="phone image 4x"
+                                alt="app image 4x"
                                 className="w-[400px] w-full object-cover"
                             />
                         </div>

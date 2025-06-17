@@ -16,6 +16,7 @@ import MobilitySection from '../src/components/home/MobilitySection';
 import AboutUs from '../src/components/home/AboutUs';
 import EarnWithSection from '../src/components/home/EarnWithSection';
 import LatestFeatures from '../src/components/home/LatestFeatures';
+import DownloadApps from '../src/components/home/DownloadApps';
 // import { fetchFromAPI } from './../src/hooks/apiFetcher';
 
 export default function HomePage({ /* shoppingCenters, faqData, siteData, onboardingData, featureData, blogsData, */ error }) {
@@ -53,6 +54,12 @@ export default function HomePage({ /* shoppingCenters, faqData, siteData, onboar
       <AboutUs />
       <EarnWithSection />
       <LatestFeatures />
+      <img
+        src="/frame.png"
+        alt="Beautiful image"
+        class="h-[300px] lg:h-[750px] w-full object-cover"
+      />
+      <DownloadApps />
       <img
         src="/frame.png"
         alt="Beautiful image"
