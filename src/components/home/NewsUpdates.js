@@ -61,7 +61,7 @@ export default function NewsUpdates() {
                     <div className="grid grid-cols-12 gap-6">
                         {/* Large Featured Article - Left */}
                         <div className="col-span-12 md:col-span-6 lg:col-span-4">
-                            <Link href={`/news/${newsArticles[0].id}`} className="flex bg-green-dark rounded-2xl overflow-hidden shadow-xl h-full h-[400px] md:h-[500px] relative group cursor-pointer">
+                            <Link href={`/news/${newsArticles[0].id}`} className="flex bg-green-dark rounded-2xl overflow-hidden shadow-xl h-[400px] md:h-[500px] relative group cursor-pointer">
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10"></div>
                                 <img
                                     src={newsArticles[0].image}

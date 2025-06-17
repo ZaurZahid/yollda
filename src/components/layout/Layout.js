@@ -23,9 +23,7 @@ const Layout = ({ children, theme = "normal" }) => {
             </div>
             <Footer siteData={/* siteData */ ''} />
 
-            {/* 
-            <Footer siteData={siteData} />
-            <CookieConsent /> */}
+            <CookieConsent />
         </div>
     );
 };
