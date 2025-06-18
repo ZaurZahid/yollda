@@ -4,7 +4,7 @@ function TopIntroduction({ siteData = '' }) {
     return (
         <div class="py-16 lg:py-20 bg-white flex justify-center">
             <div class="text-center">
-                <h1 className="w-[80%] m-auto text-section-lg-title-responsive uppercase font-extrabold text-green-dark">
+                <h1 className="w-[80%] m-auto font-secondary text-section-lg-title-responsive uppercase font-extrabold text-green-dark">
                     Fast. Reliable. Wherever You Are
                 </h1>
 

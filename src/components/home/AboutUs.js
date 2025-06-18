@@ -12,7 +12,7 @@ export default function AboutUs() {
                     </div>
 
                     {/* Main Heading */}
-                    <h1 className="text-section-lg-title-responsive uppercase font-extrabold text-green-dark">
+                    <h1 className="font-secondary text-section-lg-title-responsive uppercase font-extrabold text-green-dark">
                         YOLLDA IS YOUR PARTNER ON EVERY JOURNEY.
                     </h1>
 

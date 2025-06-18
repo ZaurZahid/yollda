@@ -45,7 +45,7 @@ export default function EarnWithSection() {
         <div className="w-full flex justify-center py-16 lg:py-24">
             <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
                 <div className="flex flex-col">
-                    <h1 className="text-section-lg-title-responsive uppercase font-extrabold text-green-dark text-center">
+                    <h1 className="font-secondary text-section-lg-title-responsive uppercase font-extrabold text-green-dark text-center">
                         Earn with Yollda
                     </h1>
 
@@ -84,7 +84,7 @@ export default function EarnWithSection() {
                                 </div>
 
                                 {/* Title */}
-                                <h3 className="text-h3-responsive font-bold text-gray-900">
+                                <h3 className="text-h3-responsive font-bold text-green-dark">
                                     {service.title}
                                 </h3>
 

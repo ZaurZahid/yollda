@@ -10,7 +10,7 @@ export default function LatestFeatures() {
                 </div>
 
                 {/* Main Heading */}
-                <h1 className="text-section-lg-title-responsive uppercase font-extrabold leading-tight">
+                <h1 className="font-secondary text-section-lg-title-responsive uppercase font-extrabold leading-tight">
                     Request Help Instantly
                 </h1>
 

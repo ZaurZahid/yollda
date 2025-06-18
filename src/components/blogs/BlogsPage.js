@@ -138,7 +138,7 @@ export default function BlogsPage({ blogsData }) {
             <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
                 <Breadcrumb items={breadcrumbItems} />
                 <div className="flex flex-col">
-                    <h1 className="text-h2-responsive uppercase font-extrabold text-green-dark">
+                    <h1 className="font-secondary text-h2-responsive uppercase font-extrabold text-green-dark">
                         News
                     </h1>
                     <p className="text-gray-400 mt-2 lg:mt-5">

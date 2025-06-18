@@ -5,7 +5,7 @@ function OurServices({ siteData = '' }) {
     return (
         <div class="py-16 lg:py-20 bg-white">
             <div class="px-0 sm:px-32 text-center">
-                <h1 className="text-section-lg-title-responsive uppercase font-extrabold text-green-dark">
+                <h1 className="font-secondary text-section-lg-title-responsive uppercase font-extrabold text-green-dark">
                     Our Services IN
                 </h1>
 

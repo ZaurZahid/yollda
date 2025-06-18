@@ -9,7 +9,7 @@ export default function DownloadApps() {
         <section className="w-full flex justify-center bg-green-dark text-white pt-16 lg:pt-20">
             <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
                 {/* Main Heading */}
-                <h1 className="text-h1-responsive uppercase text-center font-extrabold leading-tight">
+                <h1 className="font-secondary text-h1-responsive uppercase text-center font-extrabold leading-tight">
                     Download our apps
                 </h1>
                 {/* Description */}

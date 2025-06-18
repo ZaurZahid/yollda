@@ -71,7 +71,7 @@ export default function MobilitySection() {
                     <div className="space-y-4">
                         {/* Main Title - Always Visible */}
                         <div className="space-y-4">
-                            <h1 className="text-section-lg-title-responsive font-extrabold">
+                            <h1 className="font-secondary text-section-lg-title-responsive font-extrabold">
                                 {mobilitySlides[currentSlide].title}
                             </h1>
                         </div>
