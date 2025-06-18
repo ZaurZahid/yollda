@@ -163,20 +163,29 @@ export default function ServicesCarousel() {
                 <div className="mb-12 lg:mb-20" />
 
                 {/* Desktop Carousel */}
-                <div className="hidden md:block relative">
+                <div className="hidden md:block relative h-[32rem]">
                     <div ref={emblaRef}>
                         <div className="flex">
                             {services.map((service, index) => {
-                                const isActive = index === selectedIndex;
+                                const total = services.length;
+                                const rawDiff = Math.abs(index - selectedIndex);
+                                const diff = Math.min(rawDiff, total - rawDiff);
+
+                                let scaleClass = 'h-[26rem]';
+
+                                if (diff === 0) {
+                                    scaleClass = 'scale-105 z-10 h-[32rem]';
+                                } else if (diff === 1) {
+                                    scaleClass = 'z-0 h-[30rem]';
+                                }
 
                                 return (
                                     <div
                                         key={service.id}
-                                        className="flex-[0_0_320px] min-w-0 mx-3"
+                                        className="flex-[0_0_320px] min-w-0 mx-3 my-auto"
                                     >
                                         <div
-                                            className={`w-full h-96 rounded-2xl overflow-hidden shadow-xl transition-all duration-700 ease-out ${isActive ? 'scale-105 z-10' : 'scale-95'
-                                                }`}
+                                            className={`w-full rounded-2xl overflow-hidden shadow-xl transition-all duration-700 ease-out ${scaleClass}`}
                                         >
                                             <div className={`relative h-full bg-gradient-to-br select-none ${service.bgColor} flex flex-col justify-between p-6 text-white`}>
                                                 {/* Background Image */}
@@ -207,38 +216,52 @@ export default function ServicesCarousel() {
                 </div>
 
                 {/* Mobile Carousel */}
-                <div className="md:hidden">
+                <div className="md:hidden h-[32rem]">
                     <div ref={mobileEmblaRef}>
                         <div className="flex">
-                            {services.map((service) => (
-                                <div
-                                    key={service.id}
-                                    className="flex-[0_0_100%] min-w-0 px-2"
-                                >
-                                    <div className="w-full h-96 rounded-2xl overflow-hidden shadow-xl">
-                                        <div className={`relative h-full bg-gradient-to-br ${service.bgColor} flex flex-col justify-between p-6 text-white`}>
-                                            {/* Background Image */}
-                                            <div
-                                                className="absolute inset-0 bg-cover bg-center opacity-30"
-                                                style={{ backgroundImage: `url(${service.image})` }}
-                                            />
+                            {services.map((service, index) => {
+                                const total = services.length;
+                                const rawDiff = Math.abs(index - selectedIndex);
+                                const diff = Math.min(rawDiff, total - rawDiff);
 
-                                            {/* Content */}
-                                            <div className="relative z-10">
-                                                <h3 className="text-h4-responsive font-bold mb-4">{service.title}</h3>
-                                                <p className="body-regular mb-6 leading-relaxed">{service.description}</p>
-                                            </div>
+                                let scaleClass = 'h-[26rem]';
 
-                                            {/* Button */}
-                                            <div className="relative z-10">
-                                                <button className="bg-light-green hover:light-secondary-green text-white px-6 py-3 rounded-full font-semibold text-button-responsive transition-all duration-200 transform hover:scale-105">
-                                                    {service.buttonText}
-                                                </button>
+                                if (diff === 0) {
+                                    scaleClass = 'scale-105 z-10 h-[32rem]';
+                                } else if (diff === 1) {
+                                    scaleClass = 'z-0 h-[30rem]';
+                                }
+
+                                return (
+                                    <div
+                                        key={service.id}
+                                        className="flex-[0_0_75%] min-w-0 px-2 my-auto"
+                                    >
+                                        <div className={`w-full rounded-2xl overflow-hidden shadow-xl transition-all duration-700 ease-out ${scaleClass}`}>
+                                            <div className={`relative h-full bg-gradient-to-br ${service.bgColor} flex flex-col justify-between p-6 text-white`}>
+                                                {/* Background Image */}
+                                                <div
+                                                    className="absolute inset-0 bg-cover bg-center opacity-30"
+                                                    style={{ backgroundImage: `url(${service.image})` }}
+                                                />
+
+                                                {/* Content */}
+                                                <div className="relative z-10">
+                                                    <h3 className="text-h4-responsive font-bold mb-4">{service.title}</h3>
+                                                    <p className="body-regular mb-6 leading-relaxed">{service.description}</p>
+                                                </div>
+
+                                                {/* Button */}
+                                                <div className="relative z-10">
+                                                    <button className="bg-light-green hover:light-secondary-green text-white px-6 py-3 rounded-full font-semibold text-button-responsive transition-all duration-200 transform hover:scale-105">
+                                                        {service.buttonText}
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                )
+                            })}
                         </div>
                     </div>
                 </div>
