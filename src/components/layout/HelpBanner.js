@@ -9,7 +9,7 @@ export default function HelpBanner() {
             <div className="relative grid md:grid-cols-12 items-center h-auto md:h-[280px]">
                 {/* Left Side - Image */}
                 <div className="col-span-12 md:col-span-4 lg:col-span-3 relative md:h-full">
-                    <div className="h-[200px] md:h-full overflow-hidden rounded-l-3xl rounded-l-none md:rounded-l-3xl md:rounded-r-none">
+                    <div className="h-[200px] md:h-full overflow-hidden rounded-t-xl md:rounded-xl md:rounded-r-none">
                         <img
                             src="https://images.pexels.com/photos/7144176/pexels-photo-7144176.jpeg?auto=compress&cs=tinysrgb&w=800"
                             alt="Happy people in car needing roadside assistance"

@@ -1,18 +1,19 @@
 import React from 'react';
 import Link from 'next/link';
 import { formatDate } from '../../hooks/formatDate';
+import { trimText } from '../../hooks/trimText';
 
-const BlogCard = ({ post: { id, title, date, image, category } }) => {
+const NewsCard = ({ post: { id, title, date, image, category } }) => {
     return (
         <Link
-            href={`/blogs/${id}`}
+            href={`/news/${id}`}
             key={id}
-            className="inline-flex pointer-events-none w-full group cursor-pointer bg-white hover:bg-gray-50 rounded-2xl transition-all duration-300 hover:shadow-lg"
+            className="inline-flex w-full group cursor-pointer bg-white hover:bg-gray-50 rounded-2xl transition-all duration-300 hover:shadow-lg"
         >
             <div className="flex flex-col md:flex-row gap-6">
                 {/* Image */}
-                <div className="md:w-80 flex-shrink-0">
-                    <div className="aspect-video w-full rounded-xl md:rounded-r-none overflow-hidden">
+                <div className="flex-shrink-0">
+                    <div className="md:w-80 h-[200px] md:h-60 rounded-t-xl md:rounded-xl md:rounded-r-none overflow-hidden">
                         <img
                             src={image}
                             alt={title}
@@ -31,8 +32,8 @@ const BlogCard = ({ post: { id, title, date, image, category } }) => {
                     </div>
 
                     {/* Title */}
-                    <h5 className="text-h5-responsive font-bold text-gray-700 leading-tight group-hover:text-green-dark transition-colors duration-200">
-                        {title}
+                    <h5 className="text-h5-responsive lg:w-[90%] font-bold text-gray-700 leading-tight group-hover:text-green-dark transition-colors duration-200">
+                        {trimText(title, 100)}
                     </h5>
 
                     {/* Date */}
@@ -45,4 +46,4 @@ const BlogCard = ({ post: { id, title, date, image, category } }) => {
     );
 };
 
-export default BlogCard;
+export default NewsCard;

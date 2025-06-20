@@ -1,7 +1,6 @@
 import { useState } from "react";
-import Star from "../ui/icons/Star";
 import Breadcrumb from "../ui/Breadcrumb";
-import BlogList from "./BlogList";
+import NewsList from "./NewsList";
 import Pagination from "../ui/Pagination";
 import { useTranslation } from 'next-i18next';
 import ArrowDown from "../ui/icons/ArrowDown";
@@ -55,20 +54,20 @@ const newsArticles = [
 const categories = ['All', 'Sustainability', 'Technology', 'Business', 'Safety'];
 const regions = ['Global', 'North America', 'Europe', 'Asia Pacific'];
 
-export default function BlogsPage({ blogsData }) {
+export default function NewsPage({ newsData }) {
     const { t } = useTranslation('common');
     const { i18n } = useTranslation();
 
     const breadcrumbItems = [
         { label: t('navigation.home'), url: '/' },
-        { label: t('navigation.blog'), url: '' },
+        { label: t('navigation.news'), url: '' },
     ];
 
     // Pagination State
-    const [currentPage, setCurrentPage] = useState(blogsData.current_page || 1); // Default from SSR
-    const [itemsPerPage] = useState(blogsData.per_page || 10);
-    const [blogs, setBlogs] = useState(blogsData.results || []); // Blog results
-    const [totalItems, setTotalItems] = useState(blogsData.total || 99); // Total number of items
+    const [currentPage, setCurrentPage] = useState(newsData.current_page || 1); // Default from SSR
+    const [itemsPerPage] = useState(newsData.per_page || 10);
+    const [s, setNews] = useState(newsData.results || []); // New results
+    const [totalItems, setTotalItems] = useState(newsData.total || 99); // Total number of items
 
     const [selectedCategory, setSelectedCategory] = useState('News');
     const [selectedRegion, setSelectedRegion] = useState('Global');
@@ -77,9 +76,9 @@ export default function BlogsPage({ blogsData }) {
     const [filteredArticles, setFilteredArticles] = useState(newsArticles);
 
     // Function to fetch data for a specific page
-    const fetchBlogs = async (page, perPage) => {
+    const fetchNews = async (page, perPage) => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/support/blog/?page=${page}&per_page=${perPage}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/support//?page=${page}&per_page=${perPage}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept-Language': i18n?.language || 'az',
@@ -88,7 +87,7 @@ export default function BlogsPage({ blogsData }) {
             const data = await response.json();
 
             setCurrentPage(data.current_page);
-            setBlogs(data.results);
+            setNews(data.results);
             setTotalItems(data.total);
 
             // Scroll to top smoothly after data is loaded
@@ -97,7 +96,7 @@ export default function BlogsPage({ blogsData }) {
                 behavior: "smooth",
             });
         } catch (error) {
-            console.error("Error fetching blogs:", error);
+            console.error("Error fetching s:", error);
         }
     };
 
@@ -105,7 +104,7 @@ export default function BlogsPage({ blogsData }) {
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);//helelik
 
-        // fetchBlogs(pageNumber, itemsPerPage);
+        // fetchNews(pageNumber, itemsPerPage);
     };
 
     const handleCategoryChange = (category) => {
@@ -138,7 +137,7 @@ export default function BlogsPage({ blogsData }) {
             <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
                 <Breadcrumb items={breadcrumbItems} />
                 <div className="flex flex-col">
-                    <h1 className="font-secondary text-h2-responsive uppercase font-extrabold text-green-dark">
+                    <h1 className="font-secondary text-h2-responsive lg:w-[70%] uppercase font-extrabold text-green-dark">
                         News
                     </h1>
                     <p className="text-gray-400 mt-2 lg:mt-5">
@@ -206,7 +205,7 @@ export default function BlogsPage({ blogsData }) {
                     </p>
                 </div>
 
-                <BlogList blogs={newsArticles} />
+                <NewsList news={newsArticles} />
 
                 <Pagination
                     totalPages={totalItems}

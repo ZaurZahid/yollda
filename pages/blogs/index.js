@@ -1,9 +1,10 @@
 import Head from "next/head";
-import BlogsPage from "../../src/components/blogs/BlogsPage";
 import Layout from "../../src/components/layout/Layout";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { fetchFromAPI } from "../../src/hooks/apiFetcher";
+import NewsSection from "../../src/components/blogs/NewsSection";
+import BlogsSection from "../../src/components/blogs/BlogsSection";
 
 export default function Blogs({ /* siteData, blogsData, */ error }) {
     const { t } = useTranslation('common')
@@ -15,7 +16,7 @@ export default function Blogs({ /* siteData, blogsData, */ error }) {
     return (
         <Layout /* siteData={siteData} */ theme={'transparent'}>
             <Head>
-                <html dir={'ar' === 'ar' ? 'rtl' : 'ltr'} />
+                <html dir={'ar' === 'az' ? 'rtl' : 'ltr'} />
                 <title>Yollda | {t('navigation.blog')}</title>
                 <meta name="description" content="This is a description of blog page." />
             </Head>
@@ -25,7 +26,9 @@ export default function Blogs({ /* siteData, blogsData, */ error }) {
                 alt="Beautiful image"
                 class="h-[530px] lg:h-[590px] w-full object-cover -mt-20"
             />
-            <BlogsPage blogsData={[]/* blogsData */} />
+
+            <BlogsSection blogsData={[]/* blogsData */} />
+            <NewsSection newsData={[]/* blogsData */} />
         </Layout>
     );
 }

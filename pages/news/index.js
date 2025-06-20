@@ -1,11 +1,11 @@
 import Head from "next/head";
-import BlogsPage from "../../src/components/blogs/BlogsPage";
+import NewsPage from "../../src/components/news/NewsPage";
 import Layout from "../../src/components/layout/Layout";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { fetchFromAPI } from "../../src/hooks/apiFetcher";
 
-export default function News({ /* siteData, blogsData, */ error }) {
+export default function News({ /* siteData, newsData, */ error }) {
     const { t } = useTranslation('common')
 
     if (error) {
@@ -16,7 +16,7 @@ export default function News({ /* siteData, blogsData, */ error }) {
         <Layout /* siteData={siteData} */ theme={'transparent'}>
             <Head>
                 <html dir={'ar' === 'az' ? 'rtl' : 'ltr'} />
-                <title>Yollda | {t('navigation.blog')}</title>
+                <title>Yollda | {t('navigation.news')}</title>
                 <meta name="description" content="This is a description of blog page." />
             </Head>
 
@@ -25,14 +25,14 @@ export default function News({ /* siteData, blogsData, */ error }) {
                 alt="Beautiful image"
                 class="h-[530px] lg:h-[590px] w-full object-cover -mt-20"
             />
-            <BlogsPage blogsData={[]/* blogsData */} />
+            <NewsPage newsData={[]/* newsData */} />
         </Layout>
     );
 }
 
 export async function getServerSideProps({ locale }) {
     try {
-        // const [siteData, blogsData] = await Promise.all([
+        // const [siteData, newsData] = await Promise.all([
         //     fetchFromAPI('/api/v1/support/site/', locale),
         //     fetchFromAPI('/api/v1/support/blog/?page=1&per_page=10', locale),
         // ]);
@@ -40,7 +40,7 @@ export async function getServerSideProps({ locale }) {
             props: {
                 ...(await serverSideTranslations(locale, ['common'])),
                 // siteData,
-                // blogsData,
+                // newsData,
             },
         };
     } catch (error) {
@@ -50,7 +50,7 @@ export async function getServerSideProps({ locale }) {
             props: {
                 ...(await serverSideTranslations(locale, ['common'])),
                 siteData: null,
-                blogsData: null,
+                newsData: null,
                 error: 'Failed to load data.',
             },
         };
