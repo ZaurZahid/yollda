@@ -72,7 +72,7 @@ export default function Pagination({
     const visiblePages = getVisiblePages();
 
     return (
-        <div className={`flex items-center justify-center space-x-1 sm:space-x-2 ${className}`}>
+        <div className={`flex items-center justify-center space-s-1 sm:space-s-2 ${className}`}>
             {/* Previous Button */}
             <button
                 onClick={handlePrevious}
@@ -83,11 +83,11 @@ export default function Pagination({
                     }`}
                 aria-label="Previous page"
             >
-                <ArrowDown strokeColor={`stroke-gray-600`} className={`w-3 font-bold transition-transform duration-200 rotate-90`} />
+                <ArrowDown strokeColor={`stroke-gray-600`} className={`w-3 font-bold transition-transform duration-200 rotate-90 rtl:-rotate-90`} />
             </button>
 
             {/* Page Numbers */}
-            <div className="flex items-center space-x-1 sm:space-x-2">
+            <div className="flex items-center space-s-1 sm:space-s-2">
                 {visiblePages.map((page, index) => {
                     if (page === '...') {
                         return (
@@ -128,7 +128,7 @@ export default function Pagination({
                     }`}
                 aria-label="Next page"
             >
-                <ArrowDown strokeColor={`stroke-gray-600`} className={`w-3 font-bold transition-transform duration-200 -rotate-90`} />
+                <ArrowDown strokeColor={`stroke-gray-600`} className={`w-3 font-bold transition-transform duration-200 -rotate-90 rtl:rotate-90`} />
             </button>
         </div>
     );

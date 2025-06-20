@@ -137,15 +137,15 @@ const Header = ({ logo, theme = 'normal', onOpen }) => {
                         </div>
                     </nav> */}
 
-                    <div className="flex items-center space-x-4 md:space-x-6 lg:space-x-8">
+                    <div className="flex items-center space-s-4 md:space-s-6 lg:space-s-8">
                         <LanguageSwitcher />
 
-                        <div className="hidden md:flex items-center space-x-4 md:space-x-6 lg:space-x-8">
+                        <div className="hidden md:flex items-center space-s-4 md:space-s-6 lg:space-s-8">
                             <h5 class="text-span-responsive font-bold">Destek</h5>
                             <Button
                                 text={t('navigation.join')}
                                 onClick={onOpen}
-                                classes={"ml-4 bg-green-dark hover:green-secondary-dark text-white whitespace-nowrap h-8"}
+                                classes={"ms-4 bg-green-dark hover:green-secondary-dark text-white whitespace-nowrap h-8"}
                             />
                         </div>
 

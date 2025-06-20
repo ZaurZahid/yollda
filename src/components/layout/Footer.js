@@ -20,14 +20,14 @@ const Footer = ({ siteData }) => {
                     {/* Logo and App Download Section */}
                     <div class="flex flex-col lg:flex-row lg:justify-between mb-12">
                         <div className="lg:mr-12">
-                            <div className="flex items-center space-x-2 mb-2 lg:mb-6">
+                            <div className="flex items-center space-s-2 mb-2 lg:mb-6">
                                 <Link href="/" passHref>
                                     <YolldaLogo className="max-w-24 lg:max-w-32 cursor-pointer fill-light-green" />
                                 </Link>
                             </div>
 
                             <div className="mb-6 lg:mb-8">
-                                <div className="inline-flex space-x-2 p-2 rounded-xl bg-green-secondary-dark">
+                                <div className="inline-flex space-s-2 p-2 rounded-xl bg-green-secondary-dark">
                                     <button className={`px-6 py-1 rounded-xl text-span-small-responsive duration-200 ${selectedApp === 'yollda' ? "bg-green-dark text-white font-medium" : 'text-gray-500'} `} onClick={() => setSelectedApp('yollda')}>
                                         Yollda
                                     </button>
@@ -270,7 +270,7 @@ const Footer = ({ siteData }) => {
                     <div className="border-t border-light-secondary-green pt-8">
                         <div className="flex flex-col lg:flex-row justify-between items-center">
                             {/* Social Media Icons */}
-                            <div className="flex justify-center space-x-4">
+                            <div className="flex justify-center space-s-4">
                                 {siteData?.[0]?.facebook && <a href={siteData[0].facebook} target="_blank" rel="noopener noreferrer" className="hover:text-blue-800">
                                     <img src="/facebook.png" alt="Facebook" className="w-5 h-5" />
                                 </a>}
@@ -289,8 +289,8 @@ const Footer = ({ siteData }) => {
                             </div>
 
                             {/* Legal Links and Copyright */}
-                            <div className="flex flex-col lg:flex-row mt-8 lg:mt-0 items-center space-y-4 lg:space-y-0 lg:space-x-8">
-                                <div className="flex flex-wrap justify-center lg:justify-end space-x-6 text-gray-400">
+                            <div className="flex flex-col lg:flex-row mt-8 lg:mt-0 items-center space-y-4 lg:space-y-0 lg:space-s-8">
+                                <div className="flex flex-wrap justify-center lg:justify-end space-s-6 text-gray-400">
                                     <a
                                         href={`/terms/${locale}`}
                                         className="text-white hover:text-light-green transition-colors duration-200 text-span-small-responsive"

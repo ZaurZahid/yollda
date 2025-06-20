@@ -22,7 +22,7 @@ export default function HelpBanner() {
                 <div className="col-span-12 md:col-span-8 lg:col-span-9 relative z-10 p-8 text-white">
                     {/* Brand Logo/Text */}
                     <div className="md:mb-6">
-                        <div className="flex items-center space-x-2 md:mb-3">
+                        <div className="flex items-center space-s-2 md:mb-3">
                             <YolldaLogo className="max-w-24 md:max-w-32 cursor-pointer fill-light-green" />
                         </div>
                     </div>

@@ -30,6 +30,7 @@ export default function HomePage({ /* shoppingCenters, faqData, siteData, onboar
   return (
     <Layout theme={"normal"}>{/* transparent */}
       <Head>
+        <html dir={'ar' === 'ar' ? 'rtl' : 'ltr'} />
         <title>Yollda | {t('navigation.home')}</title>
         <meta name="description" content="This is a description of home page." />
       </Head>

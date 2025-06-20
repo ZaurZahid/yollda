@@ -79,7 +79,7 @@ export default function NewsUpdates() {
                         {/* Middle Column - Article List */}
                         <div className="col-span-12 md:col-span-6 lg:col-span-4 space-y-4 flex flex-col justify-between">
                             {newsArticles.slice(1, 4).map((article) => (
-                                <Link href={`/news/${article.id}`} key={article.id} className="flex items-center space-x-4 h-[30%] rounded-xl cursor-pointer group">
+                                <Link href={`/news/${article.id}`} key={article.id} className="flex items-center space-s-4 h-[30%] rounded-xl cursor-pointer group">
                                     <div className="flex-shrink-0">
                                         <img
                                             src={article.image}
@@ -92,7 +92,7 @@ export default function NewsUpdates() {
                                             {article.title}
                                         </h4>
                                         <div className="flex items-center text-span-small-responsive text-gray-500">
-                                            <img src="/calendar.svg" className="mr-1" alt="calendar icon" />
+                                            <img src="/calendar.svg" className="me-1" alt="calendar icon" />
                                             {article.date}
                                         </div>
                                     </div>

@@ -165,7 +165,7 @@ export default function ServicesCarousel() {
                 {/* Desktop Carousel */}
                 <div className="hidden md:block relative h-[32rem]">
                     <div ref={emblaRef}>
-                        <div className="flex">
+                        <div className="flex rtl:flex-row-reverse">
                             {services.map((service, index) => {
                                 const total = services.length;
                                 const rawDiff = Math.abs(index - selectedIndex);
@@ -218,7 +218,7 @@ export default function ServicesCarousel() {
                 {/* Mobile Carousel */}
                 <div className="md:hidden h-[32rem]">
                     <div ref={mobileEmblaRef}>
-                        <div className="flex">
+                        <div className="flex rtl:flex-row-reverse">
                             {services.map((service, index) => {
                                 const total = services.length;
                                 const rawDiff = Math.abs(index - selectedIndex);
@@ -267,10 +267,10 @@ export default function ServicesCarousel() {
                 </div>
 
                 {/* Navigation Controls */}
-                <div className="flex items-center justify-between mt-8 space-x-6 mr-2 lg:mr-0">
+                <div className="flex items-center justify-between mt-8 space-s-6 mr-2 lg:mr-0">
                     <div></div>
                     {/* Dots Indicator */}
-                    <div className="hidden md:flex space-x-2">
+                    <div className="hidden md:flex space-s-2">
                         {services.map((_, index) => (
                             <button
                                 key={index}
@@ -285,11 +285,11 @@ export default function ServicesCarousel() {
                     </div>
 
                     {/* Navigation Arrows - Both on Right */}
-                    <div className="flex space-x-3">
+                    <div className="flex space-s-3">
                         {/* Previous Button */}
                         <button
                             onClick={scrollPrev}
-                            className="bg-gray-300 hover:bg-gray-500 rounded-xl p-3 shadow-lg transition-all duration-400 border border-gray-200"
+                            className="bg-gray-300 hover:bg-gray-500 rounded-xl p-3 shadow-lg transition-all duration-400 border border-gray-200 rtl:-rotate-180"
                             aria-label="Previous slide"
                         >
                             <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -300,7 +300,7 @@ export default function ServicesCarousel() {
                         {/* Next Button */}
                         <button
                             onClick={scrollNext}
-                            className="bg-gray-300 hover:bg-gray-500 rounded-xl p-3 shadow-lg transition-all duration-400 border border-gray-200"
+                            className="bg-gray-300 hover:bg-gray-500 rounded-xl p-3 shadow-lg transition-all duration-400 border border-gray-200 rtl:rotate-180"
                             aria-label="Next slide"
                         >
                             <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">

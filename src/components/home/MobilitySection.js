@@ -107,13 +107,13 @@ export default function MobilitySection() {
                                 className="bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl p-3 transition-all duration-200 hover:scale-110 border border-white/30"
                                 aria-label="Previous slide"
                             >
-                                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-5 h-5 text-white rtl:-rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                 </svg>
                             </button>
 
                             {/* Dots Indicator */}
-                            <div className="flex space-x-3">
+                            <div className="flex space-s-3">
                                 {mobilitySlides.map((_, index) => (
                                     <button
                                         key={index}
@@ -129,10 +129,10 @@ export default function MobilitySection() {
 
                             <button
                                 onClick={goToNext}
-                                className="bg-light-green hover:bg-green-400 rounded-xl p-3 transition-all duration-200 hover:scale-110 shadow-lg"
+                                className="bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl p-3 transition-all duration-200 hover:scale-110 border border-white/30"
                                 aria-label="Next slide"
                             >
-                                <svg className="w-5 h-5 text-green-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-5 h-5 text-white rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                 </svg>
                             </button>

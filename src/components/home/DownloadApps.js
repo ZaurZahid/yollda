@@ -20,7 +20,7 @@ export default function DownloadApps() {
                 <div className="lg:-mt-24 flex flex-col lg:flex-row lg:justify-between">
                     <div className="mt-12 lg:mt-0 lg:mr-12 flex flex-col justify-center text-center lg:text-start">
                         <div className="mb-6">
-                            <div className="inline-flex space-x-2 p-2 rounded-xl bg-green-secondary-dark">
+                            <div className="inline-flex space-s-2 p-2 rounded-xl bg-green-secondary-dark">
                                 <button className={`px-6 py-1 rounded-xl text-span-small-responsive duration-200 ${selectedApp === 'yollda' ? "bg-green-dark text-white font-medium" : 'text-gray-500'} `} onClick={() => setSelectedApp('yollda')}>
                                     Yollda
                                 </button>

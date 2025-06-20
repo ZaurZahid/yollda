@@ -15,6 +15,7 @@ export default function Blogs({ /* siteData, blogsData, */ error }) {
     return (
         <Layout /* siteData={siteData} */ theme={'transparent'}>
             <Head>
+                <html dir={'ar' === 'ar' ? 'rtl' : 'ltr'} />
                 <title>Yollda | {t('navigation.blog')}</title>
                 <meta name="description" content="This is a description of blog page." />
             </Head>
