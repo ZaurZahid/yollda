@@ -1,6 +1,13 @@
-import React from 'react'
-import Breadcrumb from '../ui/Breadcrumb';
+import { useState } from "react";
+import Breadcrumb from "../ui/Breadcrumb";
+import NewsList from "./NewsList";
+import Pagination from "../ui/Pagination";
 import { useTranslation } from 'next-i18next';
+import ArrowDown from "../ui/icons/ArrowDown";
+import HelpBanner from "../layout/HelpBanner";
+import SingleBlog from "./SingleBlog";
+import Articles from "./Articles";
+import SubscribeNewsletter from "../ui/SubscribeNewsletter";
 
 const mockTermsData = {
     'users': {
@@ -32,32 +39,48 @@ const mockTermsData = {
     }
 }
 
-function TermsSubPageSection() {
+export default function SingleBlogSection({ blogsData }) {
     const { t } = useTranslation('common');
 
     const breadcrumbItems = [
-        { label: t('navigation.terms'), url: '/terms' },
-        { label: t('navigation.terms-special'), url: '' },
+        { label: t('navigation.home'), url: '/' },
+        { label: t('navigation.blogs'), url: '' },
     ];
-
+    const tabs = ['For passengers', 'News', 'Product update'];
 
     return (
-        <div className="w-full flex justify-center py-12 md:py-20">
+        <div className="w-full flex justify-center py-12 lg:py-20">
             <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
-                <Breadcrumb items={breadcrumbItems} />
-                <div className="flex flex-col">
-                    <h1 className="text-h1-responsive uppercase font-bold text-green-dark lg:w-[80%]">
-                        Yollda Users (Service Beneficiaries)
-                    </h1>
+                <div className="flex flex-col lg:w-[80%] mx-auto">
+                    <Breadcrumb items={breadcrumbItems} />
+                    <h2 className="font-secondary text-h2-responsive uppercase font-bold text-green-dark lg:w-[80%]">
+                        Yollda joins UN Global Compact: strengthening our commitment to sustainability
+                    </h2>
+
+                    <div className="flex flex-wrap gap-2 md:gap-1 md:space-s-4 mt-6">
+                        {tabs.map((tab) => (
+                            <button
+                                key={tab}
+                                className={`px-4 py-2 text-span-responsive cursor-default font-medium rounded-full transition-all duration-200 text-green-dark bg-light-green/20`}
+                            >
+                                {tab}
+                            </button>
+                        ))}
+                    </div>
+
                     <div className="flex items-center mt-6">
                         <img src="/calendar.svg" className="me-2" alt="calendar icon" />
                         <span className="text-span-small-responsive text-gray-500">March 8, 2022</span>
                     </div>
-                    <p className="text-gray-500 text-large-responsive mt-3 lg:w-[80%]">
-                        These Terms and Conditions govern your use of the Yollda platform as a user requesting road assistance services. By using our services, you agree to these terms.
-                    </p>
-                    <hr className="my-6 md:my-10 lg:my-16 h-[2px] bg-gray-200 border-0" />
 
+                </div>
+                <img
+                    src={'https://images.pexels.com/photos/1118448/pexels-photo-1118448.jpeg?auto=compress&cs=tinysrgb&w=800'}
+                    alt={'blog image'}
+                    className="w-full max-h-[250px] md:max-h-[450px] lg:max-h-[650px] object-cover mt-6 rounded-2xl"
+                />
+
+                <div className="flex flex-col lg:w-[80%] mx-auto mt-10">
                     <div
                         className="lg:w-[80%]
                         prose-h1:text-h1-responsive prose-h1:mt-12 prose-h1:mb-8 
@@ -88,9 +111,11 @@ function TermsSubPageSection() {
                         dangerouslySetInnerHTML={{ __html: mockTermsData.users.content }}
                     />
                 </div>
-            </div>
-        </div>
-    )
-}
 
-export default TermsSubPageSection
+                <div className="mt-24">
+                    <SubscribeNewsletter />
+                </div>
+            </div>
+        </div >
+    );
+}
