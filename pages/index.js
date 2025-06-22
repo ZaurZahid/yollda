@@ -64,16 +64,7 @@ export default function HomePage({ /* shoppingCenters, faqData, siteData, onboar
       <DownloadApps />
 
       <NewsUpdates />
-
-      {/* <OnboardingSection centers={shoppingCenters} />
-      <ValueSection features={featureData} />
-      <HowItWorks onboardingData={onboardingData} />
-      <TradeCenters centers={shoppingCenters} />
-      <Fags fags={faqData} />
-      <BlogSection blogsData={blogsData} />
-      <ContactForm siteData={siteData} /> */}
     </Layout>
-    // </Layout>
   );
 }
 

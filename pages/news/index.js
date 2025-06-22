@@ -23,7 +23,7 @@ export default function News({ /* siteData, newsData, */ error }) {
             <img
                 src="/frame.png"
                 alt="Beautiful image"
-                class="h-[530px] lg:h-[590px] w-full object-cover -mt-20"
+                class="h-[530px] lg:h-[800px] w-full object-cover -mt-24 md:-mt-32 lg:-mt-24"
             />
             <NewsPage newsData={[]/* newsData */} />
         </Layout>

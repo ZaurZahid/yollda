@@ -1,12 +1,15 @@
 import Head from "next/head";
-import Layout from "../../src/components/layout/Layout";
+import Layout from "../src/components/layout/Layout";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
-import { fetchFromAPI } from "../../src/hooks/apiFetcher";
-import NewsSection from "../../src/components/blogs/NewsSection";
-import BlogsSection from "../../src/components/blogs/BlogsSection";
+import { fetchFromAPI } from "../src/hooks/apiFetcher";
+import TermsConditionsSection from "../src/components/terms/TermsConditionsSection";
+import WeAreYolldaSection from "../src/components/about/WeAreYolldaSection";
+import SuperAppSection from "../src/components/about/SuperAppSection";
+import WhatMakeUsSection from "../src/components/about/WhatMakeUsSection";
+import EarnMoneySection from "../src/components/about/EarnMoneySection";
 
-export default function Blogs({ /* siteData, blogsData, */ error }) {
+export default function About({ /* siteData, newsData, */ error }) {
     const { t } = useTranslation('common')
 
     if (error) {
@@ -17,8 +20,8 @@ export default function Blogs({ /* siteData, blogsData, */ error }) {
         <Layout /* siteData={siteData} */ theme={'transparent'}>
             <Head>
                 <html dir={'ar' === 'az' ? 'rtl' : 'ltr'} />
-                <title>Yollda | {t('navigation.blog')}</title>
-                <meta name="description" content="This is a description of blog page." />
+                <title>Yollda | {t('navigation.about')}</title>
+                <meta name="description" content="This is a description of about page." />
             </Head>
 
             <img
@@ -27,15 +30,32 @@ export default function Blogs({ /* siteData, blogsData, */ error }) {
                 class="h-[530px] lg:h-[800px] w-full object-cover -mt-24 md:-mt-32 lg:-mt-24"
             />
 
-            <BlogsSection blogsData={[]/* blogsData */} />
-            <NewsSection newsData={[]/* blogsData */} />
+            <WeAreYolldaSection />
+
+            <img
+                src="/frame.png"
+                alt="Beautiful image"
+                class="h-[350px] lg:h-[640px] w-full object-cover"
+            />
+
+            <WhatMakeUsSection />
+
+            <SuperAppSection />
+
+            <img
+                src="/frame.png"
+                alt="Beautiful image"
+                class="h-[100px] lg:h-[200px] w-full object-cover"
+            />
+
+            <EarnMoneySection />
         </Layout>
     );
 }
 
 export async function getServerSideProps({ locale }) {
     try {
-        // const [siteData, blogsData] = await Promise.all([
+        // const [siteData, termsData] = await Promise.all([
         //     fetchFromAPI('/api/v1/support/site/', locale),
         //     fetchFromAPI('/api/v1/support/blog/?page=1&per_page=10', locale),
         // ]);
@@ -43,7 +63,7 @@ export async function getServerSideProps({ locale }) {
             props: {
                 ...(await serverSideTranslations(locale, ['common'])),
                 // siteData,
-                // blogsData,
+                // termsData,
             },
         };
     } catch (error) {
@@ -53,7 +73,7 @@ export async function getServerSideProps({ locale }) {
             props: {
                 ...(await serverSideTranslations(locale, ['common'])),
                 siteData: null,
-                blogsData: null,
+                newsData: null,
                 error: 'Failed to load data.',
             },
         };

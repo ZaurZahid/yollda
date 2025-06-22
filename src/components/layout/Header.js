@@ -60,7 +60,7 @@ const Header = ({ logo, theme = 'normal', onOpen }) => {
     return (
         <header
             ref={headerRef}
-            className={`header w-full flex justify-center fixed top-0 left-0 z-30 transition-all duration-300 bg-white ${theme === 'transparent' ? 'bg-transparent' : ''}`}
+            className={`header w-full flex justify-center fixed top-0 left-0 z-30 transition-all duration-300 ${theme === 'transparent' ? 'bg-transparent' : 'bg-white'}`}
         >
             <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
                 <div className="flex justify-between items-center py-4">
