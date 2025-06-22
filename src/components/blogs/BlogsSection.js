@@ -55,7 +55,6 @@ const blogsArticles = [
 
 export default function BlogsSection({ blogsData }) {
     const { t } = useTranslation('common');
-    const { i18n } = useTranslation();
 
     const breadcrumbItems = [
         { label: t('navigation.home'), url: '/' },

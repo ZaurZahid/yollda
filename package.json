@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tailwindcss/typography": "0.5.16",
     "autoprefixer": "10.4.20",
     "axios": "1.7.7",
     "embla-carousel-react": "8.0.0",
