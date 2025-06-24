@@ -48,3 +48,27 @@ html {
     scrollbar-color: white transparent;
     scrollbar-width: thin;
 }
+
+
+.custom-contact-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.custom-contact-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-contact-scrollbar::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    /* Makes it blend in nicely */
+    background-clip: content-box;
+}
+
+/* Firefox support */
+.custom-contact-scrollbar {
+    scrollbar-color: #6B7280 transparent;
+    scrollbar-width: thin;
+}
