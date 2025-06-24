@@ -358,7 +358,7 @@ export default function ContactTopSection() {
                                                 </button>
 
                                                 {isCountryCodeOpen && (
-                                                    <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto custom-contact-scrollbar">
+                                                    <div className="absolute top-full left-0 rtl:right-0 mt-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto custom-contact-scrollbar">
                                                         {countryCodes.map((country) => (
                                                             <button
                                                                 key={country.code}
