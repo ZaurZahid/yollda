@@ -31,26 +31,25 @@ export default function HowPartnerWorksSection({ isSubmitted }) {
     const getStepPositionClasses = (position) => {
         switch (position) {
             case 'top-left':
-                return 'lg:absolute lg:top-0 lg:left-0 lg:w-64 lg:text-right lg:pr-8';
+                return 'lg:absolute lg:top-0 lg:left-0 lg:w-64 lg:text-right lg:pr-8 rtl:lg:left-auto rtl:lg:right-0 rtl:lg:text-left rtl:lg:pl-8';
             case 'top-right':
-                return 'lg:absolute lg:top-0 lg:right-0 lg:w-64 lg:text-left lg:pl-8';
+                return 'lg:absolute lg:top-0 lg:right-0 lg:w-64 lg:text-left lg:pl-8 rtl:lg:right-auto rtl:lg:left-0 rtl:lg:text-right rtl:lg:pr-8';
             case 'bottom-left':
-                return 'lg:absolute lg:bottom-0 lg:left-0 lg:w-64 lg:text-right lg:pr-8';
+                return 'lg:absolute lg:bottom-0 lg:left-0 lg:w-64 lg:text-right lg:pr-8 rtl:lg:left-auto rtl:lg:right-0 rtl:lg:text-left rtl:lg:pl-8';
             case 'bottom-right':
-                return 'lg:absolute lg:bottom-0 lg:right-0 lg:w-64 lg:text-left lg:pl-8';
+                return 'lg:absolute lg:bottom-0 lg:right-0 lg:w-64 lg:text-left lg:pl-8 rtl:lg:right-auto rtl:lg:left-0 rtl:lg:text-right rtl:lg:pr-8';
             default:
                 return '';
         }
     };
-
     const getStepAlignment = (position) => {
         switch (position) {
             case 'top-left':
             case 'bottom-left':
-                return 'lg:items-end';
+                return 'lg:items-end rtl:lg:items-start';
             case 'top-right':
             case 'bottom-right':
-                return 'lg:items-start';
+                return 'lg:items-start rtl:lg:items-end';
             default:
                 return 'items-center';
         }
@@ -76,7 +75,7 @@ export default function HowPartnerWorksSection({ isSubmitted }) {
                     {steps.map((step, index) => (
                         <div
                             key={step.id}
-                            className={`flex items-center space-x-6`}
+                            className={`flex items-center space-s-6`}
                         >
                             {/* Step Number */}
                             <div className="flex-shrink-0">
