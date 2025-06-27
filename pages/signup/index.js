@@ -7,6 +7,8 @@ import PartnerSignupSection from "../../src/components/signup/partner/PartnerSig
 import FAQNewsletterSection from "../../src/components/contact/FAQNewsletterSection";
 import HowPartnerWorksSection from "../../src/components/signup/partner/HowPartnerWorksSection";
 import { useState } from "react";
+import RevenueStreamSection from "../../src/components/signup/partner/RevenueStreamSection";
+import YolldaPartnerSection from "../../src/components/signup/partner/YolldaPartnerSection";
 
 export default function PartnerSignup({ /* siteData, newsData, */ error }) {
     const { t } = useTranslation('common')
@@ -28,7 +30,8 @@ export default function PartnerSignup({ /* siteData, newsData, */ error }) {
 
             <PartnerSignupSection isSubmitted={isSubmitted} setIsSubmitted={setIsSubmitted} />
             <HowPartnerWorksSection isSubmitted={isSubmitted} />
-
+            <RevenueStreamSection />
+            <YolldaPartnerSection />
             <FAQNewsletterSection />
         </Layout>
     );
