@@ -1,40 +1,40 @@
-import Briefcase from '../../ui/icons/Briefcase';
-import PiggyBankBudget from './../../ui/icons/PiggyBankBudget';
-import Tools from './../../ui/icons/Tools';
+import MoneyStack from './../../ui/icons/MoneyStack';
+import Cube from './../../ui/icons/Cube';
+import Headset from './../../ui/icons/Headset';
 
 const benefits = [
     {
         id: 1,
-        title: "Earn when you want dfsf sdf sdf dsfs sdfdsf ",
-        description: "Support drivers during breakdowns, flat tires, and fuel needs. Work weekends or evenings — it's your call.",
-        icon: <Briefcase className="w-8 h-8" fillColor={"fill-green-dark"} />
+        title: "Steady and secure earnings",
+        description: "Consistent jobs, dependable payouts",
+        icon: <MoneyStack className="w-8 h-8" fillColor={"fill-green-dark"} />
     },
     {
         id: 2,
-        title: "Weekly payouts",
-        description: "We pay you every week. No upfront fees, no subscriptions — just a fair commission on each completed job.",
-        icon: <PiggyBankBudget className="w-8 h-8" fillColor={"fill-green-dark"} />
+        title: "Total clarity",
+        description: "A modern, intuitive portal to run your business with ease.",
+        icon: <Cube className="w-8 h-8" fillColor={"fill-green-dark"} />
     },
     {
         id: 3,
-        title: "A steady flow of service requests",
-        description: "Earn consistently by helping drivers with Yollda's steady flow of assistance service requests.",
-        icon: <Tools className="w-8 h-8" fillColor={"fill-green-dark"} />
+        title: "Fast, reliable support",
+        description: "We’re here when you need us.",
+        icon: <Headset className="w-8 h-8" fillColor={"fill-green-dark"} />
     }
 ];
 
-export default function RevenueStreamSection() {
+export default function WhyPartnerUsSection({ isSubmitted }) {
     return (
-        <div className="w-full flex justify-center py-12 lg:py-20">
+        <div className={`w-full flex justify-center py-12 lg:py-20 ${isSubmitted ? 'mt-[23rem] md:mt-48 lg:mt-0' : 'mt-[32rem] md:mt-[25rem] lg:mt-[8rem]'}`}>
             <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
                 {/* Header */}
                 <div className="mb-8 md:mb-16">
                     <h2 className="font-secondary text-h2-responsive uppercase font-bold text-green-dark mb-4 leading-tight">
-                        MAKE EVERY ROAD{' '}
-                        <span className="text-light-green">A REVENUE STREAM</span>
+                        Why partner with us?
                     </h2>
                     <p className="text-p-large-responsive text-gray-500 leading-relaxed">
-                        Join a growing network of service pros who keep drivers safe and moving. Earn on your schedule by providing essential roadside help where it matters most.
+                        Bolt is trusted by fleet partners from across 45+ countries all over the world.
+                        We’re known for:
                     </p>
                 </div>
 

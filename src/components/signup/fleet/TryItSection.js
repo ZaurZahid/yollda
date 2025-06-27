@@ -1,40 +1,40 @@
-import Briefcase from '../../ui/icons/Briefcase';
-import PiggyBankBudget from './../../ui/icons/PiggyBankBudget';
-import Tools from './../../ui/icons/Tools';
+import Devices from './../../ui/icons/Devices';
+import MemoCircleCheck from './../../ui/icons/MemoCircleCheck';
+import MoneySet from './../../ui/icons/MoneySet';
+import FleetHelpBanner from './FleetHelpBanner';
 
 const benefits = [
     {
         id: 1,
-        title: "Earn when you want dfsf sdf sdf dsfs sdfdsf ",
-        description: "Support drivers during breakdowns, flat tires, and fuel needs. Work weekends or evenings — it's your call.",
-        icon: <Briefcase className="w-8 h-8" fillColor={"fill-green-dark"} />
+        title: "Sign up",
+        description: "It takes just 2 minutes to register a fleet company account.",
+        icon: <Devices className="w-8 h-8" fillColor={"fill-green-dark"} />
     },
     {
         id: 2,
-        title: "Weekly payouts",
-        description: "We pay you every week. No upfront fees, no subscriptions — just a fair commission on each completed job.",
-        icon: <PiggyBankBudget className="w-8 h-8" fillColor={"fill-green-dark"} />
+        title: "Get approved",
+        description: "Enter your vehicle and driver info as we process your account activation.",
+        icon: <MemoCircleCheck className="w-8 h-8" fillColor={"fill-green-dark"} />
     },
     {
         id: 3,
-        title: "A steady flow of service requests",
-        description: "Earn consistently by helping drivers with Yollda's steady flow of assistance service requests.",
-        icon: <Tools className="w-8 h-8" fillColor={"fill-green-dark"} />
+        title: "Fast, reliable support",
+        description: "After verification, your vehicles are set to begin earning.",
+        icon: <MoneySet className="w-8 h-8" fillColor={"fill-green-dark"} />
     }
 ];
 
-export default function RevenueStreamSection() {
+export default function TryItSection() {
     return (
         <div className="w-full flex justify-center py-12 lg:py-20">
             <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
                 {/* Header */}
                 <div className="mb-8 md:mb-16">
                     <h2 className="font-secondary text-h2-responsive uppercase font-bold text-green-dark mb-4 leading-tight">
-                        MAKE EVERY ROAD{' '}
-                        <span className="text-light-green">A REVENUE STREAM</span>
+                        Sign up and try it free
                     </h2>
                     <p className="text-p-large-responsive text-gray-500 leading-relaxed">
-                        Join a growing network of service pros who keep drivers safe and moving. Earn on your schedule by providing essential roadside help where it matters most.
+                        Set up in 3 easy steps:
                     </p>
                 </div>
 
@@ -63,6 +63,10 @@ export default function RevenueStreamSection() {
                             </div>
                         </div>
                     ))}
+                </div>
+
+                <div className="mt-24 lg:mt-40">
+                    <FleetHelpBanner />
                 </div>
             </div>
         </div>

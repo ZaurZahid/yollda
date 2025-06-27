@@ -29,7 +29,7 @@ export default function YolldaPartnerSection() {
             <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
                 {/* Header */}
                 <div className="mb-8 md:mb-16">
-                    <h2 className="font-secondary text-h2-responsive uppercase font-bold text-gray-900 mb-4 leading-tight">
+                    <h2 className="font-secondary text-h2-responsive uppercase font-bold text-green-dark mb-4 leading-tight">
                         Get started as {' '}
                         <span className="text-light-green">a yollda partner</span>
                     </h2>

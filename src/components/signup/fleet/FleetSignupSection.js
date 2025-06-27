@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import LinkIcon from './../../ui/icons/Link';
+import LinkIcon from '../../ui/icons/Link';
 import ArrowDown from '../../ui/icons/ArrowDown';
 import { useTranslation } from 'next-i18next';
 
@@ -12,52 +12,32 @@ const countryCodes = [
     { code: '+1', flag: '🇺🇸', country: 'United States' },
 ];
 
-const countries = [
-    'Azerbaijan',
-    'Turkey',
-    'Georgia',
-    'Kazakhstan',
-    'United States',
-    'United Kingdom',
-    'Germany',
-    'France',
-    'Other'
+const fleetSizes = [
+    '1-10',
+    '11-25',
+    '26-50',
+    '51-100',
+    '100+'
 ];
 
-const cities = [
-    'Baku',
-    'Istanbul',
-    'Tbilisi',
-    'Almaty',
-    'New York',
-    'London',
-    'Berlin',
-    'Paris',
-    'Other'
-];
-
-export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
+export default function FleetSignupSection({ isSubmitted, setIsSubmitted }) {
     const { t } = useTranslation('common')
 
     const [formData, setFormData] = useState({
         phoneNumber: '',
         countryCode: '+994',
         email: '',
-        country: '',
-        city: '',
-        agreeToTerms: false,
-        agreeToPromotions: false
+        fleetSize: '',
+        agreeToTerms: false
     });
 
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isFleetSizeOpen, setIsFleetSizeOpen] = useState(false);
     const [isCountryCodeOpen, setIsCountryCodeOpen] = useState(false);
-    const [isCountryOpen, setIsCountryOpen] = useState(false);
-    const [isCityOpen, setIsCityOpen] = useState(false);
 
     const countryCodeDropdownRef = useRef(null);
-    const countryDropdownRef = useRef(null);
-    const cityDropdownRef = useRef(null);
+    const fleetSizeDropdownRef = useRef(null);
 
     // Close the dropdowns when clicking outside
     useEffect(() => {
@@ -65,11 +45,8 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
             if (countryCodeDropdownRef.current && !countryCodeDropdownRef.current.contains(event.target)) {
                 setIsCountryCodeOpen(false);
             }
-            if (countryDropdownRef.current && !countryDropdownRef.current.contains(event.target)) {
-                setIsCountryOpen(false);
-            }
-            if (cityDropdownRef.current && !cityDropdownRef.current.contains(event.target)) {
-                setIsCityOpen(false);
+            if (fleetSizeDropdownRef.current && !fleetSizeDropdownRef.current.contains(event.target)) {
+                setIsFleetSizeOpen(false);
             }
         };
 
@@ -99,19 +76,14 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
             newErrors.email = 'Please enter a valid email address';
         }
 
-        // Country validation
-        if (!formData.country) {
-            newErrors.country = 'Please select a country';
-        }
-
-        // City validation
-        if (!formData.city) {
-            newErrors.city = 'Please select a city';
+        // Fleet size validation
+        if (!formData.fleetSize) {
+            newErrors.fleetSize = 'Please select your fleet size';
         }
 
         // Terms agreement validation (required)
         if (!formData.agreeToTerms) {
-            newErrors.agreeToTerms = 'You must agree to the Terms & Services and Privacy Policy';
+            newErrors.agreeToTerms = 'You must agree to the Terms of Service and Privacy Policy';
         }
 
         setErrors(newErrors);
@@ -141,7 +113,7 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
             await new Promise(resolve => setTimeout(resolve, 2000));
 
             // Here you would make the actual API call
-            // const response = await fetch('/api/partner-signup', {
+            // const response = await fetch('/api/fleet-signup', {
             //   method: 'POST',
             //   headers: { 'Content-Type': 'application/json' },
             //   body: JSON.stringify(formData)
@@ -163,7 +135,7 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
             <img
                 src="/frame.png"
                 alt="Beautiful image"
-                class="h-[530px] lg:h-[900px] w-full object-cover -mt-24 md:-mt-32 lg:-mt-24"
+                class="h-[530px] lg:h-[670px] w-full object-cover -mt-24 md:-mt-32 lg:-mt-24"
             />
             <div className="absolute top-0 left-0 z-10 w-full flex justify-center py-12 lg:py-20 mt-16 lg:mt-24">
                 <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
@@ -208,10 +180,10 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
                                         </svg>
                                     </div>
                                     <h2 className="text-h2-responsive font-bold text-green-dark mb-4">
-                                        Welcome to Yollda!
+                                        Welcome to Yollda Fleet!
                                     </h2>
                                     <p className="text-span-responsive text-gray-500 mb-8">
-                                        Thank you for joining as a partner. We'll review your application and get back to you within 24 hours.
+                                        Thank you for joining as a fleet owner. We'll review your application and get back to you within 24 hours.
                                     </p>
                                     <div className="space-y-3">
                                         <button
@@ -221,10 +193,8 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
                                                     phoneNumber: '',
                                                     countryCode: '+994',
                                                     email: '',
-                                                    country: '',
-                                                    city: '',
-                                                    agreeToTerms: false,
-                                                    agreeToPromotions: false
+                                                    fleetSize: '',
+                                                    agreeToTerms: false
                                                 });
                                             }}
                                             className="w-full bg-green-dark hover:bg-green-800 disabled:bg-gray-400 disabled:cursor-not-allowed text-light-green px-8 py-4 rounded-xl font-bold transition-all duration-200 transform disabled:transform-none text-button-large-responsive flex items-center justify-center"
@@ -237,20 +207,8 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
                                     {/* Form Header */}
                                     <div className="mb-4">
                                         <h3 className="text-h3-responsive font-bold text-gray-900 mb-2">
-                                            Sign up
+                                            Add your fleet
                                         </h3>
-                                        <a
-                                            href={'siteData?.[0]?.linkedin'}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex flex items-center text-light-green text-span-small-responsive font-medium mb-4"
-                                        >
-                                            <LinkIcon strokeColor="stroke-light-green" className={"me-1 h-5"} />
-                                            Sign up as a fleet owner
-                                        </a>
-                                        <p className="text-p-small-responsive text-gray-500 leading-relaxed">
-                                            You're the owner of one or more tow trucks. Join Yollda to manage your drivers, grow your business, and accept service requests through our platform.
-                                        </p>
                                     </div>
 
                                     <form onSubmit={handleSubmit} className="space-y-4">
@@ -333,35 +291,35 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
                                         {/* Country Dropdown */}
                                         <div>
                                             <label className="block text-span-small-responsive font-bold text-gray-800 mb-2">
-                                                Country
+                                                Vehicles in your fleet
                                             </label>
-                                            <div className="relative" ref={countryDropdownRef}>
+                                            <div className="relative" ref={fleetSizeDropdownRef}>
                                                 <button
                                                     type="button"
-                                                    onClick={() => setIsCountryOpen(!isCountryOpen)}
-                                                    className={`w-full border ${errors.country ? 'border-red-400' : 'border-gray-300'} rounded-xl px-4 py-2 text-left flex items-center justify-between text-gray-900 hover:bg-gray-200 transition-colors duration-200
-                                            ${isCountryOpen & !errors.country ? 'focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent' : ''}
+                                                    onClick={() => setIsFleetSizeOpen(!isFleetSizeOpen)}
+                                                    className={`w-full border ${errors.fleetSize ? 'border-red-400' : 'border-gray-300'} rounded-xl px-4 py-2 text-left flex items-center justify-between text-gray-900 hover:bg-gray-200 transition-colors duration-200
+                                            ${isFleetSizeOpen & !errors.fleetSize ? 'focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent' : ''}
                                         `}
                                                 >
-                                                    <span className={`text-input-responsive ${formData.country ? 'text-gray-900' : 'text-gray-500'}`}>
-                                                        {formData.country || 'Country'}
+                                                    <span className={`text-input-responsive ${formData.fleetSize ? 'text-gray-900' : 'text-gray-500'}`}>
+                                                        {formData.fleetSize || '1-10'}
                                                     </span>
-                                                    <ArrowDown strokeColor={`stroke-gray-500`} className={`transition-transform duration-200 !ms-auto ${isCountryOpen ? 'rotate-180' : ''}`} />
+                                                    <ArrowDown strokeColor={`stroke-gray-500`} className={`transition-transform duration-200 !ms-auto ${isFleetSizeOpen ? 'rotate-180' : ''}`} />
                                                 </button>
 
-                                                {isCountryOpen && (
+                                                {isFleetSizeOpen && (
                                                     <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-40 max-h-60 overflow-y-auto custom-contact-scrollbar">
-                                                        {countries.map((country) => (
+                                                        {fleetSizes.map((size) => (
                                                             <button
-                                                                key={country}
+                                                                key={size}
                                                                 type="button"
                                                                 onClick={() => {
-                                                                    handleInputChange('country', country);
-                                                                    setIsCountryOpen(false);
+                                                                    handleInputChange('fleetSize', size);
+                                                                    setIsFleetSizeOpen(false);
                                                                 }}
                                                                 className="w-full px-4 py-3 text-left hover:bg-gray-200 transition-colors duration-200 text-span-responsive first:rounded-t-xl last:rounded-b-xl text-gray-700"
                                                             >
-                                                                {country}
+                                                                {size}
                                                             </button>
                                                         ))}
                                                     </div>
@@ -372,52 +330,27 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
                                             )}
                                         </div>
 
-                                        {/* City Dropdown */}
-                                        <div>
-                                            <label className="block text-span-small-responsive font-bold text-gray-800 mb-2">
-                                                City
-                                            </label>
-                                            <div className="relative" ref={cityDropdownRef}>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setIsCityOpen(!isCityOpen)}
-                                                    className={`w-full border ${errors.city ? 'border-red-400' : 'border-gray-300'} rounded-xl px-4 py-2 text-left flex items-center justify-between text-gray-900 hover:bg-gray-200 transition-colors duration-200
-                                            ${isCityOpen & !errors.city ? 'focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent' : ''}
-                                        `}
+                                        <div className="space-y-4">
+                                            <p className="text-span-responsive text-gray-500 font-medium leading-relaxed">
+                                                Already have an account?{' '}
+                                                <a
+                                                    href={`/terms/`}
+                                                    className="text-light-green hover:text-green-dark transition-colors duration-200 underline"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
                                                 >
-                                                    <span className={`text-input-responsive ${formData.city ? 'text-gray-900' : 'text-gray-500'}`}>
-                                                        {formData.city || 'City where you will work'}
-                                                    </span>
-                                                    <ArrowDown strokeColor={`stroke-gray-500`} className={`transition-transform duration-200 !ms-auto ${isCityOpen ? 'rotate-180' : ''}`} />
-                                                </button>
-
-                                                {isCityOpen && (
-                                                    <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-30 max-h-60 overflow-y-auto custom-contact-scrollbar">
-                                                        {cities.map((city) => (
-                                                            <button
-                                                                key={city}
-                                                                type="button"
-                                                                onClick={() => {
-                                                                    handleInputChange('city', city);
-                                                                    setIsCityOpen(false);
-                                                                }}
-                                                                className="w-full px-4 py-3 text-left hover:bg-gray-200 transition-colors duration-200 text-span-responsive first:rounded-t-xl last:rounded-b-xl text-gray-700"
-                                                            >
-                                                                {city}
-                                                            </button>
-                                                        ))}
-                                                    </div>
-                                                )}
-                                            </div>
-                                            {errors.city && (
-                                                <p className="text-red-500 text-span-small-responsive mt-1">{errors.city}</p>
-                                            )}
+                                                    Sign in
+                                                </a>
+                                            </p>
                                         </div>
+
+
+                                        <hr className="my-6 md:my-10 lg:my-16 h-[1px] bg-gray-200 border-0" />
 
                                         {/* Terms Agreement Checkbox - REQUIRED */}
                                         <div className="space-y-4">
-                                            <div className="flex items-start space-s-3">
-                                                <div className="relative flex-shrink-0 mt-1">
+                                            <div className="flex items-center space-s-3">
+                                                <div className="relative flex-shrink-0">
                                                     <input
                                                         type="checkbox"
                                                         checked={formData.agreeToTerms}
@@ -450,7 +383,7 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
                                                 </div>
                                                 <div className="flex-1">
                                                     <p className="text-span-small-responsive text-gray-500 leading-relaxed">
-                                                        I agree to the{' '}
+                                                        By Signing up, you agree to our{' '}
                                                         <a
                                                             href={`/terms/`}
                                                             className="text-light-green hover:text-green-dark transition-colors duration-200 underline"
@@ -468,19 +401,12 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
                                                         >
                                                             {t('footer.links.privacy')}
                                                         </a>
-                                                        , and confirm that I will provide only legal services and content on the Yollda platform.
                                                     </p>
                                                 </div>
                                             </div>
                                             {errors.agreeToTerms && (
                                                 <p className="text-red-500 text-span-small-responsive">{errors.agreeToTerms}</p>
                                             )}
-
-                                            <div className="flex items-start space-s-3">
-                                                <p className="text-span-small-responsive text-gray-500 leading-relaxed">
-                                                    Once you become a partner, we may occasionally send you promotional offers related to Yollda. You can unsubscribe anytime by updating your communication preferences.
-                                                </p>
-                                            </div>
                                         </div>
 
                                         {/* Submit Button */}
@@ -495,7 +421,7 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
                                                     <span>Becoming Partner...</span>
                                                 </div>
                                             ) : (
-                                                'Become Partner'
+                                                'Sign up as a Fleet Owner'
                                             )}
                                         </button>
                                     </form>

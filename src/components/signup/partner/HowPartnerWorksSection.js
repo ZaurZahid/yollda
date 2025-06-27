@@ -56,7 +56,7 @@ export default function HowPartnerWorksSection({ isSubmitted }) {
     };
 
     return (
-        <div className={`w-full flex justify-center py-12 lg:py-20 ${isSubmitted ? 'mt-80 md:mt-32 lg:mt-0' : 'pt-96 mt-96 md:mt-52 lg:mt-24'}`}>
+        <div className={`w-full flex justify-center py-12 lg:py-20 ${isSubmitted ? 'mt-[20rem] md:mt-[10rem] lg:mt-0' : 'mt-[52rem] md:mt-[40rem] lg:mt-48'}`}>
             <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
                 {/* Section Header */}
                 <div className="text-center mb-16">
