@@ -11,15 +11,15 @@
   },
   "footer": {
     "copyright": "Bütün hüquqlar qorunur",
-      "available_text": "AZ Available for iOS and Android devices.",
-     "headings": {
-        "products": "Mallar",
-        "earn": "Qazanc",
-        "company": "Shirket",
-        "support": "Komek",
-        "safety": "Tehlukesizlik",
-        "locations": "Lokasiyalar"
-      },
+    "available_text": "Available for iOS and Android devices.",
+    "headings": {
+      "products": "Mallar",
+      "earn": "Qazanc",
+      "company": "Shirket",
+      "support": "Komek",
+      "safety": "Tehlukesizlik",
+      "locations": "Lokasiyalar"
+    },
     "links": {
       "privacy": "Məxfilik",
       "termAndCondition": "İstifadə Şərtləri",
@@ -207,5 +207,236 @@
   "payment": {
     "success_message": "Əməliyyat uğurla tamamlandı",
     "failure_message": "Əməliyyat uğursuz oldu"
+  },
+  "getY_button": "Get Yolda",
+  "introduction": {
+    "slogan": "Fast. Reliable. Wherever You Are",
+    "description": "Yollda is your all-in-one road assistance platform"
+  },
+  "our_services": {
+    "heading": "Our Services IN",
+    "description": "Services and features may vary by region. Some features may not yet be available in your area.",
+    "services": {
+      "emergency_towing_title": "Emergency Towing",
+      "emergency_towing_description": "Professional vehicle towing services available 24/7 when you need them most.",
+      "emergency_towing_button": "Allver Partner",
+
+      "tire_repair_title": "Tire Repair",
+      "tire_repair_description": "Flat tire? Get instant help from nearby services.",
+      "tire_repair_button": "Allver Partner",
+
+      "allver_business_title": "Allver Business",
+      "allver_business_description": "Manage your fleet, track earnings, and grow your towing business with ease.",
+      "allver_business_button": "Allver Partner",
+
+      "fuel_delivery_title": "Fuel Delivery",
+      "fuel_delivery_description": "Ran out of fuel? We'll deliver it right to you.",
+      "fuel_delivery_button": "Allver Partner",
+
+      "peer_help_title": "Peer-to-Peer Help",
+      "peer_help_description": "Ask nearby drivers for roadside assistance.",
+      "peer_help_button": "Allver Partner"
+    }
+  },
+  "about_us": {
+    "label": "About us",
+    "heading": "YOLLDA IS YOUR PARTNER ON EVERY JOURNEY.",
+    "description": "We're empowering drivers and communities with on-demand towing, tire repairs, battery boosts, and fuel delivery—making streets safer, smoother, and more people-friendly."
+  },
+  "earn_with_section": {
+    "heading": "Earn with Yollda",
+    "description": "Join thousands of partners who earn by keeping drivers on the move—tow‑truck operators (car & freight), tire techs, battery specialists, fuel couriers, and fleet owners."
+  },
+  "latest_features_section": {
+    "label": "Latest features",
+    "heading": "Request Help Instantly",
+    "description": {
+      "top": "You tap, help comes. Can’t tap? We’ve got you.",
+      "middle": "If your phone detects a crash and there’s no response, Yollda sends a help request on your behalf — instantly.",
+      "bottom": "Had a breakdown or accident? Tap for help and nearby Yollda users will be alerted immediately"
+    }
+  },
+  "download_section": {
+    "heading": "Download our apps",
+    "description": "Available for iOS and Android devices.",
+    "partner": "Yollda Partner",
+    "anytime": "Roadside help. Anytime, anywhere."
+  },
+  "news_section": {
+    "heading": "News & Update",
+    "description": "Get the latest news, updates, and feature releases. Discover what's new on the road with Yollda."
+  },
+  "blogs_section": {
+    "heading": "Ride out as soon as you fly in with Flight Tracking",
+    "description": "Read our latest articles and insights on road safety, vehicle maintenance, and more."
+  },
+  "continue_reading": "Continue reading",
+  "results_found": "results found",
+  "blogs_page": {
+    "news_section": {
+      "heading": "Ride out as soon as you fly in with Flight Tracking",
+      "description": "Keep yourself updated on the latest news from Bolt and the world of transportation."
+    }
+  },
+  "help_banner": {
+    "need": "Need a help?"
+  },
+  "news_page": {
+    "heading": "News",
+    "description": "Keep yourself updated on the latest news from Bolt and the world of transportation."
+  },
+  "signup_page": {
+    "signup_section": {
+      "support_badge": "Support",
+      "heading": "HOW WOULD YOU LIKE TO PARTNER WITH YOLLDA TO START EARNING?",
+      "description": "Download app Start drive, Earn money!",
+      "cta_button": "Get Yollada Partner",
+      "submitted": {
+        "welcome": "Welcome to Yollda!",
+        "description": "Thank you for joining as a partner. We'll review your application and get back to you within 24 hours.",
+        "another": "Submit Another Application"
+      },
+
+      "form": {
+        "heading": "Sign up",
+        "as_fleet": "Sign up as a fleet owner",
+        "description": "You're the owner of one or more tow trucks. Join Yollda to manage your drivers, grow your business, and accept service requests through our platform.",
+        "phone_number": "Phone number",
+        "email": "Email Address",
+        "country": "Country",
+        "city": "City",
+        "iagree": "I agree to the",
+        "and": "and",
+        "confirm": ", and confirm that I will provide only legal services and content on the Yollda platform.",
+        "warning": "Once you become a partner, we may occasionally send you promotional offers related to Yollda. You can unsubscribe anytime by updating your communication preferences.",
+        "become_partner": "Become a Partner",
+        "errors": {
+          "phone_required": "Phone number is required",
+          "phone_invalid": "Please enter a valid phone number",
+          "email_required": "Email address is required",
+          "email_invalid": "Please enter a valid email address",
+          "country_required": "Please select a country",
+          "city_required": "Please select a city",
+          "terms_required": "You must agree to the Terms & Services and Privacy Policy"
+        }
+      }
+    },
+    "how_partner_section": {
+      "heading": "How Yollda Partner Works",
+      "description": "Download Yollda Partner app for Appstore or Playstore, create account use your car and driver by yourself. Get ride and earn more money",
+      "cta_button": "Get Yollda Partner",
+      "steps": {
+        "step1": {
+          "title": "Go online",
+          "description": "Open the app and go online to start receiving service requests in your area."
+        },
+        "step2": {
+          "title": "Accept a request",
+          "description": "Review incoming service details and tap to accept when you're ready."
+        },
+        "step3": {
+          "title": "Provide Assistance",
+          "description": "Drive to the customer and provide the selected roadside assistance."
+        },
+        "step4": {
+          "title": "Earn and track income",
+          "description": "Get paid quickly and monitor your earnings through the app dashboard."
+        }
+      }
+    },
+    "revenue_section": {
+      "heading": "MAKE EVERY ROAD",
+      "sub_heading": "A REVENUE STREAM",
+      "description": "Join a growing network of service pros who keep drivers safe and moving. Earn on your schedule by providing essential roadside help where it matters most.",
+      "benefits": {
+        "benefit1": {
+          "title": "Earn when you want dfsf sdf sdf dsfs sdfdsf",
+          "description": "Support drivers during breakdowns, flat tires, and fuel needs. Work weekends or evenings — it's your call."
+        },
+        "benefit2": {
+          "title": "Weekly payouts",
+          "description": "We pay you every week. No upfront fees, no subscriptions — just a fair commission on each completed job."
+        },
+        "benefit3": {
+          "title": "A steady flow of service requests",
+          "description": "Earn consistently by helping drivers with Yollda's steady flow of assistance service requests."
+        }
+      }
+    },
+    "partner_section": {
+      "heading": "Get started as",
+      "sub_heading": "a yollda partner",
+      "description": "Whether you're an individual specialist or manage a fleet, Yollda lets you earn by providing essential roadside assistance — on your own time. Support drivers when they need it most.",
+      "benefits": {
+        "benefit1": {
+          "title": "Fill in the application",
+          "description": "Choose your city, share your contact details and service type. We’ll guide you through the next steps."
+        },
+        "benefit2": {
+          "title": "Upload your documents",
+          "description": "Submit required documents like your ID, driver’s license, and service-related permits."
+        },
+        "benefit3": {
+          "title": "Get approved and start",
+          "description": "Once your documents are verified, you’ll get access to the app and can start accepting service requests."
+        }
+      }
+    },
+    "faq_section": {
+      "newsletter_title": "Subscribe our newsletter",
+      "newsletter_description": "Subscribe to our newsletter and be the first to receive insights, updates, and expert tips on optimizing your financial management.",
+      "thank_you_title": "Thank you for subscribing!",
+      "thank_you_description": "You'll receive our latest insights, updates, and expert tips on optimizing your financial management.",
+      "subscribe_button": "Subscribe",
+      "subscribe_another": "Subscribe another email",
+      "subscribing": "Subscribing...",
+      "input_placeholder": "Enter your email",
+      "view_more": "View more",
+      "view_less": "View less",
+      "faq_items": [
+        {
+          "question": "How much does Bolt Drive cost? Do I need to pay for fuel?",
+          "answer": "Bolt Drive pricing varies by location and vehicle type. You typically pay a daily rate plus mileage. Fuel costs are usually included in the rental price, but this can vary by location. Check the app for specific pricing in your area."
+        },
+        {
+          "question": "How do I unlock a Bolt Drive car?",
+          "answer": "To unlock a Bolt Drive car, simply open the Bolt app, locate your reserved vehicle on the map, and tap the 'Unlock' button when you're near the car. The doors will unlock automatically via the app's connectivity."
+        },
+        {
+          "question": "Where do I find the car keys?",
+          "answer": "Bolt Drive cars don't use traditional keys. The vehicle is unlocked and started through the Bolt app on your smartphone. Once unlocked, you can start the engine using the start button inside the vehicle."
+        },
+        {
+          "question": "How do I pay for Yollda Drive?",
+          "answer": "Payment for Yollda Drive is processed automatically through the payment method linked to your account. You'll be charged based on your usage time and distance traveled. All payments are handled securely through the app."
+        },
+        {
+          "question": "What kind of cars can I rent with Yollda Partner?",
+          "answer": "All of our cars come with automatic transmission at no extra cost. The specific make and model of hire car depends on availability. Our car types include: small, electric, medium-sized, and premium cars, as well as SUVs and vans. Check the app to see which cars are available to rent nearby."
+        },
+        {
+          "question": "What are the age requirements for renting?",
+          "answer": "You must be at least 21 years old to rent a vehicle through Yollda. Some premium vehicles may require you to be 25 or older. A valid driver's license is required for all rentals."
+        },
+        {
+          "question": "Can I extend my rental period?",
+          "answer": "Yes, you can extend your rental period through the app if the vehicle is available. Additional charges will apply based on the extended time and mileage."
+        },
+        {
+          "question": "What happens if I have an accident?",
+          "answer": "In case of an accident, immediately contact emergency services if needed, then report the incident through the app. Our 24/7 support team will guide you through the process and arrange assistance."
+        }
+      ]
+    }
+  },
+  "terms_page": {
+    "condition_section": {
+      "heading ": "TERMS AND CONDITIONS",
+      "categories": "Categories"
+    },
+    "sub_section": {
+      "heading": "Yollda Users (Service Beneficiaries)",
+      "description": "These Terms and Conditions govern your use of the Yollda platform as a user requesting road assistance services. By using our services, you agree to these terms."
+    }
   }
 }
