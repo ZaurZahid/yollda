@@ -392,7 +392,28 @@
     }
   },
   "fleet": {
-    "try_section": {}
+    "try_section": {
+      "heading": "Sign up and try it free",
+      "description": "Set up in 3 easy steps:",
+      "benefits": [
+        {
+          "title": "Sign up",
+          "description": "It takes just 2 minutes to register a fleet company account."
+        },
+        {
+          "title": "Get approved",
+          "description": "Enter your vehicle and driver info as we process your account activation."
+        },
+        {
+          "title": "Fast, reliable support",
+          "description": "After verification, your vehicles are set to begin earning."
+        }
+      ]
+    },
+    "help_banner": {
+      "heading": "Boost your fleet earnings with Bolt",
+      "decription": "Sign up takes 2 minutes. Try it out today!"
+    }
   },
   "terms_page": {
     "condition_section": {
