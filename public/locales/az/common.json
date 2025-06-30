@@ -429,6 +429,67 @@
       ]
     }
   },
+  "fleet": {
+    "signup_section": {
+      "submitted": {
+        "welcome": "Welcome to Yollda Fleet!",
+        "description": "Thank you for joining as a fleet owner. We'll review your application and get back to you within 24 hours."
+      },
+      "form": {
+        "heading": "Add your fleet",
+        "vehicles_size": "Vehicles in your fleet",
+        "already": "Already have an account?",
+        "sign_in": "Sign in",
+        "yagree": "By Signing up, you agree to our",
+        "and": "and",
+        "as_fleet_owner": "Sign up as a Fleet Owner",
+        "becoming": "Becoming Partner...",
+        "errors": {
+          "required_fleet_size": "Please select your fleet size"
+        }
+      }
+    },
+    "try_section": {
+      "heading": "Sign up and try it free",
+      "description": "Set up in 3 easy steps:",
+      "benefits": [
+        {
+          "title": "Sign up",
+          "description": "It takes just 2 minutes to register a fleet company account."
+        },
+        {
+          "title": "Get approved",
+          "description": "Enter your vehicle and driver info as we process your account activation."
+        },
+        {
+          "title": "Fast, reliable support",
+          "description": "After verification, your vehicles are set to begin earning."
+        }
+      ]
+    },
+    "help_banner": {
+      "heading": "Boost your fleet earnings with Bolt",
+      "decription": "Sign up takes 2 minutes. Try it out today!"
+    },
+    "why_us_section": {
+      "heading": "Why partner with us?",
+      "description": "Bolt is trusted by fleet partners from across 45+ countries all over the world. We’re known for:",
+      "benefits": [
+        {
+          "title": "Steady and secure earnings",
+          "description": "Consistent jobs, dependable payouts"
+        },
+        {
+          "title": "Total clarity",
+          "description": "A modern, intuitive portal to run your business with ease."
+        },
+        {
+          "title": "Fast, reliable support",
+          "description": "We’re here when you need us."
+        }
+      ]
+    }
+  },
   "terms_page": {
     "condition_section": {
       "heading ": "TERMS AND CONDITIONS",

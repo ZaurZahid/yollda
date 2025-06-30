@@ -63,28 +63,39 @@ export default function FleetSignupSection({ isSubmitted, setIsSubmitted }) {
     // Phone number validation
     const phoneRegex = /^[0-9\s\-\(\)]{7,15}$/;
     if (!formData.phoneNumber.trim()) {
-      newErrors.phoneNumber = "Phone number is required";
+      newErrors.phoneNumber = t(
+        "signup_page.signup_section.form.errors.phone_required"
+      );
     } else if (!phoneRegex.test(formData.phoneNumber.replace(/\s/g, ""))) {
-      newErrors.phoneNumber = "Please enter a valid phone number";
+      newErrors.phoneNumber = t(
+        "signup_page.signup_section.form.errors.phone_invalid"
+      );
     }
 
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
-      newErrors.email = "Email address is required";
+      newErrors.email = t(
+        "signup_page.signup_section.form.errors.email_required"
+      );
     } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = t(
+        "signup_page.signup_section.form.errors.email_invalid"
+      );
     }
 
     // Fleet size validation
     if (!formData.fleetSize) {
-      newErrors.fleetSize = "Please select your fleet size";
+      newErrors.fleetSize = t(
+        "fleet.signup_section.form.errors.required_fleet_size"
+      );
     }
 
     // Terms agreement validation (required)
     if (!formData.agreeToTerms) {
-      newErrors.agreeToTerms =
-        "You must agree to the Terms of Service and Privacy Policy";
+      newErrors.agreeToTerms = t(
+        "signup_page.signup_section.form.errors.terms_required"
+      );
     }
 
     setErrors(newErrors);
@@ -136,30 +147,30 @@ export default function FleetSignupSection({ isSubmitted, setIsSubmitted }) {
   return (
     <section className="relative">
       <img
-        src="/frame.png"
+        src="/frame2.png"
         alt="Beautiful image"
         class="h-[530px] lg:h-[670px] w-full object-cover -mt-24 md:-mt-32 lg:-mt-24"
       />
       <div className="absolute top-0 left-0 z-10 w-full flex justify-center py-12 lg:py-20 mt-16 lg:mt-24">
         <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
-          <div className="grid lg:grid-cols-2 bg-gray-800">
+          <div className="grid lg:grid-cols-2 ">
             {/* Left Side - Content */}
             <div className="max-w-[90%] text-white">
               {/* Support Badge */}
               <div className="inline-block mb-4">
                 <span className="text-light-green text-span-responsive font-bold">
-                  Support
+                  {t("signup_page.signup_section.support_badge")}
                 </span>
               </div>
 
               {/* Main Heading */}
               <h2 className="font-secondary text-h2-responsive uppercase font-bold leading-tight mb-2">
-                HOW WOULD YOU LIKE TO PARTNER WITH YOLLDA TO START EARNING?
+                {t("signup_page.signup_section.heading")}
               </h2>
 
               {/* Description */}
               <p className="text-p-responsive text-white/90 mb-4 leading-relaxed">
-                Download app Start drive, Earn money!
+                {t("signup_page.signup_section.description")}
               </p>
 
               {/* CTA Button */}
@@ -169,7 +180,7 @@ export default function FleetSignupSection({ isSubmitted, setIsSubmitted }) {
                 rel="noopener noreferrer"
                 className="inline-flex bg-light-green text-white font-bold px-6 py-3 rounded-2xl text-button-responsive transition-all duration-200 transform hover:scale-105"
               >
-                Get Yollda Partner
+                {t("signup_page.signup_section.cta_button")}
               </a>
             </div>
 
@@ -191,11 +202,10 @@ export default function FleetSignupSection({ isSubmitted, setIsSubmitted }) {
                     </svg>
                   </div>
                   <h2 className="text-h2-responsive font-bold text-green-dark mb-4">
-                    Welcome to Yollda Fleet!
+                    {t("fleet.signup_section.submitted.welcome")}
                   </h2>
                   <p className="text-span-responsive text-gray-500 mb-8">
-                    Thank you for joining as a fleet owner. We'll review your
-                    application and get back to you within 24 hours.
+                    {t("fleet.signup_section.submitted.description")}
                   </p>
                   <div className="space-y-3">
                     <button
@@ -211,7 +221,7 @@ export default function FleetSignupSection({ isSubmitted, setIsSubmitted }) {
                       }}
                       className="w-full bg-green-dark hover:bg-green-800 disabled:bg-gray-400 disabled:cursor-not-allowed text-light-green px-8 py-4 rounded-xl font-bold transition-all duration-200 transform disabled:transform-none text-button-large-responsive flex items-center justify-center"
                     >
-                      Submit Another Application
+                      {t("signup_page.signup_section.submitted.another")}
                     </button>
                   </div>
                 </div>
@@ -220,7 +230,7 @@ export default function FleetSignupSection({ isSubmitted, setIsSubmitted }) {
                   {/* Form Header */}
                   <div className="mb-4">
                     <h3 className="text-h3-responsive font-bold text-gray-900 mb-2">
-                      Add your fleet
+                      {t("fleet.signup_section.form.heading")}
                     </h3>
                   </div>
 
@@ -228,7 +238,7 @@ export default function FleetSignupSection({ isSubmitted, setIsSubmitted }) {
                     {/* Phone Number */}
                     <div>
                       <label className="block text-span-small-responsive font-bold text-gray-800 mb-2">
-                        Phone number
+                        {t("signup_page.signup_section.form.phone_number")}
                       </label>
                       <div className="flex gap-2">
                         {/* Country Code Dropdown */}
@@ -321,12 +331,14 @@ export default function FleetSignupSection({ isSubmitted, setIsSubmitted }) {
                     {/* Email Address */}
                     <div>
                       <label className="block text-span-small-responsive font-bold text-gray-800 mb-2">
-                        Email Address
+                        {t("signup_page.signup_section.form.email")}
                       </label>
                       <div className="relative">
                         <input
                           type="email"
-                          placeholder="Email Address"
+                          placeholder={t(
+                            "signup_page.signup_section.form.email"
+                          )}
                           value={formData.email}
                           onChange={(e) =>
                             handleInputChange("email", e.target.value)
@@ -346,7 +358,7 @@ export default function FleetSignupSection({ isSubmitted, setIsSubmitted }) {
                     {/* Country Dropdown */}
                     <div>
                       <label className="block text-span-small-responsive font-bold text-gray-800 mb-2">
-                        Vehicles in your fleet
+                        {t("fleet.signup_section.form.vehicles_size")}
                       </label>
                       <div className="relative" ref={fleetSizeDropdownRef}>
                         <button
@@ -409,14 +421,14 @@ export default function FleetSignupSection({ isSubmitted, setIsSubmitted }) {
 
                     <div className="space-y-4">
                       <p className="text-span-responsive text-gray-500 font-medium leading-relaxed">
-                        Already have an account?{" "}
+                        {t("fleet.signup_section.form.already")}{" "}
                         <a
                           href={`/terms/`}
                           className="text-light-green hover:text-green-dark transition-colors duration-200 underline"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          Sign in
+                          {t("fleet.signup_section.form.sign_in")}
                         </a>
                       </p>
                     </div>
@@ -474,7 +486,7 @@ export default function FleetSignupSection({ isSubmitted, setIsSubmitted }) {
                         </div>
                         <div className="flex-1">
                           <p className="text-span-small-responsive text-gray-500 leading-relaxed">
-                            By Signing up, you agree to our{" "}
+                            {t("fleet.signup_section.form.yagree")}{" "}
                             <a
                               href={`/terms/`}
                               className="text-light-green hover:text-green-dark transition-colors duration-200 underline"
@@ -483,7 +495,7 @@ export default function FleetSignupSection({ isSubmitted, setIsSubmitted }) {
                             >
                               {t("footer.links.termAndCondition")}
                             </a>{" "}
-                            and{" "}
+                            {t("fleet.signup_section.form.and")}{" "}
                             <a
                               href={`/privacy/`}
                               className="text-light-green hover:text-green-dark transition-colors duration-200 underline"
@@ -511,10 +523,10 @@ export default function FleetSignupSection({ isSubmitted, setIsSubmitted }) {
                       {isSubmitting ? (
                         <div className="flex items-center space-s-2 text-white">
                           <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                          <span>Becoming Partner...</span>
+                          <span>{t("fleet.signup_section.form.becoming")}</span>
                         </div>
                       ) : (
-                        "Sign up as a Fleet Owner"
+                        t("fleet.signup_section.form.as_fleet_owner")
                       )}
                     </button>
                   </form>
