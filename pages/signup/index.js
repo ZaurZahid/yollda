@@ -12,13 +12,11 @@ import YolldaPartnerSection from "../../src/components/signup/partner/YolldaPart
 
 export default function PartnerSignup({ /* siteData, newsData, */ error }) {
     const { t } = useTranslation('common')
+    const [isSubmitted, setIsSubmitted] = useState(true);
 
     if (error) {
         return <h1>{error}</h1>;
     }
-
-    const [isSubmitted, setIsSubmitted] = useState(true);
-
 
     return (
         <Layout /* siteData={siteData} */ theme={'transparent'}>
