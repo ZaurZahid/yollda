@@ -1,74 +1,81 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
-import Button from '../ui/Button';
-import ArrowIcon from '../ui/icons/Arrow';
-import LanguageSwitcher from '../ui/LanguageSwitcher';
-import { useRouter } from 'next/router';
-import CloseIcon from '../ui/icons/Close';
-import { useTranslation } from 'next-i18next'
-import YolldaLogo from '../ui/icons/Yollda';
+import React, { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import Button from "../ui/Button";
+import ArrowIcon from "../ui/icons/Arrow";
+import LanguageSwitcher from "../ui/LanguageSwitcher";
+import { useRouter } from "next/router";
+import CloseIcon from "../ui/icons/Close";
+import { useTranslation } from "next-i18next";
+import YolldaLogo from "../ui/icons/Yollda";
 
+const Header = ({ logo, theme = "normal", onOpen }) => {
+  const { t } = useTranslation("common");
+  const headerRef = useRef(null);
 
-const Header = ({ logo, theme = 'normal', onOpen }) => {
-    const { t } = useTranslation('common')
-    const headerRef = useRef(null);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (headerRef.current) {
-                if (window.scrollY > 0) {
-                    headerRef.current.classList.add("bg-white", "shadow-md");
-                } else {
-                    headerRef.current.classList.remove("bg-white", "shadow-md");
-                }
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    const router = useRouter();
-    const [isOpen, setIsOpen] = useState(false);
-    const toggleMenu = () => setIsOpen(!isOpen);
-
-    // Navigation links array to easily extend or modify in the future
-    const navLinks = [
-        { href: "/", label: t('navigation.home') },
-        { href: "/#about", label: t('navigation.about'), id: 'about' },
-        { href: "/#fag", label: t('navigation.faq'), id: 'fag' },
-        { href: "/#shopping-centers", label: t('navigation.shopping_centers'), id: 'shopping-centers' },
-        { href: "/#features", label: t('navigation.features'), id: 'features' },
-        { href: "/#blogs", label: t('navigation.blog'), id: 'blogs' },
-        { href: "/#contact", label: t('navigation.contact'), id: 'contact' },
-    ];
-
-    const isParentActive = (currentPath, targetPath) => {
-        if (targetPath === "/") {
-            return currentPath === "/";
+  useEffect(() => {
+    const handleScroll = () => {
+      if (headerRef.current) {
+        if (window.scrollY > 0) {
+          headerRef.current.classList.add("bg-white", "shadow-md");
+        } else {
+          headerRef.current.classList.remove("bg-white", "shadow-md");
         }
-
-        if (currentPath.includes("/blogs") && targetPath.includes("#blogs")) {
-            return true;
-        }
-
-        // For all other paths, check parent-child relationship
-        return currentPath === targetPath || currentPath.startsWith(`${targetPath}/`);
+      }
     };
 
-    return (
-        <header
-            ref={headerRef}
-            className={`header w-full flex justify-center fixed top-0 left-0 z-30 transition-all duration-300 ${theme === 'transparent' ? 'bg-transparent' : 'bg-white'}`}
-        >
-            <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
-                <div className="flex justify-between items-center py-4">
-                    <Link href="/" passHref>
-                        <YolldaLogo className="max-w-24 lg:max-w-32 cursor-pointer fill-green-dark" />
-                    </Link>
+    window.addEventListener("scroll", handleScroll);
 
-                    {/* <div className="lg:hidden">
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  // Navigation links array to easily extend or modify in the future
+  const navLinks = [
+    { href: "/", label: t("navigation.home") },
+    { href: "/#about", label: t("navigation.about"), id: "about" },
+    { href: "/#fag", label: t("navigation.faq"), id: "fag" },
+    {
+      href: "/#shopping-centers",
+      label: t("navigation.shopping_centers"),
+      id: "shopping-centers",
+    },
+    { href: "/#features", label: t("navigation.features"), id: "features" },
+    { href: "/#blogs", label: t("navigation.blog"), id: "blogs" },
+    { href: "/#contact", label: t("navigation.contact"), id: "contact" },
+  ];
+
+  const isParentActive = (currentPath, targetPath) => {
+    if (targetPath === "/") {
+      return currentPath === "/";
+    }
+
+    if (currentPath.includes("/blogs") && targetPath.includes("#blogs")) {
+      return true;
+    }
+
+    // For all other paths, check parent-child relationship
+    return (
+      currentPath === targetPath || currentPath.startsWith(`${targetPath}/`)
+    );
+  };
+
+  return (
+    <header
+      ref={headerRef}
+      className={`header w-full flex justify-center fixed top-0 left-0 z-30 transition-all duration-300 ${
+        theme === "transparent" ? "bg-transparent" : "bg-white"
+      }`}
+    >
+      <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
+        <div className="flex justify-between items-center py-4">
+          <Link href="/" passHref>
+            <YolldaLogo className="max-w-24 lg:max-w-32 cursor-pointer fill-green-dark" />
+          </Link>
+
+          {/* <div className="lg:hidden">
                         <div className="flex items-center">
                             <LanguageSwitcher />
                             <button onClick={toggleMenu} className="ml-7">
@@ -77,7 +84,7 @@ const Header = ({ logo, theme = 'normal', onOpen }) => {
                         </div>
                     </div> */}
 
-                    {/* <nav className={`${isOpen ? 'fixed inset-0 bg-white z-50' : 'hidden'} lg:flex lg:relative lg:bg-transparent lg:z-auto`}>
+          {/* <nav className={`${isOpen ? 'fixed inset-0 bg-white z-50' : 'hidden'} lg:flex lg:relative lg:bg-transparent lg:z-auto`}>
                         <div className="lg:flex sm:justify-center lg:items-center flex-wrap xl:justify-between mx-4 mt-16 lg:mt-0">
                             {isOpen && (
                                 <div className="absolute top-0 right-0 p-4 flex justify-between w-full">
@@ -137,24 +144,26 @@ const Header = ({ logo, theme = 'normal', onOpen }) => {
                         </div>
                     </nav> */}
 
-                    <div className="flex items-center space-s-4 md:space-s-6 lg:space-s-8">
-                        <LanguageSwitcher />
+          <div className="flex items-center space-s-4 md:space-s-6 lg:space-s-8">
+            <LanguageSwitcher />
 
-                        <div className="hidden md:flex items-center space-s-4 md:space-s-6 lg:space-s-8">
-                            <h5 class="text-span-responsive font-bold">Destek</h5>
-                            <Button
-                                text={t('navigation.join')}
-                                onClick={onOpen}
-                                classes={"ms-4 bg-green-dark hover:green-secondary-dark text-white whitespace-nowrap h-8"}
-                            />
-                        </div>
-
-                        <p>bg</p>
-                    </div>
-                </div>
+            <div className="hidden md:flex items-center space-s-4 md:space-s-6 lg:space-s-8">
+              <h5 className="text-span-responsive font-bold">Destek</h5>
+              <Button
+                text={t("navigation.join")}
+                onClick={onOpen}
+                classes={
+                  "ms-4 bg-green-dark hover:green-secondary-dark text-white whitespace-nowrap h-8"
+                }
+              />
             </div>
-        </header >
-    );
+
+            <p>bg</p>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
 };
 
 export default Header;

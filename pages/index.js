@@ -1,5 +1,5 @@
-import Head from 'next/head'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Head from "next/head";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 // import Layout from '../src/components/layout/Layout'
 // import OnboardingSection from '../src/components/layout/OnboardingSection'
 // import ValueSection from '../src/components/layout/ValuesSection'
@@ -8,40 +8,46 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 // import Fags from '../src/components/layout/Fags'
 // import BlogSection from '../src/components/layout/BlogSection'
 // import ContactForm from '../src/components/layout/ContactForm'
-import { useTranslation } from 'next-i18next'
-import Layout from '../src/components/layout/Layout';
-import TopIntroduction from '../src/components/home/TopIntroduction';
-import OurServices from '../src/components/home/OurServices';
-import MobilitySection from '../src/components/home/MobilitySection';
-import AboutUs from '../src/components/home/AboutUs';
-import EarnWithSection from '../src/components/home/EarnWithSection';
-import LatestFeatures from '../src/components/home/LatestFeatures';
-import DownloadApps from '../src/components/home/DownloadApps';
-import NewsUpdates from '../src/components/home/NewsUpdates';
+import { useTranslation } from "next-i18next";
+import Layout from "../src/components/layout/Layout";
+import TopIntroduction from "../src/components/home/TopIntroduction";
+import OurServices from "../src/components/home/OurServices";
+import MobilitySection from "../src/components/home/MobilitySection";
+import AboutUs from "../src/components/home/AboutUs";
+import EarnWithSection from "../src/components/home/EarnWithSection";
+import LatestFeatures from "../src/components/home/LatestFeatures";
+import DownloadApps from "../src/components/home/DownloadApps";
+import NewsUpdates from "../src/components/home/NewsUpdates";
 // import { fetchFromAPI } from './../src/hooks/apiFetcher';
 
-export default function HomePage({ /* shoppingCenters, faqData, siteData, onboardingData, featureData, blogsData, */ error }) {
-  const { t } = useTranslation('common')
+export default function HomePage({
+  /* shoppingCenters, faqData, siteData, onboardingData, featureData, blogsData, */ error,
+}) {
+  const { t } = useTranslation("common");
 
   if (error) {
     return <h1>{error}</h1>;
   }
 
   return (
-    <Layout theme={"normal"}>{/* transparent */}
+    <Layout theme={"normal"}>
+      {/* transparent */}
       <Head>
-        <html dir={'ar' === 'az' ? 'rtl' : 'ltr'} />
-        <title>Yollda | {t('navigation.home')}</title>
-        <meta name="description" content="This is a description of home page." />
+        <html dir={"ar" === "az" ? "rtl" : "ltr"} />
+        <title>{`Yollda | ${t("navigation.home")}`}</title>
+        <meta
+          name="description"
+          content="This is a description of home page."
+        />
       </Head>
 
-      <TopIntroduction siteData={''} />
+      <TopIntroduction siteData={""} />
       <img
         src="/frame.png"
         alt="Beautiful image"
         class="h-[530px] lg:h-[590px] w-full object-cover"
       />
-      <OurServices siteData={''} />
+      <OurServices siteData={""} />
       <img
         src="/frame.png"
         alt="Beautiful image"
@@ -80,7 +86,7 @@ export async function getServerSideProps({ locale }) {
     // ]);
     return {
       props: {
-        ...(await serverSideTranslations(locale, ['common'])),
+        ...(await serverSideTranslations(locale, ["common"])),
         // faqData,
         // featureData,
         // siteData,
@@ -90,18 +96,18 @@ export async function getServerSideProps({ locale }) {
       },
     };
   } catch (error) {
-    console.error('Error in getServerSideProps:', error);
+    console.error("Error in getServerSideProps:", error);
 
     return {
       props: {
-        ...(await serverSideTranslations(locale, ['common'])),
+        ...(await serverSideTranslations(locale, ["common"])),
         // faqData: null,
         // featureData: null,
         // siteData: null,
         // onboardingData: null,
         // shoppingCenters: null,
         // blogsData: null,
-        error: 'Failed to load data.',
+        error: "Failed to load data.",
       },
     };
   }

@@ -26,7 +26,7 @@ export default function FleetSignup({ /* siteData, newsData, */ error }) {
     <Layout /* siteData={siteData} */ theme={"transparent"}>
       <Head>
         <html dir={"ar" === "az" ? "rtl" : "ltr"} />
-        <title>Yollda | {t("navigation.fleet.signup")}</title>
+        <title>{`Yollda | ${t("navigation.signup")}`}</title>
         <meta
           name="description"
           content="This is a description of fleet signup page."

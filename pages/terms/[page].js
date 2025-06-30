@@ -17,7 +17,7 @@ export default function TermsSubPage({ /* siteData, newsData, */ error }) {
     <Layout /* siteData={siteData} */ theme={"transparent"}>
       <Head>
         <html dir={"ar" === "az" ? "rtl" : "ltr"} />
-        <title>Yollda | {t("navigation.terms")}</title>
+        <title>{`Yollda | ${t("navigation.terms")}`}</title>
         <meta
           name="description"
           content="This is a description of terms page."
