@@ -391,6 +391,9 @@
       ]
     }
   },
+  "fleet": {
+    "try_section": {}
+  },
   "terms_page": {
     "condition_section": {
       "heading ": "TERMS AND CONDITIONS",

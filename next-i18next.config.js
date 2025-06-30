@@ -2,10 +2,10 @@ const path = require('path');
 
 module.exports = {
     i18n: {
-        locales: ['az', 'en', 'ar-AE'],
+        locales: ['az', 'en', 'ar'],
         defaultLocale: 'az',
         localeDetection: false,
-        localePath: path.resolve('./public/locales'), // Ensure this points to the locales folder
-        defaultNS: 'common',                          // Default namespace
     },
+    localePath: path.resolve('./public/locales'), // Ensure this points to the locales folder
+    defaultNS: 'common',                          // Default namespace
 };

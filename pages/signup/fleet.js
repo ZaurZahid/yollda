@@ -16,12 +16,11 @@ import FleetSignupSection from "../../src/components/signup/fleet/FleetSignupSec
 
 export default function FleetSignup({ /* siteData, newsData, */ error }) {
   const { t } = useTranslation("common");
+  const [isSubmitted, setIsSubmitted] = useState(true);
 
   if (error) {
     return <h1>{error}</h1>;
   }
-
-  const [isSubmitted, setIsSubmitted] = useState(true);
 
   return (
     <Layout /* siteData={siteData} */ theme={"transparent"}>
