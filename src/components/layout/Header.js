@@ -3,14 +3,45 @@ import Link from "next/link";
 import Button from "../ui/Button";
 import ArrowIcon from "../ui/icons/Arrow";
 import LanguageSwitcher from "../ui/LanguageSwitcher";
-import { useRouter } from "next/router";
 import CloseIcon from "../ui/icons/Close";
 import { useTranslation } from "next-i18next";
 import YolldaLogo from "../ui/icons/Yollda";
+import NavbarButton from "../ui/icons/navbarButton";
+import RegisterBar from "./RegisterBar";
 
-const Header = ({ logo, theme = "normal", onOpen }) => {
+const Header = ({ logo, theme = "normal", onOpen, isBurgerOpen }) => {
   const { t } = useTranslation("common");
   const headerRef = useRef(null);
+  const modalRef = useRef(null);
+
+  const [registerMethodsOpen, setRegisterMethodsOpen] = useState(false);
+
+  const registerMethodsSwitch = () => {
+    if (!isBurgerOpen) {
+      setRegisterMethodsOpen((prev) => !prev);
+    }
+  };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setRegisterMethodsOpen(false);
+      }
+    };
+
+    if (registerMethodsOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [registerMethodsOpen]);
+
+  useEffect(() => {
+    if (isBurgerOpen) {
+      setRegisterMethodsOpen(false);
+    }
+  }, [isBurgerOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,10 +58,6 @@ const Header = ({ logo, theme = "normal", onOpen }) => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleMenu = () => setIsOpen(!isOpen);
 
   // Navigation links array to easily extend or modify in the future
   const navLinks = [
@@ -149,16 +176,27 @@ const Header = ({ logo, theme = "normal", onOpen }) => {
 
             <div className="hidden md:flex items-center space-s-4 md:space-s-6 lg:space-s-8">
               <h5 className="text-span-responsive font-bold">Destek</h5>
-              <Button
-                text={t("navigation.join")}
-                onClick={onOpen}
-                classes={
-                  "ms-4 bg-green-dark hover:green-secondary-dark text-white whitespace-nowrap h-8"
-                }
-              />
+              <div className="ms-4 relative">
+                <Button
+                  text={t("navigation.join")}
+                  onClick={registerMethodsSwitch}
+                  classes={
+                    " bg-green-dark hover:green-secondary-dark text-white whitespace-nowrap h-8 "
+                  }
+                />
+                {registerMethodsOpen && (
+                  <div
+                    ref={modalRef}
+                    className="absolute top-16 right-0 z-50 w-[380px] transition-all duration-300"
+                  >
+                    <RegisterBar individual={true} />
+                  </div>
+                )}
+              </div>
             </div>
-
-            <p>bg</p>
+            <button onClick={onOpen}>
+              <NavbarButton />
+            </button>
           </div>
         </div>
       </div>

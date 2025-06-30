@@ -30,7 +30,7 @@ export default function About({ /* siteData, newsData, */ error }) {
       <img
         src="/frame.png"
         alt="Beautiful image"
-        class="h-[530px] lg:h-[800px] w-full object-cover -mt-24 md:-mt-32 lg:-mt-24"
+        className="h-[530px] lg:h-[800px] w-full object-cover -mt-24 md:-mt-32 lg:-mt-24"
       />
 
       <WeAreYolldaSection />
@@ -38,7 +38,7 @@ export default function About({ /* siteData, newsData, */ error }) {
       <img
         src="/frame.png"
         alt="Beautiful image"
-        class="h-[350px] lg:h-[640px] w-full object-cover"
+        className="h-[350px] lg:h-[640px] w-full object-cover"
       />
 
       <WhatMakeUsSection />
@@ -48,7 +48,7 @@ export default function About({ /* siteData, newsData, */ error }) {
       <img
         src="/frame.png"
         alt="Beautiful image"
-        class="h-[100px] lg:h-[200px] w-full object-cover"
+        className="h-[100px] lg:h-[200px] w-full object-cover"
       />
 
       <EarnMoneySection />

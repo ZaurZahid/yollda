@@ -45,19 +45,19 @@ export default function HomePage({
       <img
         src="/frame.png"
         alt="Beautiful image"
-        class="h-[530px] lg:h-[590px] w-full object-cover"
+        className="h-[530px] lg:h-[590px] w-full object-cover"
       />
       <OurServices siteData={""} />
       <img
         src="/frame.png"
         alt="Beautiful image"
-        class="h-[530px] lg:h-[720px] w-full object-cover"
+        className="h-[530px] lg:h-[720px] w-full object-cover"
       />
       <MobilitySection />
       <img
         src="/frame.png"
         alt="Beautiful image"
-        class="h-[300px] lg:h-[400px] w-full object-cover"
+        className="h-[300px] lg:h-[400px] w-full object-cover"
       />
       <AboutUs />
       <EarnWithSection />
@@ -65,7 +65,7 @@ export default function HomePage({
       <img
         src="/frame.png"
         alt="Beautiful image"
-        class="h-[300px] lg:h-[750px] w-full object-cover"
+        className="h-[300px] lg:h-[750px] w-full object-cover"
       />
       <DownloadApps />
 

@@ -5,8 +5,8 @@ function TopIntroduction({ siteData = "" }) {
   const { t } = useTranslation("common");
 
   return (
-    <div class="py-16 lg:py-20 bg-white flex justify-center">
-      <div class="text-center">
+    <div className="py-16 lg:py-20 bg-white flex justify-center">
+      <div className="text-center">
         <h1 className="w-[80%] m-auto font-secondary text-section-lg-title-responsive uppercase font-extrabold text-green-dark">
           {t("introduction.slogan")}
         </h1>

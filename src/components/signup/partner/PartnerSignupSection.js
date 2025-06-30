@@ -188,7 +188,7 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
       <img
         src="/frame2.png"
         alt="Beautiful image"
-        class="h-[530px] lg:h-[900px] w-full object-cover -mt-24 md:-mt-32 lg:-mt-24"
+        className="h-[530px] lg:h-[900px] w-full object-cover -mt-24 md:-mt-32 lg:-mt-24"
       />
       <div className="absolute top-0 left-0 z-10 w-full flex justify-center py-12 lg:py-20 mt-16 lg:mt-24">
         <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
