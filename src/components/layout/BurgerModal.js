@@ -125,7 +125,10 @@ const BurgerModal = ({ isOpen, onClose }) => {
               </div>
               <ul className="flex items-center gap-6 font-[500] text-gray-700">
                 {legalLinks.map((link) => (
-                  <li key={link.label} className="py-1 px-3 hover:text-gray-600 hover:bg-[#f3f4f6] transition-colors duration-300 rounded-lg">
+                  <li
+                    key={link.label}
+                    className="py-1 px-3 hover:text-gray-600 hover:bg-[#f3f4f6] transition-colors duration-300 rounded-lg"
+                  >
                     <Link href={link.url}>{link.label}</Link>
                   </li>
                 ))}
@@ -134,6 +137,7 @@ const BurgerModal = ({ isOpen, onClose }) => {
             <div className="hidden lg:block min-w-[380px]">
               <RegisterBar />
             </div>
+            ]
           </div>
         </div>
         {/* Mobile-------------------------------- */}
@@ -151,8 +155,9 @@ const BurgerModal = ({ isOpen, onClose }) => {
                     </span>
                     <ArrowDown
                       strokeColor={`stroke-gray-500`}
-                      className={`transition-transform duration-200 ${item.isOpen ? "rotate-180" : ""
-                        }`}
+                      className={`transition-transform duration-200 ${
+                        item.isOpen ? "rotate-180" : ""
+                      }`}
                     />
                   </button>
                   {item.isOpen && (
@@ -160,6 +165,7 @@ const BurgerModal = ({ isOpen, onClose }) => {
                       <div className="pt-2 flex flex-col gap-6 ">
                         {item.items.map((navigation) => (
                           <Link
+                            key={navigation.label}
                             href={navigation.url}
                             className="text-p-small-responsive text-gray-500 text-[16px] font-[500] flex items-center gap-2"
                           >

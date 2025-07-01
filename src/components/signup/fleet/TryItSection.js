@@ -4,11 +4,7 @@ import MemoCircleCheck from "./../../ui/icons/MemoCircleCheck";
 import MoneySet from "./../../ui/icons/MoneySet";
 import FleetHelpBanner from "./FleetHelpBanner";
 
-const benefitIcons = [
-  <Devices className="w-8 h-8" fillColor={"fill-green-dark"} />,
-  <MemoCircleCheck className="w-8 h-8" fillColor={"fill-green-dark"} />,
-  <MoneySet className="w-8 h-8" fillColor={"fill-green-dark"} />,
-];
+const benefitIconComponents = [Devices, MemoCircleCheck, MoneySet];
 
 export default function TryItSection() {
   const { t } = useTranslation("common");
@@ -28,16 +24,17 @@ export default function TryItSection() {
 
         {/* Benefits Grid */}
         <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
-          {benefitIcons.map((icon, index) => (
+          {benefitIconComponents.map((IconComponent, index) => (
             <div key={index} className="group">
-              {/* Icon Container */}
               <div className="mb-3">
                 <div className="h-[60px] max-w-[60px] bg-green-button-light rounded-xl flex items-center justify-center transition-all duration-300 transform group-hover:scale-110">
-                  {icon}
+                  <IconComponent
+                    className="w-8 h-8"
+                    fillColor="fill-green-dark"
+                  />
                 </div>
               </div>
 
-              {/* Content */}
               <div className="space-y-4">
                 <h6 className="text-h6-responsive font-bold text-green-dark transition-colors duration-300">
                   {t(`fleet.try_section.benefits.${index}.title`)}
