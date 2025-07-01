@@ -1,15 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Button from "../ui/Button";
-import ArrowIcon from "../ui/icons/Arrow";
 import LanguageSwitcher from "../ui/LanguageSwitcher";
-import CloseIcon from "../ui/icons/Close";
 import NavbarButton from "../ui/icons/NavbarButton";
 import { useTranslation } from "next-i18next";
 import YolldaLogo from "../ui/icons/Yollda";
 import RegisterBar from "./RegisterBar";
 
-const Header = ({ logo, theme = "normal", onOpen, isBurgerOpen }) => {
+const Header = ({
+  logo,
+  theme = "normal",
+  onOpen,
+  isBurgerOpen,
+  closeBurgerModal,
+}) => {
   const { t } = useTranslation("common");
   //test
   const headerRef = useRef(null);
@@ -18,9 +22,10 @@ const Header = ({ logo, theme = "normal", onOpen, isBurgerOpen }) => {
   const [registerMethodsOpen, setRegisterMethodsOpen] = useState(false);
 
   const registerMethodsSwitch = () => {
-    if (!isBurgerOpen) {
-      setRegisterMethodsOpen((prev) => !prev);
+    if (isBurgerOpen) {
+      closeBurgerModal();
     }
+    setRegisterMethodsOpen((prev) => !prev);
   };
   useEffect(() => {
     const handleClickOutside = (event) => {

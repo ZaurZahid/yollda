@@ -11,6 +11,9 @@ const Layout = ({ children, theme = "normal" }) => {
   const burgerModalSwitch = () => {
     setBurgerModal((prev) => !prev);
   };
+  const openBurgerModal = () => {
+    setBurgerModal(true);
+  };
 
   const onCloseBurgerModal = () => {
     setBurgerModal(false);
@@ -25,6 +28,7 @@ const Layout = ({ children, theme = "normal" }) => {
           onOpen={burgerModalSwitch}
           theme={theme}
           isBurgerOpen={burgerModal}
+          closeBurgerModal={onCloseBurgerModal}
         />
         <main className="w-full mt-20 sm:mt-32 xl:mt-20">{children}</main>
         {/* </div> */}
