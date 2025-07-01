@@ -17,7 +17,6 @@ export default function Contact({ /* siteData, newsData, */ error }) {
   return (
     <Layout /* siteData={siteData} */>
       <Head>
-        <html dir={"ar" === "az" ? "rtl" : "ltr"} />
         <title>{`Yollda | ${t("navigation.contact")}`}</title>
         <meta
           name="description"

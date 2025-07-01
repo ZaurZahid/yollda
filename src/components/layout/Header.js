@@ -102,7 +102,7 @@ const Header = ({ logo, theme = "normal", onOpen, isBurgerOpen }) => {
                 {registerMethodsOpen && (
                   <div
                     ref={modalRef}
-                    className="absolute top-16 right-0 z-50 w-[380px] transition-all duration-300"
+                    className="absolute top-16 right-0 rtl:right-auto rtl:left-0 z-50 w-[380px] transition-all duration-300"
                   >
                     <RegisterBar individual={true} />
                   </div>

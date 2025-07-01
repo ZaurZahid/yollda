@@ -24,7 +24,7 @@ export default function RegisterBar({ individual = false }) {
               {item.description}
             </p>
           </div>
-          <ArrowDown strokeColor={`stroke-gray-600`} className={`w-5 absolute top-5 right-0 transition-transform duration-200 -rotate-90 rtl:rotate-90`} />
+          <ArrowDown strokeColor={`stroke-gray-600`} className={`w-5 absolute top-5 right-0 rtl:right-auto rtl:left-0 transition-transform duration-200 -rotate-90 rtl:rotate-90`} />
         </Link>
       ))}
     </div>

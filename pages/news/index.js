@@ -15,7 +15,6 @@ export default function News({ /* siteData, newsData, */ error }) {
   return (
     <Layout /* siteData={siteData} */ theme={"transparent"}>
       <Head>
-        <html dir={"ar" === "az" ? "rtl" : "ltr"} />
         <title>{`Yollda | ${t("navigation.news")}`}</title>
         <meta
           name="description"

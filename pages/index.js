@@ -33,7 +33,6 @@ export default function HomePage({
     <Layout theme={"normal"}>
       {/* transparent */}
       <Head>
-        <html dir={"ar" === "az" ? "rtl" : "ltr"} />
         <title>{`Yollda | ${t("navigation.home")}`}</title>
         <meta
           name="description"
