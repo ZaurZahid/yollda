@@ -1,6 +1,4 @@
-import React from "react";
-
-const NavbarButton = () => (
+const BurgerButton = () => (
   <svg
     data-testid="geist-icon"
     height="20"
@@ -19,4 +17,4 @@ const NavbarButton = () => (
   </svg>
 );
 
-export default NavbarButton;
+export default BurgerButton;
