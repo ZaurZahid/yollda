@@ -94,7 +94,7 @@ const BurgerModal = ({ isOpen, onClose }) => {
   return (
     isOpen && (
       <>
-        <div className="hidden md:block fixed left-0 top-0 w-full bg-white rounded-b-2xl pb-[68px] text-[14px]">
+        <div className="hidden md:block fixed left-0 top-0 w-full bg-white rounded-b-2xl pb-[68px] text-[14px] shadow-2xl">
           <div className="max-w-[1100px] mx-auto mt-[100px] flex justify-between gap-6">
             <div className="bg-[#f8fafa]  w-full rounded-xl p-[42px] flex flex-col gap-9 justify-between">
               <div className="grid grid-cols-4 gap-3 gap-y-16 w-full">
@@ -125,7 +125,7 @@ const BurgerModal = ({ isOpen, onClose }) => {
               </div>
               <ul className="flex items-center gap-6 font-[500] text-gray-700">
                 {legalLinks.map((link) => (
-                  <li key={link.label} className="py-1 px-3">
+                  <li key={link.label} className="py-1 px-3 hover:text-gray-600 hover:bg-[#f3f4f6] transition-colors duration-300 rounded-lg">
                     <Link href={link.url}>{link.label}</Link>
                   </li>
                 ))}
@@ -151,9 +151,8 @@ const BurgerModal = ({ isOpen, onClose }) => {
                     </span>
                     <ArrowDown
                       strokeColor={`stroke-gray-500`}
-                      className={`transition-transform duration-200 ${
-                        item.isOpen ? "rotate-180" : ""
-                      }`}
+                      className={`transition-transform duration-200 ${item.isOpen ? "rotate-180" : ""
+                        }`}
                     />
                   </button>
                   {item.isOpen && (

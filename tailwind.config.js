@@ -5,6 +5,12 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
+  safelist: [
+    'fill-orange-500',
+    'fill-blue-500',
+    'fill-red-500',
+    'fill-teal-600',
+  ],
   theme: {
     extend: {
       fontFamily: {
