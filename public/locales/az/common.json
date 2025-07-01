@@ -1,4 +1,8 @@
 {
+  "navbar": {
+    "all_needs": "All Your Roadside Needs",
+    "manage_your_fleet": "Manage Your Fleet"
+  },
   "navigation": {
     "home": "Ana səhifə",
     "about": "Haqqımızda",
@@ -191,7 +195,9 @@
     "sending": "Göndərilir",
     "decline": "İmtina et",
     "accept": "Qəbul et",
-    "share": "Paylaş"
+    "share": "Paylaş",
+    "download_yollda": "Download Yollda",
+    "download_ypartner": "Download Yollda Partner"
   },
   "form": {
     "name": "Ad və soyadınız",

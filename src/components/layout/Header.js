@@ -6,6 +6,7 @@ import NavbarButton from "../ui/icons/NavbarButton";
 import { useTranslation } from "next-i18next";
 import YolldaLogo from "../ui/icons/Yollda";
 import RegisterBar from "./RegisterBar";
+import CrossIcon from "../ui/icons/CrossIcon";
 
 const Header = ({
   logo,
@@ -121,7 +122,7 @@ const Header = ({
               </div>
             </div>
             <button onClick={onOpen}>
-              <NavbarButton />
+              {isBurgerOpen ? <CrossIcon /> : <NavbarButton />}
             </button>
           </div>
         </div>

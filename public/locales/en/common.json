@@ -1,4 +1,8 @@
 {
+  "navbar": {
+    "all_needs": "All Your Roadside Needs",
+    "manage_your_fleet": "Manage Your Fleet"
+  },
   "navigation": {
     "home": "Home",
     "about": "About Us",
@@ -153,7 +157,9 @@
     "sending": "Sending",
     "decline": "Decline",
     "accept": "Accept",
-    "share": "Share"
+    "share": "Share",
+    "download_yollda": "Download Yollda",
+    "download_ypartner": "Download Yollda Partner"
   },
   "form": {
     "name": "Your Full Name",

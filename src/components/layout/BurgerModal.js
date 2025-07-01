@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 import RegisterBar from "./RegisterBar";
 import { useEffect, useState } from "react";
 import registerMethods from "../../utils/registerMethods";
@@ -58,7 +59,7 @@ const legalLinks = [
 ];
 
 const mobileBarItems = [
-  { id: 1, label: "Sign up", items: [...registerMethods], isOpen: false },
+  { id: 1, label: "Sign up", items: [...registerMethods], isOpen: true },
   { id: 2, label: "Products", items: burgerLinks[0].items, isOpen: false },
   { id: 3, label: "Earn", items: burgerLinks[1].items, isOpen: false },
   { id: 4, label: "Company", items: burgerLinks[2].items, isOpen: false },
@@ -69,6 +70,7 @@ const mobileBarItems = [
 ];
 
 const BurgerModal = ({ isOpen, onClose }) => {
+  const { t } = useTranslation("common");
   const [barItems, setBarItems] = useState(mobileBarItems);
   const toggleMenuItem = (id) => {
     setBarItems((prev) =>
@@ -94,8 +96,8 @@ const BurgerModal = ({ isOpen, onClose }) => {
   return (
     isOpen && (
       <>
-        <div className="hidden md:block fixed left-0 top-0 w-full bg-white rounded-b-2xl  py-16 lg:py-24 shadow-2xl">
-          <div className="max-w-[1440px] mx-auto px-6 sm:px-8 md:px-14 lg:px-16 flex justify-between gap-6">
+        <div className="hidden md:block fixed left-0 top-0 w-full bg-white rounded-b-2xl  py-16 lg:py-24 shadow-2xl z-20">
+          <div className="max-w-[1440px] mx-auto pt-[30px] px-6 sm:px-8 md:px-14 lg:px-16 flex justify-between gap-6">
             <div className="bg-[#f8fafa]  w-full rounded-xl p-[42px] flex flex-col gap-9 justify-between">
               <div className="grid grid-cols-4 gap-3 gap-y-16 w-full">
                 {burgerLinks.map((item) => (
@@ -140,7 +142,7 @@ const BurgerModal = ({ isOpen, onClose }) => {
           </div>
         </div>
         {/* Mobile-------------------------------- */}
-        <div className="md:hidden fixed left-0 top-0 w-full h-full bg-white overflow-y-auto">
+        <div className="md:hidden fixed left-0 top-0 w-full h-full bg-white overflow-y-auto z-20">
           <div className="space-y-6 flex-1 mt-[100px] mx-6">
             <div className="space-y-4">
               {barItems.map((item) => (
@@ -177,6 +179,34 @@ const BurgerModal = ({ isOpen, onClose }) => {
                   )}
                 </div>
               ))}
+              <div className="px-6 pb-6">
+                <div className="flex flex-col gap-[8px] mt-8">
+                  <span className="font-[500] text-gray-400 text-[14px]">
+                    {t("navbar.all_needs")}
+                  </span>
+                  <a
+                    href={"siteData?.[0]?.linkedin"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-fit bg-light-green text-white font-bold px-6 py-3 rounded-2xl text-button-responsive transition-all duration-200 transform hover:scale-105"
+                  >
+                    {t("buttons.download_yollda")}
+                  </a>
+                </div>
+                <div className="flex flex-col gap-[8px] mt-8">
+                  <span className="font-[500] text-gray-400 text-[14px]">
+                    {t("navbar.manage_your_fleet")}
+                  </span>
+                  <a
+                    href={"siteData?.[0]?.linkedin"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-fit bg-light-green text-white font-bold px-6 py-3 rounded-2xl text-button-responsive transition-all duration-200 transform hover:scale-105"
+                  >
+                    {t("buttons.download_ypartner")}
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
