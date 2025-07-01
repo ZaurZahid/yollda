@@ -4,13 +4,14 @@ import Button from "../ui/Button";
 import ArrowIcon from "../ui/icons/Arrow";
 import LanguageSwitcher from "../ui/LanguageSwitcher";
 import CloseIcon from "../ui/icons/Close";
+import NavbarButton from "../ui/icons/NavbarButton";
 import { useTranslation } from "next-i18next";
 import YolldaLogo from "../ui/icons/Yollda";
-import NavbarButton from "../ui/icons/navbarButton";
 import RegisterBar from "./RegisterBar";
 
 const Header = ({ logo, theme = "normal", onOpen, isBurgerOpen }) => {
   const { t } = useTranslation("common");
+  //test
   const headerRef = useRef(null);
   const modalRef = useRef(null);
 
@@ -77,13 +78,18 @@ const Header = ({ logo, theme = "normal", onOpen, isBurgerOpen }) => {
   return (
     <header
       ref={headerRef}
-      className={`header w-full flex justify-center fixed top-0 left-0 z-30 transition-all duration-300 ${theme === "transparent" ? "bg-transparent" : "bg-white"
-        }`}
+      className={`header w-full flex justify-center fixed top-0 left-0 z-30 transition-all duration-300 ${
+        theme === "transparent" ? "bg-transparent" : "bg-white"
+      }`}
     >
       <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
         <div className="flex justify-between items-center py-4">
           <Link href="/" passHref>
-            <YolldaLogo className={`max-w-24 lg:max-w-32 cursor-pointer ${theme === "transparent" ? "fill-white" : "fill-green-dark"}`} />
+            <YolldaLogo
+              className={`max-w-24 lg:max-w-32 cursor-pointer ${
+                theme === "transparent" ? "fill-white" : "fill-green-dark"
+              }`}
+            />
           </Link>
 
           <div className="flex items-center space-s-4 md:space-s-6 lg:space-s-8">
