@@ -67,12 +67,17 @@ export default function UnsubscribePage() {
           <div className="text-center mb-8">
             {step === 'success' ?
               <>
+                <div className="w-16 h-16 bg-light-green rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-8 h-8 text-green-dark" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
                 <h1 className="text-h2-responsive font-bold text-green-dark mb-4">
                   You've been unsubscribed
                 </h1>
                 <p className="text-span-responsive text-gray-600 mb-8 leading-relaxed">
                   We're sorry to see you go! You have been successfully unsubscribed from our newsletter.
-                  You will no longer receive marketing emails from Allver.
+                  You will no longer receive marketing emails from Yollda.
                 </p>
 
                 <div className="space-y-4">
@@ -87,6 +92,20 @@ export default function UnsubscribePage() {
                 </div>
               </>
               : <>
+                <div className="w-16 h-16 bg-red-300 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg
+                    className="w-8 h-8 text-red-600"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 8.586l4.95-4.95a1 1 0 111.414 1.414L11.414 10l4.95 4.95a1 1 0 01-1.414 1.414L10 11.414l-4.95 4.95a1 1 0 01-1.414-1.414L8.586 10l-4.95-4.95a1 1 0 011.414-1.414L10 8.586z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
                 <h1 className="text-h2-responsive font-bold text-gray-900 mb-4">
                   Unsubscribe from Newsletter
                 </h1>
