@@ -2,7 +2,7 @@ import React from "react";
 import ServicesCarousel from "./ServicesCarousel";
 import { useTranslation } from "next-i18next";
 
-function OurServices({ siteData = "" }) {
+function OurServices({ ourServicesData }) {
   const { t } = useTranslation("common");
   return (
     <div className="py-16 lg:py-20 bg-white">
@@ -17,7 +17,7 @@ function OurServices({ siteData = "" }) {
       </div>
 
       <div>
-        <ServicesCarousel />
+        <ServicesCarousel ourServicesData={ourServicesData} />
       </div>
     </div>
   );

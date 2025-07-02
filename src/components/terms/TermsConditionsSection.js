@@ -8,31 +8,37 @@ const categories = [
     id: "terms-conditions",
     title: "Terms and Conditions",
     subtitle: "General",
+    order_id: 5,
   },
   {
     id: "yollda-users",
     title: "Yollda Users",
     subtitle: "Service Beneficiaries",
+    order_id: 4,
   },
   {
     id: "road-assistance",
     title: "Yollda Road Assistance Services",
     subtitle: "Service Definitions",
+    order_id: 3,
   },
   {
     id: "partners",
     title: "Yollda Partners",
     subtitle: "Independent Service Providers",
+    order_id: 1,
   },
   {
     id: "business",
     title: "Yollda Business",
     subtitle: "Fleet Owners",
+    order_id: 2,
   },
   {
     id: "others",
     title: "Others",
     subtitle: "Terms and Conditions",
+    order_id: 0,
   },
 ];
 
@@ -47,10 +53,12 @@ const countries = [
   "France",
 ];
 
-export default function TermsConditionsSection() {
+export default function TermsConditionsSection({ termsData }) {
   const [selectedCountry, setSelectedCountry] = useState(
     "Azerbaijan (Azerbaijan)"
   );
+
+  console.log("termsData", termsData);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { t } = useTranslation("common");
   const handleCountrySelect = (country) => {
@@ -119,26 +127,29 @@ export default function TermsConditionsSection() {
 
           {/* Categories Grid */}
           <div className="flex flex-wrap gap-6">
-            {categories.map((category, index) => {
-              const widthClass = widthPattern[index % widthPattern.length];
+            {termsData
+              ?.slice() // copy to avoid mutating original
+              .sort((a, b) => a.order_id - b.order_id) // ✅ sort by order_id
+              .map((category, index) => {
+                const widthClass = widthPattern[index % widthPattern.length];
 
-              return (
-                <Link
-                  key={category.id}
-                  href={`/terms/${category.id}`}
-                  className={`${widthClass} min-h-[170px] bg-light-green/10 hover:bg-light-green/20 rounded-2md:w-[30%] xl p-6 rounded-2xl transition-all duration-300 cursor-pointer group hover:shadow-lg hover:scale-105 border border-light-green/20`}
-                >
-                  <div className="text-left">
-                    <h6 className="h6-responsive font-bold text-green-dark mb-3 group-hover:text-green-800 transition-colors duration-200">
-                      {category.title}
-                    </h6>
-                    <p className="text-span-small-responsive text-green-dark/70 font-medium">
-                      {category.subtitle}
-                    </p>
-                  </div>
-                </Link>
-              );
-            })}
+                return (
+                  <Link
+                    key={category.id}
+                    href={`/terms/${category.slug}`}
+                    className={`${widthClass} min-h-[170px] bg-light-green/10 hover:bg-light-green/20 rounded-2md:w-[30%] xl p-6 rounded-2xl transition-all duration-300 cursor-pointer group hover:shadow-lg hover:scale-105 border border-light-green/20`}
+                  >
+                    <div className="text-left">
+                      <h6 className="h6-responsive font-bold text-green-dark mb-3 group-hover:text-green-800 transition-colors duration-200">
+                        {category.title}
+                      </h6>
+                      <p className="text-span-small-responsive text-green-dark/70 font-medium">
+                        {category.slug}
+                      </p>
+                    </div>
+                  </Link>
+                );
+              })}
           </div>
         </div>
       </div>

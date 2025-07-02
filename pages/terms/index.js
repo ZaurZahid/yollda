@@ -6,7 +6,10 @@ import { useTranslation } from "next-i18next";
 import { fetchFromAPI } from "../../src/hooks/apiFetcher";
 import TermsConditionsSection from "../../src/components/terms/TermsConditionsSection";
 
-export default function TermsConditions({ /* siteData, newsData, */ error }) {
+export default function TermsConditions({
+  termsData,
+  /* siteData, newsData, */ error,
+}) {
   const { t } = useTranslation("common");
 
   if (error) {
@@ -23,7 +26,7 @@ export default function TermsConditions({ /* siteData, newsData, */ error }) {
         />
       </Head>
 
-      <TermsConditionsSection termsData={[] /* termsData */} />
+      <TermsConditionsSection termsData={termsData} />
     </Layout>
   );
 }
@@ -34,11 +37,17 @@ export async function getServerSideProps({ locale }) {
     //     fetchFromAPI('/api/v1/support/site/', locale),
     //     fetchFromAPI('/api/v1/support/blog/?page=1&per_page=10', locale),
     // ]);
+
+    const [termsData] = await Promise.all([
+      fetchFromAPI("/api/v1/web/terms/", locale, {
+        Country: "AZ",
+      }),
+    ]);
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
         // siteData,
-        // termsData,
+        termsData,
       },
     };
   } catch (error) {
@@ -47,6 +56,7 @@ export async function getServerSideProps({ locale }) {
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
+        termsData: null,
         siteData: null,
         newsData: null,
         error: "Failed to load data.",

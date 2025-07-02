@@ -32,9 +32,8 @@ const mockTermsData = {
   },
 };
 
-function TermsSubPageSection() {
+function TermsSubPageSection({ specificTermData }) {
   const { t } = useTranslation("common");
-
   const breadcrumbItems = [
     { label: t("navigation.terms"), url: "/terms" },
     { label: t("navigation.terms-special"), url: "" },
@@ -46,16 +45,20 @@ function TermsSubPageSection() {
         <Breadcrumb items={breadcrumbItems} />
         <div className="flex flex-col">
           <h1 className="text-h1-responsive uppercase font-bold text-green-dark lg:w-[80%]">
-            {t("terms_page.sub_section.heading")}
+            {/* {t("terms_page.sub_section.heading")}
+             */}
+            {specificTermData?.title || mockTermsData.users.title}
           </h1>
           <div className="flex items-center mt-6">
             <img src="/calendar.svg" className="me-2" alt="calendar icon" />
             <span className="text-span-small-responsive text-gray-500">
               March 8, 2022
+              {/* TODO date not available in api */}
             </span>
           </div>
           <p className="text-gray-500 text-large-responsive mt-3 lg:w-[80%]">
             {t("terms_page.sub_section.description")}
+            {/* TODO don't get short description from api */}
           </p>
           <hr className="my-6 md:my-10 lg:my-16 h-[2px] bg-gray-200 border-0" />
 
@@ -86,7 +89,7 @@ function TermsSubPageSection() {
                         prose-li:marker:text-gray-500
                         prose-li:marker:-pr-20
                         "
-            dangerouslySetInnerHTML={{ __html: mockTermsData.users.content }}
+            dangerouslySetInnerHTML={{ __html: specificTermData.description }}
           />
         </div>
       </div>

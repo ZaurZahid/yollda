@@ -6,7 +6,10 @@ import { useTranslation } from "next-i18next";
 import { fetchFromAPI } from "../../src/hooks/apiFetcher";
 import TermsSubPageSection from "../../src/components/terms/TermsSubPageSection";
 
-export default function TermsSubPage({ /* siteData, newsData, */ error }) {
+export default function TermsSubPage({
+  specificTermData,
+  /* siteData, newsData, */ error,
+}) {
   const { t } = useTranslation("common");
 
   if (error) {
@@ -23,21 +26,27 @@ export default function TermsSubPage({ /* siteData, newsData, */ error }) {
         />
       </Head>
 
-      <TermsSubPageSection termsData={[] /* termsData */} />
+      <TermsSubPageSection specificTermData={specificTermData} />
     </Layout>
   );
 }
 
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps({ params, locale }) {
+  const { page } = params;
+
   try {
     // const [siteData, termsData] = await Promise.all([
     //     fetchFromAPI('/api/v1/support/site/', locale),
     //     fetchFromAPI('/api/v1/support/blog/?page=1&per_page=10', locale),
     // ]);
+
+    const [specificTermData] = await Promise.all([
+      fetchFromAPI(`/api/v1/web/terms/${page}/`, locale, { Country: "AZ" }),
+    ]);
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
-        // siteData,
+        specificTermData,
         // termsData,
       },
     };
@@ -47,7 +56,7 @@ export async function getServerSideProps({ locale }) {
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
-        siteData: null,
+        specificTermData: null,
         newsData: null,
         error: "Failed to load data.",
       },

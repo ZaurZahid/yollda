@@ -6,50 +6,50 @@ import { fetchFromAPI } from "../src/hooks/apiFetcher";
 import UnsubscribePage from "../src/components/unsubscribe/UnSubscribePage";
 
 export default function UnSubscribe({ /* siteData, newsData, */ error }) {
-    const { t } = useTranslation("common");
+  const { t } = useTranslation("common");
 
-    if (error) {
-        return <h1>{error}</h1>;
-    }
+  if (error) {
+    return <h1>{error}</h1>;
+  }
 
-    return (
-        <Layout /* siteData={siteData} */>
-            <Head>
-                <title>{`Yollda | ${t("navigation.UnSubscribe")}`}</title>
-                <meta
-                    name="description"
-                    content="This is a description of UnSubscribe page."
-                />
-            </Head>
+  return (
+    <Layout /* siteData={siteData} */>
+      <Head>
+        <title>{`Yollda | ${t("navigation.UnSubscribe")}`}</title>
+        <meta
+          name="description"
+          content="This is a description of UnSubscribe page."
+        />
+      </Head>
 
-            <UnsubscribePage />
-        </Layout>
-    );
+      <UnsubscribePage />
+    </Layout>
+  );
 }
 
 export async function getServerSideProps({ locale }) {
-    try {
-        // const [siteData, termsData] = await Promise.all([
-        //     fetchFromAPI('/api/v1/support/site/', locale),
-        //     fetchFromAPI('/api/v1/support/blog/?page=1&per_page=10', locale),
-        // ]);
-        return {
-            props: {
-                ...(await serverSideTranslations(locale, ["common"])),
-                // siteData,
-                // termsData,
-            },
-        };
-    } catch (error) {
-        console.error("Error in getServerSideProps:", error);
+  try {
+    // const [siteData, termsData] = await Promise.all([
+    //     fetchFromAPI('/api/v1/support/site/', locale),
+    //     fetchFromAPI('/api/v1/support/blog/?page=1&per_page=10', locale),
+    // ]);
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, ["common"])),
+        // siteData,
+        // termsData,
+      },
+    };
+  } catch (error) {
+    console.error("Error in getServerSideProps:", error);
 
-        return {
-            props: {
-                ...(await serverSideTranslations(locale, ["common"])),
-                siteData: null,
-                newsData: null,
-                error: "Failed to load data.",
-            },
-        };
-    }
+    return {
+      props: {
+        ...(await serverSideTranslations(locale, ["common"])),
+        siteData: null,
+        newsData: null,
+        error: "Failed to load data.",
+      },
+    };
+  }
 }

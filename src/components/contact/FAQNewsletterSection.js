@@ -3,21 +3,20 @@ import { useTranslation } from "next-i18next";
 
 import ArrowDown from "./../ui/icons/ArrowDown";
 
-const faqDataRaw = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5, isOpen: true },
-  { id: 6 },
-  { id: 7 },
-  { id: 8 },
-];
+// const faqDataRaw = [
+//   { id: 1 },
+//   { id: 2 },
+//   { id: 3 },
+//   { id: 4 },
+//   { id: 5, isOpen: true },
+//   { id: 6 },
+//   { id: 7 },
+//   { id: 8 },
+// ];
 
-export default function FAQNewsletterSection() {
+export default function FAQNewsletterSection({ faqsData }) {
   const { t } = useTranslation("common");
-
-  const [faqs, setFaqs] = useState(faqDataRaw);
+  const [faqs, setFaqs] = useState(faqsData.results);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [isSubscribing, setIsSubscribing] = useState(false);
@@ -34,17 +33,29 @@ export default function FAQNewsletterSection() {
   };
 
   const handleSubscribe = async (e) => {
-    e.preventDefault();
-    if (!email) return;
+    try {
+      e.preventDefault();
+      if (!email) return;
 
-    setError("");
-    setIsSubscribing(true);
+      setError("");
+      setIsSubscribing(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+      // await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/web/subscribe-newsletter/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }), // <-- fixed: convert to JSON string
+        }
+      );
 
-    setIsSubscribed(true);
-    setIsSubscribing(false);
-    setEmail("");
+      setIsSubscribed(true);
+      setIsSubscribing(false);
+      setEmail("");
+    } catch (error) {}
   };
 
   const visibleFaqs = showMore ? faqs : faqs.slice(0, 5);
@@ -140,11 +151,12 @@ export default function FAQNewsletterSection() {
                     className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
                   >
                     <span className="text-span-responsive font-medium text-gray-900 pe-4">
-                      {t(
+                      {/* {t(
                         `signup_page.faq_section.faq_items.${
                           faq.id - 1
                         }.question`
-                      )}
+                      )} */}
+                      {faq.question}
                     </span>
                     <ArrowDown
                       strokeColor={`stroke-gray-500`}
@@ -157,11 +169,12 @@ export default function FAQNewsletterSection() {
                     <div className="px-6 pb-4 animate-fade-in">
                       <div className="pt-2 border-t border-gray-100">
                         <p className="text-p-small-responsive text-gray-500 leading-relaxed">
-                          {t(
+                          {/* {t(
                             `signup_page.faq_section.faq_items.${
                               faq.id - 1
                             }.answer`
-                          )}
+                          )} */}
+                          {faq.answer}
                         </p>
                       </div>
                     </div>

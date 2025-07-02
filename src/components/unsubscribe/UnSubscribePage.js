@@ -1,12 +1,25 @@
-import { useState } from 'react';
-import Link from 'next/link';
+import { useState } from "react";
+import Link from "next/link";
 
 export default function UnsubscribePage() {
-  const [step, setStep] = useState('form');
+  const [step, setStep] = useState("form");
+
   const [formData, setFormData] = useState({
-    email: '',
+    email: "",
   });
   const [errors, setErrors] = useState({});
+  const handleUnsubscribe = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/web/subscribe-newsletter/?email=${formData.email}`,
+        {
+          method: "DELETE",
+        }
+      );
+    } catch (error) {
+      throw new Error("Failed to unsubscribe");
+    }
+  };
 
   const validateForm = () => {
     const newErrors = {};
@@ -14,9 +27,9 @@ export default function UnsubscribePage() {
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
-      newErrors.email = 'Email address is required';
+      newErrors.email = "Email address is required";
     } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = "Please enter a valid email address";
     }
 
     setErrors(newErrors);
@@ -24,11 +37,11 @@ export default function UnsubscribePage() {
   };
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
 
     // Clear error when user starts typing
     if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: undefined }));
+      setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
   };
 
@@ -39,11 +52,12 @@ export default function UnsubscribePage() {
       return;
     }
 
-    setStep('processing');
+    setStep("processing");
 
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // await new Promise(resolve => setTimeout(resolve, 2000));
+      await handleUnsubscribe();
 
       // Here you would make the actual API call
       // const response = await fetch('/api/unsubscribe', {
@@ -52,10 +66,10 @@ export default function UnsubscribePage() {
       //   body: JSON.stringify(formData)
       // });
 
-      setStep('success');
+      setStep("success");
     } catch (error) {
-      console.error('Error unsubscribing:', error);
-      setStep('form');
+      console.error("Error unsubscribing:", error);
+      setStep("form");
     }
   };
 
@@ -65,19 +79,28 @@ export default function UnsubscribePage() {
         <div className="md:max-w-[80%] lg:max-w-[50%] mx-auto bg-white rounded-3xl shadow-xl p-8 lg:p-12">
           {/* Header */}
           <div className="text-center mb-8">
-            {step === 'success' ?
+            {step === "success" ? (
               <>
                 <div className="w-16 h-16 bg-light-green rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-8 h-8 text-green-dark" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  <svg
+                    className="w-8 h-8 text-green-dark"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </div>
                 <h1 className="text-h2-responsive font-bold text-green-dark mb-4">
                   You've been unsubscribed
                 </h1>
                 <p className="text-span-responsive text-gray-600 mb-8 leading-relaxed">
-                  We're sorry to see you go! You have been successfully unsubscribed from our newsletter.
-                  You will no longer receive marketing emails from Yollda.
+                  We're sorry to see you go! You have been successfully
+                  unsubscribed from our newsletter. You will no longer receive
+                  marketing emails from Yollda.
                 </p>
 
                 <div className="space-y-4">
@@ -91,7 +114,8 @@ export default function UnsubscribePage() {
                   </div>
                 </div>
               </>
-              : <>
+            ) : (
+              <>
                 <div className="w-16 h-16 bg-red-300 rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg
                     className="w-8 h-8 text-red-600"
@@ -110,14 +134,15 @@ export default function UnsubscribePage() {
                   Unsubscribe from Newsletter
                 </h1>
                 <p className="text-span-responsive text-gray-600 leading-relaxed">
-                  We're sorry to see you go! Help us improve by letting us know why you're unsubscribing.
+                  We're sorry to see you go! Help us improve by letting us know
+                  why you're unsubscribing.
                 </p>
               </>
-            }
+            )}
           </div>
 
-          {step === 'success' ? null
-            : <form onSubmit={handleSubmit} className="space-y-6">
+          {step === "success" ? null : (
+            <form onSubmit={handleSubmit} className="space-y-6">
               {/* Email Address */}
               <div>
                 <label className="block text-span-responsive font-medium text-gray-700 mb-2">
@@ -128,8 +153,10 @@ export default function UnsubscribePage() {
                     type="email"
                     placeholder="Enter your email address"
                     value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
-                    className={`w-full border ${errors.email ? 'border-red-400' : 'border-gray-300'} rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    className={`w-full border ${
+                      errors.email ? "border-red-400" : "border-gray-300"
+                    } rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
                   />
                 </div>
                 {errors.email && (
@@ -143,13 +170,14 @@ export default function UnsubscribePage() {
               <div className="pt-4">
                 <button
                   type="submit"
-                  disabled={step === 'processing'}
+                  disabled={step === "processing"}
                   className="w-full bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl font-bold transition-all duration-200 transform text-button-large-responsive flex items-center justify-center disabled:bg-gray-400"
                 >
                   Unsubscribe from Newsletter
                 </button>
               </div>
-            </form>}
+            </form>
+          )}
         </div>
       </div>
     </div>
