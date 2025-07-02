@@ -16,4 +16,3 @@ PROGRESS
 --------------------
 
 1. terms detail ++-- missing parts in api "date ve short description"
-2. benefits on homepage static translation for title and description
