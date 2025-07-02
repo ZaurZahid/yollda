@@ -493,7 +493,7 @@ export default function FleetSignupSection({ isSubmitted, setIsSubmitted }) {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              {t("footer.links.termAndCondition")}
+                              {t("navigation_links.links.termAndCondition")}
                             </a>{" "}
                             {t("fleet.signup_section.form.and")}{" "}
                             <a
@@ -502,7 +502,7 @@ export default function FleetSignupSection({ isSubmitted, setIsSubmitted }) {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              {t("footer.links.privacy")}
+                              {t("navigation_links.links.privacy")}
                             </a>
                           </p>
                         </div>

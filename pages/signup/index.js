@@ -10,7 +10,10 @@ import { useState } from "react";
 import RevenueStreamSection from "../../src/components/signup/partner/RevenueStreamSection";
 import YolldaPartnerSection from "../../src/components/signup/partner/YolldaPartnerSection";
 
-export default function PartnerSignup({ /* siteData, newsData, */ error }) {
+export default function PartnerSignup({
+  faqsData,
+  /* siteData, newsData, */ error,
+}) {
   const { t } = useTranslation("common");
   const [isSubmitted, setIsSubmitted] = useState(true);
 
@@ -35,13 +38,16 @@ export default function PartnerSignup({ /* siteData, newsData, */ error }) {
       <HowPartnerWorksSection isSubmitted={isSubmitted} />
       <RevenueStreamSection />
       <YolldaPartnerSection />
-      <FAQNewsletterSection />
+      <FAQNewsletterSection faqsData={faqsData} />
     </Layout>
   );
 }
 
 export async function getServerSideProps({ locale }) {
   try {
+    const [faqsData] = await Promise.all([
+      fetchFromAPI("/api/v1/web/faqs/?page=1&per_page=20", locale),
+    ]);
     // const [siteData, termsData] = await Promise.all([
     //     fetchFromAPI('/api/v1/support/site/', locale),
     //     fetchFromAPI('/api/v1/support/blog/?page=1&per_page=10', locale),
@@ -49,6 +55,7 @@ export async function getServerSideProps({ locale }) {
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
+        faqsData,
         // siteData,
         // termsData,
       },
@@ -59,6 +66,7 @@ export async function getServerSideProps({ locale }) {
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
+        faqsData: null,
         siteData: null,
         newsData: null,
         error: "Failed to load data.",

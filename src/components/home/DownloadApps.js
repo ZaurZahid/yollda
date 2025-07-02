@@ -49,7 +49,7 @@ export default function DownloadApps() {
             </h4>
 
             <p className="mb-6 text-span-responsive">
-              {t("footer.available_text")}
+              {t("navigation_links.available_text")}
             </p>
 
             <div>
@@ -59,7 +59,7 @@ export default function DownloadApps() {
                 rel="noopener noreferrer"
                 className="inline-flex bg-light-green text-white font-bold px-6 py-3 rounded-2xl text-button-responsive transition-all duration-200 transform hover:scale-105"
               >
-                {t("getY_button")}
+                {t("buttons.getY_button")}
               </a>
             </div>
           </div>

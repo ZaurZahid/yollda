@@ -5,72 +5,146 @@ import { useEffect, useState } from "react";
 import registerMethods from "../../utils/registerMethods";
 import ArrowDown from "../ui/icons/ArrowDown";
 
-const burgerLinks = [
-  {
-    column: "Products",
-    items: [
-      { label: "Tow assist", url: "/tow-assist" },
-      { label: "Battery assist", url: "/battery-assist" },
-      { label: "Fuel assist", url: "/fuel-assist" },
-      { label: "Tire assist", url: "/tire-assist" },
-    ],
-  },
-  {
-    column: "Earn",
-    items: [
-      { label: "Yollda Partners", url: "/earn/yollda-partners" },
-      { label: "Tow Drivers", url: "/earn/tow-drivers" },
-      { label: "Yollda Fleets", url: "/earn/yollda-fleets" },
-    ],
-  },
-  {
-    column: "Company",
-    items: [
-      { label: "About Yollda", url: "/about" },
-      { label: "Careers", url: "/careers" },
-      { label: "Blog", url: "/blog" },
-      { label: "Brand Guidelines", url: "/brand-guidelines" },
-    ],
-  },
-  {
-    column: "Support",
-    items: [
-      { label: "Yollda Partners", url: "/support/yollda-partners" },
-      { label: "Tow Drivers", url: "/support/tow-drivers" },
-      { label: "Yollda Fleets", url: "/support/yollda-fleets" },
-      { label: "Contact us", url: "/contact" },
-    ],
-  },
-  {
-    column: "Safety",
-    items: [{ label: "Driver safety", url: "/driver-safety" }],
-  },
-  {
-    column: "Locations",
-    items: [{ label: "Our cities", url: "/our-cities" }],
-  },
-];
-
-const legalLinks = [
-  { label: "Terms and Conditions", url: "/terms-and-conditions" },
-  { label: "Privacy", url: "/privacy" },
-  { label: "Cookies", url: "/cookies" },
-  { label: "Security", url: "/security" },
-];
-
-const mobileBarItems = [
-  { id: 1, label: "Sign up", items: [...registerMethods], isOpen: true },
-  { id: 2, label: "Products", items: burgerLinks[0].items, isOpen: false },
-  { id: 3, label: "Earn", items: burgerLinks[1].items, isOpen: false },
-  { id: 4, label: "Company", items: burgerLinks[2].items, isOpen: false },
-  { id: 5, label: "Support", items: burgerLinks[3].items, isOpen: false },
-  { id: 6, label: "Safety", items: burgerLinks[4].items, isOpen: false },
-  { id: 7, label: "Locations", items: burgerLinks[5].items, isOpen: false },
-  { id: 8, label: "Other", items: legalLinks },
-];
-
 const BurgerModal = ({ isOpen, onClose }) => {
   const { t } = useTranslation("common");
+  const burgerLinks = [
+    {
+      column: t("navigation_links.headings.products"),
+      items: [
+        { label: t("navigation_links.links.assist.tow"), url: "/tow-assist" },
+        {
+          label: t("navigation_links.links.assist.battery"),
+          url: "/battery-assist",
+        },
+        { label: t("navigation_links.links.assist.fuel"), url: "/fuel-assist" },
+        { label: t("navigation_links.links.assist.tire"), url: "/tire-assist" },
+      ],
+    },
+    {
+      column: t("navigation_links.headings.earn"),
+      items: [
+        {
+          label: t("navigation_links.links.earn_sub.yollda_partners"),
+          url: "/earn/yollda-partners",
+        },
+        {
+          label: t("navigation_links.links.earn_sub.tow_drivers"),
+          url: "/earn/tow-drivers",
+        },
+        {
+          label: t("navigation_links.links.earn_sub.yollda_fleets"),
+          url: "/earn/yollda-fleets",
+        },
+      ],
+    },
+    {
+      column: t("navigation_links.headings.company"),
+      items: [
+        { label: t("navigation_links.links.about"), url: "/about" },
+        { label: t("navigation_links.links.careers"), url: "/careers" },
+        { label: t("navigation_links.links.blogs"), url: "/blog" },
+        {
+          label: t("navigation_links.links.brand_guideness"),
+          url: "/brand-guidelines",
+        },
+      ],
+    },
+    {
+      column: t("navigation_links.headings.support"),
+      items: [
+        {
+          label: t("navigation_links.links.support.yollda_partners"),
+          url: "/support/yollda-partners",
+        },
+        {
+          label: t("navigation_links.links.support.tow_drivers"),
+          url: "/support/tow-drivers",
+        },
+        {
+          label: t("navigation_links.links.support.yollda_fleets"),
+          url: "/support/yollda-fleets",
+        },
+        {
+          label: t("navigation_links.links.support.contact_us"),
+          url: "/contact",
+        },
+      ],
+    },
+    {
+      column: t("navigation_links.headings.safety"),
+      items: [
+        {
+          label: t("navigation_links.links.safety.driver_safety"),
+          url: "/driver-safety",
+        },
+      ],
+    },
+    {
+      column: t("navigation_links.headings.locations"),
+      items: [
+        {
+          label: t("navigation_links.links.locations.our_cities"),
+          url: "/our-cities",
+        },
+      ],
+    },
+  ];
+  const legalLinks = [
+    {
+      label: t("navigation_links.links.termAndCondition"),
+      url: "/terms-and-conditions",
+    },
+    { label: t("navigation_links.links.privacy"), url: "/privacy" },
+    { label: t("navigation_links.links.cookies"), url: "/cookies" },
+    { label: t("navigation_links.links.security"), url: "/security" },
+  ];
+
+  const mobileBarItems = [
+    {
+      id: 1,
+      label: t("navigation_links.headings.signUp"),
+      items: [...registerMethods],
+      isOpen: true,
+    },
+    {
+      id: 2,
+      label: t("navigation_links.headings.products"),
+      items: burgerLinks[0].items,
+      isOpen: false,
+    },
+    {
+      id: 3,
+      label: t("navigation_links.headings.earn"),
+      items: burgerLinks[1].items,
+      isOpen: false,
+    },
+    {
+      id: 4,
+      label: t("navigation_links.headings.company"),
+      items: burgerLinks[2].items,
+      isOpen: false,
+    },
+    {
+      id: 5,
+      label: t("navigation_links.headings.support"),
+      items: burgerLinks[3].items,
+      isOpen: false,
+    },
+    {
+      id: 6,
+      label: t("navigation_links.headings.suppport"),
+      items: burgerLinks[4].items,
+      isOpen: false,
+    },
+    {
+      id: 7,
+      label: t("navigation_links.headings.locations"),
+      items: burgerLinks[5].items,
+      isOpen: false,
+    },
+    { id: 8, label: t("navigation_links.headings.other"), items: legalLinks },
+  ];
+
   const [barItems, setBarItems] = useState(mobileBarItems);
   const toggleMenuItem = (id) => {
     setBarItems((prev) =>

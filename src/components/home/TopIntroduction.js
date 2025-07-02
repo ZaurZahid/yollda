@@ -21,7 +21,7 @@ function TopIntroduction({ siteData = "" }) {
           rel="noopener noreferrer"
           className="inline-flex mt-9 bg-green-dark text-light-green px-6 py-3 rounded-2xl text-button-responsive transition-all duration-200 transform hover:scale-105"
         >
-          {t("getY_button")}
+          {t("buttons.getY_button")}
         </a>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { useTranslation } from "next-i18next";
 
 export default function AboutUs({ shortAbout }) {
   const { t } = useTranslation("common");
-  console.log(shortAbout)
+  console.log(shortAbout);
   return (
     <section className="w-full flex justify-center bg-light-green text-white pt-16 lg:pt-20">
       <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
@@ -31,7 +31,7 @@ export default function AboutUs({ shortAbout }) {
             rel="noopener noreferrer"
             className="inline-flex my-9 bg-green-dark text-light-green px-6 py-3 rounded-2xl text-button-responsive transition-all duration-200 transform hover:scale-105"
           >
-            {t("getY_button")}
+            {t("buttons.getY_button")}
           </a>
 
           <div className="flex justify-center">

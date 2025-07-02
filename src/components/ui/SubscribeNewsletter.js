@@ -32,9 +32,9 @@ export default function SubscribeNewsletter() {
       if (!response.ok) {
         if (response.status === 400) {
           const errorData = await response.json();
-          setError(errorData.email?.[0] || 'Unexpected error');
+          setError(errorData.email?.[0] || "Unexpected error");
         } else {
-          throw new Error('Unexpected error');
+          throw new Error("Unexpected error");
         }
 
         setIsSubscribing(false);
@@ -147,7 +147,7 @@ export default function SubscribeNewsletter() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {t("footer.links.privacy")}
+              {t("navigation_links.links.privacy")}
             </a>
           </p>
         </div>

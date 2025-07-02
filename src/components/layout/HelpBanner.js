@@ -43,7 +43,7 @@ export default function HelpBanner() {
               rel="noopener noreferrer"
               className="ml-auto md:ml-0 md:w-auto bg-light-green text-white font-bold px-6 py-3 rounded-2xl text-button-responsive transition-all duration-200 transform hover:scale-105"
             >
-              {t("getY_button")}
+              {t("buttons.getY_button")}
             </a>
           </div>
         </div>

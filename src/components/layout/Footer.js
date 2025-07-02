@@ -52,7 +52,7 @@ const Footer = ({ siteData }) => {
               </div>
 
               <p className="text-gray-300 mb-6 lg:mb-8 text-span-responsive">
-                {t("footer.available_text")}
+                {t("navigation_links.available_text")}
               </p>
 
               <a
@@ -69,7 +69,7 @@ const Footer = ({ siteData }) => {
               {/* Products Column */}
               <div>
                 <h4 className="span-small-responsive font-semibold mb-4 text-white">
-                  {t("footer.headings.products")}
+                  {t("navigation_links.headings.products")}
                 </h4>
                 <ul className="space-y-3">
                   <li>
@@ -79,7 +79,7 @@ const Footer = ({ siteData }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t("footer.links.assist.tow")}
+                      {t("navigation_links.links.assist.tow")}
                     </a>
                   </li>
                   <li>
@@ -89,7 +89,7 @@ const Footer = ({ siteData }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t("footer.links.assist.fuel")}
+                      {t("navigation_links.links.assist.fuel")}
                     </a>
                   </li>
                   <li>
@@ -99,7 +99,7 @@ const Footer = ({ siteData }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t("footer.links.assist.battery")}
+                      {t("navigation_links.links.assist.battery")}
                     </a>
                   </li>
                   <li>
@@ -109,7 +109,7 @@ const Footer = ({ siteData }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t("footer.links.assist.tire")}
+                      {t("navigation_links.links.assist.tire")}
                     </a>
                   </li>
                 </ul>
@@ -118,7 +118,7 @@ const Footer = ({ siteData }) => {
               {/* Earn Column */}
               <div>
                 <h4 className="span-small-responsive font-semibold mb-4 text-white">
-                  {t("footer.headings.earn")}
+                  {t("navigation_links.headings.earn")}
                 </h4>
                 <ul className="space-y-3">
                   <li>
@@ -128,7 +128,7 @@ const Footer = ({ siteData }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t("footer.links.earn_sub.yollda_partners")}
+                      {t("navigation_links.links.earn_sub.yollda_partners")}
                     </a>
                   </li>
                   <li>
@@ -138,7 +138,7 @@ const Footer = ({ siteData }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t("footer.links.earn_sub.tow_drivers")}
+                      {t("navigation_links.links.earn_sub.tow_drivers")}
                     </a>
                   </li>
                   <li>
@@ -148,7 +148,7 @@ const Footer = ({ siteData }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t("footer.links.earn_sub.yollda_fleets")}
+                      {t("navigation_links.links.earn_sub.yollda_fleets")}
                     </a>
                   </li>
                 </ul>
@@ -157,7 +157,7 @@ const Footer = ({ siteData }) => {
               {/* Company Column */}
               <div>
                 <h4 className="span-small-responsive font-semibold mb-4 text-white">
-                  {t("footer.headings.company")}
+                  {t("navigation_links.headings.company")}
                 </h4>
                 <ul className="space-y-3">
                   <li>
@@ -167,7 +167,7 @@ const Footer = ({ siteData }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t("footer.links.about")}
+                      {t("navigation_links.links.about")}
                     </a>
                   </li>
                   <li>
@@ -177,7 +177,7 @@ const Footer = ({ siteData }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t("footer.links.careers")}
+                      {t("navigation_links.links.careers")}
                     </a>
                   </li>
                   <li>
@@ -187,7 +187,7 @@ const Footer = ({ siteData }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t("footer.links.blogs")}
+                      {t("navigation_links.links.blogs")}
                     </a>
                   </li>
                   <li>
@@ -197,7 +197,7 @@ const Footer = ({ siteData }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t("footer.links.brand_guideness")}
+                      {t("navigation_links.links.brand_guideness")}
                     </a>
                   </li>
                 </ul>
@@ -206,7 +206,7 @@ const Footer = ({ siteData }) => {
               {/* Support Column */}
               <div>
                 <h4 className="span-small-responsive font-semibold mb-4 text-white">
-                  {t("footer.headings.support")}
+                  {t("navigation_links.headings.support")}
                 </h4>
                 <ul className="space-y-3">
                   <li>
@@ -216,7 +216,7 @@ const Footer = ({ siteData }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t("footer.links.support.yollda_partners")}
+                      {t("navigation_links.links.support.yollda_partners")}
                     </a>
                   </li>
                   <li>
@@ -226,7 +226,7 @@ const Footer = ({ siteData }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t("footer.links.support.tow_drivers")}
+                      {t("navigation_links.links.support.tow_drivers")}
                     </a>
                   </li>
                   <li>
@@ -236,7 +236,7 @@ const Footer = ({ siteData }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t("footer.links.support.yollda_fleets")}
+                      {t("navigation_links.links.support.yollda_fleets")}
                     </a>
                   </li>
                   <li>
@@ -246,7 +246,7 @@ const Footer = ({ siteData }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t("footer.links.support.contact_us")}
+                      {t("navigation_links.links.support.contact_us")}
                     </a>
                   </li>
                 </ul>
@@ -255,7 +255,7 @@ const Footer = ({ siteData }) => {
               {/* Safety Column */}
               <div>
                 <h4 className="span-small-responsive font-semibold mb-4 text-white">
-                  {t("footer.headings.safety")}
+                  {t("navigation_links.headings.safety")}
                 </h4>
                 <ul className="space-y-3">
                   <li>
@@ -265,7 +265,7 @@ const Footer = ({ siteData }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t("footer.links.safety.driver_safety")}
+                      {t("navigation_links.links.safety.driver_safety")}
                     </a>
                   </li>
                 </ul>
@@ -274,7 +274,7 @@ const Footer = ({ siteData }) => {
               {/* Locations Column */}
               <div>
                 <h4 className="span-small-responsive font-semibold mb-4 text-white">
-                  {t("footer.headings.locations")}
+                  {t("navigation_links.headings.locations")}
                 </h4>
                 <ul className="space-y-3">
                   <li>
@@ -284,7 +284,7 @@ const Footer = ({ siteData }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {t("footer.links.locations.our_cities")}
+                      {t("navigation_links.links.locations.our_cities")}
                     </a>
                   </li>
                 </ul>
@@ -370,7 +370,7 @@ const Footer = ({ siteData }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {t("footer.links.termAndCondition")}
+                    {t("navigation_links.links.termAndCondition")}
                   </a>
                   <a
                     href={`/privacy/${locale}`}
@@ -378,7 +378,7 @@ const Footer = ({ siteData }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {t("footer.links.privacy")}
+                    {t("navigation_links.links.privacy")}
                   </a>
                   <a
                     href={`/security/${locale}`}
@@ -386,7 +386,7 @@ const Footer = ({ siteData }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {t("footer.links.security")}
+                    {t("navigation_links.links.security")}
                   </a>
                   <a
                     href={`/cookies/${locale}`}
@@ -394,11 +394,11 @@ const Footer = ({ siteData }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {t("footer.links.cookies")}
+                    {t("navigation_links.links.cookies")}
                   </a>
                 </div>
                 <div className="text-white text-span-small-responsive">
-                  © {currentYear} Yollda. {t("footer.copyright")}
+                  © {currentYear} Yollda. {t("navigation_links.copyright")}
                 </div>
               </div>
             </div>

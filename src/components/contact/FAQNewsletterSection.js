@@ -54,9 +54,9 @@ export default function FAQNewsletterSection({ faqsData }) {
       if (!response.ok) {
         if (response.status === 400) {
           const errorData = await response.json();
-          setError(errorData.email?.[0] || 'Unexpected error');
+          setError(errorData.email?.[0] || "Unexpected error");
         } else {
-          throw new Error('Unexpected error');
+          throw new Error("Unexpected error");
         }
 
         setIsSubscribing(false);
@@ -168,8 +168,9 @@ export default function FAQNewsletterSection({ faqsData }) {
                     </span>
                     <ArrowDown
                       strokeColor={`stroke-gray-500`}
-                      className={`transition-transform duration-200 ${faq.isOpen ? "rotate-180" : ""
-                        }`}
+                      className={`transition-transform duration-200 ${
+                        faq.isOpen ? "rotate-180" : ""
+                      }`}
                     />
                   </button>
                   {faq.isOpen && (

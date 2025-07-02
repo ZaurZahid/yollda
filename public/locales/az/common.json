@@ -13,51 +13,7 @@
     "contact": "Əlaqə",
     "join": "Qoşulun"
   },
-  "footer": {
-    "copyright": "Bütün hüquqlar qorunur",
-    "available_text": "Available for iOS and Android devices.",
-    "headings": {
-      "products": "Mallar",
-      "earn": "Qazanc",
-      "company": "Shirket",
-      "support": "Komek",
-      "safety": "Tehlukesizlik",
-      "locations": "Lokasiyalar"
-    },
-    "links": {
-      "privacy": "Məxfilik",
-      "termAndCondition": "İstifadə Şərtləri",
-      "about": "Haqqımızda",
-      "careers": "Karyera",
-      "blogs": "Bloglar",
-      "brand_guideness": "Brand Telimati",
-      "security": "Guvenlik",
-      "cookies": "Cerezler",
-      "assist": {
-        "tow": "Tow",
-        "fuel": "Benzin",
-        "battery": "Batareya",
-        "tire": "Teker"
-      },
-      "earn_sub": {
-        "yollda_partners": "Yollda Partyorlari",
-        "tow_drivers": "Tow Suruculeri",
-        "yollda_fleets": "Yollda Fllet"
-      },
-      "support": {
-        "yollda_partners": "Yollda Partyorlari",
-        "tow_drivers": "Tow Suruculeri",
-        "yollda_fleets": "Yollda Fllet",
-        "contact_us": "Bizimle elaqe"
-      },
-      "safety": {
-        "driver_safety": "Surucu tehlukesizliyi"
-      },
-      "locations": {
-        "our_cities": "Bizim seherlerimiz"
-      }
-    }
-  },
+
   "onboarding": {
     "title_header": "Yerli",
     "title_header_span": "alış verişə",
@@ -68,83 +24,11 @@
       "buyer": "Mən alıcıyam"
     }
   },
-  "valuesSection": {
-    "title_header": "AllVer",
-    "title_header_span": "alış-verişi",
-    "title_footer": "daha asan və əlçatan edir.",
-    "valuesTitle": "Dəyərlərimiz:",
-    "values": {
-      "convenience": "Rahatlıq: Mağazaları əvvəlcədən nəzərdən keçirmək imkanı.",
-      "innovation": "Yenilik: İnteraktiv xəritələr və digər innovativ xüsusiyyətlər.",
-      "community": "Cəmiyyət: Yerli ticarətçilərə dəstək və yerli alış-verişə töhfə."
-    }
-  },
-  "howItWorks": {
-    "steps": {
-      "step_1": {
-        "title": "Ticarətçiləri Axtarın",
-        "description": "Kateqoriyalara və populyarlığa görə mağazaları asanlıqla tapın."
-      },
-      "step_2": {
-        "title": "Xəritə ilə Mağazaları Tapın",
-        "description": "İnteraktiv xəritələrlə ticarət mərkəzlərində mağazaların yerini tapın."
-      },
-      "step_3": {
-        "title": "Təklifləri Kəşf Edin",
-        "description": "İstifadəçilər üçün eksklüziv endirimləri kəşf edin."
-      }
-    }
-  },
-  "faqSection": {
-    "title": "Tez-tez verilən suallar",
-    "subtitle": "AllVer haqqında ümumi suallara cavab tapın.",
-    "questions": [
-      {
-        "question": "AllVer nədir?",
-        "answer": "AllVer, alış-verişi sadələşdirən və yerli ticarət mərkəzlərində mağazaları və eksklüziv təklifləri tapmağa kömək edən platformadır."
-      },
-      {
-        "question": "Mağazanı necə axtara bilərəm?",
-        "answer": "Mağazanı asanlıqla tapmaq üçün interaktiv xəritəmizdən istifadə edə və ya kateqoriyalar və populyarlığa görə axtarış edə bilərsiniz."
-      },
-      {
-        "question": "AllVer istifadəsi pulsuzdurmu?",
-        "answer": "Bəli, AllVer alıcılar üçün tamamilə pulsuzdur. Satıcılar üçün isə əlavə premium seçimlər mövcuddur."
-      },
-      {
-        "question": "AllVer vasitəsilə pul qazana bilərəmmi?",
-        "answer": "Bəli, AllVer platforması vasitəsilə dostlarınızı və ticarətçiləri dəvət edərək pul qazana bilərsiniz. Daha çox insan dəvət etdikcə, daha çox qazanacaqsınız."
-      },
-      {
-        "question": "Yerli ticarətçiləri AllVer vasitəsilə necə dəstəkləyə bilərəm?",
-        "answer": "AllVer-də sadalanan yerli mağazalardan alış-veriş edərək, birbaşa yerli iqtisadiyyatı və cəmiyyəti dəstəkləyirsiniz."
-      },
-      {
-        "question": "AllVer tətbiqini necə əlavə edə bilərəm?",
-        "answer": "Tətbiqi Apple App Store və Google Play Store-dan yükləyə bilərsiniz."
-      },
-      {
-        "question": "Eksklüziv təkliflər varmı?",
-        "answer": "Bəli, tətbiqdə ticarətçi kimi özünüzü tanıtmaq, mükafatlar qazanmaq və daha çox unikal xüsusiyyətlərdən istifadə etmək üçün bir çox eksklüziv təkliflər mövcuddur."
-      }
-    ]
-  },
-  "blogSection": {
-    "title": "Sizin üçün maraqlı məlumatlar",
-    "subtitle": "Ticarətçi kateqoriyalarını asanlıqla gözdən keçirin."
-  },
+
   "contactUsSection": {
-    "title": "Sualınız var? Bizdən soruşa bilərsiniz.",
-    "subtitle": "Hər hansı bir sualınız varsa, bizimlə əlaqə saxlayın.",
     "contactMethods": {
-      "phone": {
-        "label": "Telefon:"
-      },
       "phoneNumber": {
         "label": "Telefon nömrəsi"
-      },
-      "email": {
-        "label": "Email:"
       }
     }
   },
@@ -159,32 +43,12 @@
     },
     "waitingMessage": "1.5k+ nəfər gözləmədədir"
   },
-  "cookieConsentModal": {
-    "message": "Sistemdə sizə ən yaxşı təcrübə təqdim etmək üçün çərəzlərdən istifadə edirik.",
-    "disclaimer": "Davam edərək, allver.az saytında bütün çərəzləri qəbul etməyə razısınız."
-  },
+
   "mapSection": {
     "location": "Ünvan",
     "inner_map_title": "Ticarət mərkəzinin daxili xəritəsi"
   },
-  "shoppingCenters": {
-    "title": "Ticarət mərkəzləri",
-    "subtitle": "Ticarətçi kateqoriyalarını asanlıqla gözdən keçirin.",
-    "centers": {
-      "center_1": {
-        "name": "Sədərək Ticarət Mərkəzi",
-        "description": "Ticarətçi kateqoriyalarını asanlıqla gözdən keçirin."
-      },
-      "center_2": {
-        "name": "Binə Ticarət Mərkəzi",
-        "description": "Ticarətçi kateqoriyalarını asanlıqla gözdən keçirin."
-      },
-      "center_3": {
-        "name": "Abşeron Ticarət Mərkəzi",
-        "description": "Ticarətçi kateqoriyalarını asanlıqla gözdən keçirin."
-      }
-    }
-  },
+
   "buttons": {
     "register_now": "İndi qeydiyyatdan keç",
     "about_us": "Haqqımızda",
@@ -197,7 +61,8 @@
     "accept": "Qəbul et",
     "share": "Paylaş",
     "download_yollda": "Download Yollda",
-    "download_ypartner": "Download Yollda Partner"
+    "download_ypartner": "Download Yollda Partner",
+    "getY_button": "Get Yolda"
   },
   "form": {
     "name": "Ad və soyadınız",
@@ -210,11 +75,7 @@
     "select": "Seçin",
     "required": "Bu xananı doldurmaq vacibdir"
   },
-  "payment": {
-    "success_message": "Əməliyyat uğurla tamamlandı",
-    "failure_message": "Əməliyyat uğursuz oldu"
-  },
-  "getY_button": "Get Yolda",
+
   "introduction": {
     "slogan": "Fast. Reliable. Wherever You Are",
     "description": "Yollda is your all-in-one road assistance platform"
@@ -504,6 +365,53 @@
     "sub_section": {
       "heading": "Yollda Users (Service Beneficiaries)",
       "description": "These Terms and Conditions govern your use of the Yollda platform as a user requesting road assistance services. By using our services, you agree to these terms."
+    }
+  },
+  "navigation_links": {
+    "copyright": "Bütün hüquqlar qorunur",
+    "available_text": "Available for iOS and Android devices.",
+    "headings": {
+      "products": "Mallar",
+      "earn": "Qazanc",
+      "company": "Shirket",
+      "support": "Komek",
+      "safety": "Tehlukesizlik",
+      "locations": "Lokasiyalar",
+      "signUp": "Qeydiyyat",
+      "other": "Basga"
+    },
+    "links": {
+      "privacy": "Məxfilik",
+      "termAndCondition": "İstifadə Şərtləri",
+      "about": "Haqqımızda",
+      "careers": "Karyera",
+      "blogs": "Bloglar",
+      "brand_guideness": "Brand Telimati",
+      "security": "Guvenlik",
+      "cookies": "Cerezler",
+      "assist": {
+        "tow": "Tow",
+        "fuel": "Benzin",
+        "battery": "Batareya",
+        "tire": "Teker"
+      },
+      "earn_sub": {
+        "yollda_partners": "Yollda Partyorlari",
+        "tow_drivers": "Tow Suruculeri",
+        "yollda_fleets": "Yollda Fllet"
+      },
+      "support": {
+        "yollda_partners": "Yollda Partyorlari",
+        "tow_drivers": "Tow Suruculeri",
+        "yollda_fleets": "Yollda Fllet",
+        "contact_us": "Bizimle elaqe"
+      },
+      "safety": {
+        "driver_safety": "Surucu tehlukesizliyi"
+      },
+      "locations": {
+        "our_cities": "Bizim seherlerimiz"
+      }
     }
   }
 }

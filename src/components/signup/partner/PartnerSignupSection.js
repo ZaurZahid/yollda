@@ -593,7 +593,7 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              {t("footer.links.termAndCondition")}
+                              {t("navigation_links.links.termAndCondition")}
                             </a>{" "}
                             {t("signup_page.signup_section.form.and")}{" "}
                             <a
@@ -602,7 +602,7 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              {t("footer.links.privacy")}
+                              {t("navigation_links.links.privacy")}
                             </a>
                             {t("signup_page.signup_section.form.confirm")}
                           </p>
