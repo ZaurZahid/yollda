@@ -7,11 +7,13 @@ DONE
 3. terms++++
 4. our-services++++
 5. faqs++++
-
+6. short-about++++
+7. benefits++++
 
 
 --------------------
 PROGRESS
 --------------------
 
-1. terms detail ++-- missing parts in api
+1. terms detail ++-- missing parts in api "date ve short description"
+2. benefits on homepage static translation for title and description

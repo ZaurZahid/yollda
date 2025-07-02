@@ -1,7 +1,8 @@
 import { useTranslation } from "next-i18next";
 
-export default function AboutUs() {
+export default function AboutUs({ shortAbout }) {
   const { t } = useTranslation("common");
+  console.log(shortAbout)
   return (
     <section className="w-full flex justify-center bg-light-green text-white pt-16 lg:pt-20">
       <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
@@ -15,12 +16,12 @@ export default function AboutUs() {
 
           {/* Main Heading */}
           <h1 className="font-secondary text-section-lg-title-responsive uppercase font-extrabold text-green-dark">
-            {t("about_us.heading")}
+            {shortAbout?.title}
           </h1>
 
           {/* Description */}
           <p className="lg:w-[48%] m-auto  text-h6-responsive mt-9 text-green-dark text-center">
-            {t("about_us.description")}
+            {shortAbout?.description}
           </p>
 
           {/* CTA Button */}

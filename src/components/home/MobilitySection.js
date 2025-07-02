@@ -1,71 +1,19 @@
 import { useState } from "react";
+import { useTranslation } from "next-i18next";
 
-const mobilitySlides = [
-  {
-    id: 1,
-    // title: "MOBILITY BY THE PEOPLE,",
-    title: "MOBILITY BY THE PEOPLE, FOR THE PEOPLE.",
-    // subtitle: "FOR THE PEOPLE.",
-    description:
-      "Yollda's real-time roadside expertise and local network keep you—and your city—moving safely.",
-  },
-  {
-    id: 2,
-    // title: "MOBILITY BY THE PEOPLE,",
-    title: "MOBILITY BY THE PEOPLE, FOR THE PEOPLE.",
-    // subtitle: "FOR THE PEOPLE.",
-    description:
-      "Yollda's real-time roadside expertise and local network keep you—and your city—moving safely.",
-  },
-  {
-    id: 3,
-    // title: "MOBILITY BY THE PEOPLE,",
-    title: "MOBILITY BY THE PEOPLE, FOR THE PEOPLE.",
-    // subtitle: "FOR THE PEOPLE.",
-    description:
-      "Yollda's real-time roadside expertise and local network keep you—and your city—moving safely.",
-  },
-];
-
-const contentSlides = [
-  {
-    id: 1,
-    title: "Less Wait, More Drive",
-    description:
-      "By optimizing mobile assistance routes and reducing idle time, we cut emissions, ease congestion, and free up more space on our streets.",
-    linkText: "Learn more",
-    linkUrl: "#",
-  },
-  {
-    id: 2,
-    title: "Smart Response, Quick Action",
-    description:
-      "Advanced routing technology and real-time tracking ensure faster response times and more efficient service delivery.",
-    linkText: "See how it works",
-    linkUrl: "#",
-  },
-  {
-    id: 3,
-    title: "Together We Move Forward",
-    description:
-      "Join thousands of drivers and service providers creating a more connected and reliable transportation network.",
-    linkText: "Get started",
-    linkUrl: "#",
-  },
-];
-
-export default function MobilitySection() {
+export default function MobilitySection({ benefits }) {
+  const { t } = useTranslation("common");
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const goToPrevious = () => {
     setCurrentSlide((prev) =>
-      prev === 0 ? mobilitySlides.length - 1 : prev - 1
+      prev === 0 ? benefits?.results?.length - 1 : prev - 1
     );
   };
 
   const goToNext = () => {
     setCurrentSlide((prev) =>
-      prev === mobilitySlides.length - 1 ? 0 : prev + 1
+      prev === benefits?.results?.length - 1 ? 0 : prev + 1
     );
   };
 
@@ -82,13 +30,13 @@ export default function MobilitySection() {
             {/* Main Title - Always Visible */}
             <div className="space-y-4">
               <h1 className="font-secondary text-section-lg-title-responsive font-extrabold">
-                {mobilitySlides[currentSlide].title}
+                {t("home_page.benefits_section.title")}
               </h1>
             </div>
 
             {/* Description */}
             <p className="body-large text-white/90 leading-relaxed">
-              {mobilitySlides[currentSlide].description}
+              {t("home_page.benefits_section.description")}
             </p>
           </div>
 
@@ -97,16 +45,16 @@ export default function MobilitySection() {
             {/* Content Card */}
             <div>
               <h3 className="text-h4-responsive font-bold mb-4 text-white">
-                {contentSlides[currentSlide].title}
+                {benefits?.results?.[currentSlide].title}
               </h3>
               <p className="text-p-large-responsive text-white/90 mb-6">
-                {contentSlides[currentSlide].description}
+                {benefits?.results?.[currentSlide].description}
               </p>
               <a
-                href={contentSlides[currentSlide].linkUrl}
+                href={benefits?.results?.[currentSlide].deeplink_url}
                 className="inline-flex items-center text-light-green hover:text-green-400 transition-colors duration-200 font-medium text-button-responsive group"
               >
-                {contentSlides[currentSlide].linkText}
+                {benefits?.results?.[currentSlide].action_title}
               </a>
             </div>
 
@@ -134,15 +82,14 @@ export default function MobilitySection() {
 
               {/* Dots Indicator */}
               <div className="flex space-s-3">
-                {mobilitySlides.map((_, index) => (
+                {benefits?.results?.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentSlide
-                        ? "bg-light-green scale-125 shadow-lg"
-                        : "bg-white/40 hover:bg-white/60 hover:scale-110"
-                    }`}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
+                      ? "bg-light-green scale-125 shadow-lg"
+                      : "bg-white/40 hover:bg-white/60 hover:scale-110"
+                      }`}
                     aria-label={`Go to slide ${index + 1}`}
                   />
                 ))}

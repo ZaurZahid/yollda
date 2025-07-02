@@ -23,6 +23,8 @@ import { fetchFromAPI } from "../src/hooks/apiFetcher";
 
 export default function HomePage({
   ourServicesData,
+  shortAbout,
+  benefits,
   error,
 }) {
   const { t } = useTranslation("common");
@@ -53,13 +55,13 @@ export default function HomePage({
         alt="Beautiful image"
         className="h-[530px] lg:h-[720px] w-full object-cover"
       />
-      <MobilitySection />
+      <MobilitySection benefits={benefits} />
       <img
         src="/frame.png"
         alt="Beautiful image"
         className="h-[300px] lg:h-[400px] w-full object-cover"
       />
-      <AboutUs />
+      <AboutUs shortAbout={shortAbout} />
       <EarnWithSection />
       <LatestFeatures />
       <img
@@ -76,13 +78,17 @@ export default function HomePage({
 
 export async function getServerSideProps({ locale }) {
   try {
-    const [ourServicesData] = await Promise.all([
+    const [ourServicesData, shortAbout, benefits] = await Promise.all([
       fetchFromAPI("/api/v1/web/our-services/?page=1&per_page=10", locale),
+      fetchFromAPI("/api/v1/web/short-about/", locale),
+      fetchFromAPI("/api/v1/web/benefits/?page=1&per_page=20", locale),
     ]);
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
         ourServicesData,
+        shortAbout,
+        benefits,
       },
     };
   } catch (error) {
@@ -92,6 +98,8 @@ export async function getServerSideProps({ locale }) {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
         ourServicesData: null,
+        shortAbout: null,
+        benefits: null,
         error: "Failed to load data.",
       },
     };
