@@ -27,7 +27,7 @@ export default function About({ /* siteData, newsData, */ error }) {
       </Head>
 
       <img
-        src="/frame.png"
+        src="/About1.png"
         alt="Beautiful image"
         className="h-[530px] lg:h-[800px] w-full object-cover -mt-24 md:-mt-32 lg:-mt-24"
       />
@@ -35,7 +35,7 @@ export default function About({ /* siteData, newsData, */ error }) {
       <WeAreYolldaSection />
 
       <img
-        src="/frame.png"
+        src="/About2.png"
         alt="Beautiful image"
         className="h-[350px] lg:h-[640px] w-full object-cover"
       />
@@ -45,7 +45,7 @@ export default function About({ /* siteData, newsData, */ error }) {
       <SuperAppSection />
 
       <img
-        src="/frame.png"
+        src="/About3.png"
         alt="Beautiful image"
         className="h-[100px] lg:h-[200px] w-full object-cover"
       />

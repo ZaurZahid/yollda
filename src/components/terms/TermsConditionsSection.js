@@ -58,8 +58,6 @@ export default function TermsConditionsSection({ termsData }) {
     "Azerbaijan (Azerbaijan)"
   );
 
-  console.log("termsData", termsData);
-
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { t } = useTranslation("common");
 
@@ -98,8 +96,9 @@ export default function TermsConditionsSection({ termsData }) {
                 </span>
                 <ArrowDown
                   strokeColor={`stroke-gray-500`}
-                  className={`transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""
-                    }`}
+                  className={`transition-transform duration-200 ${
+                    isDropdownOpen ? "rotate-180" : ""
+                  }`}
                 />
               </button>
 

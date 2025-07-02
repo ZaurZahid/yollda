@@ -24,7 +24,7 @@ export default function Blogs({ /* siteData, blogsData, */ error }) {
       </Head>
 
       <img
-        src="/frame.png"
+        src="/Blogs.png"
         alt="Beautiful image"
         className="h-[530px] lg:h-[800px] w-full object-cover -mt-24 md:-mt-32 lg:-mt-24"
       />

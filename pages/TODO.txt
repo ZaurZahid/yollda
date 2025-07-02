@@ -1,20 +1,20 @@
 ---------------
 CURRENT TODOS
 ---------------
-1. unsubscribe page static translation
-2. benefits on homepage static translation for title and description
+1. unsubscribe page static translation DONE
+2. benefits on homepage static translation for title and description DONE
 3. header transparent design
 5. BE CAREFUL !!! about the api implementation 
    check api request for all cases, error case should be considered always, use try, catch as your await api request approach was WRONG as it always return true
    unnecessary comments should be removed, check design, if api missing any field OR have other additional field which isnt on design
    add to api_list.txt file.
 6. need to export 2x png (wallpaper ones) from the figma to be the same images as in design. 
-   for ex. on homepage there are 4 images like this
-   blogs and newspage, only 1
-   about page 3 images
-   contact us 1, consider heights for fleet and partner subpage
-   FleetHelpBanner image
-   HelpBanner image
+   for ex. on homepage there are 4 images like this DONE
+   blogs and newspage, only 1 Done
+   about page 3 images Done
+   contact us 1, consider heights for fleet and partner subpage DONE
+   FleetHelpBanner image Done
+   HelpBanner image Done
 
 
 

@@ -86,10 +86,11 @@ export default function MobilitySection({ benefits }) {
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
-                      ? "bg-light-green scale-125 shadow-lg"
-                      : "bg-white/40 hover:bg-white/60 hover:scale-110"
-                      }`}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentSlide
+                        ? "bg-light-green scale-125 shadow-lg"
+                        : "bg-white/40 hover:bg-white/60 hover:scale-110"
+                    }`}
                     aria-label={`Go to slide ${index + 1}`}
                   />
                 ))}

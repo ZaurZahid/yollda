@@ -13,7 +13,7 @@ export default function HelpBanner() {
         <div className="col-span-12 md:col-span-4 lg:col-span-3 relative md:h-full">
           <div className="h-[200px] md:h-full overflow-hidden rounded-t-xl md:rounded-xl md:rounded-r-none">
             <img
-              src="https://images.pexels.com/photos/7144176/pexels-photo-7144176.jpeg?auto=compress&cs=tinysrgb&w=800"
+              src="/HelpBanner.png"
               alt="Happy people in car needing roadside assistance"
               className="w-full h-full object-cover"
             />

@@ -2,7 +2,6 @@ import { useTranslation } from "next-i18next";
 
 export default function AboutUs({ shortAbout }) {
   const { t } = useTranslation("common");
-  console.log(shortAbout);
   return (
     <section className="w-full flex justify-center bg-light-green text-white pt-16 lg:pt-20">
       <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">

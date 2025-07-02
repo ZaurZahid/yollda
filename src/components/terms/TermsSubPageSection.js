@@ -36,17 +36,19 @@ function TermsSubPageSection({ specificTermData }) {
   const { t } = useTranslation("common");
   const breadcrumbItems = [
     { label: t("navigation.terms"), url: "/terms" },
-    { label: specificTermData?.title || t("navigation.terms-special"), url: "" },
+    {
+      label: specificTermData?.title || t("navigation.terms-special"),
+      url: "",
+    },
   ];
 
-  console.log(specificTermData)
   return (
     <div className="w-full flex justify-center py-12 md:py-20">
       <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
         <Breadcrumb items={breadcrumbItems} />
         <div className="flex flex-col">
           <h1 className="text-h1-responsive uppercase font-bold text-green-dark lg:w-[80%]">
-            {specificTermData?.title || ''}
+            {specificTermData?.title || ""}
           </h1>
           {/* <div className="flex items-center mt-6">
             <img src="/calendar.svg" className="me-2" alt="calendar icon" />

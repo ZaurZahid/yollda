@@ -45,7 +45,7 @@ export default function HomePage({
 
       <TopIntroduction siteData={""} />
       <img
-        src="/frame.png"
+        src="/Home1.png"
         alt="Beautiful image"
         className="h-[530px] lg:h-[590px] w-full object-cover"
       />
@@ -57,7 +57,7 @@ export default function HomePage({
       />
       <MobilitySection benefits={benefits} />
       <img
-        src="/frame.png"
+        src="/Home3.png"
         alt="Beautiful image"
         className="h-[300px] lg:h-[400px] w-full object-cover"
       />
@@ -65,7 +65,7 @@ export default function HomePage({
       <EarnWithSection />
       <LatestFeatures />
       <img
-        src="/frame.png"
+        src="/Home4.png"
         alt="Beautiful image"
         className="h-[300px] lg:h-[750px] w-full object-cover"
       />

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 
 export default function UnsubscribePage() {
+  const { t } = useTranslation("common");
   const [step, setStep] = useState("form");
 
   const [formData, setFormData] = useState({
@@ -15,9 +17,13 @@ export default function UnsubscribePage() {
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
-      newErrors.email = "Email address is required";
+      newErrors.email = t(
+        "signup_page.signup_section.form.errors.email_required"
+      );
     } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = t(
+        "signup_page.signup_section.form.errors.email_invalid"
+      );
     }
 
     setErrors(newErrors);
@@ -54,10 +60,10 @@ export default function UnsubscribePage() {
         if (response.status === 400) {
           const errorData = await response.json();
           setErrors({
-            email: errorData.error || 'Unexpected error'
+            email: errorData.error || "Unexpected error",
           });
         } else {
-          throw new Error('Unexpected error');
+          throw new Error("Unexpected error");
         }
 
         setStep("form");
@@ -66,7 +72,7 @@ export default function UnsubscribePage() {
     } catch (error) {
       setStep("form");
       setErrors({
-        email: 'Failed to unsubscribe'
+        email: "Failed to unsubscribe",
       });
 
       return;
@@ -97,18 +103,16 @@ export default function UnsubscribePage() {
                   </svg>
                 </div>
                 <h1 className="text-h2-responsive font-bold text-green-dark mb-4">
-                  You've been unsubscribed
+                  {t("unsubscribe_page.success.heading")}
                 </h1>
                 <p className="text-span-responsive text-gray-600 mb-8 leading-relaxed">
-                  We're sorry to see you go! You have been successfully
-                  unsubscribed from our newsletter. You will no longer receive
-                  marketing emails from Yollda.
+                  {t("unsubscribe_page.success.description")}
                 </p>
 
                 <div className="space-y-4">
                   <div className="bg-gray-50 rounded-xl p-4">
                     <p className="text-span-small-responsive text-gray-500 mb-2">
-                      Unsubscribed email:
+                      {t("unsubscribe_page.success.unsubscribed_email")}
                     </p>
                     <p className="text-span-responsive font-medium text-gray-900">
                       {formData.email}
@@ -133,11 +137,10 @@ export default function UnsubscribePage() {
                   </svg>
                 </div>
                 <h1 className="text-h2-responsive font-bold text-gray-900 mb-4">
-                  Unsubscribe from Newsletter
+                  {t("unsubscribe_page.form.heading")}
                 </h1>
                 <p className="text-span-responsive text-gray-600 leading-relaxed">
-                  We're sorry to see you go! Help us improve by letting us know
-                  why you're unsubscribing.
+                  {t("unsubscribe_page.form.description")}
                 </p>
               </>
             )}
@@ -148,16 +151,17 @@ export default function UnsubscribePage() {
               {/* Email Address */}
               <div>
                 <label className="block text-span-responsive font-medium text-gray-700 mb-2">
-                  Email Address *
+                  {t("unsubscribe_page.form.email_address")}
                 </label>
                 <div className="relative">
                   <input
                     type="email"
-                    placeholder="Enter your email address"
+                    placeholder={t("unsubscribe_page.form.email_placeholder")}
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    className={`w-full border ${errors.email ? "border-red-400" : "border-gray-300"
-                      } rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
+                    className={`w-full border ${
+                      errors.email ? "border-red-400" : "border-gray-300"
+                    } rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
                   />
                 </div>
                 {errors.email && (
@@ -174,7 +178,7 @@ export default function UnsubscribePage() {
                   disabled={step === "processing"}
                   className="w-full bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl font-bold transition-all duration-200 transform text-button-large-responsive flex items-center justify-center disabled:bg-gray-400"
                 >
-                  Unsubscribe from Newsletter
+                  {t("unsubscribe_page.form.submit_button")}
                 </button>
               </div>
             </form>

@@ -186,7 +186,7 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
   return (
     <section className="relative">
       <img
-        src="/frame2.png"
+        src="/PartnerSignup.png"
         alt="Beautiful image"
         className="h-[530px] lg:h-[900px] w-full object-cover -mt-24 md:-mt-32 lg:-mt-24"
       />

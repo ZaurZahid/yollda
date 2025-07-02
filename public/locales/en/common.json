@@ -139,6 +139,12 @@
   },
   "continue_reading": "Continue reading",
   "results_found": "results found",
+  "home_page": {
+    "benefits_section": {
+      "title": "Mobility by the People, for the People.",
+      "description": "Yollda’s real‑time roadside expertise and local network keep you—and your city—moving safely."
+    }
+  },
   "blogs_page": {
     "news_section": {
       "heading": "Ride out as soon as you fly in with Flight Tracking",
@@ -366,6 +372,20 @@
     "sub_section": {
       "heading": "Yollda Users (Service Beneficiaries)",
       "description": "These Terms and Conditions govern your use of the Yollda platform as a user requesting road assistance services. By using our services, you agree to these terms."
+    }
+  },
+  "unsubscribe_page": {
+    "success": {
+      "heading": " You've been unsubscribed",
+      "description": "We're sorry to see you go! You have been successfully unsubscribed from our newsletter. You will no longer receive marketing emails from Yollda.",
+      "unsubscribed_email": "Unsubscribed email:"
+    },
+    "form": {
+      "heading": "Unsubscribe from Newsletter",
+      "description": "We're sorry to see you go! Help us improve by letting us know why you're unsubscribing.",
+      "email_address": "Email Address *",
+      "email_placeholder": "Enter your email address",
+      "submit_button": "Unsubscribe from Newsletter"
     }
   },
   "navigation_links": {

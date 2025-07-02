@@ -12,7 +12,7 @@ export default function FleetHelpBanner() {
         <div className="col-span-12 md:col-span-6 lg:col-span-6 relative md:h-full">
           <div className="h-[300px] md:h-[400px] md:h-full overflow-hidden rounded-t-xl md:rounded-xl md:rounded-r-none">
             <img
-              src="https://images.pexels.com/photos/7144176/pexels-photo-7144176.jpeg?auto=compress&cs=tinysrgb&w=800"
+              src="/FleetHelpBanner.png"
               alt="Happy people in car needing roadside assistance"
               className="w-full h-full object-cover"
             />
