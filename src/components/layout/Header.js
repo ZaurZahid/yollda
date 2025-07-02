@@ -28,6 +28,7 @@ const Header = ({
     }
     setRegisterMethodsOpen((prev) => !prev);
   };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -54,9 +55,9 @@ const Header = ({
     const handleScroll = () => {
       if (headerRef.current) {
         if (window.scrollY > 0) {
-          headerRef.current.classList.add("bg-white", "shadow-md");
+          headerRef.current.classList.add(/* "bg-white", */ "shadow-md");
         } else {
-          headerRef.current.classList.remove("bg-white", "shadow-md");
+          headerRef.current.classList.remove(/* "bg-white", */ "shadow-md");
         }
       }
     };
@@ -66,35 +67,18 @@ const Header = ({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isParentActive = (currentPath, targetPath) => {
-    if (targetPath === "/") {
-      return currentPath === "/";
-    }
-
-    if (currentPath.includes("/blogs") && targetPath.includes("#blogs")) {
-      return true;
-    }
-
-    // For all other paths, check parent-child relationship
-    return (
-      currentPath === targetPath || currentPath.startsWith(`${targetPath}/`)
-    );
-  };
-
   return (
     <header
       ref={headerRef}
-      className={`header w-full flex justify-center fixed top-0 left-0 z-30 transition-all duration-300 ${
-        theme === "transparent" ? "bg-transparent" : "bg-white"
-      }`}
+      className={`header w-full flex justify-center fixed top-0 left-0 z-30 transition-all duration-300 ${theme === "transparent" ? "bg-transparent" : "bg-white"
+        }`}
     >
       <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
         <div className="flex justify-between items-center py-4">
           <Link href="/" passHref>
             <YolldaLogo
-              className={`max-w-24 lg:max-w-32 cursor-pointer ${
-                theme === "transparent" ? "fill-white" : "fill-green-dark"
-              }`}
+              className={`max-w-24 lg:max-w-32 cursor-pointer ${theme === "transparent" ? "fill-white" : "fill-green-dark"
+                }`}
             />
           </Link>
 
