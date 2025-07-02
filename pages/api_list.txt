@@ -1,0 +1,17 @@
+--------------------
+DONE
+--------------------
+
+1. delete subscribe-newsletter++++
+2. subscribe-newsletter++++
+3. terms++++
+4. our-services++++
+5. faqs++++
+
+
+
+--------------------
+PROGRESS
+--------------------
+
+1. terms detail ++-- missing parts in api

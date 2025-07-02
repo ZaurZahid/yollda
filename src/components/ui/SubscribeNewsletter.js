@@ -9,7 +9,14 @@ export default function SubscribeNewsletter() {
 
   const [isSubscribing, setIsSubscribing] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
-  const handleSubscribe = async () => {
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setError("");
+    setIsSubscribing(true);
+
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/v1/web/subscribe-newsletter/`,
@@ -21,29 +28,21 @@ export default function SubscribeNewsletter() {
           body: JSON.stringify({ email }), // <-- fixed: convert to JSON string
         }
       );
+
+      if (!response.ok) {
+        if (response.status === 400) {
+          const errorData = await response.json();
+          setError(errorData.email?.[0] || 'Unexpected error');
+        } else {
+          throw new Error('Unexpected error');
+        }
+
+        setIsSubscribing(false);
+        return;
+      }
     } catch (error) {
       throw new Error("Failed to subscribe");
     }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!email) return;
-
-    setError("");
-    setIsSubscribing(true);
-
-    // Simulate API call
-    // await new Promise((resolve) => setTimeout(resolve, 1000));
-    await handleSubscribe();
-
-    // Here you would make the actual API call to subscribe the user
-    // const response = await fetch('/api/newsletter/subscribe', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ email })
-    // });
-    // setError('Error happened')
 
     setIsSubscribed(true);
     setIsSubscribing(false);

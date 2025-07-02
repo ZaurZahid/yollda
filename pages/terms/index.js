@@ -8,7 +8,7 @@ import TermsConditionsSection from "../../src/components/terms/TermsConditionsSe
 
 export default function TermsConditions({
   termsData,
-  /* siteData, newsData, */ error,
+  error,
 }) {
   const { t } = useTranslation("common");
 
@@ -17,7 +17,7 @@ export default function TermsConditions({
   }
 
   return (
-    <Layout /* siteData={siteData} */ theme={"transparent"}>
+    <Layout theme={"transparent"}>
       <Head>
         <title>{`Yollda | ${t("navigation.terms")}`}</title>
         <meta
@@ -33,11 +33,6 @@ export default function TermsConditions({
 
 export async function getServerSideProps({ locale }) {
   try {
-    // const [siteData, termsData] = await Promise.all([
-    //     fetchFromAPI('/api/v1/support/site/', locale),
-    //     fetchFromAPI('/api/v1/support/blog/?page=1&per_page=10', locale),
-    // ]);
-
     const [termsData] = await Promise.all([
       fetchFromAPI("/api/v1/web/terms/", locale, {
         Country: "AZ",
@@ -46,7 +41,6 @@ export async function getServerSideProps({ locale }) {
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
-        // siteData,
         termsData,
       },
     };
@@ -57,8 +51,6 @@ export async function getServerSideProps({ locale }) {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
         termsData: null,
-        siteData: null,
-        newsData: null,
         error: "Failed to load data.",
       },
     };

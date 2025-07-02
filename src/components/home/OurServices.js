@@ -4,6 +4,7 @@ import { useTranslation } from "next-i18next";
 
 function OurServices({ ourServicesData }) {
   const { t } = useTranslation("common");
+
   return (
     <div className="py-16 lg:py-20 bg-white">
       <div className="px-0 sm:px-32 text-center">

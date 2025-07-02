@@ -3,44 +3,44 @@ import ArrowDown from "../ui/icons/ArrowDown";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 
-const categories = [
-  {
-    id: "terms-conditions",
-    title: "Terms and Conditions",
-    subtitle: "General",
-    order_id: 5,
-  },
-  {
-    id: "yollda-users",
-    title: "Yollda Users",
-    subtitle: "Service Beneficiaries",
-    order_id: 4,
-  },
-  {
-    id: "road-assistance",
-    title: "Yollda Road Assistance Services",
-    subtitle: "Service Definitions",
-    order_id: 3,
-  },
-  {
-    id: "partners",
-    title: "Yollda Partners",
-    subtitle: "Independent Service Providers",
-    order_id: 1,
-  },
-  {
-    id: "business",
-    title: "Yollda Business",
-    subtitle: "Fleet Owners",
-    order_id: 2,
-  },
-  {
-    id: "others",
-    title: "Others",
-    subtitle: "Terms and Conditions",
-    order_id: 0,
-  },
-];
+// const categories = [
+//   {
+//     id: "terms-conditions",
+//     title: "Terms and Conditions",
+//     subtitle: "General",
+//     order_id: 5,
+//   },
+//   {
+//     id: "yollda-users",
+//     title: "Yollda Users",
+//     subtitle: "Service Beneficiaries",
+//     order_id: 4,
+//   },
+//   {
+//     id: "road-assistance",
+//     title: "Yollda Road Assistance Services",
+//     subtitle: "Service Definitions",
+//     order_id: 3,
+//   },
+//   {
+//     id: "partners",
+//     title: "Yollda Partners",
+//     subtitle: "Independent Service Providers",
+//     order_id: 1,
+//   },
+//   {
+//     id: "business",
+//     title: "Yollda Business",
+//     subtitle: "Fleet Owners",
+//     order_id: 2,
+//   },
+//   {
+//     id: "others",
+//     title: "Others",
+//     subtitle: "Terms and Conditions",
+//     order_id: 0,
+//   },
+// ];
 
 const countries = [
   "Azerbaijan (Azerbaijan)",
@@ -59,8 +59,10 @@ export default function TermsConditionsSection({ termsData }) {
   );
 
   console.log("termsData", termsData);
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { t } = useTranslation("common");
+
   const handleCountrySelect = (country) => {
     setSelectedCountry(country);
     setIsDropdownOpen(false);
@@ -96,9 +98,8 @@ export default function TermsConditionsSection({ termsData }) {
                 </span>
                 <ArrowDown
                   strokeColor={`stroke-gray-500`}
-                  className={`transition-transform duration-200 ${
-                    isDropdownOpen ? "rotate-180" : ""
-                  }`}
+                  className={`transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""
+                    }`}
                 />
               </button>
 
@@ -143,9 +144,9 @@ export default function TermsConditionsSection({ termsData }) {
                       <h6 className="h6-responsive font-bold text-green-dark mb-3 group-hover:text-green-800 transition-colors duration-200">
                         {category.title}
                       </h6>
-                      <p className="text-span-small-responsive text-green-dark/70 font-medium">
+                      {/* <p className="text-span-small-responsive text-green-dark/70 font-medium">
                         {category.slug}
-                      </p>
+                      </p> */}
                     </div>
                   </Link>
                 );

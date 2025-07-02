@@ -7,7 +7,7 @@ import ContactTopSection from "../src/components/contact/ContactTopSection";
 import LocationMapSection from "../src/components/contact/LocationMapSection";
 import FAQNewsletterSection from "../src/components/contact/FAQNewsletterSection";
 
-export default function Contact({ faqsData, /* siteData, newsData, */ error }) {
+export default function Contact({ faqsData, error }) {
   const { t } = useTranslation("common");
 
   if (error) {
@@ -15,7 +15,7 @@ export default function Contact({ faqsData, /* siteData, newsData, */ error }) {
   }
 
   return (
-    <Layout /* siteData={siteData} */>
+    <Layout>
       <Head>
         <title>{`Yollda | ${t("navigation.contact")}`}</title>
         <meta
@@ -33,10 +33,6 @@ export default function Contact({ faqsData, /* siteData, newsData, */ error }) {
 
 export async function getServerSideProps({ locale }) {
   try {
-    // const [siteData, termsData] = await Promise.all([
-    //     fetchFromAPI('/api/v1/support/site/', locale),
-    //     fetchFromAPI('/api/v1/support/blog/?page=1&per_page=10', locale),
-    // ]);
     const [faqsData] = await Promise.all([
       fetchFromAPI("/api/v1/web/faqs/?page=1&per_page=20", locale),
     ]);
@@ -44,8 +40,6 @@ export async function getServerSideProps({ locale }) {
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
-        // siteData,
-        // termsData,
         faqsData,
       },
     };
@@ -56,7 +50,6 @@ export async function getServerSideProps({ locale }) {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
         faqsData: null,
-        newsData: null,
         error: "Failed to load data.",
       },
     };

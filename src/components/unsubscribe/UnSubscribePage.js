@@ -8,18 +8,6 @@ export default function UnsubscribePage() {
     email: "",
   });
   const [errors, setErrors] = useState({});
-  const handleUnsubscribe = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/web/subscribe-newsletter/?email=${formData.email}`,
-        {
-          method: "DELETE",
-        }
-      );
-    } catch (error) {
-      throw new Error("Failed to unsubscribe");
-    }
-  };
 
   const validateForm = () => {
     const newErrors = {};
@@ -55,22 +43,36 @@ export default function UnsubscribePage() {
     setStep("processing");
 
     try {
-      // Simulate API call
-      // await new Promise(resolve => setTimeout(resolve, 2000));
-      await handleUnsubscribe();
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/web/subscribe-newsletter/?email=${formData.email}`,
+        {
+          method: "DELETE",
+        }
+      );
 
-      // Here you would make the actual API call
-      // const response = await fetch('/api/unsubscribe', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData)
-      // });
+      if (!response.ok) {
+        if (response.status === 400) {
+          const errorData = await response.json();
+          setErrors({
+            email: errorData.error || 'Unexpected error'
+          });
+        } else {
+          throw new Error('Unexpected error');
+        }
 
-      setStep("success");
+        setStep("form");
+        return;
+      }
     } catch (error) {
-      console.error("Error unsubscribing:", error);
       setStep("form");
+      setErrors({
+        email: 'Failed to unsubscribe'
+      });
+
+      return;
     }
+
+    setStep("success");
   };
 
   return (
@@ -154,9 +156,8 @@ export default function UnsubscribePage() {
                     placeholder="Enter your email address"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    className={`w-full border ${
-                      errors.email ? "border-red-400" : "border-gray-300"
-                    } rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
+                    className={`w-full border ${errors.email ? "border-red-400" : "border-gray-300"
+                      } rounded-xl px-4 py-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
                   />
                 </div>
                 {errors.email && (

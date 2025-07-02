@@ -32,15 +32,14 @@ export default function FAQNewsletterSection({ faqsData }) {
     );
   };
 
-  const handleSubscribe = async (e) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setError("");
+    setIsSubscribing(true);
+
     try {
-      e.preventDefault();
-      if (!email) return;
-
-      setError("");
-      setIsSubscribing(true);
-
-      // await new Promise((resolve) => setTimeout(resolve, 1000));
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/v1/web/subscribe-newsletter/`,
         {
@@ -52,10 +51,24 @@ export default function FAQNewsletterSection({ faqsData }) {
         }
       );
 
-      setIsSubscribed(true);
-      setIsSubscribing(false);
-      setEmail("");
-    } catch (error) {}
+      if (!response.ok) {
+        if (response.status === 400) {
+          const errorData = await response.json();
+          setError(errorData.email?.[0] || 'Unexpected error');
+        } else {
+          throw new Error('Unexpected error');
+        }
+
+        setIsSubscribing(false);
+        return;
+      }
+    } catch (error) {
+      throw new Error("Failed to subscribe");
+    }
+
+    setIsSubscribed(true);
+    setIsSubscribing(false);
+    setEmail("");
   };
 
   const visibleFaqs = showMore ? faqs : faqs.slice(0, 5);
@@ -103,7 +116,7 @@ export default function FAQNewsletterSection({ faqsData }) {
                   {t("signup_page.faq_section.newsletter_description")}
                 </p>
 
-                <form onSubmit={handleSubscribe} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <input
                       type="email"
@@ -151,29 +164,18 @@ export default function FAQNewsletterSection({ faqsData }) {
                     className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
                   >
                     <span className="text-span-responsive font-medium text-gray-900 pe-4">
-                      {/* {t(
-                        `signup_page.faq_section.faq_items.${
-                          faq.id - 1
-                        }.question`
-                      )} */}
                       {faq.question}
                     </span>
                     <ArrowDown
                       strokeColor={`stroke-gray-500`}
-                      className={`transition-transform duration-200 ${
-                        faq.isOpen ? "rotate-180" : ""
-                      }`}
+                      className={`transition-transform duration-200 ${faq.isOpen ? "rotate-180" : ""
+                        }`}
                     />
                   </button>
                   {faq.isOpen && (
                     <div className="px-6 pb-4 animate-fade-in">
                       <div className="pt-2 border-t border-gray-100">
                         <p className="text-p-small-responsive text-gray-500 leading-relaxed">
-                          {/* {t(
-                            `signup_page.faq_section.faq_items.${
-                              faq.id - 1
-                            }.answer`
-                          )} */}
                           {faq.answer}
                         </p>
                       </div>

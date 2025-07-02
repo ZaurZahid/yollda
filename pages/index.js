@@ -23,7 +23,7 @@ import { fetchFromAPI } from "../src/hooks/apiFetcher";
 
 export default function HomePage({
   ourServicesData,
-  /* shoppingCenters, faqData, siteData, onboardingData, featureData, blogsData, */ error,
+  error,
 }) {
   const { t } = useTranslation("common");
 
@@ -32,8 +32,7 @@ export default function HomePage({
   }
 
   return (
-    <Layout theme={"normal"}>
-      {/* transparent */}
+    <Layout>
       <Head>
         <title>{`Yollda | ${t("navigation.home")}`}</title>
         <meta
@@ -77,14 +76,6 @@ export default function HomePage({
 
 export async function getServerSideProps({ locale }) {
   try {
-    // const [faqData, featureData, siteData, onboardingData, shoppingCenters, blogsData] = await Promise.all([
-    //   fetchFromAPI('/api/v1/support/faq/', locale),
-    //   fetchFromAPI('/api/v1/support/feature/', locale),
-    //   fetchFromAPI('/api/v1/support/site/', locale),
-    //   fetchFromAPI('/api/v1/support/onboarding/', locale),
-    //   fetchFromAPI('/api/v1/shop/shopping-centers/', locale),
-    //   fetchFromAPI('/api/v1/support/blog/?page=1&per_page=3', locale),
-    // ]);
     const [ourServicesData] = await Promise.all([
       fetchFromAPI("/api/v1/web/our-services/?page=1&per_page=10", locale),
     ]);
@@ -92,12 +83,6 @@ export async function getServerSideProps({ locale }) {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
         ourServicesData,
-        // faqData,
-        // featureData,
-        // siteData,
-        // onboardingData,
-        // shoppingCenters,
-        // blogsData: blogsData?.results || []
       },
     };
   } catch (error) {
@@ -107,12 +92,6 @@ export async function getServerSideProps({ locale }) {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
         ourServicesData: null,
-        // faqData: null,
-        // featureData: null,
-        // siteData: null,
-        // onboardingData: null,
-        // shoppingCenters: null,
-        // blogsData: null,
         error: "Failed to load data.",
       },
     };

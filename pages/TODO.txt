@@ -1,0 +1,10 @@
+countrylist data doldur
+"country": "AZ" niye var "our services" apisinde
+headquarters doldur contact us ucun
+/web/terms/ de slug ve title var short description designdaki kimi yoxdu
+news, blogs muzakire edilmelidir, categories as in designdaki
+benefits apisi nedir
+
+
+unsubscribe component translation
+terms apisinde data ve short description yoxdu

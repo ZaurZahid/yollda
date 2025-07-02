@@ -174,7 +174,7 @@ export default function ServicesCarousel({ ourServicesData }) {
         <div className="hidden md:block relative h-[32rem]">
           <div ref={emblaRef}>
             <div className="flex rtl:flex-row-reverse">
-              {ourServicesData.results.map((service, index) => {
+              {ourServicesData?.results?.map((service, index) => {
                 const total = ourServicesData.results.length;
                 const rawDiff = Math.abs(index - selectedIndex);
                 const diff = Math.min(rawDiff, total - rawDiff);
@@ -196,11 +196,11 @@ export default function ServicesCarousel({ ourServicesData }) {
                       className={`w-full rounded-2xl overflow-hidden shadow-xl transition-all duration-700 ease-out ${scaleClass}`}
                     >
                       <div
-                        className={`relative h-full bg-gradient-to-br select-none ${service.bgColor} from-gray-700 to-gray-800 flex flex-col justify-between p-6 text-white`}
+                        className={`relative h-full bg-gradient-to-br select-none from-gray-900 to-gray-800 flex flex-col justify-between p-6 text-white`}
                       >
                         {/* Background Image */}
                         <div
-                          className="absolute inset-0 bg-cover bg-center opacity-30"
+                          className="absolute inset-0 bg-cover bg-center opacity-60"
                           style={{ backgroundImage: `url(${service.banner})` }}
                         />
 
@@ -216,9 +216,14 @@ export default function ServicesCarousel({ ourServicesData }) {
 
                         {/* Button */}
                         <div className="relative z-10">
-                          <button className="bg-light-green hover:light-secondary-green text-white px-6 py-3 rounded-full font-semibold text-button-responsive transition-all duration-200 transform hover:scale-105">
+                          <a
+                            href={service.deeplink_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-light-green hover:light-secondary-green text-white px-6 py-3 rounded-full font-semibold text-button-responsive transition-all duration-200 transform hover:scale-105"
+                          >
                             {service.action_title}
-                          </button>
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -233,7 +238,7 @@ export default function ServicesCarousel({ ourServicesData }) {
         <div className="md:hidden h-[32rem]">
           <div ref={mobileEmblaRef}>
             <div className="flex rtl:flex-row-reverse">
-              {ourServicesData.results.map((service, index) => {
+              {ourServicesData?.results?.map((service, index) => {
                 const total = ourServicesData.results.length;
                 const rawDiff = Math.abs(index - selectedIndex);
                 const diff = Math.min(rawDiff, total - rawDiff);
@@ -255,11 +260,11 @@ export default function ServicesCarousel({ ourServicesData }) {
                       className={`w-full rounded-2xl overflow-hidden shadow-xl transition-all duration-700 ease-out ${scaleClass}`}
                     >
                       <div
-                        className={`relative h-full bg-gradient-to-br ${service.bgColor} from-gray-700 to-gray-800 flex flex-col justify-between p-6 text-white`}
+                        className={`relative h-full bg-gradient-to-br from-gray-900 to-gray-800 flex flex-col justify-between p-6 text-white`}
                       >
                         {/* Background Image */}
                         <div
-                          className="absolute inset-0 bg-cover bg-center opacity-30"
+                          className="absolute inset-0 bg-cover bg-center opacity-60"
                           style={{ backgroundImage: `url(${service.banner})` }}
                         />
 
@@ -275,9 +280,14 @@ export default function ServicesCarousel({ ourServicesData }) {
 
                         {/* Button */}
                         <div className="relative z-10">
-                          <button className="bg-light-green hover:light-secondary-green text-white px-6 py-3 rounded-full font-semibold text-button-responsive transition-all duration-200 transform hover:scale-105">
+                          <a
+                            href={service.deeplink_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-light-green hover:light-secondary-green text-white px-6 py-3 rounded-full font-semibold text-button-responsive transition-all duration-200 transform hover:scale-105"
+                          >
                             {service.action_title}
-                          </button>
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -293,15 +303,14 @@ export default function ServicesCarousel({ ourServicesData }) {
           <div></div>
           {/* Dots Indicator */}
           <div className="hidden md:flex space-s-2">
-            {ourServicesData.results.map((_, index) => (
+            {ourServicesData?.results?.map((_, index) => (
               <button
                 key={index}
                 onClick={() => scrollTo(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === selectedIndex
-                    ? "bg-light-green scale-125 shadow-lg"
-                    : "bg-gray-400 hover:bg-gray-500 hover:scale-110"
-                }`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === selectedIndex
+                  ? "bg-light-green scale-125 shadow-lg"
+                  : "bg-gray-400 hover:bg-gray-500 hover:scale-110"
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
