@@ -1,4 +1,4 @@
- BE CAREFUL !!! about the api implementation 
+BE CAREFUL !!! about the api implementation 
    check api request for all cases, error case should be considered always, use try, catch as your await api request approach was WRONG as it always return true
    unnecessary comments should be removed, check design, if api missing any field OR have other additional field which isnt on design
    add to api_list.txt file.
@@ -8,11 +8,50 @@
 CURRENT TODOS
 ---------------
 
-3. header transparent design - after scrolling for transparent, when it opens modal, and close it texts disappear DONE
-4. header normal ucun arxasi bg-white olsun, homepage de transparent goturub DONE
+1---------------
+GET Contact-us   asagidakilar staticdir 3 dene box, +details for map, google map implement for dev mode still
 
+2---------------
+GET Countries-list   terms, contact, signup formda, signup/fleet formda sehifesinde qoyulacaq
+
+3---------------
+GET Attractive-info  keylerine gore bileceksen 4 yerde
+homepage
+1.attractive-info/?info_type=home_alternating_sides
+about page ucun
+1.attractive-info/?info_type=about_single_item wallpaperin altindaki 1ci section
+2.attractive-info/?info_type=about_carousel carousel ucun
+3.attractive-info/?info_type=about_list asagidaki list
+
+4---------------
+GET Blog-detail
+5---------------
+GET News-detail
  
-
+/news/yollda-bmt-qlobal-sazisine-qosuldu-dayaniqliliga-olan-ohdeliyimizi-guclendiririk
+{
+    "id": 2,
+    "slug": "yollda-bmt-qlobal-sazisine-qosuldu-dayaniqliliga-olan-ohdeliyimizi-guclendiririk",
+    "title": "Yollda BMT Qlobal Sazişinə qoşuldu: dayanıqlılığa olan öhdəliyimizi gücləndiririk",
+    "banner": "https://web.yollda.com/media/news_images/stock-photo-friends.jpg",
+    "presentation_style": //bu sehifede bize lazim deyil
+    "category": {
+        "id": 11,
+        "title": "World",    //breadcrumbda News/World (ancaq news hrefdir) ve ya Blogs/World kimi olacaq. Ancaq title lazimdir bize burda
+        "has_subcategory": false,
+        "slug": "world",
+        "path": "News/World",
+        "parent": 6
+    },
+    "content": "<p>Bolt-un missiyası şəhərləri insanlar &uuml;&ccedil;&uuml;n daha əl&ccedil;atan etmək, şəxsi avtomobillərdən asılılığı azaldaraq birgə mobillik alternativləri təqdim etməkdir. Bu, əməkdaşlarımız, platformamız &uuml;zərindən gəlir əldə edən şəxslər, təchizat&ccedil;ılar, m&uuml;ştərilər və xidmət g&ouml;stərdiyimiz icmalar daxil olmaqla bir &ccedil;ox insanı əhatə edir.<br />\r\nƏtraf m&uuml;hit və sosial məsuliyyətə olan &ouml;hdəliyimizi daha da g&uuml;cləndirmək məqsədilə bu il <strong>BMT-nin Qlobal Sazişinə (UNGC)</strong> qoşulduq və səylərimizi qlobal dayanıqlılıq prinsipləri ilə uyğunlaşdırdıq.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h2>BMT-nin Qlobal Sazişi nədir?</h2>\r\n\r\n<p>UNGC &ndash; d&uuml;nyanın ən b&ouml;y&uuml;k k&ouml;n&uuml;ll&uuml; korporativ dayanıqlılıq təşəbb&uuml;s&uuml;d&uuml;r və 135-dən &ccedil;ox &ouml;lkədə iştirak&ccedil;ısı olan, 8000-dən &ccedil;ox imza&ccedil;ını əhatə edir.<br />\r\n<br />\r\nBu təşəbb&uuml;s şirkətləri <u>insan h&uuml;quqları, əmək, ətraf m&uuml;hit və korrupsiyaya qarşı m&uuml;barizə</u> sahələrində on &uuml;mumbəşəri prinsipi &ouml;z strategiya və əməliyyatlarına inteqrasiya etməyə və BMT-nin geniş qlobal məqsədlərini dəstəkləməyə &ccedil;ağırır.</p>\r\n\r\n<p><u>BMT Qlobal Sazişi İnfoqrafikası</u></p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<hr />\r\n<p>&nbsp;</p>\r\n\r\n<h2>BMT-nin Qlobal Sazişi nədir?</h2>\r\n\r\n<p>Bolt UN Qlobal Sazişinin (UNGC) prinsiplərini <u><strong>UNGC Dayanıqlılıq İdarəetmə Modeli</strong></u> vasitəsilə praktikada tətbiq edir.<br />\r\n<br />\r\n1. <strong>UNGC-yə sadiqlik</strong><br />\r\n<br />\r\nBolt rəhbərlik səviyyəsində UN Qlobal Sazişini dəstəklədiyini <u>ictimai şəkildə bəyan edib</u>. Bu &ouml;hdəlik hər il yenilənir və məsuliyyətli biznes praktikalarına sadiqliyimizi g&uuml;cləndirir.<br />\r\n<br />\r\n2. <strong>Risklərin, imkanların və təsirlərin qiymətləndirilməsi</strong><br />\r\n<br />\r\n2024-c&uuml; ildə biz həm maliyyə, həm də qeyri-maliyyə dayanıqlılıq riskləri və imkanlarını qiymətləndirdik.<br />\r\n<br />\r\nQiymətləndirmə insan h&uuml;quqları, əmək, ətraf m&uuml;hit və korrupsiyaya qarşı m&uuml;barizə də daxil olmaqla əsas ESG m&ouml;vzularını əhatə edir &mdash; UNGC-nin on prinsipinə uyğun olaraq.<br />\r\n<br />\r\n3. <strong>Məqsədlərin, strategiyaların və siyasətlərin m&uuml;əyyənləşdirilməsi</strong><br />\r\n<br />\r\nDayanıqlılıq əsas biznes strategiyamıza inteqrasiya olunub. Əməliyyat kontekstimizi əks etdirən məqsədlər, siyasətlər və g&ouml;stəricilər m&uuml;əyyən edirik. Dayanıqlılıq strategiyamız UNGC prinsiplərinə və qlobal ən yaxşı təcr&uuml;bələrə uyğunluğunu təmin etmək &uuml;&ccedil;&uuml;n hər il nəzərdən ke&ccedil;irilir.<br />\r\n<br />\r\nMəqsədlərimiz və siyasətlərimiz barədə daha ətraflı məlumat &uuml;&ccedil;&uuml;n <u><strong>Dayanıqlılıq səhifəmizə</strong></u> baxa bilərsiniz.<br />\r\n<br />\r\n4. <strong>Bolt və dəyər zəncirimizdə tətbiq</strong><br />\r\n<br />\r\nStrategiyanı əmələ &ccedil;evirmək &uuml;&ccedil;&uuml;n daxili proseslərimizi, əməkdaşların cəlb olunması və təchizat zənciri əməkdaşlığını davamlı olaraq təkmilləşdiririk:<br />\r\n<br />\r\n&bull;<strong>&nbsp;</strong>Əməkdaşlar <u><strong>UNGC Akademiyası</strong></u> vasitəsilə d&uuml;nya səviyyəli dayanıqlılıq təliminə pulsuz giriş əldə edirlər<br />\r\n&bull;<strong>&nbsp;</strong>Dayanıqlılıq əsas biznes funksiyalarına &bull;<strong>&nbsp;</strong>və ESG strategiyası və idarə&ccedil;iliyi vasitəsilə qərar qəbuluna inteqrasiya olunur.<br />\r\nDəyər zəncirimiz boyu tərəfdaşlarımızla məsuliyyətli praktikanı təşviq edirik.<br />\r\n<br />\r\nDayanıqlılıq &uuml;zrə fəaliyyətlərimiz haqqında daha ətraflı məlumat &uuml;&ccedil;&uuml;n <u><strong>Dayanıqlılıq səhifəmizi</strong></u> ziyarət edin.<br />\r\n<br />\r\n5. <strong>Təsirin və irəliləyişin &ouml;l&ccedil;&uuml;lməsi</strong><br />\r\n<br />\r\nİrəliləyişə nəzarət və təkmilləşdiriləcək sahələri m&uuml;əyyən etmək &uuml;&ccedil;&uuml;n ESG məqsədləri və g&ouml;stəriciləri izləyirik. Təsirin &ouml;l&ccedil;&uuml;lməsi bizi hesabatlı və şəffaf saxlayan davamlı prosesdir.<br />\r\n<br />\r\n6. <strong>İrəliləyişin paylaşılması</strong><br />\r\n<br />\r\nUNGC iştirak&ccedil;ısı kimi biz ilk İrəliləyiş Haqqında Hesabatımızı (CoP) 2026-cı ildə dərc edəcəyik və burada <strong><u>on prinsipin</u></strong> <u><strong>insan h&uuml;quqları, əmək, ətraf m&uuml;hit və korrupsiyaya qarşı m&uuml;barizə</strong></u> ilə bağlı necə tətbiq olunduğunu ətraflı izah edəcəyik. Hesabatdan əlavə, <u><strong>maraqlı tərəflərlə və sənaye tərəfdaşlarımızla</strong></u> qarşılıqlı əlaqə quraraq fəaliyyətimizi daim təkmilləşdirəcəyik.<br />\r\n<br />\r\nAmma biz sıfırdan başlamırıq &mdash; m&ouml;hkəm təməl &uuml;zərində inşa edir və yanaşmamızı daim təkmilləşdiririk.<br />\r\n<br />\r\nBMT Qlobal Sazişinə qoşulmaqla biz dayanıqlılıq sahəsində d&uuml;nya səviyyəli biliklərə və dəstəyə &ccedil;ıxış əldə edirik və bu, bizi bu sahədə daha da irəli aparır.</p>",
+    "tags": [
+        "For passengers",
+        "News",
+        "Product update"
+    ],
+    "short_content": //bu sehifede bize lazim deyil
+    "created_at": "2025-07-02 23:09:36"
+}
 
 
 

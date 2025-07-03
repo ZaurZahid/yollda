@@ -18,17 +18,17 @@ PROGRESS
 
 Endpoints Not Applied Yet
 GET News-categories    ilkin olaraq hec biri secilmesin  parentsiz olanlar solda, sagda soldakilarin childindan 1ci secilsin
-GET News-list
+GET News-list   category secilende nece gonderilecek apiye?
 GET News-detail
 
 /////////////GET Blog-categories not for now, deqiqlesdirecek
 GET Blog-list    indexle duz 7 dene, sonra eyni getsin
 GET Blog-detail
-GET Contact-us   asagidakilar staticdir 3 dene box, +details for map, google map implement
 
-GET Countries-list   terms, contact, signup, fleet sehifesinde qoyulacaq
+
+GET Countries-list   terms, contact, signup formda, signup/fleet formda sehifesinde qoyulacaq
 GET Attractive-info  keylerine gore bileceksen 4 yerde
-
+GET Contact-us   asagidakilar staticdir 3 dene box, +details for map, google map implement
 
 
 
