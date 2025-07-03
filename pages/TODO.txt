@@ -8,8 +8,8 @@
 CURRENT TODOS
 ---------------
 
-3. header transparent design - after scrolling for transparent, when it opens modal, and close it texts disappear
-4. header normal ucun arxasi bg-white olsun, homepage de transparent goturub
+3. header transparent design - after scrolling for transparent, when it opens modal, and close it texts disappear DONE
+4. header normal ucun arxasi bg-white olsun, homepage de transparent goturub DONE
 
  
 

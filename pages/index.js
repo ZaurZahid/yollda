@@ -34,7 +34,7 @@ export default function HomePage({
   }
 
   return (
-    <Layout theme="normal">
+    <Layout theme={"normal"}>
       <Head>
         <title>{`Yollda | ${t("navigation.home")}`}</title>
         <meta

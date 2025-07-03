@@ -54,7 +54,11 @@ const Header = ({
       setIsTransparent(false);
       logoRef.current.classList.add("fill-green-dark");
       logoRef.current.classList.remove("fill-white");
-    } else if (!isBurgerOpen && theme === "transparent") {
+    } else if (
+      !isBurgerOpen &&
+      theme === "transparent" &&
+      window.scrollY === 0
+    ) {
       setIsTransparent(true);
       logoRef.current.classList.add("fill-white");
       logoRef.current.classList.remove("fill-green-dark");
@@ -75,10 +79,11 @@ const Header = ({
             setIsTransparent(false);
           }
         } else {
-          headerRef.current.classList.remove(
-            /* "bg-white", */ "shadow-md",
-            "bg-white"
-          );
+          headerRef.current.classList.remove(/* "bg-white", */ "shadow-md");
+          if (theme === "transparent") {
+            headerRef.current.classList.remove("bg-white");
+          }
+
           if (theme === "transparent" && !isBurgerOpen) {
             logoRef.current.classList.add("fill-white");
             logoRef.current.classList.remove("fill-green-dark");
