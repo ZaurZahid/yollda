@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import ArrowDown from '../ui/icons/ArrowDown';
 import SmsIcon from '../ui/icons/Sms';
+import { useTranslation } from "next-i18next";
 
 const countryCodes = [
     { code: '+994', flag: 'az', country: 'Azerbaijan' },
@@ -37,6 +38,8 @@ const countries = [
 ];
 
 export default function ContactTopSection() {
+    const { t } = useTranslation("common");
+
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -100,9 +103,13 @@ export default function ContactTopSection() {
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!formData.email.trim()) {
-            newErrors.email = 'Email is required';
+            newErrors.email = t(
+                "signup_page.signup_section.form.errors.email_required"
+            );
         } else if (!emailRegex.test(formData.email)) {
-            newErrors.email = 'Please enter a valid email address';
+            newErrors.email = t(
+                "signup_page.signup_section.form.errors.email_invalid"
+            );
         }
 
         // Phone validation

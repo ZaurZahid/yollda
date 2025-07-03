@@ -16,3 +16,19 @@ PROGRESS
 --------------------
 
 1. terms detail ++-- missing parts in api "date ve short description"
+2. contact-da service list
+3. country list no data
+
+
+Endpoints Not Applied Yet
+GET Countries-list
+GET News-categories
+GET Blog-categories
+GET News-list
+GET News-detail
+GET Blog-list
+GET Blog-detail
+GET Attractive-info
+GET Terms-detail
+GET Contact-us
+POST Contact
