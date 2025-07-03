@@ -22,4 +22,7 @@ const YolldaLogo = React.forwardRef(({ className }, ref) => {
   );
 });
 
+// ✅ Fix for the ESLint warning
+YolldaLogo.displayName = "YolldaLogo";
+
 export default YolldaLogo;
