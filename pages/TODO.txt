@@ -8,6 +8,8 @@ BE CAREFUL !!! about the api implementation
 CURRENT TODOS
 ---------------
 
+lazimsiz componentler vardi, senin pushunda geri gelmisdi onlari silek
+
 1---------------
 GET Contact-us   asagidakilar staticdir 3 dene box, +details for map, google map implement for dev mode still
 
