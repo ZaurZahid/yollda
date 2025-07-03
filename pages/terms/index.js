@@ -6,10 +6,7 @@ import { useTranslation } from "next-i18next";
 import { fetchFromAPI } from "../../src/hooks/apiFetcher";
 import TermsConditionsSection from "../../src/components/terms/TermsConditionsSection";
 
-export default function TermsConditions({
-  termsData,
-  error,
-}) {
+export default function TermsConditions({ termsData, error }) {
   const { t } = useTranslation("common");
 
   if (error) {
@@ -17,7 +14,7 @@ export default function TermsConditions({
   }
 
   return (
-    <Layout theme={"transparent"}>
+    <Layout theme={"normal"}>
       <Head>
         <title>{`Yollda | ${t("navigation.terms")}`}</title>
         <meta

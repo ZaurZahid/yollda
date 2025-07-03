@@ -23,7 +23,7 @@ export default function FleetSignup({ /* siteData, newsData, */ error }) {
   }
 
   return (
-    <Layout /* siteData={siteData} */ theme={"transparent"}>
+    <Layout /* siteData={siteData} */ theme={"transparent"} lightButtons={true}>
       <Head>
         <title>{`Yollda | ${t("navigation.signup")}`}</title>
         <meta

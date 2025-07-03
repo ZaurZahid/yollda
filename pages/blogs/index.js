@@ -14,7 +14,7 @@ export default function Blogs({ /* siteData, blogsData, */ error }) {
   }
 
   return (
-    <Layout /* siteData={siteData} */ theme={"transparent"}>
+    <Layout /* siteData={siteData} */ theme={"transparent"} lightButtons={true}>
       <Head>
         <title>{`Yollda | ${t("navigation.blog")}`}</title>
         <meta

@@ -6,10 +6,7 @@ import { useTranslation } from "next-i18next";
 import { fetchFromAPI } from "../../src/hooks/apiFetcher";
 import TermsSubPageSection from "../../src/components/terms/TermsSubPageSection";
 
-export default function TermsSubPage({
-  specificTermData,
-  error,
-}) {
+export default function TermsSubPage({ specificTermData, error }) {
   const { t } = useTranslation("common");
 
   if (error) {
@@ -17,7 +14,7 @@ export default function TermsSubPage({
   }
 
   return (
-    <Layout theme={"transparent"}>
+    <Layout theme={"normal"}>
       <Head>
         <title>{`Yollda | ${t("navigation.terms")}`}</title>
         <meta

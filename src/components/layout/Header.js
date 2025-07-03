@@ -19,6 +19,13 @@ const Header = ({
   //test
   const headerRef = useRef(null);
   const modalRef = useRef(null);
+  const logoRef = useRef(null);
+
+  const [isTransparent, setIsTransparent] = useState(theme === "transparent");
+
+  // useEffect(() => {
+  //   setLightButtonsState(lightButtons);
+  // }, [lightButtons]);
 
   const [registerMethodsOpen, setRegisterMethodsOpen] = useState(false);
 
@@ -48,6 +55,13 @@ const Header = ({
   useEffect(() => {
     if (isBurgerOpen) {
       setRegisterMethodsOpen(false);
+      setIsTransparent(false);
+      logoRef.current.classList.add("fill-green-dark");
+      logoRef.current.classList.remove("fill-white");
+    } else if (!isBurgerOpen && theme === "transparent") {
+      setIsTransparent(true);
+      logoRef.current.classList.add("fill-white");
+      logoRef.current.classList.remove("fill-green-dark");
     }
   }, [isBurgerOpen]);
 
@@ -55,9 +69,25 @@ const Header = ({
     const handleScroll = () => {
       if (headerRef.current) {
         if (window.scrollY > 0) {
-          headerRef.current.classList.add(/* "bg-white", */ "shadow-md");
+          headerRef.current.classList.add(
+            /* "bg-white", */ "shadow-md",
+            "bg-white"
+          );
+          if (theme === "transparent") {
+            logoRef.current.classList.add("fill-green-dark");
+            logoRef.current.classList.remove("fill-white");
+            setIsTransparent(false);
+          }
         } else {
-          headerRef.current.classList.remove(/* "bg-white", */ "shadow-md");
+          headerRef.current.classList.remove(
+            /* "bg-white", */ "shadow-md",
+            "bg-white"
+          );
+          if (theme === "transparent" && !isBurgerOpen) {
+            logoRef.current.classList.add("fill-white");
+            logoRef.current.classList.remove("fill-green-dark");
+            setIsTransparent(true);
+          }
         }
       }
     };
@@ -65,35 +95,44 @@ const Header = ({
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isBurgerOpen]);
 
   return (
     <header
       ref={headerRef}
-      className={`header w-full flex justify-center fixed top-0 left-0 z-30 transition-all duration-300 ${theme === "transparent" ? "bg-transparent" : "bg-white"
-        }`}
+      className={`header w-full flex justify-center fixed top-0 left-0 z-30 transition-all duration-300 ${
+        theme === "transparent" ? "bg-transparent" : "bg-white"
+      }`}
     >
       <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
         <div className="flex justify-between items-center py-4">
           <Link href="/" passHref>
             <YolldaLogo
-              className={`max-w-24 lg:max-w-32 cursor-pointer ${theme === "transparent" ? "fill-white" : "fill-green-dark"
-                }`}
+              ref={logoRef}
+              className={`max-w-24 lg:max-w-32 cursor-pointer ${
+                theme === "transparent" ? "fill-white" : "fill-green-dark"
+              }`}
             />
           </Link>
 
-          <div className="flex items-center space-s-4 md:space-s-6 lg:space-s-8">
+          <div
+            className={`flex  items-center space-s-4 md:space-s-6 lg:space-s-8  ${
+              isTransparent ? "text-white" : "text-black"
+            }`}
+          >
             <LanguageSwitcher />
 
             <div className="hidden md:flex items-center space-s-4 md:space-s-6 lg:space-s-8">
-              <h5 className="text-span-responsive font-bold">Destek</h5>
+              <h5 className="text-span-responsive font-bold ">Destek</h5>
               <div className="ms-4 relative">
                 <Button
                   text={t("navigation.join")}
                   onClick={registerMethodsSwitch}
-                  classes={
-                    " bg-green-dark hover:green-secondary-dark text-white whitespace-nowrap h-8 "
-                  }
+                  classes={`${
+                    isTransparent
+                      ? "bg-white text-green-950 hover:bg-slate-400 "
+                      : "bg-green-dark hover:green-secondary-dark text-white"
+                  } whitespace-nowrap h-8 `}
                 />
                 {registerMethodsOpen && (
                   <div
@@ -105,7 +144,7 @@ const Header = ({
                 )}
               </div>
             </div>
-            <button onClick={onOpen}>
+            <button onClick={onOpen} className={isTransparent && "text-white"}>
               {isBurgerOpen ? <CrossIcon /> : <NavbarButton />}
             </button>
           </div>

@@ -17,7 +17,7 @@ export default function About({ /* siteData, newsData, */ error }) {
   }
 
   return (
-    <Layout /* siteData={siteData} */ theme={"transparent"}>
+    <Layout /* siteData={siteData} */ theme={"transparent"} lightButtons={true}>
       <Head>
         <title>{`Yollda | ${t("navigation.about")}`}</title>
         <meta

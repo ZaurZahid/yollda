@@ -11,9 +11,6 @@ const Layout = ({ children, theme = "normal" }) => {
   const burgerModalSwitch = () => {
     setBurgerModal((prev) => !prev);
   };
-  const openBurgerModal = () => {
-    setBurgerModal(true);
-  };
 
   const onCloseBurgerModal = () => {
     setBurgerModal(false);

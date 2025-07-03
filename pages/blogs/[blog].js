@@ -14,7 +14,7 @@ export default function SingleBlogPage({ /* siteData, newsData, */ error }) {
   }
 
   return (
-    <Layout /* siteData={siteData} */ theme={"transparent"}>
+    <Layout /* siteData={siteData} */ theme={"normal"}>
       <Head>
         <title>{`Yollda | ${t("navigation.terms")}`}</title>
         <meta

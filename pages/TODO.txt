@@ -3,7 +3,7 @@ CURRENT TODOS
 ---------------
 1. unsubscribe page static translation DONE
 2. benefits on homepage static translation for title and description DONE
-3. header transparent design
+3. header transparent design DONE
 5. BE CAREFUL !!! about the api implementation 
    check api request for all cases, error case should be considered always, use try, catch as your await api request approach was WRONG as it always return true
    unnecessary comments should be removed, check design, if api missing any field OR have other additional field which isnt on design
