@@ -62,7 +62,8 @@
     "share": "Share",
     "download_yollda": "Download Yollda",
     "download_ypartner": "Download Yollda Partner",
-    "getY_button": "Get Yolda"
+    "getY_button": "Get Yolda",
+    "support": "Support"
   },
   "form": {
     "name": "Your Full Name",

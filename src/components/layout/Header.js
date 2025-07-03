@@ -23,10 +23,6 @@ const Header = ({
 
   const [isTransparent, setIsTransparent] = useState(theme === "transparent");
 
-  // useEffect(() => {
-  //   setLightButtonsState(lightButtons);
-  // }, [lightButtons]);
-
   const [registerMethodsOpen, setRegisterMethodsOpen] = useState(false);
 
   const registerMethodsSwitch = () => {
@@ -123,7 +119,9 @@ const Header = ({
             <LanguageSwitcher />
 
             <div className="hidden md:flex items-center space-s-4 md:space-s-6 lg:space-s-8">
-              <h5 className="text-span-responsive font-bold ">Destek</h5>
+              <h5 className="text-span-responsive font-bold ">
+                {t("buttons.support")}
+              </h5>
               <div className="ms-4 relative">
                 <Button
                   text={t("navigation.join")}

@@ -22,7 +22,7 @@ export default function PartnerSignup({
   }
 
   return (
-    <Layout /* siteData={siteData} */ theme={"transparent"} lightButtons={true}>
+    <Layout /* siteData={siteData} */ theme={"transparent"}>
       <Head>
         <title>{`Yollda | ${t("navigation.partner.signup")}`}</title>
         <meta
