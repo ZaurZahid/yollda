@@ -33,13 +33,13 @@ export default function HowPartnerWorksSection({ isSubmitted }) {
   const getStepPositionClasses = (position) => {
     switch (position) {
       case "top-left":
-        return "lg:absolute lg:top-0 lg:left-0 lg:w-64 lg:text-right lg:pr-8 rtl:lg:left-auto rtl:lg:right-0 rtl:lg:text-left rtl:lg:pl-8";
+        return "lg:absolute lg:top-0 lg:left-0 lg:w-80 lg:text-right lg:pr-8 rtl:lg:left-auto rtl:lg:right-0 rtl:lg:text-left rtl:lg:pl-8";
       case "top-right":
-        return "lg:absolute lg:top-0 lg:right-0 lg:w-64 lg:text-left lg:pl-8 rtl:lg:right-auto rtl:lg:left-0 rtl:lg:text-right rtl:lg:pr-8";
+        return "lg:absolute lg:top-0 lg:right-0 lg:w-80 lg:text-left lg:pl-8 rtl:lg:right-auto rtl:lg:left-0 rtl:lg:text-right rtl:lg:pr-8";
       case "bottom-left":
-        return "lg:absolute lg:bottom-0 lg:left-0 lg:w-64 lg:text-right lg:pr-8 rtl:lg:left-auto rtl:lg:right-0 rtl:lg:text-left rtl:lg:pl-8";
+        return "lg:absolute lg:bottom-0 lg:left-0 lg:w-80 lg:text-right lg:pr-8 rtl:lg:left-auto rtl:lg:right-0 rtl:lg:text-left rtl:lg:pl-8";
       case "bottom-right":
-        return "lg:absolute lg:bottom-0 lg:right-0 lg:w-64 lg:text-left lg:pl-8 rtl:lg:right-auto rtl:lg:left-0 rtl:lg:text-right rtl:lg:pr-8";
+        return "lg:absolute lg:bottom-0 lg:right-0 lg:w-80 lg:text-left lg:pl-8 rtl:lg:right-auto rtl:lg:left-0 rtl:lg:text-right rtl:lg:pr-8";
       default:
         return "";
     }
@@ -59,11 +59,10 @@ export default function HowPartnerWorksSection({ isSubmitted }) {
 
   return (
     <div
-      className={`w-full flex justify-center py-12 lg:py-20 ${
-        isSubmitted
+      className={`w-full flex justify-center py-12 lg:py-20 ${isSubmitted
           ? "mt-[20rem] md:mt-[10rem] lg:mt-0"
           : "mt-[52rem] md:mt-[40rem] lg:mt-48"
-      }`}
+        }`}
     >
       <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
         {/* Section Header */}
