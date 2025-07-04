@@ -247,10 +247,10 @@ export default function ContactTopSection({ contactUsData }) {
             <div className="grid md:grid-cols-2 gap-8 lg:gap-10 mt-10 lg:mt-20">
               <div>
                 <h6 className="text-h6-responsive font-medium text-green-dark mb-4">
-                  {t("contactus_page.signup_section.heading")}
+                  {t("contactus_page.support_section.heading")}
                 </h6>
                 <p className="text-p-small-responsive text-gray-500 leading-relaxed">
-                  {t("contactus_page.signup_section.description")}
+                  {t("contactus_page.support_section.description")}
                 </p>
               </div>
 
@@ -568,8 +568,7 @@ export default function ContactTopSection({ contactUsData }) {
                             formData.country ? "text-white" : "text-white/60"
                           }`}
                         >
-                          {formData.country ||
-                            t("contactus_page.form.conuntry")}
+                          {formData.country || t("contactus_page.form.country")}
                         </span>
                         <ArrowDown
                           strokeColor={`stroke-gray-500`}

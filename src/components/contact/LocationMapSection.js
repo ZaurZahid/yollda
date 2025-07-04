@@ -390,7 +390,7 @@ export default function LocationMapSection({ mapData: headquarters }) {
             {/* Section Badge */}
             <div className="inline-block">
               <h5 className="text-light-green text-h5-responsive font-medium">
-                {t("map_srction.our_location")}
+                {t("map_section.our_location")}
               </h5>
             </div>
 
