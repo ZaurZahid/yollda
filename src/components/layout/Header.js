@@ -147,7 +147,10 @@ const Header = ({
                 )}
               </div>
             </div>
-            <button onClick={onOpen} className={isTransparent && "text-white"}>
+            <button
+              onClick={onOpen}
+              className={isTransparent ? "text-white" : null}
+            >
               {isBurgerOpen ? <CrossIcon /> : <NavbarButton />}
             </button>
           </div>
