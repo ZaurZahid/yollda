@@ -7,7 +7,7 @@ import ContactTopSection from "../src/components/contact/ContactTopSection";
 import LocationMapSection from "../src/components/contact/LocationMapSection";
 import FAQNewsletterSection from "../src/components/contact/FAQNewsletterSection";
 
-export default function Contact({ faqsData, error }) {
+export default function Contact({ faqsData, contactUsData, error }) {
   const { t } = useTranslation("common");
 
   if (error) {
@@ -24,8 +24,8 @@ export default function Contact({ faqsData, error }) {
         />
       </Head>
 
-      <ContactTopSection />
-      <LocationMapSection />
+      <ContactTopSection contactUsData={contactUsData} />
+      <LocationMapSection mapData={contactUsData?.headquarters} />
       <FAQNewsletterSection faqsData={faqsData} />
     </Layout>
   );
@@ -33,14 +33,16 @@ export default function Contact({ faqsData, error }) {
 
 export async function getServerSideProps({ locale }) {
   try {
-    const [faqsData] = await Promise.all([
+    const [faqsData, contactUsData] = await Promise.all([
       fetchFromAPI("/api/v1/web/faqs/?page=1&per_page=20", locale),
+      fetchFromAPI("/api/v1/web/contact-us/", locale),
     ]);
 
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
         faqsData,
+        contactUsData,
       },
     };
   } catch (error) {
@@ -50,6 +52,7 @@ export async function getServerSideProps({ locale }) {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
         faqsData: null,
+        contactUsData: null,
         error: "Failed to load data.",
       },
     };

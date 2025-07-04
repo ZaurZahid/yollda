@@ -6,18 +6,18 @@ export const fetchFromAPI = async (
   const BASE_URL = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL; // Use environment variable for base URL
   const url = `${BASE_URL}${endpoint}`;
 
-  const countryMapper = {
-    en: "EN",
-    az: "AZ",
-    ar: "AR",
-  };
+  // const countryMapper = {
+  //   en: "EN",
+  //   az: "AZ",
+  //   ar: "AR",
+  // };
 
   //TODO will be deleted as all counries not work for now
 
   const headers = {
     "Content-Type": "application/json",
     "Accept-Language": language, // Send language in the headers
-    Country: countryMapper[language] || "AZ", // Default to AZ if language is not recognized,
+    Country: "AZ", // Default to AZ if language is not recognized,
     ...customHeaders,
   };
 

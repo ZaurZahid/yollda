@@ -1,21 +1,17 @@
 import { format, parseISO } from "date-fns";
 
 import Breadcrumb from "../ui/Breadcrumb";
-import NewsList from "./NewsList";
-import Pagination from "../ui/Pagination";
+
 import { useTranslation } from "next-i18next";
-import ArrowDown from "../ui/icons/ArrowDown";
-import HelpBanner from "../layout/HelpBanner";
-import SingleBlog from "./SingleBlog";
-import Articles from "./Articles";
+
 import SubscribeNewsletter from "../ui/SubscribeNewsletter";
 
-export default function SingleBlogSection({ blogData }) {
+export default function SingleNewSection({ newData }) {
   const { t } = useTranslation("common");
 
   const breadcrumbItems = [
     { label: t("navigation.home"), url: "/" },
-    { label: t("navigation.blogs"), url: "" },
+    { label: t("navigation.news"), url: "" },
   ];
 
   return (
@@ -24,11 +20,11 @@ export default function SingleBlogSection({ blogData }) {
         <div className="flex flex-col lg:w-[80%] mx-auto">
           <Breadcrumb items={breadcrumbItems} />
           <h2 className="font-secondary text-h2-responsive uppercase font-bold text-green-dark lg:w-[80%]">
-            {blogData?.title}
+            {newData?.title}
           </h2>
 
           <div className="flex flex-wrap gap-2 md:gap-1 md:space-s-4 mt-6">
-            {blogData?.tags?.map((tag) => (
+            {newData?.tags?.map((tag) => (
               <button
                 key={tag}
                 className={`px-4 py-2 text-span-responsive cursor-default font-medium rounded-full transition-all duration-200 text-green-dark bg-light-green/20`}
@@ -41,13 +37,13 @@ export default function SingleBlogSection({ blogData }) {
           <div className="flex items-center mt-6">
             <img src="/calendar.svg" className="me-2" alt="calendar icon" />
             <span className="text-span-small-responsive text-gray-500">
-              {format(parseISO(blogData?.created_at), "MMMM d, yyyy")}
+              {format(parseISO(newData?.created_at), "MMMM d, yyyy")}
             </span>
           </div>
         </div>
         <img
-          src={blogData?.banner}
-          alt={"blog image"}
+          src={newData?.banner}
+          alt={"new image"}
           className="w-full max-h-[250px] md:max-h-[450px] lg:max-h-[650px] object-cover mt-6 rounded-2xl"
         />
 
@@ -79,7 +75,7 @@ export default function SingleBlogSection({ blogData }) {
                         prose-li:marker:text-gray-500
                         prose-li:marker:-pr-20
                         "
-            dangerouslySetInnerHTML={{ __html: blogData?.content }}
+            dangerouslySetInnerHTML={{ __html: newData?.content }}
           />
         </div>
 

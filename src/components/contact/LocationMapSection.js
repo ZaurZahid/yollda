@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import ArrowDown from "../ui/icons/ArrowDown";
+import { useTranslation } from "next-i18next";
 
 const locationData = {
   name: "Yollda MMC",
@@ -14,7 +15,8 @@ const locationData = {
   },
 };
 
-export default function LocationMapSection() {
+export default function LocationMapSection({ mapData: headquarters }) {
+  const { t } = useTranslation();
   const mapRef = useRef(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const [mapError, setMapError] = useState(false);
@@ -25,7 +27,10 @@ export default function LocationMapSection() {
 
     try {
       const map = new window.google.maps.Map(mapRef.current, {
-        center: locationData.coordinates,
+        center: {
+          lat: headquarters?.[0].latitude,
+          lng: headquarters[0]?.longitude,
+        },
         zoom: 15,
         styles: [
           {
@@ -206,9 +211,13 @@ export default function LocationMapSection() {
 
       // Custom marker
       const marker = new window.google.maps.Marker({
-        position: locationData.coordinates,
+        // position: locationData.coordinates,
+        position: {
+          lat: headquarters?.[0].latitude,
+          lng: headquarters[0]?.longitude,
+        },
         map: map,
-        title: locationData.name,
+        title: headquarters[0]?.title,
         icon: {
           path: window.google.maps.SymbolPath.CIRCLE,
           scale: 12,
@@ -223,9 +232,9 @@ export default function LocationMapSection() {
       const infoWindow = new window.google.maps.InfoWindow({
         content: `
           <div style="padding: 8px; font-family: 'Plus Jakarta Sans', sans-serif;">
-            <h3 style="margin: 0 0 4px 0; color: #083426; font-weight: 600;">${locationData.name}</h3>
-            <p style="margin: 0 0 4px 0; color: #6B7280; font-size: 14px;">${locationData.tagline}</p>
-            <p style="margin: 0; color: #6B7280; font-size: 14px;">${locationData.address}</p>
+            <h3 style="margin: 0 0 4px 0; color: #083426; font-weight: 600;">${headquarters[0]?.title}</h3>
+            <p style="margin: 0 0 4px 0; color: #6B7280; font-size: 14px;">${headquarters[0]?.sub_title}</p>
+            <p style="margin: 0; color: #6B7280; font-size: 14px;">${headquarters[0]?.address_line_first}</p>
           </div>
         `,
       });
@@ -279,7 +288,8 @@ export default function LocationMapSection() {
   }, []);
 
   const handleOpenMap = () => {
-    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${locationData.coordinates.lat},${locationData.coordinates.lng}`;
+    // const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${locationData.coordinates.lat},${locationData.coordinates.lng}`;
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${headquarters[0]?.latitude},${headquarters[0]?.longitude}`;
     window.open(googleMapsUrl, "_blank");
   };
 
@@ -327,10 +337,12 @@ export default function LocationMapSection() {
                   />
                   <div>
                     <h3 className="text-h6-responsive font-bold text-green-dark">
-                      {locationData.name}
+                      {/* {locationData.name} */}
+                      {headquarters[0]?.title}
                     </h3>
                     <p className="text-span-small-responsive text-gray-400">
-                      {locationData.tagline}
+                      {/* {locationData.tagline} */}
+                      {headquarters[0]?.sub_title}
                     </p>
                   </div>
                 </div>
@@ -339,11 +351,13 @@ export default function LocationMapSection() {
                 <div className="space-y-1 mb-4">
                   <div className="flex items-center text-span-responsive text-gray-700">
                     <span className="font-medium">
-                      {locationData.city}, {locationData.country}
+                      {/* {locationData.city}, {locationData.country} */}
+                      {headquarters[0]?.address_line_first}
                     </span>
                   </div>
                   <div className="text-span-small-responsive text-gray-400">
-                    {locationData.address}
+                    {headquarters[0].address_line_second}
+                    {/* {locationData.address} */}
                   </div>
                 </div>
 
@@ -352,7 +366,7 @@ export default function LocationMapSection() {
                   onClick={handleOpenMap}
                   className="flex items-center text-gray-800 transition-colors duration-200 text-span-responsive font-bold group"
                 >
-                  Open Map
+                  {t("buttons.open_map")}
                   <ArrowDown
                     strokeColor={`stroke-gray-800 stroke-2`}
                     className={`w-3 h-3 ml-2 transition-transform duration-200 -rotate-90`}
@@ -376,28 +390,36 @@ export default function LocationMapSection() {
             {/* Section Badge */}
             <div className="inline-block">
               <h5 className="text-light-green text-h5-responsive font-medium">
-                Our Location
+                {t("map_srction.our_location")}
               </h5>
             </div>
 
             {/* Main Heading */}
             <h3 className="text-h3-responsive font-medium text-green-dark md:max-w-[50%] leading-tight">
-              Connecting Near and Far
+              {t("map_section.heading")}
             </h3>
 
             {/* Headquarters Section */}
             <div className="space-y-3 !mt-6">
               <h5 className="text-h5-responsive font-bold text-gray-900">
-                Headquaters
+                {t("map_section.headquarters")}
               </h5>
 
-              <div className="space-y-1 text-p-large-responsive text-gray-500">
-                <h4 className="text-h6-responsive">{locationData.name}</h4>
+              <div className="space-y-1 text-p-large-responsive text-gray-500 flex flex-col gap-2">
+                {headquarters?.map((headquarter) => (
+                  <div key={headquarter.id}>
+                    <h4 className="text-h6-responsive">{headquarter.tile}</h4>
+                    <p>{headquarter.address_line_first}</p>
+                    <p>{headquarter.address_line_second}</p>
+                    {/* <p>{locationData.fullLocation}</p> */}
+                  </div>
+                ))}
+                {/* <h4 className="text-h6-responsive">{locationData.name}</h4>
                 <p>
                   {locationData.city}, {locationData.country}
                 </p>
                 <p>{locationData.address}</p>
-                <p>{locationData.fullLocation}</p>
+                <p>{locationData.fullLocation}</p> */}
               </div>
             </div>
           </div>

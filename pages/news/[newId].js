@@ -4,10 +4,10 @@ import Layout from "../../src/components/layout/Layout";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { fetchFromAPI } from "../../src/hooks/apiFetcher";
-import SingleBlogSection from "../../src/components/blogs/SingleBlogSection";
+import SingleNewSection from "../../src/components/news/SingleNewSection";
 
-export default function SingleBlogPage({
-  blogData,
+export default function SingleNewPage({
+  newData,
   /* siteData, newsData, */ error,
 }) {
   const { t } = useTranslation("common");
@@ -19,29 +19,29 @@ export default function SingleBlogPage({
   return (
     <Layout /* siteData={siteData} */ theme={"normal"}>
       <Head>
-        <title>{`Yollda | ${t("navigation.terms")}`}</title>
+        <title>{`Yollda | ${t("navigation.news")}`}</title>
         <meta
           name="description"
-          content="This is a description of terms page."
+          content="This is a description of news page."
         />
       </Head>
 
-      <SingleBlogSection blogData={blogData} />
+      <SingleNewSection newData={newData} />
     </Layout>
   );
 }
 
 export async function getServerSideProps({ params, locale }) {
-  const { blog } = params;
+  const { newId } = params;
 
   try {
-    const [blogData] = await Promise.all([
-      fetchFromAPI(`/api/v1/web/blogs/${blog}`, locale),
+    const [newData] = await Promise.all([
+      fetchFromAPI(`/api/v1/web/news/${newId}`, locale),
     ]);
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
-        blogData,
+        newData,
       },
     };
   } catch (error) {
@@ -50,7 +50,7 @@ export async function getServerSideProps({ params, locale }) {
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
-        blogData: null,
+        newData: null,
         error: "Failed to load data.",
       },
     };

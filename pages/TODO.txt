@@ -10,25 +10,25 @@ CURRENT TODOS
 
 lazimsiz componentler vardi, senin pushunda geri gelmisdi onlari silek
 
-1---------------
-GET Contact-us   asagidakilar staticdir 3 dene box, +details for map, google map implement for dev mode still
+1--------------- 
+GET Contact-us   asagidakilar staticdir 3 dene box, +details for map, google map implement for dev mode still DONE?? no gmapapi
 
 2---------------
-GET Countries-list   terms, contact, signup formda, signup/fleet formda sehifesinde qoyulacaq
+GET Countries-list   terms, contact, signup formda, signup/fleet formda sehifesinde qoyulacaq  Nont implemented in server side
 
 3---------------
 GET Attractive-info  keylerine gore bileceksen 4 yerde
-homepage
-1.attractive-info/?info_type=home_alternating_sides
+homepage 
+1.attractive-info/?info_type=home_alternating_sides DONE ImagePosition apiden gelmir
 about page ucun
-1.attractive-info/?info_type=about_single_item wallpaperin altindaki 1ci section
-2.attractive-info/?info_type=about_carousel carousel ucun
-3.attractive-info/?info_type=about_list asagidaki list
+1.attractive-info/?info_type=about_single_item wallpaperin altindaki 1ci section DONE
+2.attractive-info/?info_type=about_carousel carousel ucun DONE
+3.attractive-info/?info_type=about_list asagidaki list DONE
 
 4---------------
-GET Blog-detail
+GET Blog-detail Done
 5---------------
-GET News-detail
+GET News-detail Done
  
 /news/yollda-bmt-qlobal-sazisine-qosuldu-dayaniqliliga-olan-ohdeliyimizi-guclendiririk
 {

@@ -11,7 +11,9 @@
     "faq": "AZFAQ",
     "blog": "AZBloq",
     "contact": "AZƏlaqə",
-    "join": "AZQoşulun"
+    "join": "AZQoşulun",
+    "news": "Xeberler",
+    "blogs": "Bloglar"
   },
 
   "onboarding": {
@@ -63,7 +65,11 @@
     "download_yollda": "AZDownload Yollda",
     "download_ypartner": "AZDownload Yollda Partner",
     "getY_button": "AZGet Yolda",
-    "support": "AZDestek"
+    "support": "AZDestek",
+    "send_another_button": "AZSend another message",
+    "subscribe": "AZSubscribe",
+    "sending_state": "AZSending...",
+    "open_map": "AZOpen map"
   },
   "form": {
     "name": "AZAd və soyadınız",
@@ -74,7 +80,8 @@
     "message_placeholder": "AZMesajınızı daxil edin",
     "trade_center": "AZTicarət mərkəzi",
     "select": "AZSeçin",
-    "required": "AZBu xananı doldurmaq vacibdir"
+    "required": "AZBu xananı doldurmaq vacibdir",
+    "email_address": "Email Address"
   },
 
   "introduction": {
@@ -303,6 +310,38 @@
       ]
     }
   },
+  "contactus_page": {
+    "support_section": {
+      "heading": "AZCustomer Support",
+      "description": "AZAt the management level to support the UN Global Compact. This commitment is renewed annually."
+    },
+    "feedback_section": {
+      "heading": "AZFeedbacks and Suggestion",
+      "description": "AZThe UNGC is the world's largest voluntary corporate sustainability."
+    },
+    "media_section": {
+      "heading": "AZMedia Inquiries",
+      "description": "AZThe UNGC is the world's largest voluntary corporate initiative, with stakeholders in more than 135 countries and 8,000+ signatories."
+    },
+    "success": {
+      "heading": "AZThank you for contacting us!",
+      "description": "AZWe've received your message and will get back to you within 24 hours."
+    },
+    "form": {
+      "heading": "AZGet in touch",
+      "description": "AZYou can reach us any time",
+      "first_name": "AZFirst name",
+      "last_name": "AZLast name",
+      "services": "AZServices",
+      "country": "AZCountry",
+      "howWeCanHelp": "AZHow can we help?",
+      "errors": {
+        "message_required": "AZMessage is required",
+        "message_least": "AZMessage must be at least 10 characters",
+        "message_most": "AZMessage must be less than 500 characters"
+      }
+    }
+  },
   "fleet": {
     "signup_section": {
       "submitted": {
@@ -434,6 +473,25 @@
       "locations": {
         "our_cities": "AZBizim seherlerimiz"
       }
+    }
+  },
+  "map_section": {
+    "our_location": "AZOur Location",
+    "heading": "AZConnecting Near and Far ",
+    "headquarters": "AZHeadquarters"
+  },
+  "about_page": {
+    "we_are_section": {
+      "heading": "AZWE ARE YOLLDA",
+      "description": "AZWe're passionate about solving problems. We take on challenges others consider impossible."
+    },
+    "what_makes_us_section": {
+      "heading": "AZWhat makes us — us.",
+      "description": "AZWe want to work with collaborative and pragmatic people who enjoy seeing and helping those around them succeed."
+    },
+    "earn_money_section": {
+      "heading": "AZRide out as soon as you fly in with Flight Tracking",
+      "description": "AZWe value high inner drive. Although we can’t impact someone’s motivation, we work to inspire our high-performing teams to deliver their best consistently. Some perks may differ depending on your location and role."
     }
   }
 }

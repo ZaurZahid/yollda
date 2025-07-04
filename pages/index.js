@@ -25,6 +25,7 @@ export default function HomePage({
   ourServicesData,
   shortAbout,
   benefits,
+  alternatingSlides,
   error,
 }) {
   const { t } = useTranslation("common");
@@ -62,7 +63,7 @@ export default function HomePage({
         className="h-[300px] lg:h-[400px] w-full object-cover"
       />
       <AboutUs shortAbout={shortAbout} />
-      <EarnWithSection />
+      <EarnWithSection alternatingSlides={alternatingSlides} />
       <LatestFeatures />
       <img
         src="/Home4.png"
@@ -78,16 +79,22 @@ export default function HomePage({
 
 export async function getServerSideProps({ locale }) {
   try {
-    const [ourServicesData, shortAbout, benefits] = await Promise.all([
-      fetchFromAPI("/api/v1/web/our-services/?page=1&per_page=10", locale),
-      fetchFromAPI("/api/v1/web/short-about/", locale),
-      fetchFromAPI("/api/v1/web/benefits/?page=1&per_page=20", locale),
-    ]);
+    const [ourServicesData, shortAbout, benefits, alternatingSlides] =
+      await Promise.all([
+        fetchFromAPI("/api/v1/web/our-services/?page=1&per_page=10", locale),
+        fetchFromAPI("/api/v1/web/short-about/", locale),
+        fetchFromAPI("/api/v1/web/benefits/?page=1&per_page=20", locale),
+        fetchFromAPI(
+          "/api/v1/web/attractive-info/?info_type=home_alternating_sides",
+          locale
+        ),
+      ]);
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
         ourServicesData,
         shortAbout,
+        alternatingSlides,
         benefits,
       },
     };
@@ -100,6 +107,7 @@ export async function getServerSideProps({ locale }) {
         ourServicesData: null,
         shortAbout: null,
         benefits: null,
+        alternatingSlides: null,
         error: "Failed to load data.",
       },
     };

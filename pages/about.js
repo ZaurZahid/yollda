@@ -9,7 +9,12 @@ import SuperAppSection from "../src/components/about/SuperAppSection";
 import WhatMakeUsSection from "../src/components/about/WhatMakeUsSection";
 import EarnMoneySection from "../src/components/about/EarnMoneySection";
 
-export default function About({ /* siteData, newsData, */ error }) {
+export default function About({
+  aboutSingleItem,
+  aboutCarousel,
+  aboutList,
+  /* siteData, newsData, */ error,
+}) {
   const { t } = useTranslation("common");
 
   if (error) {
@@ -32,7 +37,7 @@ export default function About({ /* siteData, newsData, */ error }) {
         className="h-[530px] lg:h-[800px] w-full object-cover -mt-24 md:-mt-32 lg:-mt-24"
       />
 
-      <WeAreYolldaSection />
+      <WeAreYolldaSection aboutSingleItem={aboutSingleItem} />
 
       <img
         src="/About2.png"
@@ -40,7 +45,7 @@ export default function About({ /* siteData, newsData, */ error }) {
         className="h-[350px] lg:h-[640px] w-full object-cover"
       />
 
-      <WhatMakeUsSection />
+      <WhatMakeUsSection aboutCarousel={aboutCarousel} />
 
       <SuperAppSection />
 
@@ -50,22 +55,30 @@ export default function About({ /* siteData, newsData, */ error }) {
         className="h-[100px] lg:h-[200px] w-full object-cover"
       />
 
-      <EarnMoneySection />
+      <EarnMoneySection aboutList={aboutList} />
     </Layout>
   );
 }
 
 export async function getServerSideProps({ locale }) {
   try {
-    // const [siteData, termsData] = await Promise.all([
-    //     fetchFromAPI('/api/v1/support/site/', locale),
-    //     fetchFromAPI('/api/v1/support/blog/?page=1&per_page=10', locale),
-    // ]);
+    const [aboutSingleItem, aboutCarousel, aboutList] = await Promise.all([
+      fetchFromAPI(
+        "/api/v1/web/attractive-info/?info_type=about_single_item",
+        locale
+      ),
+      fetchFromAPI(
+        "/api/v1/web/attractive-info/?info_type=about_carousel",
+        locale
+      ),
+      fetchFromAPI("/api/v1/web/attractive-info/?info_type=about_list", locale),
+    ]);
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
-        // siteData,
-        // termsData,
+        aboutSingleItem,
+        aboutCarousel,
+        aboutList,
       },
     };
   } catch (error) {
@@ -74,8 +87,9 @@ export async function getServerSideProps({ locale }) {
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
-        siteData: null,
-        newsData: null,
+        aboutSingleItem: null,
+        aboutCarousel: null,
+        aboutList: null,
         error: "Failed to load data.",
       },
     };
