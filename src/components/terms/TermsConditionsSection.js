@@ -96,9 +96,8 @@ export default function TermsConditionsSection({ termsData }) {
                 </span>
                 <ArrowDown
                   strokeColor={`stroke-gray-500`}
-                  className={`transition-transform duration-200 ${
-                    isDropdownOpen ? "rotate-180" : ""
-                  }`}
+                  className={`transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""
+                    }`}
                 />
               </button>
 
@@ -129,7 +128,6 @@ export default function TermsConditionsSection({ termsData }) {
           <div className="flex flex-wrap gap-6">
             {termsData
               ?.slice() // copy to avoid mutating original
-              .sort((a, b) => a.order_id - b.order_id) // ✅ sort by order_id
               .map((category, index) => {
                 const widthClass = widthPattern[index % widthPattern.length];
 
@@ -143,9 +141,9 @@ export default function TermsConditionsSection({ termsData }) {
                       <h6 className="h6-responsive font-bold text-green-dark mb-3 group-hover:text-green-800 transition-colors duration-200">
                         {category.title}
                       </h6>
-                      {/* <p className="text-span-small-responsive text-green-dark/70 font-medium">
-                        {category.slug}
-                      </p> */}
+                      <p className="text-span-small-responsive text-green-dark/70 font-medium">
+                        {category.sub_title}
+                      </p>
                     </div>
                   </Link>
                 );

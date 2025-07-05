@@ -1,6 +1,8 @@
 import React from "react";
 import Breadcrumb from "../ui/Breadcrumb";
 import { useTranslation } from "next-i18next";
+import { formatDate } from "../../hooks/formatDate";
+import { useRouter } from "next/router";
 
 // const mockTermsData = {
 //   users: {
@@ -34,6 +36,9 @@ import { useTranslation } from "next-i18next";
 
 function TermsSubPageSection({ specificTermData }) {
   const { t } = useTranslation("common");
+  const router = useRouter();
+  const { locale } = router;
+
   const breadcrumbItems = [
     { label: t("navigation.terms"), url: "/terms" },
     {
@@ -50,18 +55,16 @@ function TermsSubPageSection({ specificTermData }) {
           <h1 className="text-h1-responsive uppercase font-bold text-green-dark lg:w-[80%]">
             {specificTermData?.title || ""}
           </h1>
-          {/* <div className="flex items-center mt-6">
+          <div className="flex items-center mt-6">
             <img src="/calendar.svg" className="me-2" alt="calendar icon" />
             <span className="text-span-small-responsive text-gray-500">
-              March 8, 2022
-              {/* TODO date not available in api 
+              {formatDate(specificTermData?.updated_at, locale)}
             </span>
-          </div> */}
-          {/* <p className="text-gray-500 text-large-responsive mt-3 lg:w-[80%]">
-            {t("terms_page.sub_section.description")}
-            {/* TODO don't get short description from api 
+          </div>
+          <p className="text-gray-500 text-large-responsive mt-3 lg:w-[80%]">
+            {specificTermData?.sub_title || ""}
           </p>
-          <hr className="my-6 md:my-10 lg:my-16 h-[2px] bg-gray-200 border-0" /> */}
+          {/* <hr className="my-6 md:my-10 lg:my-16 h-[2px] bg-gray-200 border-0" /> */}
 
           <div
             className="lg:w-[80%] mt-4 lg:mt-8

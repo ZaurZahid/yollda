@@ -15,11 +15,13 @@ const locationData = {
   },
 };
 
-export default function LocationMapSection({ mapData: headquarters }) {
+export default function LocationMapSection({ contactUsData }) {
   const { t } = useTranslation();
   const mapRef = useRef(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const [mapError, setMapError] = useState(false);
+
+  const headquarters = contactUsData?.headquarters
 
   // This will be called when Google Maps API is loaded
   const initializeMap = () => {
@@ -28,8 +30,8 @@ export default function LocationMapSection({ mapData: headquarters }) {
     try {
       const map = new window.google.maps.Map(mapRef.current, {
         center: {
-          lat: headquarters?.[0].latitude,
-          lng: headquarters[0]?.longitude,
+          lat: headquarters?.[0]?.latitude,
+          lng: headquarters?.[0]?.longitude,
         },
         zoom: 15,
         styles: [
@@ -213,11 +215,11 @@ export default function LocationMapSection({ mapData: headquarters }) {
       const marker = new window.google.maps.Marker({
         // position: locationData.coordinates,
         position: {
-          lat: headquarters?.[0].latitude,
-          lng: headquarters[0]?.longitude,
+          lat: headquarters?.[0]?.latitude,
+          lng: headquarters?.[0]?.longitude,
         },
         map: map,
-        title: headquarters[0]?.title,
+        title: headquarters?.[0]?.title,
         icon: {
           path: window.google.maps.SymbolPath.CIRCLE,
           scale: 12,
@@ -232,9 +234,9 @@ export default function LocationMapSection({ mapData: headquarters }) {
       const infoWindow = new window.google.maps.InfoWindow({
         content: `
           <div style="padding: 8px; font-family: 'Plus Jakarta Sans', sans-serif;">
-            <h3 style="margin: 0 0 4px 0; color: #083426; font-weight: 600;">${headquarters[0]?.title}</h3>
-            <p style="margin: 0 0 4px 0; color: #6B7280; font-size: 14px;">${headquarters[0]?.sub_title}</p>
-            <p style="margin: 0; color: #6B7280; font-size: 14px;">${headquarters[0]?.address_line_first}</p>
+            <h3 style="margin: 0 0 4px 0; color: #083426; font-weight: 600;">${headquarters?.[0]?.title}</h3>
+            <p style="margin: 0 0 4px 0; color: #6B7280; font-size: 14px;">${headquarters?.[0]?.sub_title}</p>
+            <p style="margin: 0; color: #6B7280; font-size: 14px;">${headquarters?.[0]?.address_line_first}</p>
           </div>
         `,
       });
@@ -289,7 +291,7 @@ export default function LocationMapSection({ mapData: headquarters }) {
 
   const handleOpenMap = () => {
     // const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${locationData.coordinates.lat},${locationData.coordinates.lng}`;
-    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${headquarters[0]?.latitude},${headquarters[0]?.longitude}`;
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${headquarters?.[0]?.latitude},${headquarters?.[0]?.longitude}`;
     window.open(googleMapsUrl, "_blank");
   };
 
@@ -331,9 +333,9 @@ export default function LocationMapSection({ mapData: headquarters }) {
                 {/* Company Logo/Icon */}
                 <div className="flex items-center space-s-3 mb-4">
                   <img
-                    src="/yolda-sm-logo.png"
+                    src={contactUsData?.logo}
                     alt="Beautiful image"
-                    className="w-10 h-10 object-cover"
+                    className="w-10 h-10 object-cover rounded-full"
                   />
                   <div>
                     <h3 className="text-h6-responsive font-bold text-green-dark">
@@ -408,7 +410,7 @@ export default function LocationMapSection({ mapData: headquarters }) {
               <div className="space-y-1 text-p-large-responsive text-gray-500 flex flex-col gap-2">
                 {headquarters?.map((headquarter) => (
                   <div key={headquarter.id}>
-                    <h4 className="text-h6-responsive">{headquarter.tile}</h4>
+                    <h4 className="text-h6-responsive">{headquarter.title}</h4>
                     <p>{headquarter.address_line_first}</p>
                     <p>{headquarter.address_line_second}</p>
                     {/* <p>{locationData.fullLocation}</p> */}

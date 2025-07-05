@@ -13,6 +13,13 @@ const countryCodes = [
   { code: "+1", flag: "🇺🇸", country: "United States" },
 ];
 
+// const services = [
+//   { id: 1, type: "TOW_TRUCK", title: "Tow Truck" },
+//   { id: 2, type: "TOW_TRUCK_CARGO", title: "Tow Truck Cargo" },
+//   { id: 3, type: "TIRE_REPAIR", title: "Tire Repair" },
+//   { id: 4, type: "FUEL_DELIVERY", title: "Fuel Delivery" },
+// ];
+
 const services = [
   "Emergency Towing",
   "Tire Repair",
@@ -341,11 +348,10 @@ export default function ContactTopSection({ contactUsData }) {
                         onChange={(e) =>
                           handleInputChange("firstName", e.target.value)
                         }
-                        className={`w-full bg-green-secondary-dark border ${
-                          errors.firstName
+                        className={`w-full bg-green-secondary-dark border ${errors.firstName
                             ? "border-red-400"
                             : "border-white/20"
-                        } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
+                          } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
                       />
                       {errors.firstName && (
                         <p className="text-red-400 text-span-small-responsive mt-1">
@@ -361,9 +367,8 @@ export default function ContactTopSection({ contactUsData }) {
                         onChange={(e) =>
                           handleInputChange("lastName", e.target.value)
                         }
-                        className={`w-full bg-green-secondary-dark border ${
-                          errors.lastName ? "border-red-400" : "border-white/20"
-                        } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
+                        className={`w-full bg-green-secondary-dark border ${errors.lastName ? "border-red-400" : "border-white/20"
+                          } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
                       />
                       {errors.lastName && (
                         <p className="text-red-400 text-span-small-responsive mt-1">
@@ -388,9 +393,8 @@ export default function ContactTopSection({ contactUsData }) {
                         onChange={(e) =>
                           handleInputChange("email", e.target.value)
                         }
-                        className={`w-full bg-green-secondary-dark border ${
-                          errors.email ? "border-red-400" : "border-white/20"
-                        } rounded-xl pl-12 pr-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
+                        className={`w-full bg-green-secondary-dark border ${errors.email ? "border-red-400" : "border-white/20"
+                          } rounded-xl pl-12 pr-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
                       />
                     </div>
                     {errors.email && (
@@ -411,11 +415,10 @@ export default function ContactTopSection({ contactUsData }) {
                             setIsCountryCodeOpen(!isCountryCodeOpen)
                           }
                           className={`bg-green-secondary-dark border border-white/20 rounded-xl px-4 py-2 w-[130px] text-white flex items-center space-s-2  transition-colors duration-200 min-w-[100px]
-                                                    ${
-                                                      isCountryCodeOpen
-                                                        ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
-                                                        : ""
-                                                    }
+                                                    ${isCountryCodeOpen
+                              ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
+                              : ""
+                            }
                                                     `}
                         >
                           <img
@@ -428,9 +431,8 @@ export default function ContactTopSection({ contactUsData }) {
                           </span>
                           <ArrowDown
                             strokeColor={`stroke-gray-500`}
-                            className={`transition-transform duration-200 !ms-auto ${
-                              isCountryCodeOpen ? "rotate-180" : ""
-                            }`}
+                            className={`transition-transform duration-200 !ms-auto ${isCountryCodeOpen ? "rotate-180" : ""
+                              }`}
                           />
                         </button>
 
@@ -475,9 +477,8 @@ export default function ContactTopSection({ contactUsData }) {
                           onChange={(e) =>
                             handleInputChange("phone", e.target.value)
                           }
-                          className={`w-full bg-green-secondary-dark border ${
-                            errors.phone ? "border-red-400" : "border-white/20"
-                          } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
+                          className={`w-full bg-green-secondary-dark border ${errors.phone ? "border-red-400" : "border-white/20"
+                            } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
                         />
                       </div>
                     </div>
@@ -494,30 +495,26 @@ export default function ContactTopSection({ contactUsData }) {
                       <button
                         type="button"
                         onClick={() => setIsServiceOpen(!isServiceOpen)}
-                        className={`w-full bg-green-secondary-dark border ${
-                          errors.service ? "border-red-400" : "border-white/20"
-                        } rounded-xl px-4 py-3 text-left flex items-center justify-between text-white  transition-colors duration-200
-                                                ${
-                                                  isServiceOpen &
-                                                  !errors.service
-                                                    ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
-                                                    : ""
-                                                }
+                        className={`w-full bg-green-secondary-dark border ${errors.service ? "border-red-400" : "border-white/20"
+                          } rounded-xl px-4 py-3 text-left flex items-center justify-between text-white  transition-colors duration-200
+                                                ${isServiceOpen &
+                            !errors.service
+                            ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
+                            : ""
+                          }
                                             `}
                       >
                         <span
-                          className={`text-input-small-responsive ${
-                            formData.service ? "text-white" : "text-white/60"
-                          }`}
+                          className={`text-input-small-responsive ${formData.service ? "text-white" : "text-white/60"
+                            }`}
                         >
                           {formData.service ||
                             t("contactus_page.form.services")}
                         </span>
                         <ArrowDown
                           strokeColor={`stroke-gray-500`}
-                          className={`transition-transform duration-200 ${
-                            isServiceOpen ? "rotate-180" : ""
-                          }`}
+                          className={`transition-transform duration-200 ${isServiceOpen ? "rotate-180" : ""
+                            }`}
                         />
                       </button>
 
@@ -552,29 +549,25 @@ export default function ContactTopSection({ contactUsData }) {
                       <button
                         type="button"
                         onClick={() => setIsCountryOpen(!isCountryOpen)}
-                        className={`w-full bg-green-secondary-dark border ${
-                          errors.country ? "border-red-400" : "border-white/20"
-                        } rounded-xl px-4 py-3 text-left flex items-center justify-between text-white  transition-colors duration-200
-                                                ${
-                                                  isCountryOpen &
-                                                  !errors.country
-                                                    ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
-                                                    : ""
-                                                }
+                        className={`w-full bg-green-secondary-dark border ${errors.country ? "border-red-400" : "border-white/20"
+                          } rounded-xl px-4 py-3 text-left flex items-center justify-between text-white  transition-colors duration-200
+                                                ${isCountryOpen &
+                            !errors.country
+                            ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
+                            : ""
+                          }
                                             `}
                       >
                         <span
-                          className={`text-input-small-responsive ${
-                            formData.country ? "text-white" : "text-white/60"
-                          }`}
+                          className={`text-input-small-responsive ${formData.country ? "text-white" : "text-white/60"
+                            }`}
                         >
                           {formData.country || t("contactus_page.form.country")}
                         </span>
                         <ArrowDown
                           strokeColor={`stroke-gray-500`}
-                          className={`transition-transform duration-200 ${
-                            isCountryOpen ? "rotate-180" : ""
-                          }`}
+                          className={`transition-transform duration-200 ${isCountryOpen ? "rotate-180" : ""
+                            }`}
                         />
                       </button>
 
@@ -614,9 +607,8 @@ export default function ContactTopSection({ contactUsData }) {
                         }
                         rows={4}
                         maxLength={120}
-                        className={`w-full bg-green-secondary-dark border ${
-                          errors.message ? "border-red-400" : "border-white/20"
-                        } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive resize-none`}
+                        className={`w-full bg-green-secondary-dark border ${errors.message ? "border-red-400" : "border-white/20"
+                          } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive resize-none`}
                       />
                       <div className="absolute bottom-3 right-3 text-span-small-responsive text-white/50">
                         {formData.message.length}/120

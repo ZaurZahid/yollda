@@ -25,7 +25,7 @@ export default function Contact({ faqsData, contactUsData, error }) {
       </Head>
 
       <ContactTopSection contactUsData={contactUsData} />
-      <LocationMapSection mapData={contactUsData?.headquarters} />
+      <LocationMapSection contactUsData={contactUsData} />
       <FAQNewsletterSection faqsData={faqsData} />
     </Layout>
   );

@@ -68,17 +68,15 @@ export default function EarnWithSection({ alternatingSlides }) {
           {alternatingSlides?.map((service, index) => (
             <div
               key={service.id}
-              className={`grid md:grid-cols-2 gap-8 lg:gap-12 items-center ${
-                index % 2 === 1 ? "md:grid-flow-col-dense" : ""
-              }`}
+              className={`grid md:grid-cols-2 gap-8 lg:gap-12 items-center ${index % 2 === 1 ? "md:grid-flow-col-dense" : ""
+                }`}
             >
               {/* Image */}
               <div
-                className={`${
-                  service.imagePosition === "right" && index % 2 === 1
+                className={`${index % 2 === 1
                     ? "md:col-start-2"
                     : ""
-                }`}
+                  }`}
               >
                 <div className="relative overflow-hidden rounded-2xl shadow-xl group">
                   <img
@@ -93,11 +91,10 @@ export default function EarnWithSection({ alternatingSlides }) {
               {/* Content */}
               {/* Image position apiden gelmir */}
               <div
-                className={`space-y-4 lg:space-y-6 ${
-                  service.imagePosition === "right" && index % 2 === 1
+                className={`space-y-4 lg:space-y-6 ${index % 2 === 1
                     ? "md:col-start-1"
                     : ""
-                }`}
+                  }`}
               >
                 {/* Category */}
                 <div className="inline-block">

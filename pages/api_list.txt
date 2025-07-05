@@ -9,33 +9,38 @@ DONE
 5. short-about++++
 6. benefits++++
 
+7. GET Terms
+8. GET Terms-detail
+9. GET Attractive-info
+10. GET Blog-detail
+11. GET News-detail
+
 
 --------------------
 PROGRESS
 --------------------
-
+GET Contact-us   ------>   no gmapapi for contact map
 
 
 Endpoints Not Applied Yet
 GET News-categories    ilkin olaraq hec biri secilmesin  parentsiz olanlar solda, sagda soldakilarin childindan 1ci secilsin
 GET News-list   category secilende nece gonderilecek apiye?
-GET News-detail
 
 /////////////GET Blog-categories not for now, deqiqlesdirecek
 GET Blog-list    indexle duz 7 dene, sonra eyni getsin
-GET Blog-detail
 
 
 GET Countries-list   terms, contact, signup formda, signup/fleet formda sehifesinde qoyulacaq
-GET Attractive-info  keylerine gore bileceksen 4 yerde
-GET Contact-us   asagidakilar staticdir 3 dene box, +details for map, google map implement
-
-
-
-GET Terms missing parts  ---- terms apisinde sortingi sil +sub_title gonder
-GET Terms-detail  ++-- missing parts in api "date ve short description"
 POST Contact    service type apisini vermek
 
 
 
 cookie listini verin
+no gmapapi for contact map
+service type contact page vermek
+
+
+---------------
+FUTURE TODOS
+---------------
+about us CTA button link on homepage missing

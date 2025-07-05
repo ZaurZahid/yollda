@@ -1,5 +1,3 @@
-import { format, parseISO } from "date-fns";
-
 import Breadcrumb from "../ui/Breadcrumb";
 import NewsList from "./NewsList";
 import Pagination from "../ui/Pagination";
@@ -9,13 +7,17 @@ import HelpBanner from "../layout/HelpBanner";
 import SingleBlog from "./SingleBlog";
 import Articles from "./Articles";
 import SubscribeNewsletter from "../ui/SubscribeNewsletter";
+import { useRouter } from "next/router";
+import { formatDate } from "../../hooks/formatDate";
 
 export default function SingleBlogSection({ blogData }) {
   const { t } = useTranslation("common");
+  const router = useRouter();
+  const { locale } = router;
 
   const breadcrumbItems = [
-    { label: t("navigation.home"), url: "/" },
-    { label: t("navigation.blogs"), url: "" },
+    { label: t("navigation.blogs"), url: "/blogs" },
+    { label: blogData?.category?.title, url: "" },
   ];
 
   return (
@@ -41,7 +43,7 @@ export default function SingleBlogSection({ blogData }) {
           <div className="flex items-center mt-6">
             <img src="/calendar.svg" className="me-2" alt="calendar icon" />
             <span className="text-span-small-responsive text-gray-500">
-              {format(parseISO(blogData?.created_at), "MMMM d, yyyy")}
+              {formatDate(blogData?.created_at, locale)}
             </span>
           </div>
         </div>

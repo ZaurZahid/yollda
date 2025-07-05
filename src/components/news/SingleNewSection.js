@@ -1,17 +1,19 @@
-import { format, parseISO } from "date-fns";
-
 import Breadcrumb from "../ui/Breadcrumb";
 
 import { useTranslation } from "next-i18next";
 
 import SubscribeNewsletter from "../ui/SubscribeNewsletter";
+import { useRouter } from "next/router";
+import { formatDate } from "../../hooks/formatDate";
 
 export default function SingleNewSection({ newData }) {
   const { t } = useTranslation("common");
+  const router = useRouter();
+  const { locale } = router;
 
   const breadcrumbItems = [
-    { label: t("navigation.home"), url: "/" },
-    { label: t("navigation.news"), url: "" },
+    { label: t("navigation.news"), url: "/news" },
+    { label: newData?.category?.title, url: "" },
   ];
 
   return (
@@ -37,7 +39,7 @@ export default function SingleNewSection({ newData }) {
           <div className="flex items-center mt-6">
             <img src="/calendar.svg" className="me-2" alt="calendar icon" />
             <span className="text-span-small-responsive text-gray-500">
-              {format(parseISO(newData?.created_at), "MMMM d, yyyy")}
+              {formatDate(newData?.created_at, locale)}
             </span>
           </div>
         </div>
