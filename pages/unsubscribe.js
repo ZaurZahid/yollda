@@ -16,10 +16,7 @@ export default function UnSubscribe({ /* siteData, newsData, */ error }) {
     <Layout /* siteData={siteData} */>
       <Head>
         <title>{`Yollda | ${t("navigation.UnSubscribe")}`}</title>
-        <meta
-          name="description"
-          content="This is a description of UnSubscribe page."
-        />
+        <meta name="description" content={t("meta_descriptions.unsubscribe")} />
       </Head>
 
       <UnsubscribePage />

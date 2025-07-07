@@ -17,10 +17,7 @@ export default function Blogs({ /* siteData, blogsData, */ error }) {
     <Layout /* siteData={siteData} */ theme={"transparent"}>
       <Head>
         <title>{`Yollda | ${t("navigation.blog")}`}</title>
-        <meta
-          name="description"
-          content="This is a description of blog page."
-        />
+        <meta name="description" content={t("meta_descriptions.blogs")} />
       </Head>
 
       <img

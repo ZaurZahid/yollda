@@ -1,59 +1,62 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import ArrowDown from "../ui/icons/ArrowDown";
 import SmsIcon from "../ui/icons/Sms";
 import { useTranslation } from "next-i18next";
 
-const countryCodes = [
-  { code: "+994", flag: "az", country: "Azerbaijan" },
-  { code: "+44", flag: "en", country: "United Kingdom" },
-  { code: "+90", flag: "🇹🇷", country: "Turkey" },
-  { code: "+995", flag: "🇬🇪", country: "Georgia" },
-  { code: "+7", flag: "🇰🇿", country: "Kazakhstan" },
-  { code: "+1", flag: "🇺🇸", country: "United States" },
-];
-
-// const services = [
-//   { id: 1, type: "TOW_TRUCK", title: "Tow Truck" },
-//   { id: 2, type: "TOW_TRUCK_CARGO", title: "Tow Truck Cargo" },
-//   { id: 3, type: "TIRE_REPAIR", title: "Tire Repair" },
-//   { id: 4, type: "FUEL_DELIVERY", title: "Fuel Delivery" },
+// const countryCodes = [
+//   { code: "+994", flag: "az", country: "Azerbaijan" },
+//   { code: "+44", flag: "en", country: "United Kingdom" },
+//   { code: "+90", flag: "🇹🇷", country: "Turkey" },
+//   { code: "+995", flag: "🇬🇪", country: "Georgia" },
+//   { code: "+7", flag: "🇰🇿", country: "Kazakhstan" },
+//   { code: "+1", flag: "🇺🇸", country: "United States" },
 // ];
 
 const services = [
-  "Emergency Towing",
-  "Tire Repair",
-  "Battery Jump-start",
-  "Fuel Delivery",
-  "Lockout Service",
-  "Fleet Management",
-  "Partnership Inquiry",
-  "General Support",
-  "Other",
+  { id: 1, type: "TOW_TRUCK", title: "Tow Truck" },
+  { id: 2, type: "TOW_TRUCK_CARGO", title: "Tow Truck Cargo" },
+  { id: 3, type: "TIRE_REPAIR", title: "Tire Repair" },
+  { id: 4, type: "FUEL_DELIVERY", title: "Fuel Delivery" },
 ];
 
-const countries = [
-  "Azerbaijan",
-  "Turkey",
-  "Georgia",
-  "Kazakhstan",
-  "United States",
-  "United Kingdom",
-  "Germany",
-  "France",
-  "Other",
-];
+// const services = [
+//   "Emergency Towing",
+//   "Tire Repair",
+//   "Battery Jump-start",
+//   "Fuel Delivery",
+//   "Lockout Service",
+//   "Fleet Management",
+//   "Partnership Inquiry",
+//   "General Support",
+//   "Other",
+// ];
 
-export default function ContactTopSection({ contactUsData }) {
+// const countries = [
+//   "Azerbaijan",
+//   "Turkey",
+//   "Georgia",
+//   "Kazakhstan",
+//   "United States",
+//   "United Kingdom",
+//   "Germany",
+//   "France",
+//   "Other",
+// ];
+
+export default function ContactTopSection({
+  contactUsData,
+  countriesData: { results: countriesList },
+}) {
   const { t } = useTranslation("common");
 
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
-    countryCode: "+994",
+    phone_prefix: "+994",
     phone: "",
-    service: "",
+    service_type: "",
     country: "",
     message: "",
   });
@@ -103,17 +106,17 @@ export default function ContactTopSection({ contactUsData }) {
     const newErrors = {};
 
     // First name validation
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = "First name is required";
-    } else if (formData.firstName.trim().length < 2) {
-      newErrors.firstName = "First name must be at least 2 characters";
+    if (!formData.first_name.trim()) {
+      newErrors.first_name = t("form.errors.first_name_required");
+    } else if (formData.first_name.trim().length < 2) {
+      newErrors.first_name = t("form.errors.first_name_at_lest");
     }
 
     // Last name validation
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = "Last name is required";
-    } else if (formData.lastName.trim().length < 2) {
-      newErrors.lastName = "Last name must be at least 2 characters";
+    if (!formData.last_name.trim()) {
+      newErrors.last_name = t("form.errors.last_name_required");
+    } else if (formData.last_name.trim().length < 2) {
+      newErrors.last_name = t("form.errors.last_name_at_lest");
     }
 
     // Email validation
@@ -141,8 +144,8 @@ export default function ContactTopSection({ contactUsData }) {
     }
 
     // Service validation
-    if (!formData.service) {
-      newErrors.service = "Please select a service";
+    if (!formData.service_type) {
+      newErrors.service_type = t("form.errors.service_required");
     }
 
     // Country validation
@@ -180,32 +183,61 @@ export default function ContactTopSection({ contactUsData }) {
     if (!validateForm()) {
       return;
     }
-
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/web/contact/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData), // <-- fixed: convert to JSON string
+        }
+      );
 
-      // Here you would make the actual API call
-      // const response = await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData)
-      // });
+      if (!response.ok) {
+        const newErrorData = {};
+        if (response.status === 400) {
+          const errorData = await response.json();
+          Object.entries(errorData).forEach(([key, value]) => {
+            newErrorData[key] = Array.isArray(value) ? value[0] : value;
+          });
+          setErrors(newErrorData);
+          return;
+        } else {
+          throw new Error("Unexpected error");
+        }
+      }
 
       setIsSubmitted(true);
     } catch (error) {
-      console.error("Error submitting form:", error);
-      // Handle error (show error message)
+      return;
+      // throw new Error("Failed to contact");
     } finally {
       setIsSubmitting(false);
     }
   };
+  console.log(errors);
 
-  const selectedCountryCode = countryCodes.find(
-    (c) => c.code === formData.countryCode
-  );
+  const selectedCountryCode = useMemo(() => {
+    return countriesList?.find((c) => c.phone_code === formData.phone_prefix);
+  }, [formData.phone_prefix]);
+
+  const selectedServiceType = useMemo(() => {
+    return services?.find((c) => c.type === formData.service_type);
+  }, [formData.service_type]);
+
+  const mapCountryCodeToCountryName = useMemo(() => {
+    if (formData.country) {
+      const foundCountry = countriesList?.find(
+        (country) => formData.country === country.code
+      );
+      return foundCountry?.name;
+    }
+    return "";
+  }, [formData.country]);
 
   return (
     <div className="w-full flex justify-center text-white py-16 lg:py-24">
@@ -300,21 +332,21 @@ export default function ContactTopSection({ contactUsData }) {
                     </svg>
                   </div>
                   <h4 className="text-h4-responsive font-bold text-white mb-2">
-                    {t("contactus_page.form.success.heading")}
+                    {t("contactus_page.success.heading")}
                   </h4>
                   <p className="text-span-responsive text-white/80 ml-1">
-                    {t("contactus_page.form.success.description")}
+                    {t("contactus_page.success.description")}
                   </p>
                   <button
                     onClick={() => {
                       setIsSubmitted(false);
                       setFormData({
-                        firstName: "",
-                        lastName: "",
+                        first_name: "",
+                        last_name: "",
                         email: "",
-                        countryCode: "+994",
+                        phone_prefix: "+994",
                         phone: "",
-                        service: "",
+                        service_type: "",
                         country: "",
                         message: "",
                       });
@@ -344,18 +376,19 @@ export default function ContactTopSection({ contactUsData }) {
                       <input
                         type="text"
                         placeholder={t("contactus_page.form.first_name")}
-                        value={formData.firstName}
+                        value={formData.first_name}
                         onChange={(e) =>
-                          handleInputChange("firstName", e.target.value)
+                          handleInputChange("first_name", e.target.value)
                         }
-                        className={`w-full bg-green-secondary-dark border ${errors.firstName
+                        className={`w-full bg-green-secondary-dark border ${
+                          errors.first_name
                             ? "border-red-400"
                             : "border-white/20"
-                          } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
+                        } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
                       />
-                      {errors.firstName && (
+                      {errors.first_name && (
                         <p className="text-red-400 text-span-small-responsive mt-1">
-                          {errors.firstName}
+                          {errors.first_name}
                         </p>
                       )}
                     </div>
@@ -363,16 +396,19 @@ export default function ContactTopSection({ contactUsData }) {
                       <input
                         type="text"
                         placeholder={t("contactus_page.form.last_name")}
-                        value={formData.lastName}
+                        value={formData.last_name}
                         onChange={(e) =>
-                          handleInputChange("lastName", e.target.value)
+                          handleInputChange("last_name", e.target.value)
                         }
-                        className={`w-full bg-green-secondary-dark border ${errors.lastName ? "border-red-400" : "border-white/20"
-                          } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
+                        className={`w-full bg-green-secondary-dark border ${
+                          errors.last_name
+                            ? "border-red-400"
+                            : "border-white/20"
+                        } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
                       />
-                      {errors.lastName && (
+                      {errors.last_name && (
                         <p className="text-red-400 text-span-small-responsive mt-1">
-                          {errors.lastName}
+                          {errors.last_name}
                         </p>
                       )}
                     </div>
@@ -393,8 +429,9 @@ export default function ContactTopSection({ contactUsData }) {
                         onChange={(e) =>
                           handleInputChange("email", e.target.value)
                         }
-                        className={`w-full bg-green-secondary-dark border ${errors.email ? "border-red-400" : "border-white/20"
-                          } rounded-xl pl-12 pr-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
+                        className={`w-full bg-green-secondary-dark border ${
+                          errors.email ? "border-red-400" : "border-white/20"
+                        } rounded-xl pl-12 pr-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
                       />
                     </div>
                     {errors.email && (
@@ -415,52 +452,54 @@ export default function ContactTopSection({ contactUsData }) {
                             setIsCountryCodeOpen(!isCountryCodeOpen)
                           }
                           className={`bg-green-secondary-dark border border-white/20 rounded-xl px-4 py-2 w-[130px] text-white flex items-center space-s-2  transition-colors duration-200 min-w-[100px]
-                                                    ${isCountryCodeOpen
-                              ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
-                              : ""
-                            }
+                                                    ${
+                                                      isCountryCodeOpen
+                                                        ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
+                                                        : ""
+                                                    }
                                                     `}
                         >
                           <img
-                            src={`/${selectedCountryCode?.flag}-flag.png`}
-                            alt={`${selectedCountryCode?.flag} flag`}
-                            className="w-5 h-5"
+                            src={`${selectedCountryCode?.icon}`}
+                            alt={`${selectedCountryCode?.name} flag`}
+                            className="w-5 h-5 object-cover rounded-[3px]"
                           />
                           <span className="text-span-responsive">
-                            {formData.countryCode}
+                            {formData.phone_prefix}
                           </span>
                           <ArrowDown
                             strokeColor={`stroke-gray-500`}
-                            className={`transition-transform duration-200 !ms-auto ${isCountryCodeOpen ? "rotate-180" : ""
-                              }`}
+                            className={`transition-transform duration-200 !ms-auto ${
+                              isCountryCodeOpen ? "rotate-180" : ""
+                            }`}
                           />
                         </button>
 
                         {isCountryCodeOpen && (
                           <div className="absolute top-full left-0 rtl:right-0 mt-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto custom-contact-scrollbar">
-                            {countryCodes.map((country) => (
+                            {countriesList?.map((country) => (
                               <button
-                                key={country.code}
+                                key={country?.id}
                                 type="button"
                                 onClick={() => {
                                   handleInputChange(
-                                    "countryCode",
-                                    country.code
+                                    "phone_prefix",
+                                    country?.phone_code
                                   );
                                   setIsCountryCodeOpen(false);
                                 }}
                                 className="w-full px-4 py-3 text-left hover:bg-gray-200 transition-colors duration-200 text-span-responsive first:rounded-t-xl last:rounded-b-xl flex items-center space-s-3"
                               >
                                 <img
-                                  src={`/${country.flag}-flag.png`}
-                                  alt={`${country.flag} flag`}
-                                  className="w-5 h-5"
+                                  src={`${country.icon}`}
+                                  alt={`${country.name} flag`}
+                                  className="w-5 h-5 object-cover rounded-[3px]"
                                 />
                                 <span className="text-gray-500">
                                   {country.code}
                                 </span>
                                 <span className="text-gray-500">
-                                  {country.country}
+                                  {country.name}
                                 </span>
                               </button>
                             ))}
@@ -477,8 +516,9 @@ export default function ContactTopSection({ contactUsData }) {
                           onChange={(e) =>
                             handleInputChange("phone", e.target.value)
                           }
-                          className={`w-full bg-green-secondary-dark border ${errors.phone ? "border-red-400" : "border-white/20"
-                            } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
+                          className={`w-full bg-green-secondary-dark border ${
+                            errors.phone ? "border-red-400" : "border-white/20"
+                          } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
                         />
                       </div>
                     </div>
@@ -495,26 +535,34 @@ export default function ContactTopSection({ contactUsData }) {
                       <button
                         type="button"
                         onClick={() => setIsServiceOpen(!isServiceOpen)}
-                        className={`w-full bg-green-secondary-dark border ${errors.service ? "border-red-400" : "border-white/20"
-                          } rounded-xl px-4 py-3 text-left flex items-center justify-between text-white  transition-colors duration-200
-                                                ${isServiceOpen &
-                            !errors.service
-                            ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
-                            : ""
-                          }
+                        className={`w-full bg-green-secondary-dark border ${
+                          errors.service_type
+                            ? "border-red-400"
+                            : "border-white/20"
+                        } rounded-xl px-4 py-3 text-left flex items-center justify-between text-white  transition-colors duration-200
+                                                ${
+                                                  isServiceOpen &
+                                                  !errors.service_type
+                                                    ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
+                                                    : ""
+                                                }
                                             `}
                       >
                         <span
-                          className={`text-input-small-responsive ${formData.service ? "text-white" : "text-white/60"
-                            }`}
+                          className={`text-input-small-responsive ${
+                            formData.service_type
+                              ? "text-white"
+                              : "text-white/60"
+                          }`}
                         >
-                          {formData.service ||
+                          {selectedServiceType?.title ||
                             t("contactus_page.form.services")}
                         </span>
                         <ArrowDown
                           strokeColor={`stroke-gray-500`}
-                          className={`transition-transform duration-200 ${isServiceOpen ? "rotate-180" : ""
-                            }`}
+                          className={`transition-transform duration-200 ${
+                            isServiceOpen ? "rotate-180" : ""
+                          }`}
                         />
                       </button>
 
@@ -522,23 +570,23 @@ export default function ContactTopSection({ contactUsData }) {
                         <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-40 max-h-60 overflow-y-auto custom-contact-scrollbar">
                           {services.map((service) => (
                             <button
-                              key={service}
+                              key={service.id}
                               type="button"
                               onClick={() => {
-                                handleInputChange("service", service);
+                                handleInputChange("service_type", service.type);
                                 setIsServiceOpen(false);
                               }}
                               className="w-full px-4 py-3 text-left hover:bg-gray-200 transition-colors duration-200 text-span-responsive first:rounded-t-xl last:rounded-b-xl text-gray-700"
                             >
-                              {service}
+                              {service.title}
                             </button>
                           ))}
                         </div>
                       )}
                     </div>
-                    {errors.service && (
+                    {errors.service_type && (
                       <p className="text-red-400 text-span-small-responsive mt-1">
-                        {errors.service}
+                        {errors.service_type}
                       </p>
                     )}
                   </div>
@@ -549,41 +597,46 @@ export default function ContactTopSection({ contactUsData }) {
                       <button
                         type="button"
                         onClick={() => setIsCountryOpen(!isCountryOpen)}
-                        className={`w-full bg-green-secondary-dark border ${errors.country ? "border-red-400" : "border-white/20"
-                          } rounded-xl px-4 py-3 text-left flex items-center justify-between text-white  transition-colors duration-200
-                                                ${isCountryOpen &
-                            !errors.country
-                            ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
-                            : ""
-                          }
+                        className={`w-full bg-green-secondary-dark border ${
+                          errors.country ? "border-red-400" : "border-white/20"
+                        } rounded-xl px-4 py-3 text-left flex items-center justify-between text-white  transition-colors duration-200
+                                                ${
+                                                  isCountryOpen &
+                                                  !errors.country
+                                                    ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
+                                                    : ""
+                                                }
                                             `}
                       >
                         <span
-                          className={`text-input-small-responsive ${formData.country ? "text-white" : "text-white/60"
-                            }`}
+                          className={`text-input-small-responsive ${
+                            formData.country ? "text-white" : "text-white/60"
+                          }`}
                         >
-                          {formData.country || t("contactus_page.form.country")}
+                          {mapCountryCodeToCountryName ||
+                            t("contactus_page.form.country")}
                         </span>
                         <ArrowDown
                           strokeColor={`stroke-gray-500`}
-                          className={`transition-transform duration-200 ${isCountryOpen ? "rotate-180" : ""
-                            }`}
+                          className={`transition-transform duration-200 ${
+                            isCountryOpen ? "rotate-180" : ""
+                          }`}
                         />
                       </button>
 
                       {isCountryOpen && (
                         <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-30 max-h-60 overflow-y-auto custom-contact-scrollbar">
-                          {countries.map((country) => (
+                          {countriesList?.map((country) => (
                             <button
-                              key={country}
+                              key={country.id}
                               type="button"
                               onClick={() => {
-                                handleInputChange("country", country);
+                                handleInputChange("country", country.code);
                                 setIsCountryOpen(false);
                               }}
                               className="w-full px-4 py-3 text-left hover:bg-gray-200 transition-colors duration-200 text-span-responsive first:rounded-t-xl last:rounded-b-xl text-gray-700"
                             >
-                              {country}
+                              {country.name}
                             </button>
                           ))}
                         </div>
@@ -607,8 +660,9 @@ export default function ContactTopSection({ contactUsData }) {
                         }
                         rows={4}
                         maxLength={120}
-                        className={`w-full bg-green-secondary-dark border ${errors.message ? "border-red-400" : "border-white/20"
-                          } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive resize-none`}
+                        className={`w-full bg-green-secondary-dark border ${
+                          errors.message ? "border-red-400" : "border-white/20"
+                        } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive resize-none`}
                       />
                       <div className="absolute bottom-3 right-3 text-span-small-responsive text-white/50">
                         {formData.message.length}/120

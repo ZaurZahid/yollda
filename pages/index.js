@@ -38,10 +38,7 @@ export default function HomePage({
     <Layout theme={"normal"}>
       <Head>
         <title>{`Yollda | ${t("navigation.home")}`}</title>
-        <meta
-          name="description"
-          content="This is a description of home page."
-        />
+        <meta name="description" content={t("meta_descriptions.home")} />
       </Head>
 
       <TopIntroduction siteData={""} />

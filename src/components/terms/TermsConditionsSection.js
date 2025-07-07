@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import ArrowDown from "../ui/icons/ArrowDown";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
@@ -42,27 +42,33 @@ import { useTranslation } from "next-i18next";
 //   },
 // ];
 
-const countries = [
-  "Azerbaijan (Azerbaijan)",
-  "Turkey (Türkiye)",
-  "Georgia (საქართველო)",
-  "Kazakhstan (Қазақстан)",
-  "United States",
-  "United Kingdom",
-  "Germany",
-  "France",
-];
+// const countries = [
+//   "Azerbaijan (Azerbaijan)",
+//   "Turkey (Türkiye)",
+//   "Georgia (საქართველო)",
+//   "Kazakhstan (Қазақстан)",
+//   "United States",
+//   "United Kingdom",
+//   "Germany",
+//   "France",
+// ];
 
-export default function TermsConditionsSection({ termsData }) {
-  const [selectedCountry, setSelectedCountry] = useState(
-    "Azerbaijan (Azerbaijan)"
+export default function TermsConditionsSection({
+  termsData,
+  countriesData: { results: countriesList },
+}) {
+  const [countrCode, setCountryCode] = useState("AZ");
+
+  const selecetedCountry = useMemo(
+    () => countriesList.find((c) => c.code === countrCode),
+    [countrCode]
   );
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { t } = useTranslation("common");
 
   const handleCountrySelect = (country) => {
-    setSelectedCountry(country);
+    setCountryCode(country);
     setIsDropdownOpen(false);
   };
 
@@ -92,24 +98,25 @@ export default function TermsConditionsSection({ termsData }) {
                 className="w-full bg-light-green/10 border border-light-green/20 rounded-md:w-[30%] xl px-4 py-3 text-left flex items-center justify-between text-green-dark hover:bg-light-green/20 rounded-md:w-[30%] xl transition-colors duration-200"
               >
                 <span className="text-span-responsive font-medium">
-                  {selectedCountry}
+                  {selecetedCountry.name}
                 </span>
                 <ArrowDown
                   strokeColor={`stroke-gray-500`}
-                  className={`transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""
-                    }`}
+                  className={`transition-transform duration-200 ${
+                    isDropdownOpen ? "rotate-180" : ""
+                  }`}
                 />
               </button>
 
               {isDropdownOpen && (
                 <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-md:w-[30%] xl shadow-lg z-10 max-h-60 overflow-y-auto">
-                  {countries.map((country) => (
+                  {countriesList.map((country) => (
                     <button
-                      key={country}
-                      onClick={() => handleCountrySelect(country)}
+                      key={country.id}
+                      onClick={() => handleCountrySelect(country.code)}
                       className="w-full px-6 py-3 text-left hover:bg-gray-50 transition-colors duration-200 text-span-responsive first:rounded-t-md:w-[30%] xl last:rounded-b-md:w-[30%] xl"
                     >
-                      {country}
+                      {country.name}
                     </button>
                   ))}
                 </div>

@@ -12,6 +12,7 @@ import YolldaPartnerSection from "../../src/components/signup/partner/YolldaPart
 
 export default function PartnerSignup({
   faqsData,
+  countriesData,
   /* siteData, newsData, */ error,
 }) {
   const { t } = useTranslation("common");
@@ -25,15 +26,13 @@ export default function PartnerSignup({
     <Layout /* siteData={siteData} */ theme={"transparent"}>
       <Head>
         <title>{`Yollda | ${t("navigation.partner.signup")}`}</title>
-        <meta
-          name="description"
-          content="This is a description of partner signup page."
-        />
+        <meta name="description" content={t("meta_descriptions.signup")} />
       </Head>
 
       <PartnerSignupSection
         isSubmitted={isSubmitted}
         setIsSubmitted={setIsSubmitted}
+        countriesData={countriesData}
       />
       <HowPartnerWorksSection isSubmitted={isSubmitted} />
       <RevenueStreamSection />
@@ -45,8 +44,9 @@ export default function PartnerSignup({
 
 export async function getServerSideProps({ locale }) {
   try {
-    const [faqsData] = await Promise.all([
+    const [faqsData, countriesData] = await Promise.all([
       fetchFromAPI("/api/v1/web/faqs/?page=1&per_page=20", locale),
+      fetchFromAPI("/api/v1/web/countries/?page=1&per_page=10", locale),
     ]);
     // const [siteData, termsData] = await Promise.all([
     //     fetchFromAPI('/api/v1/support/site/', locale),
@@ -56,6 +56,7 @@ export async function getServerSideProps({ locale }) {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
         faqsData,
+        countriesData,
         // siteData,
         // termsData,
       },
@@ -69,6 +70,7 @@ export async function getServerSideProps({ locale }) {
         faqsData: null,
         siteData: null,
         newsData: null,
+        countriesData: null,
         error: "Failed to load data.",
       },
     };

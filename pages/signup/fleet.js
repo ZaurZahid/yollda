@@ -14,7 +14,10 @@ import FleetHelpBanner from "../../src/components/signup/fleet/FleetHelpBanner";
 import WhyPartnerUsSection from "../../src/components/signup/fleet/WhyPartnerUsSection";
 import FleetSignupSection from "../../src/components/signup/fleet/FleetSignupSection";
 
-export default function FleetSignup({ /* siteData, newsData, */ error }) {
+export default function FleetSignup({
+  countriesData,
+  /* siteData, newsData, */ error,
+}) {
   const { t } = useTranslation("common");
   const [isSubmitted, setIsSubmitted] = useState(true);
 
@@ -26,13 +29,11 @@ export default function FleetSignup({ /* siteData, newsData, */ error }) {
     <Layout /* siteData={siteData} */ theme={"transparent"}>
       <Head>
         <title>{`Yollda | ${t("navigation.signup")}`}</title>
-        <meta
-          name="description"
-          content="This is a description of fleet signup page."
-        />
+        <meta name="description" content={t("meta_descriptions.fleet")} />
       </Head>
 
       <FleetSignupSection
+        countriesData={countriesData}
         isSubmitted={isSubmitted}
         setIsSubmitted={setIsSubmitted}
       />
@@ -48,9 +49,13 @@ export async function getServerSideProps({ locale }) {
     //     fetchFromAPI('/api/v1/support/site/', locale),
     //     fetchFromAPI('/api/v1/support/blog/?page=1&per_page=10', locale),
     // ]);
+    const [countriesData] = await Promise.all([
+      fetchFromAPI("/api/v1/web/countries/?page=1&per_page=10", locale),
+    ]);
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
+        countriesData,
         // siteData,
         // termsData,
       },
@@ -61,6 +66,7 @@ export async function getServerSideProps({ locale }) {
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
+        countriesData: null,
         siteData: null,
         newsData: null,
         error: "Failed to load data.",

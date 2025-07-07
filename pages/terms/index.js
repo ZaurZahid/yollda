@@ -6,7 +6,7 @@ import { useTranslation } from "next-i18next";
 import { fetchFromAPI } from "../../src/hooks/apiFetcher";
 import TermsConditionsSection from "../../src/components/terms/TermsConditionsSection";
 
-export default function TermsConditions({ termsData, error }) {
+export default function TermsConditions({ termsData, countriesData, error }) {
   const { t } = useTranslation("common");
 
   if (error) {
@@ -17,28 +17,28 @@ export default function TermsConditions({ termsData, error }) {
     <Layout theme={"normal"}>
       <Head>
         <title>{`Yollda | ${t("navigation.terms")}`}</title>
-        <meta
-          name="description"
-          content="This is a description of terms page."
-        />
+        <meta name="description" content={t("meta_descriptions.terms")} />
       </Head>
 
-      <TermsConditionsSection termsData={termsData} />
+      <TermsConditionsSection
+        termsData={termsData}
+        countriesData={countriesData}
+      />
     </Layout>
   );
 }
 
 export async function getServerSideProps({ locale }) {
   try {
-    const [termsData] = await Promise.all([
-      fetchFromAPI("/api/v1/web/terms/", locale, {
-        Country: "AZ",
-      }),
+    const [termsData, countriesData] = await Promise.all([
+      fetchFromAPI("/api/v1/web/terms/", locale),
+      fetchFromAPI("/api/v1/web/countries/?page=1&per_page=10", locale),
     ]);
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
         termsData,
+        countriesData,
       },
     };
   } catch (error) {
@@ -48,6 +48,7 @@ export async function getServerSideProps({ locale }) {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
         termsData: null,
+        countriesData: null,
         error: "Failed to load data.",
       },
     };

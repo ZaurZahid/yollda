@@ -25,10 +25,7 @@ export default function About({
     <Layout /* siteData={siteData} */ theme={"transparent"}>
       <Head>
         <title>{`Yollda | ${t("navigation.about")}`}</title>
-        <meta
-          name="description"
-          content="This is a description of about page."
-        />
+        <meta name="description" content={t("meta_descriptions.about")} />
       </Head>
 
       <img

@@ -5,7 +5,11 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { fetchFromAPI } from "../../src/hooks/apiFetcher";
 
-export default function News({ /* siteData, newsData, */ error }) {
+export default function News({
+  newsCategoriesData,
+  newsData,
+  /* siteData, newsData, */ error,
+}) {
   const { t } = useTranslation("common");
 
   if (error) {
@@ -16,10 +20,7 @@ export default function News({ /* siteData, newsData, */ error }) {
     <Layout /* siteData={siteData} */ theme={"transparent"}>
       <Head>
         <title>{`Yollda | ${t("navigation.news")}`}</title>
-        <meta
-          name="description"
-          content="This is a description of blog page."
-        />
+        <meta name="description" content={t("meta_descriptions.news")} />
       </Head>
 
       <img
@@ -27,22 +28,22 @@ export default function News({ /* siteData, newsData, */ error }) {
         alt="Beautiful image"
         className="h-[530px] lg:h-[800px] w-full object-cover -mt-24 md:-mt-32 lg:-mt-24"
       />
-      <NewsPage newsData={[] /* newsData */} />
+      <NewsPage newsCategoriesData={newsCategoriesData} newsData={newsData} />
     </Layout>
   );
 }
 
 export async function getServerSideProps({ locale }) {
   try {
-    // const [siteData, newsData] = await Promise.all([
-    //     fetchFromAPI('/api/v1/support/site/', locale),
-    //     fetchFromAPI('/api/v1/support/blog/?page=1&per_page=10', locale),
-    // ]);
+    const [newsCategoriesData, newsData] = await Promise.all([
+      fetchFromAPI("/api/v1/web/news-categories", locale),
+      fetchFromAPI("/api/v1/web/news/?page=1&per_page=10", locale),
+    ]);
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
-        // siteData,
-        // newsData,
+        newsCategoriesData,
+        newsData,
       },
     };
   } catch (error) {
@@ -51,7 +52,7 @@ export async function getServerSideProps({ locale }) {
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
-        siteData: null,
+        newsCategoriesData: null,
         newsData: null,
         error: "Failed to load data.",
       },

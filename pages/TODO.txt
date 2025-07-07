@@ -14,11 +14,18 @@ bezi yerlerde object?.key yazanda typolar olur, diqqetle yoxla ---- for ex:objec
 ---------------
 CURRENT TODOS
 ---------------
-1. meta descriptions for all pages
-2. GET Countries-list   terms, contact, signup formda, signup/fleet formda sehifesinde qoyulacaq 
+1. meta descriptions for all pages DONE
+2. GET Countries-list   
+    terms DONE
+    contact DONE
+
+    signup formda DONE
+    
+    
+     signup/fleet formda sehifesinde qoyulacaq  DONE
 3. header register modal tercumeler
 
-4. GET News-categories   
+4. GET News-categories    DONE
  ilkin olaraq hec biri secilmesin Select (tercumede elave edek) yazilsin selectde
  parensizler solda yigilsin, sagdaki select olmasin hele  
  eger soldan hansisa birini secse sagdaki select peya olsun smooth animation ile, filtered cateories for that parent id, listi gorunsun
@@ -27,8 +34,8 @@ NOTE:
  eger sagdaki secilmeyibse hele, amma soldakilardan parent deyisilse, yeniden filter etsin sag ucun, filter edilen zaman disabled olsunki, click etmek olmasin
  sonra eyni qaydada davam etsin
 
-5. GET News-list fetch
-6. pagination for it
+5. GET News-list fetch DONE?
+6. pagination for it DONE?
 
-7. contact top section compenentine services arrayini elave etdim. Static olacaq, o keyler backe gonderilecek ancaq, ancaq title terccume olunacaq
-8. POST Contact implementation
+7. contact top section compenentine services arrayini elave etdim. Static olacaq, o keyler backe gonderilecek ancaq, ancaq title terccume olunacaq DONE
+8. POST Contact implementation DONE

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import LinkIcon from "./../../ui/icons/Link";
 import ArrowDown from "../../ui/icons/ArrowDown";
 import { useTranslation } from "next-i18next";
@@ -36,7 +36,11 @@ const cities = [
   "Other",
 ];
 
-export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
+export default function PartnerSignupSection({
+  isSubmitted,
+  setIsSubmitted,
+  countriesData: { results: countriesList },
+}) {
   const { t } = useTranslation("common");
 
   const [formData, setFormData] = useState({
@@ -179,9 +183,23 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
     }
   };
 
-  const selectedCountryCode = countryCodes.find(
-    (c) => c.code === formData.countryCode
-  );
+  // const selectedCountryCode = countryCodes.find(
+  //   (c) => c.code === formData.countryCode
+  // );
+
+  const mapCountryCodeToCountryName = useMemo(() => {
+    if (formData.country) {
+      const foundCountry = countriesList?.find(
+        (country) => formData.country === country.code
+      );
+      return foundCountry?.name;
+    }
+    return "";
+  }, [formData.country]);
+
+  const selectedCountryCode = useMemo(() => {
+    return countriesList?.find((c) => c.phone_code === formData.countryCode);
+  }, [formData.countryCode]);
 
   return (
     <section className="relative">
@@ -313,9 +331,9 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
                                                 `}
                           >
                             <img
-                              src={`/${selectedCountryCode?.flag}-flag.png`}
-                              alt={`${selectedCountryCode?.flag} flag`}
-                              className="w-5 h-5"
+                              src={`${selectedCountryCode?.icon}`}
+                              alt={`${selectedCountryCode?.name} flag`}
+                              className="w-5 h-5 object-cover rounded-[4px]"
                             />
                             <span className="text-span-responsive">
                               {formData.countryCode}
@@ -330,29 +348,29 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
 
                           {isCountryCodeOpen && (
                             <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto custom-contact-scrollbar">
-                              {countryCodes.map((country) => (
+                              {countriesList.map((country) => (
                                 <button
-                                  key={country.code}
+                                  key={country.id}
                                   type="button"
                                   onClick={() => {
                                     handleInputChange(
                                       "countryCode",
-                                      country.code
+                                      country.phone_code
                                     );
                                     setIsCountryCodeOpen(false);
                                   }}
                                   className="w-full px-4 py-3 text-left hover:bg-gray-200 transition-colors duration-200 text-span-responsive first:rounded-t-xl last:rounded-b-xl flex items-center space-s-3"
                                 >
                                   <img
-                                    src={`/${country.flag}-flag.png`}
-                                    alt={`${country.flag} flag`}
-                                    className="w-5 h-5"
+                                    src={`${country.icon}`}
+                                    alt={`${country.name} flag`}
+                                    className="w-5 h-5 object-cover rounded-[4px]"
                                   />
                                   <span className="text-gray-500">
-                                    {country.code}
+                                    {country.phone_code}
                                   </span>
                                   <span className="text-gray-500">
-                                    {country.country}
+                                    {country.name}
                                   </span>
                                 </button>
                               ))}
@@ -439,7 +457,7 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
                                 : "text-gray-500"
                             }`}
                           >
-                            {formData.country ||
+                            {mapCountryCodeToCountryName ||
                               t("signup_page.signup_section.form.country")}
                           </span>
                           <ArrowDown
@@ -452,17 +470,17 @@ export default function PartnerSignupSection({ isSubmitted, setIsSubmitted }) {
 
                         {isCountryOpen && (
                           <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-40 max-h-60 overflow-y-auto custom-contact-scrollbar">
-                            {countries.map((country) => (
+                            {countriesList.map((country) => (
                               <button
-                                key={country}
+                                key={country.id}
                                 type="button"
                                 onClick={() => {
-                                  handleInputChange("country", country);
+                                  handleInputChange("country", country.code);
                                   setIsCountryOpen(false);
                                 }}
                                 className="w-full px-4 py-3 text-left hover:bg-gray-200 transition-colors duration-200 text-span-responsive first:rounded-t-xl last:rounded-b-xl text-gray-700"
                               >
-                                {country}
+                                {country.name}
                               </button>
                             ))}
                           </div>

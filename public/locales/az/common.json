@@ -69,7 +69,8 @@
     "send_another_button": "AZSend another message",
     "subscribe": "AZSubscribe",
     "sending_state": "AZSending...",
-    "open_map": "AZOpen map"
+    "open_map": "AZOpen map",
+    "select": "AZSelect"
   },
   "form": {
     "name": "AZAd və soyadınız",
@@ -81,7 +82,14 @@
     "trade_center": "AZTicarət mərkəzi",
     "select": "AZSeçin",
     "required": "AZBu xananı doldurmaq vacibdir",
-    "email_address": "Email Address"
+    "email_address": "Email Address",
+    "errors": {
+      "first_name_required": "AZFirst name is required",
+      "first_name_at_lest": "AZFirst name must be at least 2 characters",
+      "last_name_required": "AZLast name is required",
+      "last_name_at_lest": "AZLast name must be at least 2 characters",
+      "service_required": "AZService is required"
+    }
   },
 
   "introduction": {
@@ -493,5 +501,19 @@
       "heading": "AZRide out as soon as you fly in with Flight Tracking",
       "description": "AZWe value high inner drive. Although we can’t impact someone’s motivation, we work to inspire our high-performing teams to deliver their best consistently. Some perks may differ depending on your location and role."
     }
+  },
+  "meta_descriptions": {
+    "home": "AZThis is a description for home page",
+    "contact": "AZThis is a description of contact page.",
+    "unsubscribe": "AZThis is a description of UnSubscribe page.",
+    "about": "AZThis is a description of about page.",
+    "signup": "AZThis is a description of partner signup page.",
+    "fleet": "AZThis is a description of fleet signup page.",
+    "news": "AZThis is a description of all news page.",
+    "onenew": "AZThis is description of specific new",
+    "blogs": "AZThis is descriprtion of all blogs page",
+    "oneblog": "AZThis is descipriotn of specific blog page",
+    "terms": "AZThis is desciption of terms page",
+    "oneterm": "AZThis is desciptuon of specific term page"
   }
 }

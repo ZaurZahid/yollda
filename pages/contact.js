@@ -7,7 +7,12 @@ import ContactTopSection from "../src/components/contact/ContactTopSection";
 import LocationMapSection from "../src/components/contact/LocationMapSection";
 import FAQNewsletterSection from "../src/components/contact/FAQNewsletterSection";
 
-export default function Contact({ faqsData, contactUsData, error }) {
+export default function Contact({
+  faqsData,
+  contactUsData,
+  countriesData,
+  error,
+}) {
   const { t } = useTranslation("common");
 
   if (error) {
@@ -18,13 +23,13 @@ export default function Contact({ faqsData, contactUsData, error }) {
     <Layout>
       <Head>
         <title>{`Yollda | ${t("navigation.contact")}`}</title>
-        <meta
-          name="description"
-          content="This is a description of contact page."
-        />
+        <meta name="description" content={t("meta_descriptions.contact")} />
       </Head>
 
-      <ContactTopSection contactUsData={contactUsData} />
+      <ContactTopSection
+        countriesData={countriesData}
+        contactUsData={contactUsData}
+      />
       <LocationMapSection contactUsData={contactUsData} />
       <FAQNewsletterSection faqsData={faqsData} />
     </Layout>
@@ -33,9 +38,10 @@ export default function Contact({ faqsData, contactUsData, error }) {
 
 export async function getServerSideProps({ locale }) {
   try {
-    const [faqsData, contactUsData] = await Promise.all([
+    const [faqsData, contactUsData, countriesData] = await Promise.all([
       fetchFromAPI("/api/v1/web/faqs/?page=1&per_page=20", locale),
       fetchFromAPI("/api/v1/web/contact-us/", locale),
+      fetchFromAPI("/api/v1/web/countries/?page=1&per_page=10", locale),
     ]);
 
     return {
@@ -43,6 +49,7 @@ export async function getServerSideProps({ locale }) {
         ...(await serverSideTranslations(locale, ["common"])),
         faqsData,
         contactUsData,
+        countriesData,
       },
     };
   } catch (error) {
@@ -53,6 +60,7 @@ export async function getServerSideProps({ locale }) {
         ...(await serverSideTranslations(locale, ["common"])),
         faqsData: null,
         contactUsData: null,
+        countriesData: null,
         error: "Failed to load data.",
       },
     };
