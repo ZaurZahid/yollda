@@ -23,7 +23,7 @@ CURRENT TODOS
     
     
      signup/fleet formda sehifesinde qoyulacaq  DONE
-3. header register modal tercumeler
+3. header register modal tercumeler DONE
 
 4. GET News-categories    DONE
  ilkin olaraq hec biri secilmesin Select (tercumede elave edek) yazilsin selectde

@@ -7,69 +7,6 @@ import ArrowDown from "../ui/icons/ArrowDown";
 import HelpBanner from "../layout/HelpBanner";
 import { fetchFromAPI } from "../../hooks/apiFetcher";
 
-const newsArticles = [
-  {
-    id: 1,
-    title:
-      "Bolt joins UN Global Compact: strengthening our commitment to sustainabilityGlobal Compact: strengthening our commitment to sustainabilityGlobal Compact: strengthening our commitment to sustainabilityGlobal Compact: strengthening our commitment to sustainabilityGlobal Compact: strengthening our commitment to sustainability strengthening our commitment to sustainability",
-    category: "Sustainability",
-    date: "April 24, 2025",
-    image:
-      "https://images.pexels.com/photos/1118448/pexels-photo-1118448.jpeg?auto=compress&cs=tinysrgb&w=800",
-  },
-  {
-    id: 2,
-    title:
-      "Bolt joins UN Global Compact: strengthening our commitment to sustainability",
-    category: "Sustainability",
-    date: "April 24, 2025",
-    image:
-      "https://images.pexels.com/photos/1118448/pexels-photo-1118448.jpeg?auto=compress&cs=tinysrgb&w=800",
-  },
-  {
-    id: 3,
-    title:
-      "Bolt joins UN Global Compact: strengthening our commitment to sustainability",
-    category: "Sustainability",
-    date: "April 24, 2025",
-    image:
-      "https://images.pexels.com/photos/1118448/pexels-photo-1118448.jpeg?auto=compress&cs=tinysrgb&w=800",
-  },
-  {
-    id: 4,
-    title: "New electric vehicle fleet expansion across major cities",
-    category: "Technology",
-    date: "April 20, 2025",
-    image:
-      "https://images.pexels.com/photos/3964704/pexels-photo-3964704.jpeg?auto=compress&cs=tinysrgb&w=800",
-  },
-  {
-    id: 5,
-    title: "Partnership announcement with local transportation authorities",
-    category: "Business",
-    date: "April 18, 2025",
-    image:
-      "https://images.pexels.com/photos/4173624/pexels-photo-4173624.jpeg?auto=compress&cs=tinysrgb&w=800",
-  },
-  {
-    id: 6,
-    title: "Safety improvements and new driver training programs launched",
-    category: "Safety",
-    date: "April 15, 2025",
-    image:
-      "https://images.pexels.com/photos/3807738/pexels-photo-3807738.jpeg?auto=compress&cs=tinysrgb&w=800",
-  },
-];
-
-// const categories = [
-//   "All",
-//   "Sustainability",
-//   "Technology",
-//   "Business",
-//   "Safety",
-// ];
-const regions = ["Global", "North America", "Europe", "Asia Pacific"];
-
 export default function NewsPage({ newsData, newsCategoriesData }) {
   const { t } = useTranslation("common");
   const { i18n } = useTranslation();
@@ -81,16 +18,15 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
 
   // Pagination State
   const [currentPage, setCurrentPage] = useState(newsData?.current_page || 1); // Default from SSR
-  const [itemsPerPage] = useState(newsData.per_page || 10);
+  // const [itemsPerPage] = useState(newsData.per_page || 10);
   const [newsList, setNews] = useState(newsData.results || []); // New results
-  const [totalItems, setTotalItems] = useState(newsData.total || 99); // Total number of items
+  const [totalItems, setTotalItems] = useState(newsData?.last_page || 99); // Total number of items
 
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
   const [subCategories, setSubCategories] = useState([]); // Assuming you will fetch subcategories later
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isSubCategoryOpen, setIsSubCategoryOpen] = useState(false);
-  // const [filteredArticles, setFilteredArticles] = useState(newsArticles);
 
   const fetchSubCategories = async (id) => {
     setIsSubCategoryOpen(false);
@@ -99,30 +35,28 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
         `${process.env.NEXT_PUBLIC_API_URL}/api/v1/web/news-categories/${id}`
       );
       const json = await response.json();
-      // const res = await fetchFromAPI(`/api/v1/web/news-categories/${id}`);
       setSubCategories(json?.subcategories);
     } catch (error) {}
   };
 
   // Function to fetch data for a specific page
-  const fetchNews = async (page, perPage, category = "notWorking") => {
+  const fetchNews = async (page, perPage, category) => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/web/news/?page=${page}&per_page=${perPage}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/web/news/?page=${page}&per_page=${perPage}&category=${category}`,
         {
           headers: {
             "Content-Type": "application/json",
             Country: "AZ", // Default to AZ if language is not recognized,
+            "Accept-Language": i18n.language, // Use the current language from i18n
           },
         }
       );
       const data = await response.json();
 
       setCurrentPage(data.current_page);
-      // setNews(data.results);
-      // setFilteredArticles(data.results);
       setNews(data.results); // Update newsList with new results
-      setTotalItems(data.total);
+      setTotalItems(data?.last_page); // Update total items based on the last page
 
       // Scroll to top smoothly after data is loaded
       window.scrollTo({
@@ -135,21 +69,27 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
   };
 
   // Handle page change
-  const handlePageChange = (pageNumber) => {
+  const handlePageChange = async (pageNumber) => {
     setCurrentPage(pageNumber); //helelik
-    fetchNews(pageNumber, 10);
+    await fetchNews(
+      pageNumber,
+      10,
+      selectedSubCategory?.slug || selectedCategory?.slug || null
+    );
 
     // fetchNews(pageNumber, itemsPerPage);
   };
 
-  const handleCategoryChange = (category) => {
+  const handleCategoryChange = async (category) => {
     setSelectedCategory(category);
     setIsCategoryOpen(false);
 
     if (category?.has_subcategory) {
-      fetchSubCategories(category.id);
+      await fetchSubCategories(category.id);
     } else {
-      fetchNews(currentPage, 10);
+      await fetchNews(1, 10, category?.slug);
+      setSubCategories([]); // Clear subcategories if no subcategory exists
+      setSelectedSubCategory(null); // Reset selected subcategory
     }
     // filterArticles(category, selectedCategory.title);
   };
@@ -157,7 +97,7 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
   const handleSubCategoryChange = (category) => {
     setSelectedSubCategory(category);
     setIsSubCategoryOpen(false);
-    fetchNews(currentPage, 10, category);
+    fetchNews(1, 10, category.slug);
     // filterArticles(selectedCategory, region);
   };
 
@@ -211,7 +151,7 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
             </button>
 
             {isCategoryOpen && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-10 overflow-y-auto max-h-[300px]">
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-20 overflow-y-auto max-h-[300px]">
                 {newsCategoriesData.map((category) => (
                   <button
                     key={category.id}
@@ -244,7 +184,7 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
               </button>
 
               {isSubCategoryOpen && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-10">
+                <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-20">
                   {subCategories.map((subCategory) => (
                     <button
                       key={subCategory.id}

@@ -515,5 +515,27 @@
     "oneblog": "AZThis is descipriotn of specific blog page",
     "terms": "AZThis is desciption of terms page",
     "oneterm": "AZThis is desciptuon of specific term page"
+  },
+  "register_methods": {
+    "become_tow_partner": {
+      "label": "AZBecome a Tow Partner",
+      "description": "AZTow cars and freight with your tow truck and earn flexibly"
+    },
+    "sign_up_fleet_owner": {
+      "label": "AZSign Up as a Fleet Owner",
+      "description": "AZAdd your fleet to Yollda and boost your income"
+    },
+    "tire_battery_assistance": {
+      "label": "AZTire & Battery Assistance",
+      "description": "AZJoin to provide mobile tire repair and battery replacement or jump-start services"
+    },
+    "fuel_delivery": {
+      "label": "AZFuel Delivery",
+      "description": "AZDeliver emergency fuel to stranded drivers and earn flexibly in your area"
+    },
+    "training_partner": {
+      "label": "AZBecome a Training Partner",
+      "description": "AZOffer certified training to Yollda service providers and grow with our platform"
+    }
   }
 }

@@ -2,8 +2,8 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import RegisterBar from "./RegisterBar";
 import { useEffect, useState } from "react";
-import registerMethods from "../../utils/registerMethods";
 import ArrowDown from "../ui/icons/ArrowDown";
+import RegisterMethods from "../../utils/registerMethods";
 
 const BurgerModal = ({ isOpen, onClose }) => {
   const { t } = useTranslation("common");
@@ -103,7 +103,7 @@ const BurgerModal = ({ isOpen, onClose }) => {
     {
       id: 1,
       label: t("navigation_links.headings.signUp"),
-      items: [...registerMethods],
+      items: [...RegisterMethods()],
       isOpen: true,
     },
     {
