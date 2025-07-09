@@ -18,9 +18,10 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
 
   // Pagination State
   const [currentPage, setCurrentPage] = useState(newsData?.current_page || 1); // Default from SSR
-  // const [itemsPerPage] = useState(newsData.per_page || 10);
+  const [totalFound, setTotalFound] = useState(newsData?.total); // Default from SSR
+  const [itemsPerPage] = useState(10);
   const [newsList, setNews] = useState(newsData.results || []); // New results
-  const [totalItems, setTotalItems] = useState(newsData?.last_page || 99); // Total number of items
+  const [totalItems, setTotalItems] = useState(newsData?.last_page || 1); // Total number of items
 
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
@@ -30,13 +31,15 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
 
   const fetchSubCategories = async (id) => {
     setIsSubCategoryOpen(false);
+
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/v1/web/news-categories/${id}`
       );
-      const json = await response.json();
-      setSubCategories(json?.subcategories);
-    } catch (error) {}
+      const data = await response.json();
+
+      setSubCategories(data?.subcategories);
+    } catch (error) { }
   };
 
   // Function to fetch data for a specific page
@@ -55,14 +58,9 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
       const data = await response.json();
 
       setCurrentPage(data.current_page);
+      setTotalFound(data.total);
       setNews(data.results); // Update newsList with new results
       setTotalItems(data?.last_page); // Update total items based on the last page
-
-      // Scroll to top smoothly after data is loaded
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
     } catch (error) {
       console.error("Error fetching s:", error);
     }
@@ -70,14 +68,13 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
 
   // Handle page change
   const handlePageChange = async (pageNumber) => {
-    setCurrentPage(pageNumber); //helelik
+    setCurrentPage(pageNumber);
+
     await fetchNews(
       pageNumber,
-      10,
+      itemsPerPage,
       selectedSubCategory?.slug || selectedCategory?.slug || null
     );
-
-    // fetchNews(pageNumber, itemsPerPage);
   };
 
   const handleCategoryChange = async (category) => {
@@ -87,36 +84,18 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
     if (category?.has_subcategory) {
       await fetchSubCategories(category.id);
     } else {
-      await fetchNews(1, 10, category?.slug);
+      await fetchNews(1, itemsPerPage, category?.slug);
+
       setSubCategories([]); // Clear subcategories if no subcategory exists
       setSelectedSubCategory(null); // Reset selected subcategory
     }
-    // filterArticles(category, selectedCategory.title);
   };
 
   const handleSubCategoryChange = (category) => {
     setSelectedSubCategory(category);
     setIsSubCategoryOpen(false);
-    fetchNews(1, 10, category.slug);
-    // filterArticles(selectedCategory, region);
+    fetchNews(1, itemsPerPage, category?.slug);
   };
-
-  // const filterArticles = (category, region) => {
-  //   let filtered = newsArticles;
-
-  //   if (category !== "News" && category !== "All") {
-  //     filtered = filtered.filter((article) => article.category === category);
-  //   }
-
-  //   // Region filtering logic would go here
-  //   // For now, we'll show all articles regardless of region
-
-  //   setFilteredArticles(filtered);
-  // };
-
-  //  const selectedCate = useMemo(() => {
-  //     return services?.find((c) => c.type === formData.service_type);
-  //   }, [formData.service_type]);
 
   return (
     <div className="w-full flex justify-center py-12 lg:py-20">
@@ -144,14 +123,13 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
               </span>
               <ArrowDown
                 strokeColor={`stroke-gray-500`}
-                className={`transition-transform duration-200 ${
-                  isCategoryOpen ? "rotate-180" : ""
-                }`}
+                className={`transition-transform duration-200 ${isCategoryOpen ? "rotate-180" : ""
+                  }`}
               />
             </button>
 
             {isCategoryOpen && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-20 overflow-y-auto max-h-[300px]">
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-20 overflow-y-auto max-h-[300px] custom-contact-scrollbar">
                 {newsCategoriesData.map((category) => (
                   <button
                     key={category.id}
@@ -177,14 +155,13 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
                 </span>
                 <ArrowDown
                   strokeColor={`stroke-gray-500`}
-                  className={`transition-transform duration-200 ${
-                    isSubCategoryOpen ? "rotate-180" : ""
-                  }`}
+                  className={`transition-transform duration-200 ${isSubCategoryOpen ? "rotate-180" : ""
+                    }`}
                 />
               </button>
 
               {isSubCategoryOpen && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-20">
+                <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-20 overflow-y-auto max-h-[300px] custom-contact-scrollbar">
                   {subCategories.map((subCategory) => (
                     <button
                       key={subCategory.id}
@@ -203,7 +180,7 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
         {/* Results Count */}
         <div className="mt-4">
           <p className="text-span-responsive text-gray-700">
-            {newsList.length} {t("results_found")}
+            {totalFound || '0'} {t("results_found")}
           </p>
         </div>
 

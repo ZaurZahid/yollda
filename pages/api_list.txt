@@ -14,26 +14,32 @@ DONE
 9. GET Attractive-info
 10. GET Blog-detail
 11. GET News-detail
-
+12. GET Countries-list
+13. GET Contact-us
+14. GET News-categories    
+15. GET News-list
 
 --------------------
 PROGRESS
 --------------------
-GET Contact-us   ------>   no gmapapi for contact map
-
-
-Endpoints Not Applied Yet
-GET News-categories    ilkin olaraq hec biri secilmesin  parentsiz olanlar solda, sagda soldakilarin childindan 1ci secilsin
-GET News-list   category secilende nece gonderilecek apiye?
-
 /////////////GET Blog-categories not for now, deqiqlesdirecek
 GET Blog-list    indexle duz 7 dene, sonra eyni getsin
 
 
-GET Countries-list   terms, contact, signup formda, signup/fleet formda sehifesinde qoyulacaq
 POST Contact    service type apisini vermek
 
 
+
+
+
+
+
+
+
+Countries deyisilinde terms de ne olacaq? ve apiye country fieldi hacan gonderilecek generally?
+
+signup CITY missing
+Vehicles list in your fleet signup
 
 cookie listini verin
 no gmapapi for contact map

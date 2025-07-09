@@ -2,19 +2,24 @@ import React from "react";
 import Link from "next/link";
 import { formatDate } from "../../hooks/formatDate";
 import { trimText } from "../../hooks/trimText";
+import { useRouter } from "next/router";
 
 const NewsCard = ({
   post: {
     id,
+    slug,
     title,
     created_at: date,
     banner: image,
-    category: { title: category },
+    category,
   },
 }) => {
+  const router = useRouter();
+  const { locale } = router;
+
   return (
     <Link
-      href={`/news/${id}`}
+      href={`/news/${slug}`}
       key={id}
       className="inline-flex w-full group cursor-pointer bg-white hover:bg-gray-50 rounded-2xl transition-all duration-300 hover:shadow-lg"
     >
@@ -35,7 +40,7 @@ const NewsCard = ({
           {/* Category */}
           <div className="inline-block">
             <span className="bg-light-green/10 text-gray-700 px-3 py-1 rounded-full text-span-small-responsive font-medium">
-              {category}
+              {category?.title}
             </span>
           </div>
 
@@ -46,7 +51,7 @@ const NewsCard = ({
 
           {/* Date */}
           <div className="flex items-center text-span-small-responsive text-gray-500">
-            {date}
+            {formatDate(date, locale)}
           </div>
         </div>
       </div>

@@ -60,7 +60,7 @@ export default function TermsConditionsSection({
   const [countrCode, setCountryCode] = useState("AZ");
 
   const selecetedCountry = useMemo(
-    () => countriesList.find((c) => c.code === countrCode),
+    () => countriesList?.find((c) => c.code === countrCode),
     [countrCode]
   );
 
@@ -98,19 +98,18 @@ export default function TermsConditionsSection({
                 className="w-full bg-light-green/10 border border-light-green/20 rounded-md:w-[30%] xl px-4 py-3 text-left flex items-center justify-between text-green-dark hover:bg-light-green/20 rounded-md:w-[30%] xl transition-colors duration-200"
               >
                 <span className="text-span-responsive font-medium">
-                  {selecetedCountry.name}
+                  {selecetedCountry?.name}
                 </span>
                 <ArrowDown
                   strokeColor={`stroke-gray-500`}
-                  className={`transition-transform duration-200 ${
-                    isDropdownOpen ? "rotate-180" : ""
-                  }`}
+                  className={`transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""
+                    }`}
                 />
               </button>
 
               {isDropdownOpen && (
                 <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-md:w-[30%] xl shadow-lg z-10 max-h-60 overflow-y-auto">
-                  {countriesList.map((country) => (
+                  {countriesList?.map((country) => (
                     <button
                       key={country.id}
                       onClick={() => handleCountrySelect(country.code)}

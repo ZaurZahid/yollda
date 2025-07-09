@@ -3,15 +3,6 @@ import LinkIcon from "../../ui/icons/Link";
 import ArrowDown from "../../ui/icons/ArrowDown";
 import { useTranslation } from "next-i18next";
 
-const countryCodes = [
-  { code: "+994", flag: "az", country: "Azerbaijan" },
-  { code: "+44", flag: "en", country: "United Kingdom" },
-  { code: "+90", flag: "🇹🇷", country: "Turkey" },
-  { code: "+995", flag: "🇬🇪", country: "Georgia" },
-  { code: "+7", flag: "🇰🇿", country: "Kazakhstan" },
-  { code: "+1", flag: "🇺🇸", country: "United States" },
-];
-
 const fleetSizes = ["1-10", "11-25", "26-50", "51-100", "100+"];
 
 export default function FleetSignupSection({
@@ -257,11 +248,10 @@ export default function FleetSignupSection({
                               setIsCountryCodeOpen(!isCountryCodeOpen)
                             }
                             className={`bg-gray-50 w-[130px] h-11 border border-gray-300 rounded-xl px-3 py-2 text-gray-700 flex items-center space-s-2 hover:bg-gray-200 transition-colors duration-200 min-w-[100px]
-                                                    ${
-                                                      isCountryCodeOpen
-                                                        ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
-                                                        : ""
-                                                    }
+                                                    ${isCountryCodeOpen
+                                ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
+                                : ""
+                              }
                                                 `}
                           >
                             <img
@@ -274,15 +264,14 @@ export default function FleetSignupSection({
                             </span>
                             <ArrowDown
                               strokeColor={`stroke-gray-500`}
-                              className={`transition-transform duration-200 !ms-auto ${
-                                isCountryCodeOpen ? "rotate-180" : ""
-                              }`}
+                              className={`transition-transform duration-200 !ms-auto ${isCountryCodeOpen ? "rotate-180" : ""
+                                }`}
                             />
                           </button>
 
                           {isCountryCodeOpen && (
                             <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto custom-contact-scrollbar">
-                              {countriesList.map((country) => (
+                              {countriesList?.map((country) => (
                                 <button
                                   key={country.id}
                                   type="button"
@@ -298,7 +287,7 @@ export default function FleetSignupSection({
                                   <img
                                     src={`${country.icon}`}
                                     alt={`${country.name}`}
-                                    className="w-5 h-5 object-contain rounded-[4px"
+                                    className="w-5 h-5 object-cover rounded-[4px]"
                                   />
                                   <span className="text-gray-500">
                                     {country.phone_code}
@@ -321,11 +310,10 @@ export default function FleetSignupSection({
                             onChange={(e) =>
                               handleInputChange("phoneNumber", e.target.value)
                             }
-                            className={`w-full border ${
-                              errors.phoneNumber
-                                ? "border-red-400"
-                                : "border-gray-300"
-                            } rounded-xl px-4 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
+                            className={`w-full border ${errors.phoneNumber
+                              ? "border-red-400"
+                              : "border-gray-300"
+                              } rounded-xl px-4 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
                           />
                         </div>
                       </div>
@@ -351,9 +339,8 @@ export default function FleetSignupSection({
                           onChange={(e) =>
                             handleInputChange("email", e.target.value)
                           }
-                          className={`w-full border ${
-                            errors.email ? "border-red-400" : "border-gray-300"
-                          } rounded-xl px-4 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
+                          className={`w-full border ${errors.email ? "border-red-400" : "border-gray-300"
+                            } rounded-xl px-4 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
                         />
                       </div>
                       {errors.email && (
@@ -372,33 +359,29 @@ export default function FleetSignupSection({
                         <button
                           type="button"
                           onClick={() => setIsFleetSizeOpen(!isFleetSizeOpen)}
-                          className={`w-full border ${
-                            errors.fleetSize
-                              ? "border-red-400"
-                              : "border-gray-300"
-                          } rounded-xl px-4 py-2 text-left flex items-center justify-between text-gray-900 hover:bg-gray-200 transition-colors duration-200
-                                            ${
-                                              isFleetSizeOpen &
-                                              !errors.fleetSize
-                                                ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
-                                                : ""
-                                            }
+                          className={`w-full border ${errors.fleetSize
+                            ? "border-red-400"
+                            : "border-gray-300"
+                            } rounded-xl px-4 py-2 text-left flex items-center justify-between text-gray-900 hover:bg-gray-200 transition-colors duration-200
+                                            ${isFleetSizeOpen &
+                              !errors.fleetSize
+                              ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
+                              : ""
+                            }
                                         `}
                         >
                           <span
-                            className={`text-input-responsive ${
-                              formData.fleetSize
-                                ? "text-gray-900"
-                                : "text-gray-500"
-                            }`}
+                            className={`text-input-responsive ${formData.fleetSize
+                              ? "text-gray-900"
+                              : "text-gray-500"
+                              }`}
                           >
                             {formData.fleetSize || "1-10"}
                           </span>
                           <ArrowDown
                             strokeColor={`stroke-gray-500`}
-                            className={`transition-transform duration-200 !ms-auto ${
-                              isFleetSizeOpen ? "rotate-180" : ""
-                            }`}
+                            className={`transition-transform duration-200 !ms-auto ${isFleetSizeOpen ? "rotate-180" : ""
+                              }`}
                           />
                         </button>
 
@@ -466,13 +449,12 @@ export default function FleetSignupSection({
                                 !formData.agreeToTerms
                               )
                             }
-                            className={`w-5 h-5 rounded border-2 transition-all duration-200 flex items-center justify-center ${
-                              formData.agreeToTerms
-                                ? "bg-light-green border-light-green"
-                                : errors.agreeToTerms
+                            className={`w-5 h-5 rounded border-2 transition-all duration-200 flex items-center justify-center ${formData.agreeToTerms
+                              ? "bg-light-green border-light-green"
+                              : errors.agreeToTerms
                                 ? "border-red-400"
                                 : "border-gray-300 hover:border-light-green"
-                            }`}
+                              }`}
                           >
                             {formData.agreeToTerms && (
                               <svg
