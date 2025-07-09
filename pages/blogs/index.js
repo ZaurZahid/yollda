@@ -27,7 +27,6 @@ export default function Blogs({ /* siteData, blogsData, */ error }) {
       />
 
       <BlogsSection blogsData={[] /* blogsData */} />
-      <NewsSection newsData={[] /* blogsData */} />
     </Layout>
   );
 }

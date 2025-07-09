@@ -16,7 +16,12 @@ CURRENT TODOS
 ---------------
 1. contactda add BATTERY_CHARGE missing +translations
 2. pagination for it DONE? niye sual isaresi qoymusan?
+3. GET Blog-list 
+SingleBlog+Articles birlesdir bir component ele, cunki
+   indexle duz 7 dene styledaki kimi getsin. Bu mentiqden termsde istifade etmisem dizayn ucun.
+Burdada eyni mentiq olacaq, 7den sonra sonra yeni eyni dizayn.
+articles.map bir defe olmalidir 7-7-7 dizayn bele olacaq.
 
-
+4. Get in touch, You can reach us any time translation in contact
 
 8. POST Contact implementation DONE

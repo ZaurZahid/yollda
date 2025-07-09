@@ -151,6 +151,7 @@ export default function ContactTopSection({
     if (!validateForm()) {
       return;
     }
+
     setIsSubmitting(true);
 
     try {
@@ -167,11 +168,13 @@ export default function ContactTopSection({
 
       if (!response.ok) {
         const newErrorData = {};
+
         if (response.status === 400) {
           const errorData = await response.json();
           Object.entries(errorData).forEach(([key, value]) => {
             newErrorData[key] = Array.isArray(value) ? value[0] : value;
           });
+
           setErrors(newErrorData);
           return;
         } else {
@@ -187,7 +190,6 @@ export default function ContactTopSection({
       setIsSubmitting(false);
     }
   };
-  console.log(errors);
 
   const selectedCountryCode = useMemo(() => {
     return countriesList?.find((c) => c.phone_code === formData.phone_prefix);
