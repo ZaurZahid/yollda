@@ -508,13 +508,13 @@
     "unsubscribe": "This is a description of UnSubscribe page.",
     "about": "This is a description of about page.",
     "signup": "This is a description of partner signup page.",
-    "fleet": "This is a description of fleet signup page.",
+    "signup_fleet": "This is a description of fleet signup page.",
     "news": "This is a description of all news page.",
-    "onenew": "This is description of specific new",
+    "single_news": "This is description of specific new",
     "blogs": "This is descriprtion of all blogs page",
-    "oneblog": "This is descipriotn of specific blog page",
+    "single_blog": "This is descipriotn of specific blog page",
     "terms": "This is desciption of terms page",
-    "oneterm": "This is desciptuon of specific term page"
+    "single_term": "This is desciptuon of specific term page"
   },
   "register_methods": {
     "become_tow_partner": {

@@ -20,7 +20,7 @@ export default function SingleNewPage({
     <Layout /* siteData={siteData} */ theme={"normal"}>
       <Head>
         <title>{`Yollda | ${t("navigation.news")}`}</title>
-        <meta name="description" content={t("meta_descriptions.onenew")} />
+        <meta name="description" content={t("meta_descriptions.single_news")} />
       </Head>
 
       <SingleNewSection newData={newData} />

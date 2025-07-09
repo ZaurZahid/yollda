@@ -20,7 +20,7 @@ export default function SingleBlogPage({
     <Layout /* siteData={siteData} */ theme={"normal"}>
       <Head>
         <title>{`Yollda | ${t("navigation.terms")}`}</title>
-        <meta name="description" content={t("meta_descriptions.oneblog")} />
+        <meta name="description" content={t("meta_descriptions.single_blog")} />
       </Head>
 
       <SingleBlogSection blogData={blogData} />

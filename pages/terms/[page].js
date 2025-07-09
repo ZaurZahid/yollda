@@ -17,7 +17,7 @@ export default function TermsSubPage({ specificTermData, error }) {
     <Layout theme={"normal"}>
       <Head>
         <title>{`Yollda | ${t("navigation.terms")}`}</title>
-        <meta name="description" content={t("meta_descriptions.oneterm")} />
+        <meta name="description" content={t("meta_descriptions.single_term")} />
       </Head>
 
       <TermsSubPageSection specificTermData={specificTermData} />

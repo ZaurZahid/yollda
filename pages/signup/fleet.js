@@ -29,7 +29,7 @@ export default function FleetSignup({
     <Layout /* siteData={siteData} */ theme={"transparent"}>
       <Head>
         <title>{`Yollda | ${t("navigation.signup")}`}</title>
-        <meta name="description" content={t("meta_descriptions.fleet")} />
+        <meta name="description" content={t("meta_descriptions.signup_fleet")} />
       </Head>
 
       <FleetSignupSection
