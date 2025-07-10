@@ -5,7 +5,6 @@ import Pagination from "../ui/Pagination";
 import { useTranslation } from "next-i18next";
 import ArrowDown from "../ui/icons/ArrowDown";
 import HelpBanner from "../layout/HelpBanner";
-import { fetchFromAPI } from "../../hooks/apiFetcher";
 
 export default function NewsPage({ newsData, newsCategoriesData }) {
   const { t } = useTranslation("common");
@@ -39,7 +38,7 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
       const data = await response.json();
 
       setSubCategories(data?.subcategories);
-    } catch (error) { }
+    } catch (error) {}
   };
 
   // Function to fetch data for a specific page
@@ -115,7 +114,10 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
           {/* Category Filter */}
           <div className="relative  w-1/2">
             <button
-              onClick={() => setIsCategoryOpen(!isCategoryOpen)}
+              onClick={() => {
+                setIsCategoryOpen((prevState) => !prevState);
+                setIsSubCategoryOpen(false); // Close subcategory dropdown when category is opened
+              }}
               className="w-full bg-light-green/10 border border-light-green/20  px-4 py-3 text-left flex items-center justify-between text-green-dark hover:bg-light-green/20 rounded-xl transition-colors duration-200"
             >
               <span className="text-span-responsive font-medium">
@@ -123,8 +125,9 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
               </span>
               <ArrowDown
                 strokeColor={`stroke-gray-500`}
-                className={`transition-transform duration-200 ${isCategoryOpen ? "rotate-180" : ""
-                  }`}
+                className={`transition-transform duration-200 ${
+                  isCategoryOpen ? "rotate-180" : ""
+                }`}
               />
             </button>
 
@@ -147,7 +150,10 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
           {subCategories?.length > 0 && (
             <div className="relative w-1/2  animate-fade-in transition-all duration-200">
               <button
-                onClick={() => setIsSubCategoryOpen((prevState) => !prevState)}
+                onClick={() => {
+                  setIsSubCategoryOpen((prevState) => !prevState);
+                  setIsCategoryOpen(false);
+                }}
                 className="w-full bg-light-green/10 border border-light-green/20 rounded-xl px-4 py-3 text-left flex items-center justify-between text-green-dark hover:bg-light-green/20 rounded-xl transition-colors duration-200"
               >
                 <span className="text-span-responsive font-medium">
@@ -155,8 +161,9 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
                 </span>
                 <ArrowDown
                   strokeColor={`stroke-gray-500`}
-                  className={`transition-transform duration-200 ${isSubCategoryOpen ? "rotate-180" : ""
-                    }`}
+                  className={`transition-transform duration-200 ${
+                    isSubCategoryOpen ? "rotate-180" : ""
+                  }`}
                 />
               </button>
 
@@ -180,7 +187,7 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
         {/* Results Count */}
         <div className="mt-4">
           <p className="text-span-responsive text-gray-700">
-            {totalFound || '0'} {t("results_found")}
+            {totalFound || "0"} {t("results_found")}
           </p>
         </div>
 

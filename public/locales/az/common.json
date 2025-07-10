@@ -433,6 +433,13 @@
         "message_least": "AZMessage must be at least 10 characters",
         "message_most": "AZMessage must be less than 500 characters"
       }
+    },
+    "services": {
+      "tow_ruck": "AZTow Truck",
+      "tow_truck_cargo": "AZTow Truck Cargo",
+      "tire_repair": "AZTire Repair",
+      "fuel_delivery": "AZFuel Delivery",
+      "battery_charge": "AZBattery Charge"
     }
   },
 

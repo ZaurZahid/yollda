@@ -162,10 +162,6 @@ export default function PartnerSignupSection({
     }
   };
 
-  // const selectedCountryCode = countryCodes.find(
-  //   (c) => c.code === formData.countryCode
-  // );
-
   const mapCountryCodeToCountryName = useMemo(() => {
     if (formData.country) {
       const foundCountry = countriesList?.find(
@@ -302,10 +298,11 @@ export default function PartnerSignupSection({
                               setIsCountryCodeOpen(!isCountryCodeOpen)
                             }
                             className={`bg-gray-50 w-[130px] h-11 border border-gray-300 rounded-xl px-3 py-2 text-gray-700 flex items-center space-s-2 hover:bg-gray-200 transition-colors duration-200 min-w-[100px]
-                                                    ${isCountryCodeOpen
-                                ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
-                                : ""
-                              }
+                                                    ${
+                                                      isCountryCodeOpen
+                                                        ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
+                                                        : ""
+                                                    }
                                                 `}
                           >
                             <img
@@ -318,8 +315,9 @@ export default function PartnerSignupSection({
                             </span>
                             <ArrowDown
                               strokeColor={`stroke-gray-500`}
-                              className={`transition-transform duration-200 !ms-auto ${isCountryCodeOpen ? "rotate-180" : ""
-                                }`}
+                              className={`transition-transform duration-200 !ms-auto ${
+                                isCountryCodeOpen ? "rotate-180" : ""
+                              }`}
                             />
                           </button>
 
@@ -364,10 +362,11 @@ export default function PartnerSignupSection({
                             onChange={(e) =>
                               handleInputChange("phoneNumber", e.target.value)
                             }
-                            className={`w-full border ${errors.phoneNumber
-                              ? "border-red-400"
-                              : "border-gray-300"
-                              } rounded-xl px-4 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
+                            className={`w-full border ${
+                              errors.phoneNumber
+                                ? "border-red-400"
+                                : "border-gray-300"
+                            } rounded-xl px-4 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
                           />
                         </div>
                       </div>
@@ -393,8 +392,9 @@ export default function PartnerSignupSection({
                           onChange={(e) =>
                             handleInputChange("email", e.target.value)
                           }
-                          className={`w-full border ${errors.email ? "border-red-400" : "border-gray-300"
-                            } rounded-xl px-4 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
+                          className={`w-full border ${
+                            errors.email ? "border-red-400" : "border-gray-300"
+                          } rounded-xl px-4 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
                         />
                       </div>
                       {errors.email && (
@@ -413,29 +413,33 @@ export default function PartnerSignupSection({
                         <button
                           type="button"
                           onClick={() => setIsCountryOpen(!isCountryOpen)}
-                          className={`w-full border ${errors.country
-                            ? "border-red-400"
-                            : "border-gray-300"
-                            } rounded-xl px-4 py-2 text-left flex items-center justify-between text-gray-900 hover:bg-gray-200 transition-colors duration-200
-                                            ${isCountryOpen & !errors.country
-                              ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
-                              : ""
-                            }
+                          className={`w-full border ${
+                            errors.country
+                              ? "border-red-400"
+                              : "border-gray-300"
+                          } rounded-xl px-4 py-2 text-left flex items-center justify-between text-gray-900 hover:bg-gray-200 transition-colors duration-200
+                                            ${
+                                              isCountryOpen & !errors.country
+                                                ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
+                                                : ""
+                                            }
                                         `}
                         >
                           <span
-                            className={`text-input-responsive ${formData.country
-                              ? "text-gray-900"
-                              : "text-gray-500"
-                              }`}
+                            className={`text-input-responsive ${
+                              formData.country
+                                ? "text-gray-900"
+                                : "text-gray-500"
+                            }`}
                           >
                             {mapCountryCodeToCountryName ||
                               t("signup_page.signup_section.form.country")}
                           </span>
                           <ArrowDown
                             strokeColor={`stroke-gray-500`}
-                            className={`transition-transform duration-200 !ms-auto ${isCountryOpen ? "rotate-180" : ""
-                              }`}
+                            className={`transition-transform duration-200 !ms-auto ${
+                              isCountryOpen ? "rotate-180" : ""
+                            }`}
                           />
                         </button>
 
@@ -473,25 +477,29 @@ export default function PartnerSignupSection({
                         <button
                           type="button"
                           onClick={() => setIsCityOpen(!isCityOpen)}
-                          className={`w-full border ${errors.city ? "border-red-400" : "border-gray-300"
-                            } rounded-xl px-4 py-2 text-left flex items-center justify-between text-gray-900 hover:bg-gray-200 transition-colors duration-200
-                                            ${isCityOpen & !errors.city
-                              ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
-                              : ""
-                            }
+                          className={`w-full border ${
+                            errors.city ? "border-red-400" : "border-gray-300"
+                          } rounded-xl px-4 py-2 text-left flex items-center justify-between text-gray-900 hover:bg-gray-200 transition-colors duration-200
+                                            ${
+                                              isCityOpen & !errors.city
+                                                ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
+                                                : ""
+                                            }
                                         `}
                         >
                           <span
-                            className={`text-input-responsive ${formData.city ? "text-gray-900" : "text-gray-500"
-                              }`}
+                            className={`text-input-responsive ${
+                              formData.city ? "text-gray-900" : "text-gray-500"
+                            }`}
                           >
                             {formData.city ||
                               t("signup_page.signup_section.form.city")}
                           </span>
                           <ArrowDown
                             strokeColor={`stroke-gray-500`}
-                            className={`transition-transform duration-200 !ms-auto ${isCityOpen ? "rotate-180" : ""
-                              }`}
+                            className={`transition-transform duration-200 !ms-auto ${
+                              isCityOpen ? "rotate-180" : ""
+                            }`}
                           />
                         </button>
 
@@ -543,12 +551,13 @@ export default function PartnerSignupSection({
                                 !formData.agreeToTerms
                               )
                             }
-                            className={`w-5 h-5 rounded border-2 transition-all duration-200 flex items-center justify-center ${formData.agreeToTerms
-                              ? "bg-light-green border-light-green"
-                              : errors.agreeToTerms
+                            className={`w-5 h-5 rounded border-2 transition-all duration-200 flex items-center justify-center ${
+                              formData.agreeToTerms
+                                ? "bg-light-green border-light-green"
+                                : errors.agreeToTerms
                                 ? "border-red-400"
                                 : "border-gray-300 hover:border-light-green"
-                              }`}
+                            }`}
                           >
                             {formData.agreeToTerms && (
                               <svg

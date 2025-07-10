@@ -5,62 +5,7 @@ import Pagination from "../ui/Pagination";
 import { useTranslation } from "next-i18next";
 import ArrowDown from "../ui/icons/ArrowDown";
 import HelpBanner from "../layout/HelpBanner";
-import SingleBlog from "./SingleBlog";
 import Articles from "./Articles";
-
-const blogsArticles = [
-  {
-    id: 1,
-    title:
-      "Bolt joins UN Global Compact: strengthening our commitment to sustainabilityGlobal Compact: strengthening our commitment to sustainabilityGlobal Compact: strengthening our commitment to sustainabilityGlobal Compact: strengthening our commitment to sustainabilityGlobal Compact: strengthening our commitment to sustainability strengthening our commitment to sustainability",
-    category: "Sustainability",
-    date: "April 24, 2025",
-    image:
-      "https://images.pexels.com/photos/1118448/pexels-photo-1118448.jpeg?auto=compress&cs=tinysrgb&w=800",
-  },
-  {
-    id: 2,
-    title:
-      "Bolt joins UN Global Compact: strengthening our commitment to sustainability",
-    category: "Sustainability",
-    date: "April 24, 2025",
-    image:
-      "https://images.pexels.com/photos/1118448/pexels-photo-1118448.jpeg?auto=compress&cs=tinysrgb&w=800",
-  },
-  {
-    id: 3,
-    title:
-      "Bolt joins UN Global Compact: strengthening our commitment to sustainability",
-    category: "Sustainability",
-    date: "April 24, 2025",
-    image:
-      "https://images.pexels.com/photos/1118448/pexels-photo-1118448.jpeg?auto=compress&cs=tinysrgb&w=800",
-  },
-  {
-    id: 4,
-    title: "New electric vehicle fleet expansion across major cities",
-    category: "Technology",
-    date: "April 20, 2025",
-    image:
-      "https://images.pexels.com/photos/3964704/pexels-photo-3964704.jpeg?auto=compress&cs=tinysrgb&w=800",
-  },
-  {
-    id: 5,
-    title: "Partnership announcement with local transportation authorities",
-    category: "Business",
-    date: "April 18, 2025",
-    image:
-      "https://images.pexels.com/photos/4173624/pexels-photo-4173624.jpeg?auto=compress&cs=tinysrgb&w=800",
-  },
-  {
-    id: 6,
-    title: "Safety improvements and new driver training programs launched",
-    category: "Safety",
-    date: "April 15, 2025",
-    image:
-      "https://images.pexels.com/photos/3807738/pexels-photo-3807738.jpeg?auto=compress&cs=tinysrgb&w=800",
-  },
-];
 
 export default function BlogsSection({ blogsData }) {
   const { t } = useTranslation("common");
@@ -80,8 +25,7 @@ export default function BlogsSection({ blogsData }) {
           </h1>
         </div>
 
-        <SingleBlog singleArticle={blogsArticles[0]} />
-        <Articles articles={blogsArticles} />
+        <Articles articlesData={blogsData} />
       </div>
     </div>
   );

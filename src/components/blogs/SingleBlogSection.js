@@ -4,7 +4,6 @@ import Pagination from "../ui/Pagination";
 import { useTranslation } from "next-i18next";
 import ArrowDown from "../ui/icons/ArrowDown";
 import HelpBanner from "../layout/HelpBanner";
-import SingleBlog from "./SingleBlog";
 import Articles from "./Articles";
 import SubscribeNewsletter from "../ui/SubscribeNewsletter";
 import { useRouter } from "next/router";

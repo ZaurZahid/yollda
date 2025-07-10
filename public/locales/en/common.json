@@ -433,6 +433,13 @@
         "message_least": "Message must be at least 10 characters",
         "message_most": "Message must be less than 500 characters"
       }
+    },
+    "services": {
+      "tow_ruck": "Tow Truck",
+      "tow_truck_cargo": "Tow Truck Cargo",
+      "tire_repair": "Tire Repair",
+      "fuel_delivery": "Fuel Delivery",
+      "battery_charge": "Battery Charge"
     }
   },
 
