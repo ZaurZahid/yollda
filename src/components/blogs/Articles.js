@@ -1,15 +1,180 @@
 import Link from "next/link";
-import { useTranslation } from "next-i18next";
+import { i18n, useTranslation } from "next-i18next";
 import React, { useState } from "react";
 import { trimText } from "../../hooks/trimText";
-const tabs = ["For passengers", "News", "Product update"];
+import ArrowDown from "../ui/icons/ArrowDown";
+import Pagination from "../ui/Pagination";
 
-function Articles({ articlesData }) {
-  console.log("ARTICLES DATA", articlesData.results);
-  const [blogsList, setBlogsList] = useState(articlesData?.results || []);
+function Articles({ articlesData, blogsCategories }) {
   const { t } = useTranslation("common");
+  const [blogsList, setBlogsList] = useState(articlesData?.results || []);
+  const [blogsCategoriesList, setBlogsCategoriesList] = useState(
+    blogsCategories?.results || []
+  );
+
+  const [currentPage, setCurrentPage] = useState(
+    articlesData?.current_page || 1
+  ); // Default from SSR
+  const [totalFound, setTotalFound] = useState(articlesData?.total); // Default from SSR
+  const [itemsPerPage] = useState(10);
+  const [totalItems, setTotalItems] = useState(articlesData?.last_page || 1); // Total number of items
+
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedSubCategory, setSelectedSubCategory] = useState(null);
+  const [subCategories, setSubCategories] = useState([]); // Assuming you will fetch subcategories later
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const [isSubCategoryOpen, setIsSubCategoryOpen] = useState(false);
+
+  const fetchSubCategories = async (id) => {
+    setIsSubCategoryOpen(false);
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/web/blog-categories/${id}`
+      );
+      const data = await response.json();
+
+      setSubCategories(data?.subcategories);
+    } catch (error) {}
+  };
+
+  // Function to fetch data for a specific page
+  const fetchBlogs = async (page, perPage, category) => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/web/blogs/?page=${page}&per_page=${perPage}&category=${category}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Country: "AZ", // Default to AZ if language is not recognized,
+            "Accept-Language": i18n.language, // Use the current language from i18n
+          },
+        }
+      );
+      const data = await response.json();
+
+      setCurrentPage(data.current_page);
+      setTotalFound(data.total);
+      setBlogsList(data.results); // Update newsList with new results
+      setTotalItems(data?.last_page); // Update total items based on the last page
+    } catch (error) {
+      console.error("Error fetching s:", error);
+    }
+  };
+
+  // Handle page change
+  const handlePageChange = async (pageNumber) => {
+    setCurrentPage(pageNumber);
+
+    await fetchBlogs(
+      pageNumber,
+      itemsPerPage,
+      selectedSubCategory?.slug || selectedCategory?.slug || null
+    );
+  };
+
+  const handleCategoryChange = async (category) => {
+    setSelectedCategory(category);
+    setIsCategoryOpen(false);
+
+    if (category?.has_subcategory) {
+      await fetchSubCategories(category.id);
+    } else {
+      await fetchBlogs(1, itemsPerPage, category?.slug);
+
+      setSubCategories([]); // Clear subcategories if no subcategory exists
+      setSelectedSubCategory(null); // Reset selected subcategory
+    }
+  };
+
+  const handleSubCategoryChange = (category) => {
+    setSelectedSubCategory(category);
+    setIsSubCategoryOpen(false);
+    fetchBlogs(1, itemsPerPage, category?.slug);
+  };
   return (
     <div className="space-y-8 mt-10 md:mt-20">
+      {/* Filters */}
+      <div className="flex flex-col sm:flex-row gap-4 mt-10 lg:mt-20">
+        {/* Category Filter */}
+        <div className="relative  w-full md:w-1/2 ">
+          <button
+            onClick={() => {
+              setIsCategoryOpen((prevState) => !prevState);
+              setIsSubCategoryOpen(false); // Close subcategory dropdown when category is opened
+            }}
+            className="w-full bg-light-green/10 border border-light-green/20  px-4 py-3 text-left flex items-center justify-between text-green-dark hover:bg-light-green/20 rounded-xl transition-colors duration-200"
+          >
+            <span className="text-span-responsive font-medium">
+              {selectedCategory?.title || t("buttons.select")}
+            </span>
+            <ArrowDown
+              strokeColor={`stroke-gray-500`}
+              className={`transition-transform duration-200 ${
+                isCategoryOpen ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+
+          {isCategoryOpen && (
+            <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-20 overflow-y-auto max-h-[300px] custom-contact-scrollbar">
+              {blogsCategoriesList.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => handleCategoryChange(category)}
+                  className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 text-span-responsive first:rounded-t-lg last:rounded-b-lg"
+                >
+                  {category.title}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Region Filter */}
+        {subCategories?.length > 0 && (
+          <div className="relative  w-full md:w-1/2 animate-fade-in transition-all duration-200">
+            <button
+              onClick={() => {
+                setIsSubCategoryOpen((prevState) => !prevState);
+                setIsCategoryOpen(false);
+              }}
+              className="w-full bg-light-green/10 border border-light-green/20 rounded-xl px-4 py-3 text-left flex items-center justify-between text-green-dark hover:bg-light-green/20 rounded-xl transition-colors duration-200"
+            >
+              <span className="text-span-responsive font-medium">
+                {selectedSubCategory?.title || t("buttons.select")}
+              </span>
+              <ArrowDown
+                strokeColor={`stroke-gray-500`}
+                className={`transition-transform duration-200 ${
+                  isSubCategoryOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {isSubCategoryOpen && (
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-20 overflow-y-auto max-h-[300px] custom-contact-scrollbar">
+                {subCategories.map((subCategory) => (
+                  <button
+                    key={subCategory.id}
+                    onClick={() => handleSubCategoryChange(subCategory)}
+                    className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 text-span-responsive first:rounded-t-lg last:rounded-b-lg"
+                  >
+                    {subCategory.title}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Results Count */}
+      <div className="mt-4">
+        <p className="text-span-responsive text-gray-700">
+          {totalFound || "0"} {t("results_found")}
+        </p>
+      </div>
       {/* Singlie blog  */}
       <div className="flex flex-wrap gap-2 md:gap-1 md:space-s-4">
         {blogsList[0]?.tags.map((tab) => (
@@ -34,6 +199,35 @@ function Articles({ articlesData }) {
           <h6 className="text-h6-responsive font-medium text-gray-900 leading-relaxed mt-4">
             {trimText(blogsList[0]?.title, 240)}
           </h6>
+          <div
+            className="lg:w-[80%]
+                        prose-h1:text-h1-responsive prose-h1:mt-12 prose-h1:mb-8 
+                        prose-h2:text-h2-responsive prose-h2:mt-12 prose-h2:mb-8 
+                        prose-h3:text-h3-responsive prose-h3:mt-8 prose-h3:mb-6
+                        prose-h4:text-h4-responsive prose-h4:mt-8 prose-h4:mb-6
+                        prose-h5:text-h5-responsive prose-h5:mt-6 prose-h5:mt-4
+                        prose-h6:text-h6-responsive prose-h6:mt-4 prose-h6:mt-0
+
+                        prose-headings:text-green-dark prose-headings:!font-bold
+                        prose-p:text-gray-500
+                        prose-a:text-gray-800 prose-a:underline
+                        prose-strong:text-gray-800
+
+                        prose-hr:my-6
+                        prose-hr:md:my-10
+                        prose-hr:lg:my-16
+                        prose-hr:h-[2px]
+                        prose-hr:bg-gray-200
+                        prose-hr:border-0
+
+                        prose-ul:text-gray-500 prose-ol:text-gray-500
+                        prose-ul:list-disc
+                        prose-li:list-inside
+                        prose-li:marker:text-gray-500
+                        prose-li:marker:-pr-20
+                        "
+            dangerouslySetInnerHTML={{ __html: blogsList[0]?.short_content }}
+          />
 
           <a
             href={`/blogs/${blogsList[0]?.slug}`}
@@ -173,6 +367,13 @@ function Articles({ articlesData }) {
 
         return blogRows;
       })()}
+
+      <Pagination
+        totalPages={totalItems}
+        onPageChange={handlePageChange}
+        currentPage={currentPage}
+        className="mt-20"
+      />
     </div>
   );
 }

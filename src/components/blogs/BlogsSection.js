@@ -7,7 +7,7 @@ import ArrowDown from "../ui/icons/ArrowDown";
 import HelpBanner from "../layout/HelpBanner";
 import Articles from "./Articles";
 
-export default function BlogsSection({ blogsData }) {
+export default function BlogsSection({ blogsData, blogsCategories }) {
   const { t } = useTranslation("common");
 
   const breadcrumbItems = [
@@ -25,7 +25,7 @@ export default function BlogsSection({ blogsData }) {
           </h1>
         </div>
 
-        <Articles articlesData={blogsData} />
+        <Articles articlesData={blogsData} blogsCategories={blogsCategories} />
       </div>
     </div>
   );

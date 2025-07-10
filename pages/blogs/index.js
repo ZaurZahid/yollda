@@ -6,7 +6,7 @@ import { fetchFromAPI } from "../../src/hooks/apiFetcher";
 import NewsSection from "../../src/components/blogs/NewsSection";
 import BlogsSection from "../../src/components/blogs/BlogsSection";
 
-export default function Blogs({ blogsData, error }) {
+export default function Blogs({ blogsData, blogsCategories, error }) {
   const { t } = useTranslation("common");
 
   if (error) {
@@ -26,20 +26,22 @@ export default function Blogs({ blogsData, error }) {
         className="h-[530px] lg:h-[800px] w-full object-cover -mt-24 md:-mt-32 lg:-mt-24"
       />
 
-      <BlogsSection blogsData={blogsData} />
+      <BlogsSection blogsData={blogsData} blogsCategories={blogsCategories} />
     </Layout>
   );
 }
 
 export async function getServerSideProps({ locale }) {
   try {
-    const [blogsData] = await Promise.all([
-      fetchFromAPI("/api/v1/web/blogs/?page=1&per_page=20", locale),
+    const [blogsData, blogsCategories] = await Promise.all([
+      fetchFromAPI("/api/v1/web/blogs/?page=1&per_page=10", locale),
+      fetchFromAPI("/api/v1/web/blog-categories/?page=1&per_page=20", locale),
     ]);
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
         blogsData,
+        blogsCategories,
       },
     };
   } catch (error) {
@@ -48,7 +50,7 @@ export async function getServerSideProps({ locale }) {
     return {
       props: {
         ...(await serverSideTranslations(locale, ["common"])),
-
+        blogsCategories: null,
         blogsData: null,
         error: "Failed to load data.",
       },

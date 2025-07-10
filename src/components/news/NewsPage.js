@@ -112,7 +112,7 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
         {/* Filters */}
         <div className="flex flex-col sm:flex-row gap-4 mt-10 lg:mt-20">
           {/* Category Filter */}
-          <div className="relative  w-1/2">
+          <div className="relative  w-full md:w-1/2">
             <button
               onClick={() => {
                 setIsCategoryOpen((prevState) => !prevState);
@@ -148,7 +148,7 @@ export default function NewsPage({ newsData, newsCategoriesData }) {
 
           {/* Region Filter */}
           {subCategories?.length > 0 && (
-            <div className="relative w-1/2  animate-fade-in transition-all duration-200">
+            <div className="relative w-full md:w-1/2  animate-fade-in transition-all duration-200">
               <button
                 onClick={() => {
                   setIsSubCategoryOpen((prevState) => !prevState);
