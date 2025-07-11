@@ -349,7 +349,7 @@ export default function ContactTopSection({
                     {t("contactus_page.form.heading")}
                   </h2>
                   <p className="text-span-large-responsive text-white/80 ml-2">
-                    t{t("contactus_page.form.description")}
+                    {t("contactus_page.form.description")}
                   </p>
                 </div>
               )}
@@ -366,11 +366,10 @@ export default function ContactTopSection({
                         onChange={(e) =>
                           handleInputChange("first_name", e.target.value)
                         }
-                        className={`w-full bg-green-secondary-dark border ${
-                          errors.first_name
+                        className={`w-full bg-green-secondary-dark border ${errors.first_name
                             ? "border-red-400"
                             : "border-white/20"
-                        } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
+                          } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
                       />
                       {errors.first_name && (
                         <p className="text-red-400 text-span-small-responsive mt-1">
@@ -386,11 +385,10 @@ export default function ContactTopSection({
                         onChange={(e) =>
                           handleInputChange("last_name", e.target.value)
                         }
-                        className={`w-full bg-green-secondary-dark border ${
-                          errors.last_name
+                        className={`w-full bg-green-secondary-dark border ${errors.last_name
                             ? "border-red-400"
                             : "border-white/20"
-                        } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
+                          } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
                       />
                       {errors.last_name && (
                         <p className="text-red-400 text-span-small-responsive mt-1">
@@ -415,9 +413,8 @@ export default function ContactTopSection({
                         onChange={(e) =>
                           handleInputChange("email", e.target.value)
                         }
-                        className={`w-full bg-green-secondary-dark border ${
-                          errors.email ? "border-red-400" : "border-white/20"
-                        } rounded-xl pl-12 pr-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
+                        className={`w-full bg-green-secondary-dark border ${errors.email ? "border-red-400" : "border-white/20"
+                          } rounded-xl pl-12 pr-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
                       />
                     </div>
                     {errors.email && (
@@ -438,11 +435,10 @@ export default function ContactTopSection({
                             setIsCountryCodeOpen(!isCountryCodeOpen)
                           }
                           className={`bg-green-secondary-dark border border-white/20 rounded-xl px-4 py-2 w-[130px] text-white flex items-center space-s-2  transition-colors duration-200 min-w-[100px]
-                                                    ${
-                                                      isCountryCodeOpen
-                                                        ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
-                                                        : ""
-                                                    }
+                                                    ${isCountryCodeOpen
+                              ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
+                              : ""
+                            }
                                                     `}
                         >
                           <img
@@ -455,9 +451,8 @@ export default function ContactTopSection({
                           </span>
                           <ArrowDown
                             strokeColor={`stroke-gray-500`}
-                            className={`transition-transform duration-200 !ms-auto ${
-                              isCountryCodeOpen ? "rotate-180" : ""
-                            }`}
+                            className={`transition-transform duration-200 !ms-auto ${isCountryCodeOpen ? "rotate-180" : ""
+                              }`}
                           />
                         </button>
 
@@ -502,9 +497,8 @@ export default function ContactTopSection({
                           onChange={(e) =>
                             handleInputChange("phone", e.target.value)
                           }
-                          className={`w-full bg-green-secondary-dark border ${
-                            errors.phone ? "border-red-400" : "border-white/20"
-                          } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
+                          className={`w-full bg-green-secondary-dark border ${errors.phone ? "border-red-400" : "border-white/20"
+                            } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive`}
                         />
                       </div>
                     </div>
@@ -521,34 +515,30 @@ export default function ContactTopSection({
                       <button
                         type="button"
                         onClick={() => setIsServiceOpen(!isServiceOpen)}
-                        className={`w-full bg-green-secondary-dark border ${
-                          errors.service_type
+                        className={`w-full bg-green-secondary-dark border ${errors.service_type
                             ? "border-red-400"
                             : "border-white/20"
-                        } rounded-xl px-4 py-3 text-left flex items-center justify-between text-white  transition-colors duration-200
-                                                ${
-                                                  isServiceOpen &
-                                                  !errors.service_type
-                                                    ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
-                                                    : ""
-                                                }
+                          } rounded-xl px-4 py-3 text-left flex items-center justify-between text-white  transition-colors duration-200
+                                                ${isServiceOpen &
+                            !errors.service_type
+                            ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
+                            : ""
+                          }
                                             `}
                       >
                         <span
-                          className={`text-input-small-responsive ${
-                            formData.service_type
+                          className={`text-input-small-responsive ${formData.service_type
                               ? "text-white"
                               : "text-white/60"
-                          }`}
+                            }`}
                         >
                           {selectedServiceType?.title ||
                             t("contactus_page.form.services")}
                         </span>
                         <ArrowDown
                           strokeColor={`stroke-gray-500`}
-                          className={`transition-transform duration-200 ${
-                            isServiceOpen ? "rotate-180" : ""
-                          }`}
+                          className={`transition-transform duration-200 ${isServiceOpen ? "rotate-180" : ""
+                            }`}
                         />
                       </button>
 
@@ -583,30 +573,26 @@ export default function ContactTopSection({
                       <button
                         type="button"
                         onClick={() => setIsCountryOpen(!isCountryOpen)}
-                        className={`w-full bg-green-secondary-dark border ${
-                          errors.country ? "border-red-400" : "border-white/20"
-                        } rounded-xl px-4 py-3 text-left flex items-center justify-between text-white  transition-colors duration-200
-                                                ${
-                                                  isCountryOpen &
-                                                  !errors.country
-                                                    ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
-                                                    : ""
-                                                }
+                        className={`w-full bg-green-secondary-dark border ${errors.country ? "border-red-400" : "border-white/20"
+                          } rounded-xl px-4 py-3 text-left flex items-center justify-between text-white  transition-colors duration-200
+                                                ${isCountryOpen &
+                            !errors.country
+                            ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
+                            : ""
+                          }
                                             `}
                       >
                         <span
-                          className={`text-input-small-responsive ${
-                            formData.country ? "text-white" : "text-white/60"
-                          }`}
+                          className={`text-input-small-responsive ${formData.country ? "text-white" : "text-white/60"
+                            }`}
                         >
                           {mapCountryCodeToCountryName ||
                             t("contactus_page.form.country")}
                         </span>
                         <ArrowDown
                           strokeColor={`stroke-gray-500`}
-                          className={`transition-transform duration-200 ${
-                            isCountryOpen ? "rotate-180" : ""
-                          }`}
+                          className={`transition-transform duration-200 ${isCountryOpen ? "rotate-180" : ""
+                            }`}
                         />
                       </button>
 
@@ -646,9 +632,8 @@ export default function ContactTopSection({
                         }
                         rows={4}
                         maxLength={120}
-                        className={`w-full bg-green-secondary-dark border ${
-                          errors.message ? "border-red-400" : "border-white/20"
-                        } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive resize-none`}
+                        className={`w-full bg-green-secondary-dark border ${errors.message ? "border-red-400" : "border-white/20"
+                          } rounded-xl px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-small-responsive resize-none`}
                       />
                       <div className="absolute bottom-3 right-3 text-span-small-responsive text-white/50">
                         {formData.message.length}/120

@@ -1,29 +1,19 @@
 Footer links ,
 Links in navbar(burger) 
-Home page  news& update section links and blogs.
-Home page 4 banners if not corret ones
+Home page  news& update section links and blogs? burda news apiye sorgudur 6si fetch olunacaq?
 
 About page 2 banners
+Blogs top banner
+News top banner
 
 Contact page top section , 3 support blocks content
 Contact map google api key.
 
-Blogs top banner
+Get yolda app button links
 
-News top banner
+Countries deyisilinde terms de ne olacaq? ve apiye country fieldi hacan gonderilecek generally?
 
-Signup page top banner if not correct one
-Signup page get started as section steps if not correct
-Signup page revenue stream section benefits if not correct ones.
-SIgnup page partner section benefits if not correct ones.
+signup apileri CITY missing
+Vehicles list in your fleet signup
 
-
-Fleet top signup banner if not correct one
-Fleet page why partner us section benefits if not correct ones
-Fleet page try it section benefits if not correct ones
-
-
-
-
-
-Get yolda  app button link
+cookie listini verin

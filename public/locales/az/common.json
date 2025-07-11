@@ -435,7 +435,7 @@
       }
     },
     "services": {
-      "tow_ruck": "AZTow Truck",
+      "tow_truck": "AZTow Truck",
       "tow_truck_cargo": "AZTow Truck Cargo",
       "tire_repair": "AZTire Repair",
       "fuel_delivery": "AZFuel Delivery",

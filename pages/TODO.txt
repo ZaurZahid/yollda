@@ -14,14 +14,3 @@ bezi yerlerde object?.key yazanda typolar olur, diqqetle yoxla ---- for ex:objec
 ---------------
 CURRENT TODOS
 ---------------
-1. contactda add BATTERY_CHARGE missing +translations DONE
-2. pagination for it DONE
-3. GET Blog-list 
-SingleBlog+Articles birlesdir bir component ele, DONE
- cunki indexle duz 7 dene styledaki kimi getsin. Bu mentiqden termsde istifade etmisem dizayn ucun.
-Burdada eyni mentiq olacaq, 7den sonra sonra yeni eyni dizayn.
-articles.map bir defe olmalidir 7-7-7 dizayn bele olacaq. DONE 
-
-4. Get in touch, You can reach us any time translation in contact DONE
-
-8. POST Contact implementation DONE

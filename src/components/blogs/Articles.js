@@ -8,7 +8,7 @@ import Pagination from "../ui/Pagination";
 function Articles({ articlesData, blogsCategories }) {
   const { t } = useTranslation("common");
   const [blogsList, setBlogsList] = useState(articlesData?.results || []);
-  const [blogsCategoriesList, setBlogsCategoriesList] = useState(
+  const [blogsCategoriesList] = useState(
     blogsCategories?.results || []
   );
 
@@ -35,7 +35,7 @@ function Articles({ articlesData, blogsCategories }) {
       const data = await response.json();
 
       setSubCategories(data?.subcategories);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   // Function to fetch data for a specific page
@@ -92,6 +92,7 @@ function Articles({ articlesData, blogsCategories }) {
     setIsSubCategoryOpen(false);
     fetchBlogs(1, itemsPerPage, category?.slug);
   };
+
   return (
     <div className="space-y-8 mt-10 md:mt-20">
       {/* Filters */}
@@ -110,9 +111,8 @@ function Articles({ articlesData, blogsCategories }) {
             </span>
             <ArrowDown
               strokeColor={`stroke-gray-500`}
-              className={`transition-transform duration-200 ${
-                isCategoryOpen ? "rotate-180" : ""
-              }`}
+              className={`transition-transform duration-200 ${isCategoryOpen ? "rotate-180" : ""
+                }`}
             />
           </button>
 
@@ -146,9 +146,8 @@ function Articles({ articlesData, blogsCategories }) {
               </span>
               <ArrowDown
                 strokeColor={`stroke-gray-500`}
-                className={`transition-transform duration-200 ${
-                  isSubCategoryOpen ? "rotate-180" : ""
-                }`}
+                className={`transition-transform duration-200 ${isSubCategoryOpen ? "rotate-180" : ""
+                  }`}
               />
             </button>
 
@@ -177,7 +176,7 @@ function Articles({ articlesData, blogsCategories }) {
       </div>
       {/* Singlie blog  */}
       <div className="flex flex-wrap gap-2 md:gap-1 md:space-s-4">
-        {blogsList[0]?.tags.map((tab) => (
+        {blogsList?.[0]?.tags?.map((tab) => (
           <button
             key={tab}
             className={`px-4 py-2 text-span-responsive cursor-default font-medium rounded-full transition-all duration-200 text-green-dark bg-light-green/20`}
@@ -187,8 +186,8 @@ function Articles({ articlesData, blogsCategories }) {
         ))}
       </div>
 
-      {blogsList[0] && (
-        <article className="mt-10 rounded-2xl">
+      {blogsList?.[0] && (
+        <article className="!mb-16 rounded-2xl">
           <div className="flex items-center">
             <img src="/calendar.svg" className="me-2" alt="calendar icon" />
             <span className="text-span-small-responsive text-gray-500">
@@ -372,7 +371,7 @@ function Articles({ articlesData, blogsCategories }) {
         totalPages={totalItems}
         onPageChange={handlePageChange}
         currentPage={currentPage}
-        className="mt-20"
+        className="!mt-10 lg:!mt-20"
       />
     </div>
   );

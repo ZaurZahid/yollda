@@ -35,7 +35,7 @@ export async function getServerSideProps({ locale }) {
   try {
     const [blogsData, blogsCategories] = await Promise.all([
       fetchFromAPI("/api/v1/web/blogs/?page=1&per_page=10", locale),
-      fetchFromAPI("/api/v1/web/blog-categories/?page=1&per_page=20", locale),
+      fetchFromAPI("/api/v1/web/blog-categories/?page=1&per_page=40", locale),
     ]);
     return {
       props: {

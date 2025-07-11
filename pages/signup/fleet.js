@@ -19,7 +19,7 @@ export default function FleetSignup({
   /* siteData, newsData, */ error,
 }) {
   const { t } = useTranslation("common");
-  const [isSubmitted, setIsSubmitted] = useState(true);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   if (error) {
     return <h1>{error}</h1>;
