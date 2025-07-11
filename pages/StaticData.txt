@@ -1,0 +1,29 @@
+Footer links ,
+Links in navbar(burger) 
+Home page  news& update section links and blogs.
+Home page 4 banners if not corret ones
+
+About page 2 banners
+
+Contact page top section , 3 support blocks content
+Contact map google api key.
+
+Blogs top banner
+
+News top banner
+
+Signup page top banner if not correct one
+Signup page get started as section steps if not correct
+Signup page revenue stream section benefits if not correct ones.
+SIgnup page partner section benefits if not correct ones.
+
+
+Fleet top signup banner if not correct one
+Fleet page why partner us section benefits if not correct ones
+Fleet page try it section benefits if not correct ones
+
+
+
+
+
+Get yolda  app button link
