@@ -26,6 +26,7 @@ export default function HomePage({
   shortAbout,
   benefits,
   alternatingSlides,
+  newsData,
   error,
 }) {
   const { t } = useTranslation("common");
@@ -69,14 +70,14 @@ export default function HomePage({
       />
       <DownloadApps />
 
-      <NewsUpdates />
+      <NewsUpdates newsData={newsData} />
     </Layout>
   );
 }
 
 export async function getServerSideProps({ locale }) {
   try {
-    const [ourServicesData, shortAbout, benefits, alternatingSlides] =
+    const [ourServicesData, shortAbout, benefits, alternatingSlides, newsData] =
       await Promise.all([
         fetchFromAPI("/api/v1/web/our-services/?page=1&per_page=10", locale),
         fetchFromAPI("/api/v1/web/short-about/", locale),
@@ -85,6 +86,7 @@ export async function getServerSideProps({ locale }) {
           "/api/v1/web/attractive-info/?info_type=home_alternating_sides",
           locale
         ),
+        fetchFromAPI("/api/v1/web/news/?page=1&per_page=6", locale),
       ]);
     return {
       props: {
@@ -93,6 +95,7 @@ export async function getServerSideProps({ locale }) {
         shortAbout,
         alternatingSlides,
         benefits,
+        newsData,
       },
     };
   } catch (error) {
@@ -105,6 +108,7 @@ export async function getServerSideProps({ locale }) {
         shortAbout: null,
         benefits: null,
         alternatingSlides: null,
+        newsData: null,
         error: "Failed to load data.",
       },
     };

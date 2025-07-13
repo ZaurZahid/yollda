@@ -191,6 +191,7 @@
         "description": "You're the owner of one or more tow trucks. Join Yollda to manage your drivers, grow your business, and accept service requests through our platform.",
         "phone_number": "Phone number",
         "email": "Email Address",
+        "services": "Services",
         "country": "Country",
         "city": "City",
         "iagree": "I agree to the",

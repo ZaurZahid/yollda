@@ -192,6 +192,7 @@
         "phone_number": "AZPhone number",
         "email": "AZEmail Address",
         "country": "AZCountry",
+        "services": "AZServices",
         "city": "AZCity",
         "iagree": "AZI agree to the",
         "and": "AZand",

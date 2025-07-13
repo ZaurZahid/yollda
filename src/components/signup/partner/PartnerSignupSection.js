@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import LinkIcon from "./../../ui/icons/Link";
 import ArrowDown from "../../ui/icons/ArrowDown";
 import { useTranslation } from "next-i18next";
+import { useSearchParams } from "next/navigation";
 
 const cities = [
   "Baku",
@@ -22,10 +23,40 @@ export default function PartnerSignupSection({
 }) {
   const { t } = useTranslation("common");
 
+  const params = useSearchParams();
+  const services = [
+    {
+      id: 1,
+      type: "TOW_TRUCK",
+      title: t("contactus_page.services.tow_truck"),
+    },
+    {
+      id: 2,
+      type: "TOW_TRUCK_CARGO",
+      title: t("contactus_page.services.tow_truck_cargo"),
+    },
+    {
+      id: 3,
+      type: "TIRE_REPAIR",
+      title: t("contactus_page.services.tire_repair"),
+    },
+    {
+      id: 4,
+      type: "FUEL_DELIVERY",
+      title: t("contactus_page.services.fuel_delivery"),
+    },
+    {
+      id: 5,
+      type: "BATTERY_CHARGE",
+      title: t("contactus_page.services.battery_charge"),
+    },
+  ];
+
   const [formData, setFormData] = useState({
     phoneNumber: "",
     countryCode: "+994",
     email: "",
+    service_type: params.get("service_type") || "",
     country: "",
     city: "",
     agreeToTerms: false,
@@ -37,10 +68,12 @@ export default function PartnerSignupSection({
   const [isCountryCodeOpen, setIsCountryCodeOpen] = useState(false);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [isCityOpen, setIsCityOpen] = useState(false);
+  const [isServiceOpen, setIsServiceOpen] = useState(false);
 
   const countryCodeDropdownRef = useRef(null);
   const countryDropdownRef = useRef(null);
   const cityDropdownRef = useRef(null);
+  const servicesDropdownRef = useRef(null);
 
   // Close the dropdowns when clicking outside
   useEffect(() => {
@@ -175,6 +208,10 @@ export default function PartnerSignupSection({
   const selectedCountryCode = useMemo(() => {
     return countriesList?.find((c) => c.phone_code === formData.countryCode);
   }, [formData.countryCode]);
+
+  const selectedServiceType = useMemo(() => {
+    return services?.find((c) => c.type === formData.service_type);
+  }, [formData.service_type]);
 
   return (
     <section className="relative">
@@ -524,6 +561,71 @@ export default function PartnerSignupSection({
                       {errors.city && (
                         <p className="text-red-500 text-span-small-responsive mt-1">
                           {errors.city}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label className="block text-span-small-responsive font-bold text-gray-800 mb-2">
+                        {t("signup_page.signup_section.form.services")}
+                      </label>
+                      <div className="relative" ref={servicesDropdownRef}>
+                        <button
+                          type="button"
+                          onClick={() => setIsServiceOpen(!isServiceOpen)}
+                          className={`w-full border ${
+                            errors.city ? "border-red-400" : "border-gray-300"
+                          } rounded-xl px-4 py-2 text-left flex items-center justify-between text-gray-900 hover:bg-gray-200 transition-colors duration-200
+                                            ${
+                                              isServiceOpen &
+                                              !errors.service_type
+                                                ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
+                                                : ""
+                                            }
+                                        `}
+                        >
+                          <span
+                            className={`text-input-responsive ${
+                              formData.service_type
+                                ? "text-gray-900"
+                                : "text-gray-500"
+                            }`}
+                          >
+                            {selectedServiceType?.title ||
+                              t("contactus_page.form.services")}
+                          </span>
+                          <ArrowDown
+                            strokeColor={`stroke-gray-500`}
+                            className={`transition-transform duration-200 ${
+                              isServiceOpen ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+
+                        {isServiceOpen && (
+                          <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-40 max-h-60 overflow-y-auto custom-contact-scrollbar">
+                            {services.map((service) => (
+                              <button
+                                key={service.id}
+                                type="button"
+                                onClick={() => {
+                                  handleInputChange(
+                                    "service_type",
+                                    service.type
+                                  );
+                                  setIsServiceOpen(false);
+                                }}
+                                className="w-full px-4 py-3 text-left hover:bg-gray-200 transition-colors duration-200 text-span-responsive first:rounded-t-xl last:rounded-b-xl text-gray-700"
+                              >
+                                {service.title}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                      {errors.service_type && (
+                        <p className="text-red-400 text-span-small-responsive mt-1">
+                          {errors.service_type}
                         </p>
                       )}
                     </div>
