@@ -1,211 +1,548 @@
 {
-  "navigation": {
-    "home": "Ana səhifə",
-    "about": "Haqqımızda",
-    "features": "Əsas xüsusiyyətlər",
-    "shopping_centers": "Ticarət Mərkəzləri",
-    "faq": "FAQ",
-    "blog": "Bloq",
-    "contact": "Əlaqə",
-    "join": "Qoşulun"
+  "navbar": {
+    "all_needs": "AZAll Your Roadside Needs",
+    "manage_your_fleet": "AZManage Your Fleet"
   },
-  "footer": {
-    "copyright": "Bütün hüquqlar qorunur",
-      "available_text": "AZ Available for iOS and Android devices.",
-     "headings": {
-        "products": "Mallar",
-        "earn": "Qazanc",
-        "company": "Shirket",
-        "support": "Komek",
-        "safety": "Tehlukesizlik",
-        "locations": "Lokasiyalar"
-      },
-    "links": {
-      "privacy": "Məxfilik",
-      "termAndCondition": "İstifadə Şərtləri",
-      "about": "Haqqımızda",
-      "careers": "Karyera",
-      "blogs": "Bloglar",
-      "brand_guideness": "Brand Telimati",
-      "security": "Guvenlik",
-      "cookies": "Cerezler",
-      "assist": {
-        "tow": "Tow",
-        "fuel": "Benzin",
-        "battery": "Batareya",
-        "tire": "Teker"
-      },
-      "earn_sub": {
-        "yollda_partners": "Yollda Partyorlari",
-        "tow_drivers": "Tow Suruculeri",
-        "yollda_fleets": "Yollda Fllet"
-      },
-      "support": {
-        "yollda_partners": "Yollda Partyorlari",
-        "tow_drivers": "Tow Suruculeri",
-        "yollda_fleets": "Yollda Fllet",
-        "contact_us": "Bizimle elaqe"
-      },
-      "safety": {
-        "driver_safety": "Surucu tehlukesizliyi"
-      },
-      "locations": {
-        "our_cities": "Bizim seherlerimiz"
-      }
-    }
+  "navigation": {
+    "home": "AZHome",
+    "about": "AZAbout Us",
+    "features": "AZMain Features",
+    "shopping_centers": "AZShopping Centers",
+    "faq": "AZFAQ",
+    "blog": "AZBlog",
+    "contact": "AZContact",
+    "join": "AZJoin Us",
+    "news": "AZNews",
+    "blogs": "AZBlogs"
   },
   "onboarding": {
-    "title_header": "Yerli",
-    "title_header_span": "alış verişə",
-    "title_footer": "rəqəmsal imkanlar gətirir.",
-    "subtitle": "Bina, Sədərək və Abşeron ticarət mərkəzlərindəki mağazaları asanlıqla tapın. AllVer xəritəsi ilə vaxtınıza qənaət edin və ən yaxın mağazaları tez bir zamanda kəşf edin.",
+    "title_header": "AZBringing",
+    "title_header_span": "AZlocal shopping",
+    "title_footer": "AZto the digital age.",
+    "subtitle": "AZEasily find stores in Bina, Sederek, and Absheron shopping centers. Save time with the AllVer map and quickly discover nearby stores.",
     "options": {
-      "seller": "Mən satıcıyam",
-      "buyer": "Mən alıcıyam"
+      "seller": "AZI am a seller",
+      "buyer": "AZI am a buyer"
     }
   },
-  "valuesSection": {
-    "title_header": "AllVer",
-    "title_header_span": "alış-verişi",
-    "title_footer": "daha asan və əlçatan edir.",
-    "valuesTitle": "Dəyərlərimiz:",
-    "values": {
-      "convenience": "Rahatlıq: Mağazaları əvvəlcədən nəzərdən keçirmək imkanı.",
-      "innovation": "Yenilik: İnteraktiv xəritələr və digər innovativ xüsusiyyətlər.",
-      "community": "Cəmiyyət: Yerli ticarətçilərə dəstək və yerli alış-verişə töhfə."
-    }
-  },
-  "howItWorks": {
-    "steps": {
-      "step_1": {
-        "title": "Ticarətçiləri Axtarın",
-        "description": "Kateqoriyalara və populyarlığa görə mağazaları asanlıqla tapın."
-      },
-      "step_2": {
-        "title": "Xəritə ilə Mağazaları Tapın",
-        "description": "İnteraktiv xəritələrlə ticarət mərkəzlərində mağazaların yerini tapın."
-      },
-      "step_3": {
-        "title": "Təklifləri Kəşf Edin",
-        "description": "İstifadəçilər üçün eksklüziv endirimləri kəşf edin."
-      }
-    }
-  },
-  "faqSection": {
-    "title": "Tez-tez verilən suallar",
-    "subtitle": "AllVer haqqında ümumi suallara cavab tapın.",
-    "questions": [
-      {
-        "question": "AllVer nədir?",
-        "answer": "AllVer, alış-verişi sadələşdirən və yerli ticarət mərkəzlərində mağazaları və eksklüziv təklifləri tapmağa kömək edən platformadır."
-      },
-      {
-        "question": "Mağazanı necə axtara bilərəm?",
-        "answer": "Mağazanı asanlıqla tapmaq üçün interaktiv xəritəmizdən istifadə edə və ya kateqoriyalar və populyarlığa görə axtarış edə bilərsiniz."
-      },
-      {
-        "question": "AllVer istifadəsi pulsuzdurmu?",
-        "answer": "Bəli, AllVer alıcılar üçün tamamilə pulsuzdur. Satıcılar üçün isə əlavə premium seçimlər mövcuddur."
-      },
-      {
-        "question": "AllVer vasitəsilə pul qazana bilərəmmi?",
-        "answer": "Bəli, AllVer platforması vasitəsilə dostlarınızı və ticarətçiləri dəvət edərək pul qazana bilərsiniz. Daha çox insan dəvət etdikcə, daha çox qazanacaqsınız."
-      },
-      {
-        "question": "Yerli ticarətçiləri AllVer vasitəsilə necə dəstəkləyə bilərəm?",
-        "answer": "AllVer-də sadalanan yerli mağazalardan alış-veriş edərək, birbaşa yerli iqtisadiyyatı və cəmiyyəti dəstəkləyirsiniz."
-      },
-      {
-        "question": "AllVer tətbiqini necə əlavə edə bilərəm?",
-        "answer": "Tətbiqi Apple App Store və Google Play Store-dan yükləyə bilərsiniz."
-      },
-      {
-        "question": "Eksklüziv təkliflər varmı?",
-        "answer": "Bəli, tətbiqdə ticarətçi kimi özünüzü tanıtmaq, mükafatlar qazanmaq və daha çox unikal xüsusiyyətlərdən istifadə etmək üçün bir çox eksklüziv təkliflər mövcuddur."
-      }
-    ]
-  },
-  "blogSection": {
-    "title": "Sizin üçün maraqlı məlumatlar",
-    "subtitle": "Ticarətçi kateqoriyalarını asanlıqla gözdən keçirin."
-  },
+
   "contactUsSection": {
-    "title": "Sualınız var? Bizdən soruşa bilərsiniz.",
-    "subtitle": "Hər hansı bir sualınız varsa, bizimlə əlaqə saxlayın.",
     "contactMethods": {
-      "phone": {
-        "label": "Telefon:"
-      },
       "phoneNumber": {
-        "label": "Telefon nömrəsi"
-      },
-      "email": {
-        "label": "Email:"
+        "label": "AZPhone Number"
       }
     }
   },
+
   "joinListModal": {
     "header": {
-      "title": "Siz də listə qoşulun",
-      "subtitle": "Bunu yazmaq lazimdir.... Mauris vestibulum viverra fames blandit suspendisse elementum diam. Purus nisi vestibulum amet nibh. Auctor sed donec at in praesent turpis."
+      "title": "AZJoin the List",
+      "subtitle": "AZPlaceholder text... Mauris vestibulum viverra fames blandit suspendisse elementum diam. Purus nisi vestibulum amet nibh. Auctor sed donec at in praesent turpis."
     },
     "success_message": {
-      "title": "Təbriklər siz artıq gözləyənlər listinə qoşuldunuz!",
-      "subtitle": "Bunu yazmaq lazimdir.... success Mauris vestibulum viverra fames blandit suspendisse elementum diam. Purus nisi vestibulum amet nibh. Auctor sed donec at in praesent turpis."
+      "title": "AZCongratulations! You have joined the waiting list!",
+      "subtitle": "AZPlaceholder text... success Mauris vestibulum viverra fames blandit suspendisse elementum diam. Purus nisi vestibulum amet nibh. Auctor sed donec at in praesent turpis."
     },
-    "waitingMessage": "1.5k+ nəfər gözləmədədir"
+    "waitingMessage": "AZ1.5k+ people are waiting"
   },
-  "cookieConsentModal": {
-    "message": "Sistemdə sizə ən yaxşı təcrübə təqdim etmək üçün çərəzlərdən istifadə edirik.",
-    "disclaimer": "Davam edərək, allver.az saytında bütün çərəzləri qəbul etməyə razısınız."
-  },
+
   "mapSection": {
-    "location": "Ünvan",
-    "inner_map_title": "Ticarət mərkəzinin daxili xəritəsi"
+    "location": "AZAddress",
+    "inner_map_title": "AZInternal map of the shopping center"
   },
-  "shoppingCenters": {
-    "title": "Ticarət mərkəzləri",
-    "subtitle": "Ticarətçi kateqoriyalarını asanlıqla gözdən keçirin.",
-    "centers": {
-      "center_1": {
-        "name": "Sədərək Ticarət Mərkəzi",
-        "description": "Ticarətçi kateqoriyalarını asanlıqla gözdən keçirin."
+
+  "buttons": {
+    "register_now": "AZRegister Now",
+    "about_us": "AZAbout Us",
+    "contact_us": "AZContact Us",
+    "read_more": "AZRead More",
+    "send_now": "AZSend",
+    "join_the_list": "AZJoin the List",
+    "sending": "AZSending",
+    "decline": "AZDecline",
+    "accept": "AZAccept",
+    "share": "AZShare",
+    "download_yollda": "AZDownload Yollda",
+    "download_ypartner": "AZDownload Yollda Partner",
+    "getY_button": "AZGet Yolda",
+    "support": "AZSupport",
+    "subscribe": "AZSubscribe",
+    "sending_state": "AZSending...",
+    "open_map": "AZOpen map",
+    "select": "AZSelect"
+  },
+  "form": {
+    "name": "AZYour Full Name",
+    "name_placeholder": "AZEnter your name",
+    "email": "AZEmail",
+    "email_placeholder": "AZEnter your email",
+    "message": "AZYour Message",
+    "message_placeholder": "AZEnter your message",
+    "trade_center": "AZShopping Center",
+    "select": "AZSelect",
+    "required": "AZThis field is required",
+    "email_address": "AZEmail Address",
+    "errors": {
+      "first_name_required": "AZFirst name is required",
+      "first_name_at_lest": "AZFirst name must be at least 2 characters",
+      "last_name_required": "AZLast name is required",
+      "last_name_at_lest": "AZLast name must be at least 2 characters",
+      "service_required": "AZService is required"
+    }
+  },
+
+  "introduction": {
+    "slogan": "AZFast. Reliable. Wherever You Are",
+    "description": "AZYollda is your all-in-one road assistance platform"
+  },
+  "our_services": {
+    "heading": "AZOur Services IN",
+    "description": "AZServices and features may vary by region. Some features may not yet be available in your area.",
+    "services": {
+      "emergency_towing_title": "AZEmergency Towing",
+      "emergency_towing_description": "AZProfessional vehicle towing services available 24/7 when you need them most.",
+      "emergency_towing_button": "AZAllver Partner",
+
+      "tire_repair_title": "AZTire Repair",
+      "tire_repair_description": "AZFlat tire? Get instant help from nearby services.",
+      "tire_repair_button": "AZAllver Partner",
+
+      "allver_business_title": "AZAllver Business",
+      "allver_business_description": "AZManage your fleet, track earnings, and grow your towing business with ease.",
+      "allver_business_button": "AZAllver Partner",
+
+      "fuel_delivery_title": "AZFuel Delivery",
+      "fuel_delivery_description": "AZRan out of fuel? We'll deliver it right to you.",
+      "fuel_delivery_button": "AZAllver Partner",
+
+      "peer_help_title": "AZPeer-to-Peer Help",
+      "peer_help_description": "AZAsk nearby drivers for roadside assistance.",
+      "peer_help_button": "AZAllver Partner"
+    }
+  },
+  "about_us": {
+    "label": "AZAbout us",
+    "heading": "AZYOLLDA IS YOUR PARTNER ON EVERY JOURNEY.",
+    "description": "AZWe're empowering drivers and communities with on-demand towing, tire repairs, battery boosts, and fuel delivery—making streets safer, smoother, and more people-friendly."
+  },
+  "earn_with_section": {
+    "heading": "AZEarn with Yollda",
+    "description": "AZJoin thousands of partners who earn by keeping drivers on the move—tow‑truck operators (car & freight), tire techs, battery specialists, fuel couriers, and fleet owners."
+  },
+  "latest_features_section": {
+    "label": "AZLatest features",
+    "heading": "AZRequest Help Instantly",
+    "description": {
+      "top": "AZYou tap, help comes. Can’t tap? We’ve got you.",
+      "middle": "AZIf your phone detects a crash and there’s no response, Yollda sends a help request on your behalf — instantly.",
+      "bottom": "AZHad a breakdown or accident? Tap for help and nearby Yollda users will be alerted immediately"
+    }
+  },
+  "download_section": {
+    "heading": "AZDownload our apps",
+    "description": "AZAvailable for iOS and Android devices.",
+    "partner": "AZYollda Partner",
+    "anytime": "AZRoadside help. Anytime, anywhere."
+  },
+  "news_section": {
+    "heading": "AZNews & Update",
+    "description": "AZGet the latest news, updates, and feature releases. Discover what's new on the road with Yollda."
+  },
+  "blogs_section": {
+    "heading": "AZRide out as soon as you fly in with Flight Tracking",
+    "description": "AZRead our latest articles and insights on road safety, vehicle maintenance, and more."
+  },
+  "continue_reading": "AZContinue reading",
+  "results_found": "AZresults found",
+  "home_page": {
+    "benefits_section": {
+      "title": "AZMobility by the People, for the People.",
+      "description": "AZYollda’s real‑time roadside expertise and local network keep you—and your city—moving safely."
+    }
+  },
+  "blogs_page": {
+    "news_section": {
+      "heading": "AZRide out as soon as you fly in with Flight Tracking",
+      "description": "AZKeep yourself updated on the latest news from Bolt and the world of transportation."
+    }
+  },
+  "help_banner": {
+    "need": "AZNeed a help?"
+  },
+  "news_page": {
+    "heading": "AZNews",
+    "description": "AZKeep yourself updated on the latest news from Bolt and the world of transportation."
+  },
+  "signup_page": {
+    "signup_section": {
+      "support_badge": "AZSupport",
+      "heading": "AZHOW WOULD YOU LIKE TO PARTNER WITH YOLLDA TO START EARNING?",
+      "description": "AZDownload app Start drive, Earn money!",
+      "cta_button": "AZGet Yollada Partner",
+      "submitted": {
+        "welcome": "AZWelcome to Yollda!",
+        "description": "AZThank you for joining as a partner. We'll review your application and get back to you within 24 hours.",
+        "another": "AZSubmit Another Application"
       },
-      "center_2": {
-        "name": "Binə Ticarət Mərkəzi",
-        "description": "Ticarətçi kateqoriyalarını asanlıqla gözdən keçirin."
+
+      "form": {
+        "heading": "AZSign up",
+        "as_fleet": "AZSign up as a fleet owner",
+        "description": "AZYou're the owner of one or more tow trucks. Join Yollda to manage your drivers, grow your business, and accept service requests through our platform.",
+        "phone_number": "AZPhone number",
+        "email": "AZEmail Address",
+        "country": "AZCountry",
+        "city": "AZCity",
+        "iagree": "AZI agree to the",
+        "and": "AZand",
+        "confirm": "AZ, and confirm that I will provide only legal services and content on the Yollda platform.",
+        "warning": "AZOnce you become a partner, we may occasionally send you promotional offers related to Yollda. You can unsubscribe anytime by updating your communication preferences.",
+        "become_partner": "AZBecome a Partner",
+        "errors": {
+          "phone_required": "AZPhone number is required",
+          "phone_invalid": "AZPlease enter a valid phone number",
+          "email_required": "AZEmail address is required",
+          "email_invalid": "AZPlease enter a valid email address",
+          "country_required": "AZPlease select a country",
+          "city_required": "AZPlease select a city",
+          "terms_required": "AZYou must agree to the Terms & Services and Privacy Policy"
+        }
+      }
+    },
+    "how_partner_section": {
+      "heading": "AZHow Yollda Partner Works",
+      "description": "AZDownload Yollda Partner app for Appstore or Playstore, create account use your car and driver by yourself. Get ride and earn more money",
+      "cta_button": "AZGet Yollda Partner",
+      "steps": {
+        "step1": {
+          "title": "AZGo online",
+          "description": "AZOpen the app and go online to start receiving service requests in your area."
+        },
+        "step2": {
+          "title": "AZAccept a request",
+          "description": "AZReview incoming service details and tap to accept when you're ready."
+        },
+        "step3": {
+          "title": "AZProvide Assistance",
+          "description": "AZDrive to the customer and provide the selected roadside assistance."
+        },
+        "step4": {
+          "title": "AZEarn and track income",
+          "description": "AZGet paid quickly and monitor your earnings through the app dashboard."
+        }
+      }
+    },
+    "revenue_section": {
+      "heading": "AZMAKE EVERY ROAD",
+      "sub_heading": "AZA REVENUE STREAM",
+      "description": "AZJoin a growing network of service pros who keep drivers safe and moving. Earn on your schedule by providing essential roadside help where it matters most.",
+      "benefits": {
+        "benefit1": {
+          "title": "AZEarn when you want dfsf sdf sdf dsfs sdfdsf",
+          "description": "AZSupport drivers during breakdowns, flat tires, and fuel needs. Work weekends or evenings — it's your call."
+        },
+        "benefit2": {
+          "title": "AZWeekly payouts",
+          "description": "AZWe pay you every week. No upfront fees, no subscriptions — just a fair commission on each completed job."
+        },
+        "benefit3": {
+          "title": "AZA steady flow of service requests",
+          "description": "AZEarn consistently by helping drivers with Yollda's steady flow of assistance service requests."
+        }
+      }
+    },
+    "partner_section": {
+      "heading": "AZGet started as",
+      "sub_heading": "AZa yollda partner",
+      "description": "AZWhether you're an individual specialist or manage a fleet, Yollda lets you earn by providing essential roadside assistance — on your own time. Support drivers when they need it most.",
+      "benefits": {
+        "benefit1": {
+          "title": "AZFill in the application",
+          "description": "AZChoose your city, share your contact details and service type. We’ll guide you through the next steps."
+        },
+        "benefit2": {
+          "title": "AZUpload your documents",
+          "description": "AZSubmit required documents like your ID, driver’s license, and service-related permits."
+        },
+        "benefit3": {
+          "title": "AZGet approved and start",
+          "description": "AZOnce your documents are verified, you’ll get access to the app and can start accepting service requests."
+        }
+      }
+    },
+    "faq_section": {
+      "newsletter_title": "AZSubscribe our newsletter",
+      "newsletter_description": "AZSubscribe to our newsletter and be the first to receive insights, updates, and expert tips on optimizing your financial management.",
+      "thank_you_title": "AZThank you for subscribing!",
+      "thank_you_description": "AZYou'll receive our latest insights, updates, and expert tips on optimizing your financial management.",
+      "subscribe_button": "AZSubscribe",
+      "subscribe_another": "AZSubscribe another email",
+      "subscribing": "AZSubscribing...",
+      "input_placeholder": "AZEnter your email",
+      "view_more": "AZView more",
+      "view_less": "AZView less",
+      "faq_items": [
+        {
+          "question": "AZHow much does Bolt Drive cost? Do I need to pay for fuel?",
+          "answer": "AZBolt Drive pricing varies by location and vehicle type. You typically pay a daily rate plus mileage. Fuel costs are usually included in the rental price, but this can vary by location. Check the app for specific pricing in your area."
+        },
+        {
+          "question": "AZHow do I unlock a Bolt Drive car?",
+          "answer": "AZTo unlock a Bolt Drive car, simply open the Bolt app, locate your reserved vehicle on the map, and tap the 'Unlock' button when you're near the car. The doors will unlock automatically via the app's connectivity."
+        },
+        {
+          "question": "AZWhere do I find the car keys?",
+          "answer": "AZBolt Drive cars don't use traditional keys. The vehicle is unlocked and started through the Bolt app on your smartphone. Once unlocked, you can start the engine using the start button inside the vehicle."
+        },
+        {
+          "question": "AZHow do I pay for Yollda Drive?",
+          "answer": "AZPayment for Yollda Drive is processed automatically through the payment method linked to your account. You'll be charged based on your usage time and distance traveled. All payments are handled securely through the app."
+        },
+        {
+          "question": "AZWhat kind of cars can I rent with Yollda Partner?",
+          "answer": "AZAll of our cars come with automatic transmission at no extra cost. The specific make and model of hire car depends on availability. Our car types include: small, electric, medium-sized, and premium cars, as well as SUVs and vans. Check the app to see which cars are available to rent nearby."
+        },
+        {
+          "question": "AZWhat are the age requirements for renting?",
+          "answer": "AZYou must be at least 21 years old to rent a vehicle through Yollda. Some premium vehicles may require you to be 25 or older. A valid driver's license is required for all rentals."
+        },
+        {
+          "question": "AZCan I extend my rental period?",
+          "answer": "AZYes, you can extend your rental period through the app if the vehicle is available. Additional charges will apply based on the extended time and mileage."
+        },
+        {
+          "question": "AZWhat happens if I have an accident?",
+          "answer": "AZIn case of an accident, immediately contact emergency services if needed, then report the incident through the app. Our 24/7 support team will guide you through the process and arrange assistance."
+        }
+      ]
+    }
+  },
+  "fleet": {
+    "signup_section": {
+      "submitted": {
+        "welcome": "AZWelcome to Yollda Fleet!",
+        "description": "AZThank you for joining as a fleet owner. We'll review your application and get back to you within 24 hours."
       },
-      "center_3": {
-        "name": "Abşeron Ticarət Mərkəzi",
-        "description": "Ticarətçi kateqoriyalarını asanlıqla gözdən keçirin."
+      "form": {
+        "heading": "AZAdd your fleet",
+        "vehicles_size": "AZVehicles in your fleet",
+        "already": "AZAlready have an account?",
+        "sign_in": "AZSign in",
+        "yagree": "AZBy Signing up, you agree to our",
+        "and": "AZand",
+        "as_fleet_owner": "AZSign up as a Fleet Owner",
+        "becoming": "AZBecoming Partner...",
+        "errors": {
+          "required_fleet_size": "AZPlease select your fleet size"
+        }
+      }
+    },
+    "try_section": {
+      "heading": "AZSign up and try it free",
+      "description": "AZSet up in 3 easy steps:",
+      "benefits": [
+        {
+          "title": "AZSign up",
+          "description": "AZIt takes just 2 minutes to register a fleet company account."
+        },
+        {
+          "title": "AZGet approved",
+          "description": "AZEnter your vehicle and driver info as we process your account activation."
+        },
+        {
+          "title": "AZFast, reliable support",
+          "description": "AZAfter verification, your vehicles are set to begin earning."
+        }
+      ]
+    },
+    "help_banner": {
+      "heading": "AZBoost your fleet earnings with Bolt",
+      "decription": "AZSign up takes 2 minutes. Try it out today!"
+    },
+    "why_us_section": {
+      "heading": "AZWhy partner with us?",
+      "description": "AZBolt is trusted by fleet partners from across 45+ countries all over the world. We’re known for:",
+      "benefits": [
+        {
+          "title": "AZSteady and secure earnings",
+          "description": "AZConsistent jobs, dependable payouts"
+        },
+        {
+          "title": "AZTotal clarity",
+          "description": "AZA modern, intuitive portal to run your business with ease."
+        },
+        {
+          "title": "AZFast, reliable support",
+          "description": "AZWe’re here when you need us."
+        }
+      ]
+    }
+  },
+
+  "terms_page": {
+    "condition_section": {
+      "heading": "AZTERMS AND CONDITIONS",
+      "categories": "AZCategories"
+    },
+    "sub_section": {
+      "heading": "AZYollda Users (Service Beneficiaries)",
+      "description": "AZThese Terms and Conditions govern your use of the Yollda platform as a user requesting road assistance services. By using our services, you agree to these terms."
+    }
+  },
+  "unsubscribe_page": {
+    "success": {
+      "heading": "AZ You've been unsubscribed",
+      "description": "AZWe're sorry to see you go! You have been successfully unsubscribed from our newsletter. You will no longer receive marketing emails from Yollda.",
+      "unsubscribed_email": "AZUnsubscribed email:"
+    },
+    "form": {
+      "heading": "AZUnsubscribe from Newsletter",
+      "description": "AZWe're sorry to see you go! Help us improve by letting us know why you're unsubscribing.",
+      "email_address": "AZEmail Address *",
+      "email_placeholder": "AZEnter your email address",
+      "submit_button": "AZUnsubscribe from Newsletter"
+    }
+  },
+  "contactus_page": {
+    "support_section": {
+      "heading": "AZCustomer Support",
+      "description": "AZAt the management level to support the UN Global Compact. This commitment is renewed annually."
+    },
+    "feedback_section": {
+      "heading": "AZFeedbacks and Suggestion",
+      "description": "AZThe UNGC is the world's largest voluntary corporate sustainability."
+    },
+    "media_section": {
+      "heading": "AZMedia Inquiries",
+      "description": "AZThe UNGC is the world's largest voluntary corporate initiative, with stakeholders in more than 135 countries and 8,000+ signatories."
+    },
+    "success": {
+      "heading": "AZThank you for contacting us!",
+      "description": "AZWe've received your message and will get back to you within 24 hours."
+    },
+    "form": {
+      "heading": "AZGet in touch",
+      "description": "AZYou can reach us any time",
+      "first_name": "AZFirst name",
+      "last_name": "AZLast name",
+      "services": "AZServices",
+      "country": "AZCountry",
+      "howWeCanHelp": "AZHow can we help?",
+      "errors": {
+        "message_required": "AZMessage is required",
+        "message_least": "AZMessage must be at least 10 characters",
+        "message_most": "AZMessage must be less than 500 characters"
+      }
+    },
+    "services": {
+      "tow_truck": "AZTow Truck",
+      "tow_truck_cargo": "AZTow Truck Cargo",
+      "tire_repair": "AZTire Repair",
+      "fuel_delivery": "AZFuel Delivery",
+      "battery_charge": "AZBattery Charge"
+    }
+  },
+
+  "navigation_links": {
+    "copyright": "AZBütün hüquqlar qorunur",
+    "available_text": "AZAvailable for iOS and Android devices.",
+    "headings": {
+      "products": "AZProducts",
+      "earn": "AZEarn",
+      "company": "AZCompany",
+      "support": "AZSupport",
+      "safety": "AZSafety",
+      "locations": "AZLocations",
+      "signUp": "AZSign Up",
+      "other": "AZOther"
+    },
+    "links": {
+      "privacy": "AZPrivacy",
+      "termAndCondition": "AZTerms and Conditions",
+      "about": "AZAbout Yollda",
+      "careers": "AZCareeers",
+      "blogs": "AZBlogs",
+      "brand_guideness": "AZBrand Guidelines",
+      "security": "AZSecurity",
+      "cookies": "AZCookies",
+      "assist": {
+        "tow": "AZTow assist",
+        "fuel": "AZFuel assist",
+        "battery": "AZBattery assist",
+        "tire": "AZTire assist"
+      },
+      "earn_sub": {
+        "yollda_partners": "AZYollda Partners",
+        "tow_drivers": "AZTow Suruculeri",
+        "yollda_fleets": "AZYollda Fllet"
+      },
+      "support": {
+        "yollda_partners": "AZYollda Partners",
+        "tow_drivers": "AZTow Drivers",
+        "yollda_fleets": "AZYollda Fleets",
+        "contact_us": "AZContact us"
+      },
+      "safety": {
+        "driver_safety": "AZDriver safety"
+      },
+      "locations": {
+        "our_cities": "AZOur cities"
       }
     }
   },
-  "buttons": {
-    "register_now": "İndi qeydiyyatdan keç",
-    "about_us": "Haqqımızda",
-    "contact_us": "Bizimlə əlaqə",
-    "read_more": "Hamısına bax",
-    "send_now": "Göndər",
-    "join_the_list": "Listə qoşulun",
-    "sending": "Göndərilir",
-    "decline": "İmtina et",
-    "accept": "Qəbul et",
-    "share": "Paylaş"
+  "map_section": {
+    "our_location": "AZOur Location",
+    "heading": "AZConnecting Near and Far ",
+    "headquarters": "AZHeadquarters"
   },
-  "form": {
-    "name": "Ad və soyadınız",
-    "name_placeholder": "Adınızı daxil edin",
-    "email": "E-poçt",
-    "email_placeholder": "E-poçt daxil edin",
-    "message": "Mesajınız",
-    "message_placeholder": "Mesajınızı daxil edin",
-    "trade_center": "Ticarət mərkəzi",
-    "select": "Seçin",
-    "required": "Bu xananı doldurmaq vacibdir"
+  "about_page": {
+    "we_are_section": {
+      "heading": "AZWE ARE YOLLDA",
+      "description": "AZWe're passionate about solving problems. We take on challenges others consider impossible."
+    },
+    "what_makes_us_section": {
+      "heading": "AZWhat makes us — us.",
+      "description": "AZWe want to work with collaborative and pragmatic people who enjoy seeing and helping those around them succeed."
+    },
+    "earn_money_section": {
+      "heading": "AZRide out as soon as you fly in with Flight Tracking",
+      "description": "AZWe value high inner drive. Although we can’t impact someone’s motivation, we work to inspire our high-performing teams to deliver their best consistently. Some perks may differ depending on your location and role."
+    }
   },
-  "payment": {
-    "success_message": "Əməliyyat uğurla tamamlandı",
-    "failure_message": "Əməliyyat uğursuz oldu"
+  "meta_descriptions": {
+    "home": "AZThis is a description for home page",
+    "contact": "AZThis is a description of contact page.",
+    "unsubscribe": "AZThis is a description of UnSubscribe page.",
+    "about": "AZThis is a description of about page.",
+    "signup": "AZThis is a description of partner signup page.",
+    "signup_fleet": "AZThis is a description of fleet signup page.",
+    "news": "AZThis is a description of all news page.",
+    "single_news": "AZThis is description of specific new",
+    "blogs": "AZThis is descriprtion of all blogs page",
+    "single_blog": "AZThis is descipriotn of specific blog page",
+    "terms": "AZThis is desciption of terms page",
+    "single_term": "AZThis is desciptuon of specific term page"
+  },
+  "register_methods": {
+    "become_tow_partner": {
+      "label": "AZBecome a Tow Partner",
+      "description": "AZTow cars and freight with your tow truck and earn flexibly"
+    },
+    "sign_up_fleet_owner": {
+      "label": "AZSign Up as a Fleet Owner",
+      "description": "AZAdd your fleet to Yollda and boost your income"
+    },
+    "tire_battery_assistance": {
+      "label": "AZTire & Battery Assistance",
+      "description": "AZJoin to provide mobile tire repair and battery replacement or jump-start services"
+    },
+    "fuel_delivery": {
+      "label": "AZFuel Delivery",
+      "description": "AZDeliver emergency fuel to stranded drivers and earn flexibly in your area"
+    },
+    "training_partner": {
+      "label": "AZBecome a Training Partner",
+      "description": "AZOffer certified training to Yollda service providers and grow with our platform"
+    }
   }
 }

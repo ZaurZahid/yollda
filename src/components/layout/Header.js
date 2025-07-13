@@ -1,160 +1,163 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
-import Button from '../ui/Button';
-import ArrowIcon from '../ui/icons/Arrow';
-import LanguageSwitcher from '../ui/LanguageSwitcher';
-import { useRouter } from 'next/router';
-import CloseIcon from '../ui/icons/Close';
-import { useTranslation } from 'next-i18next'
-import YolldaLogo from '../ui/icons/Yollda';
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import Button from "../ui/Button";
+import LanguageSwitcher from "../ui/LanguageSwitcher";
+import NavbarButton from "../ui/icons/NavbarButton";
+import { useTranslation } from "next-i18next";
+import YolldaLogo from "../ui/icons/Yollda";
+import RegisterBar from "./RegisterBar";
+import CrossIcon from "../ui/icons/CrossIcon";
 
+const Header = ({
+  logo,
+  theme = "normal",
+  onOpen,
+  isBurgerOpen,
+  closeBurgerModal,
+}) => {
+  const { t } = useTranslation("common");
+  //test
+  const headerRef = useRef(null);
+  const modalRef = useRef(null);
+  const logoRef = useRef(null);
 
-const Header = ({ logo, theme = 'normal', onOpen }) => {
-    const { t } = useTranslation('common')
-    const headerRef = useRef(null);
+  const [isTransparent, setIsTransparent] = useState(theme === "transparent");
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (headerRef.current) {
-                if (window.scrollY > 0) {
-                    headerRef.current.classList.add("bg-white", "shadow-md");
-                } else {
-                    headerRef.current.classList.remove("bg-white", "shadow-md");
-                }
-            }
-        };
+  const [registerMethodsOpen, setRegisterMethodsOpen] = useState(false);
 
-        window.addEventListener("scroll", handleScroll);
+  const registerMethodsSwitch = () => {
+    if (isBurgerOpen) {
+      closeBurgerModal();
+    }
+    setRegisterMethodsOpen((prev) => !prev);
+  };
 
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    const router = useRouter();
-    const [isOpen, setIsOpen] = useState(false);
-    const toggleMenu = () => setIsOpen(!isOpen);
-
-    // Navigation links array to easily extend or modify in the future
-    const navLinks = [
-        { href: "/", label: t('navigation.home') },
-        { href: "/#about", label: t('navigation.about'), id: 'about' },
-        { href: "/#fag", label: t('navigation.faq'), id: 'fag' },
-        { href: "/#shopping-centers", label: t('navigation.shopping_centers'), id: 'shopping-centers' },
-        { href: "/#features", label: t('navigation.features'), id: 'features' },
-        { href: "/#blogs", label: t('navigation.blog'), id: 'blogs' },
-        { href: "/#contact", label: t('navigation.contact'), id: 'contact' },
-    ];
-
-    const isParentActive = (currentPath, targetPath) => {
-        if (targetPath === "/") {
-            return currentPath === "/";
-        }
-
-        if (currentPath.includes("/blogs") && targetPath.includes("#blogs")) {
-            return true;
-        }
-
-        // For all other paths, check parent-child relationship
-        return currentPath === targetPath || currentPath.startsWith(`${targetPath}/`);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setRegisterMethodsOpen(false);
+      }
     };
 
-    return (
-        <header
-            ref={headerRef}
-            className={`header w-full flex justify-center fixed top-0 left-0 z-30 transition-all duration-300 ${theme === 'transparent' ? 'bg-transparent' : 'bg-white'}`}
-        >
-            <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
-                <div className="flex justify-between items-center py-4">
-                    <Link href="/" passHref>
-                        <YolldaLogo className="max-w-24 lg:max-w-32 cursor-pointer fill-green-dark" />
-                    </Link>
+    if (registerMethodsOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
 
-                    {/* <div className="lg:hidden">
-                        <div className="flex items-center">
-                            <LanguageSwitcher />
-                            <button onClick={toggleMenu} className="ml-7">
-                                <img src={"/menu.svg"} alt="Menu" className="w-6 h-6" />
-                            </button>
-                        </div>
-                    </div> */}
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [registerMethodsOpen]);
 
-                    {/* <nav className={`${isOpen ? 'fixed inset-0 bg-white z-50' : 'hidden'} lg:flex lg:relative lg:bg-transparent lg:z-auto`}>
-                        <div className="lg:flex sm:justify-center lg:items-center flex-wrap xl:justify-between mx-4 mt-16 lg:mt-0">
-                            {isOpen && (
-                                <div className="absolute top-0 right-0 p-4 flex justify-between w-full">
-                                    <LanguageSwitcher />
-                                    <Button
-                                        text=""
-                                        IconComponent={<CloseIcon strokeColor={"stroke-black"} />}
-                                        onClick={toggleMenu}
-                                        classes={"absolute z-10 top-3 right-3 bg-gray-300 hover:bg-gray-400 rounded-lg !px-1 !pr-3 flex items-center justify-center"}
-                                    />
+  useEffect(() => {
+    if (isBurgerOpen) {
+      setRegisterMethodsOpen(false);
+      setIsTransparent(false);
+      logoRef.current.classList.add("fill-green-dark");
+      logoRef.current.classList.remove("fill-white");
+    } else if (
+      !isBurgerOpen &&
+      theme === "transparent" &&
+      window.scrollY === 0
+    ) {
+      setIsTransparent(true);
+      logoRef.current.classList.add("fill-white");
+      logoRef.current.classList.remove("fill-green-dark");
+    }
+  }, [isBurgerOpen]);
 
-                                </div>
-                            )}
+  useEffect(() => {
+    const handleScroll = () => {
+      if (headerRef.current) {
+        if (window.scrollY > 0) {
+          headerRef.current.classList.add(
+            /* "bg-white", */ "shadow-md",
+            "bg-white"
+          );
+          if (theme === "transparent") {
+            logoRef.current.classList.add("fill-green-dark");
+            logoRef.current.classList.remove("fill-white");
+            setIsTransparent(false);
+          }
+        } else {
+          headerRef.current.classList.remove(/* "bg-white", */ "shadow-md");
+          if (theme === "transparent") {
+            headerRef.current.classList.remove("bg-white");
+          }
 
-                            {navLinks.map((link) => {
-                                const isActive = isParentActive(router.pathname, link.href);
-                                return (
-                                    <Link
-                                        key={link.href}
-                                        href={link.href}
-                                        passHref
-                                        className={`block lg:inline-block px-3 py-2 rounded-lg font-semibold transition-colors duration-300 text-sm text-center ${isActive ? 'text-gray-900 bg-blue-200 cursor-default pointer-events-none' : 'text-gray-900 hover:text-gray-500'
-                                            }`}
-                                        onClick={(e) => {
-                                            e.preventDefault()
+          if (theme === "transparent" && !isBurgerOpen) {
+            logoRef.current.classList.add("fill-white");
+            logoRef.current.classList.remove("fill-green-dark");
+            setIsTransparent(true);
+          }
+        }
+      }
+    };
 
-                                            setIsOpen(false); // Close the modal
-                                            if (link.href.startsWith("/#")) {
-                                                const header = document.querySelector('header');
-                                                const targetElement = document.getElementById(link.id);
+    window.addEventListener("scroll", handleScroll);
 
-                                                window.scrollTo({
-                                                    top: targetElement.offsetTop - header.offsetHeight,
-                                                    behavior: 'smooth'
-                                                });
-                                            }
-                                        }}
-                                    >
-                                        {link.label}
-                                    </Link>
-                                );
-                            })}
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isBurgerOpen]);
 
-                            {isOpen && (
-                                <div className="mt-12">
-                                    <Button
-                                        text={t('navigation.join')}
-                                        IconComponent={<ArrowIcon strokeColor={"stroke-white"} />}
-                                        onClick={() => {
-                                            onOpen()
-                                            toggleMenu()
-                                        }}
-                                        classes={"bg-blue-600 hover:bg-blue-700 text-white whitespace-nowrap h-11 mt-4 mx-auto"}
-                                    />
-                                </div>
-                            )}
-                        </div>
-                    </nav> */}
+  return (
+    <header
+      ref={headerRef}
+      className={`header w-full flex justify-center fixed top-0 left-0 z-30 transition-all duration-300 ${
+        theme === "transparent" ? "bg-transparent" : "bg-white"
+      }`}
+    >
+      <div className="max-w-[1440px] w-full px-6 sm:px-8 md:px-16 lg:px-20">
+        <div className="flex justify-between items-center py-4">
+          <Link href="/" passHref>
+            <YolldaLogo
+              ref={logoRef}
+              className={`max-w-24 lg:max-w-32 cursor-pointer ${
+                theme === "transparent" ? "fill-white" : "fill-green-dark"
+              }`}
+            />
+          </Link>
 
-                    <div className="flex items-center space-s-4 md:space-s-6 lg:space-s-8">
-                        <LanguageSwitcher />
+          <div
+            className={`flex  items-center space-s-4 md:space-s-6 lg:space-s-8  ${
+              isTransparent ? "text-white" : "text-black"
+            }`}
+          >
+            <LanguageSwitcher />
 
-                        <div className="hidden md:flex items-center space-s-4 md:space-s-6 lg:space-s-8">
-                            <h5 class="text-span-responsive font-bold">Destek</h5>
-                            <Button
-                                text={t('navigation.join')}
-                                onClick={onOpen}
-                                classes={"ms-4 bg-green-dark hover:green-secondary-dark text-white whitespace-nowrap h-8"}
-                            />
-                        </div>
-
-                        <p>bg</p>
-                    </div>
-                </div>
+            <div className="hidden md:flex items-center space-s-4 md:space-s-6 lg:space-s-8">
+              <h5 className="text-span-responsive font-bold ">
+                {t("buttons.support")}
+              </h5>
+              <div className="ms-4 relative">
+                <Button
+                  text={t("navigation.join")}
+                  onClick={registerMethodsSwitch}
+                  classes={`${
+                    isTransparent
+                      ? "bg-white text-green-950 hover:bg-slate-400 "
+                      : "bg-green-dark hover:green-secondary-dark text-white"
+                  } whitespace-nowrap h-8 `}
+                />
+                {registerMethodsOpen && (
+                  <div
+                    ref={modalRef}
+                    className="absolute top-16 right-0 rtl:right-auto rtl:left-0 z-50 w-[380px] transition-all duration-300"
+                  >
+                    <RegisterBar individual={true} />
+                  </div>
+                )}
+              </div>
             </div>
-        </header >
-    );
+            <button
+              onClick={onOpen}
+              className={isTransparent ? "text-white" : null}
+            >
+              {isBurgerOpen ? <CrossIcon /> : <NavbarButton />}
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
 };
 
 export default Header;

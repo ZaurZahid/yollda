@@ -1,5 +1,5 @@
-import Head from 'next/head'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Head from "next/head";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 // import Layout from '../src/components/layout/Layout'
 // import OnboardingSection from '../src/components/layout/OnboardingSection'
 // import ValueSection from '../src/components/layout/ValuesSection'
@@ -8,58 +8,64 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 // import Fags from '../src/components/layout/Fags'
 // import BlogSection from '../src/components/layout/BlogSection'
 // import ContactForm from '../src/components/layout/ContactForm'
-import { useTranslation } from 'next-i18next'
-import Layout from '../src/components/layout/Layout';
-import TopIntroduction from '../src/components/home/TopIntroduction';
-import OurServices from '../src/components/home/OurServices';
-import MobilitySection from '../src/components/home/MobilitySection';
-import AboutUs from '../src/components/home/AboutUs';
-import EarnWithSection from '../src/components/home/EarnWithSection';
-import LatestFeatures from '../src/components/home/LatestFeatures';
-import DownloadApps from '../src/components/home/DownloadApps';
-import NewsUpdates from '../src/components/home/NewsUpdates';
+import { useTranslation } from "next-i18next";
+import Layout from "../src/components/layout/Layout";
+import TopIntroduction from "../src/components/home/TopIntroduction";
+import OurServices from "../src/components/home/OurServices";
+import MobilitySection from "../src/components/home/MobilitySection";
+import AboutUs from "../src/components/home/AboutUs";
+import EarnWithSection from "../src/components/home/EarnWithSection";
+import LatestFeatures from "../src/components/home/LatestFeatures";
+import DownloadApps from "../src/components/home/DownloadApps";
+import NewsUpdates from "../src/components/home/NewsUpdates";
+import { fetchFromAPI } from "../src/hooks/apiFetcher";
 // import { fetchFromAPI } from './../src/hooks/apiFetcher';
 
-export default function HomePage({ /* shoppingCenters, faqData, siteData, onboardingData, featureData, blogsData, */ error }) {
-  const { t } = useTranslation('common')
+export default function HomePage({
+  ourServicesData,
+  shortAbout,
+  benefits,
+  alternatingSlides,
+  error,
+}) {
+  const { t } = useTranslation("common");
 
   if (error) {
     return <h1>{error}</h1>;
   }
 
   return (
-    <Layout theme={"normal"}>{/* transparent */}
+    <Layout theme={"normal"}>
       <Head>
-        <html dir={'ar' === 'az' ? 'rtl' : 'ltr'} />
-        <title>Yollda | {t('navigation.home')}</title>
-        <meta name="description" content="This is a description of home page." />
+        <title>{`Yollda | ${t("navigation.home")}`}</title>
+        <meta name="description" content={t("meta_descriptions.home")} />
       </Head>
 
-      <TopIntroduction siteData={''} />
+      <TopIntroduction siteData={""} />
+      <img
+        src="/Home1.png"
+        alt="Beautiful image"
+        className="h-[530px] lg:h-[590px] w-full object-cover"
+      />
+      <OurServices ourServicesData={ourServicesData} />
       <img
         src="/frame.png"
         alt="Beautiful image"
-        class="h-[530px] lg:h-[590px] w-full object-cover"
+        className="h-[530px] lg:h-[720px] w-full object-cover"
       />
-      <OurServices siteData={''} />
+      <MobilitySection benefits={benefits} />
       <img
-        src="/frame.png"
+        src="/Home3.png"
         alt="Beautiful image"
-        class="h-[530px] lg:h-[720px] w-full object-cover"
+        className="h-[300px] lg:h-[400px] w-full object-cover"
       />
-      <MobilitySection />
-      <img
-        src="/frame.png"
-        alt="Beautiful image"
-        class="h-[300px] lg:h-[400px] w-full object-cover"
-      />
-      <AboutUs />
-      <EarnWithSection />
+      <AboutUs shortAbout={shortAbout} />
+      <EarnWithSection alternatingSlides={alternatingSlides} />
       <LatestFeatures />
       <img
-        src="/frame.png"
+        src="/Home4.png"
         alt="Beautiful image"
-        class="h-[300px] lg:h-[750px] w-full object-cover"
+        className="h-[300px] lg:h-[750px] w-full object-cover"
       />
       <DownloadApps />
 
@@ -70,38 +76,36 @@ export default function HomePage({ /* shoppingCenters, faqData, siteData, onboar
 
 export async function getServerSideProps({ locale }) {
   try {
-    // const [faqData, featureData, siteData, onboardingData, shoppingCenters, blogsData] = await Promise.all([
-    //   fetchFromAPI('/api/v1/support/faq/', locale),
-    //   fetchFromAPI('/api/v1/support/feature/', locale),
-    //   fetchFromAPI('/api/v1/support/site/', locale),
-    //   fetchFromAPI('/api/v1/support/onboarding/', locale),
-    //   fetchFromAPI('/api/v1/shop/shopping-centers/', locale),
-    //   fetchFromAPI('/api/v1/support/blog/?page=1&per_page=3', locale),
-    // ]);
+    const [ourServicesData, shortAbout, benefits, alternatingSlides] =
+      await Promise.all([
+        fetchFromAPI("/api/v1/web/our-services/?page=1&per_page=10", locale),
+        fetchFromAPI("/api/v1/web/short-about/", locale),
+        fetchFromAPI("/api/v1/web/benefits/?page=1&per_page=20", locale),
+        fetchFromAPI(
+          "/api/v1/web/attractive-info/?info_type=home_alternating_sides",
+          locale
+        ),
+      ]);
     return {
       props: {
-        ...(await serverSideTranslations(locale, ['common'])),
-        // faqData,
-        // featureData,
-        // siteData,
-        // onboardingData,
-        // shoppingCenters,
-        // blogsData: blogsData?.results || []
+        ...(await serverSideTranslations(locale, ["common"])),
+        ourServicesData,
+        shortAbout,
+        alternatingSlides,
+        benefits,
       },
     };
   } catch (error) {
-    console.error('Error in getServerSideProps:', error);
+    console.error("Error in getServerSideProps:", error);
 
     return {
       props: {
-        ...(await serverSideTranslations(locale, ['common'])),
-        // faqData: null,
-        // featureData: null,
-        // siteData: null,
-        // onboardingData: null,
-        // shoppingCenters: null,
-        // blogsData: null,
-        error: 'Failed to load data.',
+        ...(await serverSideTranslations(locale, ["common"])),
+        ourServicesData: null,
+        shortAbout: null,
+        benefits: null,
+        alternatingSlides: null,
+        error: "Failed to load data.",
       },
     };
   }

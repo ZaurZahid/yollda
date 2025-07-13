@@ -1,18 +1,29 @@
 import Head from 'next/head';
+import { appWithTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
-import '../styles/globals.css'
-import { appWithTranslation } from 'next-i18next'
+import '../styles/globals.css';
 
-const MyApp = ({ Component, pageProps }) => (
-  <>
-    <Head>
-      <title>AllVer</title>
-      <meta name="description" content="Default app description." />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    </Head>
-    <Component {...pageProps} />
-  </>
-);
+const MyApp = ({ Component, pageProps }) => {
+  const router = useRouter();
+  const { locale } = router;
 
-export default appWithTranslation(MyApp)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr';
+    }
+  }, [locale]);
+
+  return (
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
+};
+
+export default appWithTranslation(MyApp);

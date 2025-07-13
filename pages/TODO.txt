@@ -1,0 +1,23 @@
+---------------
+IMPORTANT NOTES
+---------------
+BE CAREFUL !!! about the api implementation 
+   check api request for all cases, error case should be considered always, use try, catch as your await api request approach was WRONG as it always return true
+   unnecessary comments should be removed, check design, if api missing any field OR have other additional field which isnt on design
+   add to api_list.txt file.
+
+1-2 yerde istifade ucun yeni library yuklemeye telesme diger proyektlerde de hemcinin
+    date dns yerine sade bir method yazmaq olar helper kimi hem de proyekt yungul olur onda
+
+bezi yerlerde object?.key yazanda typolar olur, diqqetle yoxla ---- for ex:object?.ky kimi
+
+---------------
+CURRENT TODOS
+---------------
+1. Links in navbar(burger)  registerLinks ustune click edende signupa atsin query ile. Ve ona uygun service selected olsun
+2. *contactdaki services dropdownunu signupa da elave ele
+3. Home page news & update section links and blogs? burda news apiye sorgudur perpage 6 gonder 6 denesini fetch etsin
+4. terms sehifesinde country dropdown deyisilende apiye country ucun selected olkeni gonder
+5. Vehicles list in your fleet signup arab dilinde qoymaq regemleri
+6. news ve blogsda date formatDate ile isledilsin singleBlog kimi
+7. apiden date gonderilen yerlerde hamisinda formate date methodunu islet, router locale gonderilmek yaddan cixmasin
