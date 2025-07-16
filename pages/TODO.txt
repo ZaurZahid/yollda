@@ -14,12 +14,6 @@ bezi yerlerde object?.key yazanda typolar olur, diqqetle yoxla ---- for ex:objec
 ---------------
 CURRENT TODOS
 ---------------
-1. Links in navbar(burger)  registerLinks ustune click edende signupa atsin query ile. Ve ona uygun service selected olsun DONE
-2. *contactdaki services dropdownunu signupa da elave ele DONE
-3. Home page news & update section links and blogs? burda news apiye sorgudur perpage 6 gonder 6 denesini fetch etsin DONE
-4. terms sehifesinde country dropdown deyisilende apiye country ucun selected olkeni gonder DONE
-
-5. Vehicles list in your fleet signup arab dilinde qoymaq regemleri DONE
-
-6. news ve blogsda date formatDate ile isledilsin singleBlog kimi DONE
-7. apiden date gonderilen yerlerde hamisinda formate date methodunu islet, router locale gonderilmek yaddan cixmasin DONE
+5. Vehicles list in your fleet signup arab dilinde qoymaq regemleri ~~
+Contact map google api key dev mode ucun internetden key gotur islet baxaq nece isleyir sonra api key elave ederik prod ucun
+cookie listini verin, ona uygun sonra diller ucun static tercumeler ucun key elave olunar
