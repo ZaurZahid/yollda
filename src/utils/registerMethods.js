@@ -12,13 +12,13 @@ const RegisterMethods = () => {
       icon: <UserIcon className="w-5 h-5" fillColor={"fill-light-green"} />,
       label: t("register_methods.become_tow_partner.label"),
       description: t("register_methods.become_tow_partner.description"),
-      url: "#",
+      url: "/signup?service_type=TOW_TRUCK",
     },
     {
       icon: <Briefcase className="w-5 h-5" fillColor={"fill-teal-600"} />,
       label: t("register_methods.sign_up_fleet_owner.label"),
       description: t("register_methods.sign_up_fleet_owner.description"),
-      url: "#",
+      url: "/signup?service_type=TOW_TRUCK_CARGO",
     },
     {
       icon: (
@@ -26,20 +26,20 @@ const RegisterMethods = () => {
       ),
       label: t("register_methods.tire_battery_assistance.label"),
       description: t("register_methods.tire_battery_assistance.description"),
-      url: "#",
+      url: "/signup?service_type=BATTERY_CHARGE",
       highlight: true,
     },
     {
       icon: <GasIcon className="w-5 h-5" fillColor={"fill-red-500"} />,
       label: t("register_methods.fuel_delivery.label"),
       description: t("register_methods.fuel_delivery.description"),
-      url: "#",
+      url: "/signup?service_type=FUEL_DELIVERY",
     },
     {
       icon: <VerifyIcon className="w-5 h-5" fillColor={"fill-blue-500"} />,
       label: t("register_methods.training_partner.label"),
       description: t("register_methods.training_partner.description"),
-      url: "#",
+      url: "/signup?service_type=TIRE_REPAIR",
     },
   ];
 

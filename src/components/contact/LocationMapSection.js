@@ -2,36 +2,28 @@ import { useState, useEffect, useRef } from "react";
 import ArrowDown from "../ui/icons/ArrowDown";
 import { useTranslation } from "next-i18next";
 
-const locationData = {
-  name: "Yollda MMC",
-  tagline: "Chat Beyond Limits Together",
-  city: "Dubai",
-  country: "KSA",
-  address: "123 Tech Boulevard, Suite 456",
-  fullLocation: "Azerbaijan",
-  coordinates: {
-    lat: 40.4093, // Baku, Azerbaijan coordinates
-    lng: 49.8671,
-  },
-};
-
 export default function LocationMapSection({ contactUsData }) {
   const { t } = useTranslation();
   const mapRef = useRef(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const [mapError, setMapError] = useState(false);
 
-  const headquarters = contactUsData?.headquarters
+  const headquarters = contactUsData?.headquarters;
 
   // This will be called when Google Maps API is loaded
   const initializeMap = () => {
     if (!mapRef.current || !window.google) return;
+    if (!headquarters?.[0]?.latitude || !headquarters?.[0]?.longitude) {
+      console.error("Missing coordinates from headquarters data");
+      setMapError(true);
+      return;
+    }
 
     try {
       const map = new window.google.maps.Map(mapRef.current, {
         center: {
-          lat: headquarters?.[0]?.latitude,
-          lng: headquarters?.[0]?.longitude,
+          lat: headquarters[0].latitude + 0.003, // Small offset to ensure the marker is visible
+          lng: headquarters[0].longitude,
         },
         zoom: 15,
         styles: [
@@ -211,39 +203,74 @@ export default function LocationMapSection({ contactUsData }) {
         },
       });
 
-      // Custom marker
-      const marker = new window.google.maps.Marker({
-        // position: locationData.coordinates,
-        position: {
-          lat: headquarters?.[0]?.latitude,
-          lng: headquarters?.[0]?.longitude,
-        },
-        map: map,
-        title: headquarters?.[0]?.title,
-        icon: {
-          path: window.google.maps.SymbolPath.CIRCLE,
-          scale: 12,
-          fillColor: "#21D654",
-          fillOpacity: 1,
-          strokeColor: "#083426",
-          strokeWeight: 3,
-        },
-      });
-
       // Info window
       const infoWindow = new window.google.maps.InfoWindow({
         content: `
-          <div style="padding: 8px; font-family: 'Plus Jakarta Sans', sans-serif;">
-            <h3 style="margin: 0 0 4px 0; color: #083426; font-weight: 600;">${headquarters?.[0]?.title}</h3>
-            <p style="margin: 0 0 4px 0; color: #6B7280; font-size: 14px;">${headquarters?.[0]?.sub_title}</p>
-            <p style="margin: 0; color: #6B7280; font-size: 14px;">${headquarters?.[0]?.address_line_first}</p>
-          </div>
-        `,
+        <div style="padding: 8px; font-family: 'Plus Jakarta Sans', sans-serif;">
+          <h3 style="margin: 0 0 4px 0; color: #083426; font-weight: 600;">${headquarters[0]?.title}</h3>
+          <p style="margin: 0 0 4px 0; color: #6B7280; font-size: 14px;">${headquarters[0]?.sub_title}</p>
+          <p style="margin: 0; color: #6B7280; font-size: 14px;">${headquarters[0]?.address_line_first}</p>
+        </div>
+      `,
       });
 
-      marker.addListener("click", () => {
-        infoWindow.open(map, marker);
-      });
+      // Custom HTML marker
+      class PingMarker extends window.google.maps.OverlayView {
+        constructor(position, map, infoWindow) {
+          super();
+          this.position = position;
+          this.map = map;
+          this.infoWindow = infoWindow;
+          this.div = null;
+          this.setMap(map);
+        }
+
+        onAdd() {
+          this.div = document.createElement("div");
+          this.div.className = "ping-marker";
+          this.div.style.zIndex = "1000";
+
+          this.div.addEventListener("click", () => {
+            if (this.infoWindow && this.map) {
+              this.infoWindow.setPosition(this.position);
+              this.infoWindow.open(this.map);
+            }
+          });
+
+          const panes = this.getPanes();
+          panes.overlayMouseTarget.appendChild(this.div);
+        }
+
+        draw() {
+          if (!this.div) return;
+          const projection = this.getProjection();
+          const point = projection.fromLatLngToDivPixel(
+            new window.google.maps.LatLng(this.position.lat, this.position.lng)
+          );
+          if (point) {
+            this.div.style.left = `${point.x}px`;
+            this.div.style.top = `${point.y}px`;
+            this.div.style.position = "absolute";
+            this.div.style.transform = "translate(-50%, -50%)";
+          }
+        }
+
+        onRemove() {
+          if (this.div) {
+            this.div.remove();
+            this.div = null;
+          }
+        }
+      }
+
+      new PingMarker(
+        {
+          lat: headquarters[0].latitude,
+          lng: headquarters[0].longitude,
+        },
+        map,
+        infoWindow
+      );
 
       setIsMapLoaded(true);
     } catch (error) {
@@ -267,16 +294,19 @@ export default function LocationMapSection({ contactUsData }) {
       // For now, we'll show a placeholder since we don't have the API key
       // When client provides API key, replace 'YOUR_API_KEY' with actual key
       const script = document.createElement("script");
-      script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GMAP_KEY}&v=3.54&callback=initMap`;
       script.async = true;
       script.defer = true;
       script.onerror = () => setMapError(true);
+      script.onload = () => {
+        console.log("Google Maps script loaded");
+      };
 
       // Don't actually load the script without API key
-      // document.head.appendChild(script);
+      document.head.appendChild(script);
 
       // For demo purposes, show error state
-      setMapError(true);
+      // setMapError(true);
     };
 
     loadGoogleMaps();
@@ -378,12 +408,12 @@ export default function LocationMapSection({ contactUsData }) {
               </div>
 
               {/* Current Location Indicator */}
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
+              {/* <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
                 <div className="relative w-10 h-10 -translate-x-1/2 -translate-y-1/2">
                   <div className="absolute inset-0 rounded-full bg-green-400 animate-ping"></div>
                   <div className="absolute top-1/2 left-1/2 w-6 h-6 bg-green-500 rounded-full border-4 border-white -translate-x-1/2 -translate-y-1/2 z-10"></div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
 

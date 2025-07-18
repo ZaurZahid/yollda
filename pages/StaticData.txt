@@ -6,9 +6,7 @@ News top banner
 Contact map google api key.
 Get yolda app button links
 
-Countries deyisilinde terms de ne olacaq? ve apiye country fieldi hacan gonderilecek generally?
+Apiye country fieldi hacan gonderilecek generally?
 *country ip kimi gonderilecek yeni apiden 
 
 signup apileri CITY missing api verilecek
-
-cookie listini verin, ona uygun sonra diller ucun static tercumeler ucun key elave olunar

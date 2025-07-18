@@ -1,62 +1,14 @@
 import { useMemo, useState } from "react";
 import ArrowDown from "../ui/icons/ArrowDown";
 import Link from "next/link";
-import { useTranslation } from "next-i18next";
-
-// const categories = [
-//   {
-//     id: "terms-conditions",
-//     title: "Terms and Conditions",
-//     subtitle: "General",
-//     order_id: 5,
-//   },
-//   {
-//     id: "yollda-users",
-//     title: "Yollda Users",
-//     subtitle: "Service Beneficiaries",
-//     order_id: 4,
-//   },
-//   {
-//     id: "road-assistance",
-//     title: "Yollda Road Assistance Services",
-//     subtitle: "Service Definitions",
-//     order_id: 3,
-//   },
-//   {
-//     id: "partners",
-//     title: "Yollda Partners",
-//     subtitle: "Independent Service Providers",
-//     order_id: 1,
-//   },
-//   {
-//     id: "business",
-//     title: "Yollda Business",
-//     subtitle: "Fleet Owners",
-//     order_id: 2,
-//   },
-//   {
-//     id: "others",
-//     title: "Others",
-//     subtitle: "Terms and Conditions",
-//     order_id: 0,
-//   },
-// ];
-
-// const countries = [
-//   "Azerbaijan (Azerbaijan)",
-//   "Turkey (Türkiye)",
-//   "Georgia (საქართველო)",
-//   "Kazakhstan (Қазақстан)",
-//   "United States",
-//   "United Kingdom",
-//   "Germany",
-//   "France",
-// ];
+import { i18n, useTranslation } from "next-i18next";
+import { fetchFromAPI } from "../../hooks/apiFetcher";
 
 export default function TermsConditionsSection({
   termsData,
   countriesData: { results: countriesList },
 }) {
+  const [termsList, setTermsList] = useState(termsData || []);
   const [countrCode, setCountryCode] = useState("AZ");
 
   const selecetedCountry = useMemo(
@@ -64,13 +16,26 @@ export default function TermsConditionsSection({
     [countrCode]
   );
 
+  const handleCountryChange = async (country) => {
+    try {
+      const response = await fetchFromAPI(
+        "/api/v1/web/terms/",
+        i18n?.language,
+        {
+          Country: country,
+        }
+      );
+      setCountryCode(country);
+      setTermsList(response || []);
+    } catch (error) {
+      console.error("Failed to fetch terms:", error);
+    } finally {
+      setIsDropdownOpen(false); // always executed
+    }
+  };
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { t } = useTranslation("common");
-
-  const handleCountrySelect = (country) => {
-    setCountryCode(country);
-    setIsDropdownOpen(false);
-  };
 
   const widthPattern = [
     "w-full md:w-[30%] xl:w-[23%]", // 1/3
@@ -102,8 +67,9 @@ export default function TermsConditionsSection({
                 </span>
                 <ArrowDown
                   strokeColor={`stroke-gray-500`}
-                  className={`transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""
-                    }`}
+                  className={`transition-transform duration-200 ${
+                    isDropdownOpen ? "rotate-180" : ""
+                  }`}
                 />
               </button>
 
@@ -112,7 +78,7 @@ export default function TermsConditionsSection({
                   {countriesList?.map((country) => (
                     <button
                       key={country.id}
-                      onClick={() => handleCountrySelect(country.code)}
+                      onClick={() => handleCountryChange(country.code)}
                       className="w-full px-6 py-3 text-left hover:bg-gray-50 transition-colors duration-200 text-span-responsive first:rounded-t-md:w-[30%] xl last:rounded-b-md:w-[30%] xl"
                     >
                       {country.name}
@@ -132,7 +98,7 @@ export default function TermsConditionsSection({
 
           {/* Categories Grid */}
           <div className="flex flex-wrap gap-6">
-            {termsData
+            {termsList
               ?.slice() // copy to avoid mutating original
               .map((category, index) => {
                 const widthClass = widthPattern[index % widthPattern.length];
