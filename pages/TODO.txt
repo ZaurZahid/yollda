@@ -14,6 +14,6 @@ bezi yerlerde object?.key yazanda typolar olur, diqqetle yoxla ---- for ex:objec
 ---------------
 CURRENT TODOS
 ---------------
-5. Vehicles list in your fleet signup arab dilinde qoymaq regemleri ~~
-Contact map google api key dev mode ucun internetden key gotur islet baxaq nece isleyir sonra api key elave ederik prod ucun
-cookie listini verin, ona uygun sonra diller ucun static tercumeler ucun key elave olunar
+5. Vehicles list in your fleet signup arab dilinde qoymaq regemleri ~~ DONE?
+Contact map google api key dev mode ucun internetden key gotur islet baxaq nece isleyir sonra api key elave ederik prod ucun DONE
+cookie listini verin, ona uygun sonra diller ucun static tercumeler ucun key elave olunar DONE 
