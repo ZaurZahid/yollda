@@ -3,7 +3,7 @@ import Link from "next/link";
 import ArrowDown from "./../ui/icons/ArrowDown";
 import RegisterMethods from "../../utils/registerMethods";
 
-export default function RegisterBar({ individual = false }) {
+export default function RegisterBar({ individual = false, handleClose }) {
   return (
     <div
       className={`rounded-xl p-[32px]  max-w-[395px] ${
@@ -12,6 +12,7 @@ export default function RegisterBar({ individual = false }) {
     >
       {RegisterMethods().map((item, idx) => (
         <Link
+          onClick={handleClose}
           href={item.url}
           key={idx}
           className={`relative flex items-start gap-3 p-4  rounded-2xl transition hover:bg-[#f3f4f6]`}

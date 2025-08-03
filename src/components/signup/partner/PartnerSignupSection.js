@@ -56,7 +56,7 @@ export default function PartnerSignupSection({
     phoneNumber: "",
     countryCode: "+994",
     email: "",
-    service_type: params.get("service_type") || "",
+    service_type: "",
     country: "",
     city: "",
     agreeToTerms: false,
@@ -74,6 +74,13 @@ export default function PartnerSignupSection({
   const countryDropdownRef = useRef(null);
   const cityDropdownRef = useRef(null);
   const servicesDropdownRef = useRef(null);
+
+  useEffect(() => {
+    setFormData((prevState) => ({
+      ...prevState,
+      service_type: params.get("service_type") || "",
+    }));
+  }, [params]);
 
   // Close the dropdowns when clicking outside
   useEffect(() => {
