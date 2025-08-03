@@ -2,10 +2,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import LinkIcon from "../../ui/icons/Link";
 import ArrowDown from "../../ui/icons/ArrowDown";
 import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
-
-const fleetSizes = ["1-10", "11-25", "26-50", "51-100", "100+"];
-const fleetSizesAr = ["١-١٠", "١١-٢٥", "٢٦-٥٠", "٥١-١٠٠", "١٠٠+"];
 
 export default function FleetSignupSection({
   isSubmitted,
@@ -13,9 +9,14 @@ export default function FleetSignupSection({
   countriesData: { results: countriesList },
 }) {
   const { t } = useTranslation("common");
-  const route = useRouter();
-  const locale = route.locale || "en";
-  const sizes = locale === "ar" ? fleetSizesAr : fleetSizes;
+  const fleetSizes = [
+    t("fleetSizes.1-10"),
+    t("fleetSizes.11-25"),
+    t("fleetSizes.26-50"),
+    t("fleetSizes.51-100"),
+    t("fleetSizes.100+"),
+  ];
+
   const [formData, setFormData] = useState({
     phoneNumber: "",
     countryCode: "+994",
@@ -387,7 +388,7 @@ export default function FleetSignupSection({
                                 : "text-gray-500"
                             }`}
                           >
-                            {formData.fleetSize || sizes[0]}
+                            {formData.fleetSize || fleetSizes[0]}
                           </span>
                           <ArrowDown
                             strokeColor={`stroke-gray-500`}
@@ -399,7 +400,7 @@ export default function FleetSignupSection({
 
                         {isFleetSizeOpen && (
                           <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-40 max-h-60 overflow-y-auto custom-contact-scrollbar">
-                            {sizes.map((size) => (
+                            {fleetSizes.map((size) => (
                               <button
                                 key={size}
                                 type="button"

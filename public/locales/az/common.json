@@ -583,5 +583,12 @@
       "label": "AZBecome a Training Partner",
       "description": "AZOffer certified training to Yollda service providers and grow with our platform"
     }
+  },
+  "fleetSizes": {
+    "1-10": "1-10",
+    "11-25": "11-25",
+    "26-50": "26-50",
+    "51-100": "51-100",
+    "100+": "100+"
   }
 }
