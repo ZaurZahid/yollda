@@ -3,14 +3,19 @@ import LinkIcon from "../../ui/icons/Link";
 import ArrowDown from "../../ui/icons/ArrowDown";
 import { useTranslation } from "next-i18next";
 
-const fleetSizes = ["1-10", "11-25", "26-50", "51-100", "100+"];
-
 export default function FleetSignupSection({
   isSubmitted,
   setIsSubmitted,
   countriesData: { results: countriesList },
 }) {
   const { t } = useTranslation("common");
+  const fleetSizes = [
+    t("fleetSizes.1-10"),
+    t("fleetSizes.11-25"),
+    t("fleetSizes.26-50"),
+    t("fleetSizes.51-100"),
+    t("fleetSizes.100+"),
+  ];
 
   const [formData, setFormData] = useState({
     phoneNumber: "",
@@ -248,10 +253,11 @@ export default function FleetSignupSection({
                               setIsCountryCodeOpen(!isCountryCodeOpen)
                             }
                             className={`bg-gray-50 w-[130px] h-11 border border-gray-300 rounded-xl px-3 py-2 text-gray-700 flex items-center space-s-2 hover:bg-gray-200 transition-colors duration-200 min-w-[100px]
-                                                    ${isCountryCodeOpen
-                                ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
-                                : ""
-                              }
+                                                    ${
+                                                      isCountryCodeOpen
+                                                        ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
+                                                        : ""
+                                                    }
                                                 `}
                           >
                             <img
@@ -264,8 +270,9 @@ export default function FleetSignupSection({
                             </span>
                             <ArrowDown
                               strokeColor={`stroke-gray-500`}
-                              className={`transition-transform duration-200 !ms-auto ${isCountryCodeOpen ? "rotate-180" : ""
-                                }`}
+                              className={`transition-transform duration-200 !ms-auto ${
+                                isCountryCodeOpen ? "rotate-180" : ""
+                              }`}
                             />
                           </button>
 
@@ -310,10 +317,11 @@ export default function FleetSignupSection({
                             onChange={(e) =>
                               handleInputChange("phoneNumber", e.target.value)
                             }
-                            className={`w-full border ${errors.phoneNumber
-                              ? "border-red-400"
-                              : "border-gray-300"
-                              } rounded-xl px-4 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
+                            className={`w-full border ${
+                              errors.phoneNumber
+                                ? "border-red-400"
+                                : "border-gray-300"
+                            } rounded-xl px-4 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
                           />
                         </div>
                       </div>
@@ -339,8 +347,9 @@ export default function FleetSignupSection({
                           onChange={(e) =>
                             handleInputChange("email", e.target.value)
                           }
-                          className={`w-full border ${errors.email ? "border-red-400" : "border-gray-300"
-                            } rounded-xl px-4 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
+                          className={`w-full border ${
+                            errors.email ? "border-red-400" : "border-gray-300"
+                          } rounded-xl px-4 py-2 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent transition-all duration-200 text-input-responsive`}
                         />
                       </div>
                       {errors.email && (
@@ -359,29 +368,33 @@ export default function FleetSignupSection({
                         <button
                           type="button"
                           onClick={() => setIsFleetSizeOpen(!isFleetSizeOpen)}
-                          className={`w-full border ${errors.fleetSize
-                            ? "border-red-400"
-                            : "border-gray-300"
-                            } rounded-xl px-4 py-2 text-left flex items-center justify-between text-gray-900 hover:bg-gray-200 transition-colors duration-200
-                                            ${isFleetSizeOpen &
-                              !errors.fleetSize
-                              ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
-                              : ""
-                            }
+                          className={`w-full border ${
+                            errors.fleetSize
+                              ? "border-red-400"
+                              : "border-gray-300"
+                          } rounded-xl px-4 py-2 text-left flex items-center justify-between text-gray-900 hover:bg-gray-200 transition-colors duration-200
+                                            ${
+                                              isFleetSizeOpen &
+                                              !errors.fleetSize
+                                                ? "focus:outline-none focus:ring-2 focus:ring-light-green focus:border-transparent"
+                                                : ""
+                                            }
                                         `}
                         >
                           <span
-                            className={`text-input-responsive ${formData.fleetSize
-                              ? "text-gray-900"
-                              : "text-gray-500"
-                              }`}
+                            className={`text-input-responsive ${
+                              formData.fleetSize
+                                ? "text-gray-900"
+                                : "text-gray-500"
+                            }`}
                           >
-                            {formData.fleetSize || "1-10"}
+                            {formData.fleetSize || fleetSizes[0]}
                           </span>
                           <ArrowDown
                             strokeColor={`stroke-gray-500`}
-                            className={`transition-transform duration-200 !ms-auto ${isFleetSizeOpen ? "rotate-180" : ""
-                              }`}
+                            className={`transition-transform duration-200 !ms-auto ${
+                              isFleetSizeOpen ? "rotate-180" : ""
+                            }`}
                           />
                         </button>
 
@@ -449,12 +462,13 @@ export default function FleetSignupSection({
                                 !formData.agreeToTerms
                               )
                             }
-                            className={`w-5 h-5 rounded border-2 transition-all duration-200 flex items-center justify-center ${formData.agreeToTerms
-                              ? "bg-light-green border-light-green"
-                              : errors.agreeToTerms
+                            className={`w-5 h-5 rounded border-2 transition-all duration-200 flex items-center justify-center ${
+                              formData.agreeToTerms
+                                ? "bg-light-green border-light-green"
+                                : errors.agreeToTerms
                                 ? "border-red-400"
                                 : "border-gray-300 hover:border-light-green"
-                              }`}
+                            }`}
                           >
                             {formData.agreeToTerms && (
                               <svg

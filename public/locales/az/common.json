@@ -15,6 +15,44 @@
     "news": "AZNews",
     "blogs": "AZBlogs"
   },
+  "cookie": {
+    "banner": {
+      "title": "Bu vebsayt kukilərdən istifadə edir.",
+      "description": "Təsdiq qutularından istifadə edərək məlumatlarınızın göstərilən məqsədlərlə istifadə olunmasına razı olduğunuzu göstərin.",
+      "declaration": {
+        "part1": "Ətraflı məlumat və seçimlər üçün",
+        "link": "Kuki bildirişi",
+        "part2": "sənədimizlə tanış olun."
+      },
+      "allowAll": "Hamısına icazə ver",
+      "rejectAll": "Hamısını rədd et",
+      "allowSelection": "Seçilənlərə icazə ver"
+    },
+    "strictly_necessary": {
+      "name": "Mütləq Zəruri Kukilər",
+      "description": "Bu kukilər veb saytın düzgün işləməsi üçün vacibdir. Sessiya idarəetməsi, təhlükəsizlik, forma doldurma və dil seçimləri kimi funksiyalar bu kukilərə əsaslanır. Bu kukilər olmadan sayt düzgün işləyə bilməz və deaktiv edilə bilməz."
+    },
+    "performance": {
+      "name": "Performans və Analitika Kukiləri",
+      "description": "Bu kukilər veb saytımızın performansını ölçməyə və yaxşılaşdırmağa kömək edir. Hansı səhifələrin daha çox ziyarət edildiyini və istifadəçilərin saytda necə hərəkət etdiyini anonim şəkildə analiz edir."
+    },
+    "targeting": {
+      "name": "Hədəfləmə və Reklam Kukiləri",
+      "description": "Bu kukilər sizə uyğun məzmun və maraqlarınıza əsaslanan reklamlar təqdim etmək üçün istifadə olunur. Eyni reklamın təkrar göstərilməsinin qarşısını alır və reklam kampaniyalarının effektivliyini ölçür."
+    },
+    "functionality": {
+      "name": "Funksionallıq Kukiləri",
+      "description": "Bu kukilər istifadəçi təcrübəsini yaxşılaşdırmaq üçün istifadə olunur. Sessiyada edilən seçimləri, dil və region ayarlarını yadda saxlayaraq daha fərdi təcrübə təqdim edir."
+    },
+    "third_party": {
+      "name": "Üçüncü Tərəf Kukiləri",
+      "description": "Bu kukilər YouTube videoları, xəritə əlavələri və ya sosial media paylaşma düymələri kimi xarici xidmət təminatçıları tərəfindən yerləşdirilir. Onlar digər saytlarla qarşılıqlı əlaqənizə əsasən məlumat toplaya bilər."
+    },
+    "debug": {
+      "name": "Tərtibatçı və Diaqnostika Kukiləri",
+      "description": "Bu kukilər yalnız sistem administratorları və ya tərtibatçılar tərəfindən istifadə olunur. Sayt xətalarını təhlil etmək və sistem davranışını analiz etmək üçün müvəqqəti aktiv edilə bilər."
+    }
+  },
   "onboarding": {
     "title_header": "AZBringing",
     "title_header_span": "AZlocal shopping",
@@ -192,6 +230,7 @@
         "phone_number": "AZPhone number",
         "email": "AZEmail Address",
         "country": "AZCountry",
+        "services": "AZServices",
         "city": "AZCity",
         "iagree": "AZI agree to the",
         "and": "AZand",
@@ -544,5 +583,12 @@
       "label": "AZBecome a Training Partner",
       "description": "AZOffer certified training to Yollda service providers and grow with our platform"
     }
+  },
+  "fleetSizes": {
+    "1-10": "1-10",
+    "11-25": "11-25",
+    "26-50": "26-50",
+    "51-100": "51-100",
+    "100+": "100+"
   }
 }

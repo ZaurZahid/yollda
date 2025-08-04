@@ -211,7 +211,7 @@ const BurgerModal = ({ isOpen, onClose }) => {
               </ul>
             </div>
             <div className="hidden xl:block min-w-[380px]">
-              <RegisterBar />
+              <RegisterBar handleClose={onClose} />
             </div>
           </div>
         </div>

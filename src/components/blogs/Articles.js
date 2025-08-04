@@ -4,13 +4,15 @@ import React, { useState } from "react";
 import { trimText } from "../../hooks/trimText";
 import ArrowDown from "../ui/icons/ArrowDown";
 import Pagination from "../ui/Pagination";
+import { useRouter } from "next/router";
+import { formatDate } from "../../hooks/formatDate";
 
 function Articles({ articlesData, blogsCategories }) {
   const { t } = useTranslation("common");
+  const router = useRouter();
+  const { locale } = router;
   const [blogsList, setBlogsList] = useState(articlesData?.results || []);
-  const [blogsCategoriesList] = useState(
-    blogsCategories?.results || []
-  );
+  const [blogsCategoriesList] = useState(blogsCategories?.results || []);
 
   const [currentPage, setCurrentPage] = useState(
     articlesData?.current_page || 1
@@ -35,7 +37,7 @@ function Articles({ articlesData, blogsCategories }) {
       const data = await response.json();
 
       setSubCategories(data?.subcategories);
-    } catch (error) { }
+    } catch (error) {}
   };
 
   // Function to fetch data for a specific page
@@ -111,8 +113,9 @@ function Articles({ articlesData, blogsCategories }) {
             </span>
             <ArrowDown
               strokeColor={`stroke-gray-500`}
-              className={`transition-transform duration-200 ${isCategoryOpen ? "rotate-180" : ""
-                }`}
+              className={`transition-transform duration-200 ${
+                isCategoryOpen ? "rotate-180" : ""
+              }`}
             />
           </button>
 
@@ -146,8 +149,9 @@ function Articles({ articlesData, blogsCategories }) {
               </span>
               <ArrowDown
                 strokeColor={`stroke-gray-500`}
-                className={`transition-transform duration-200 ${isSubCategoryOpen ? "rotate-180" : ""
-                  }`}
+                className={`transition-transform duration-200 ${
+                  isSubCategoryOpen ? "rotate-180" : ""
+                }`}
               />
             </button>
 
@@ -191,7 +195,7 @@ function Articles({ articlesData, blogsCategories }) {
           <div className="flex items-center">
             <img src="/calendar.svg" className="me-2" alt="calendar icon" />
             <span className="text-span-small-responsive text-gray-500">
-              {blogsList[0]?.created_at}
+              {formatDate(blogsList[0]?.created_at, locale)}
             </span>
           </div>
 
@@ -282,7 +286,7 @@ function Articles({ articlesData, blogsCategories }) {
                           {trimText(article?.title, 100)}
                         </h5>
                         <div className="flex items-center text-span-small-responsive text-gray-500">
-                          {article?.created_at}
+                          {formatDate(article?.created_at, locale)}
                         </div>
                       </div>
                     </div>
@@ -317,7 +321,7 @@ function Articles({ articlesData, blogsCategories }) {
                           {article?.title}
                         </h5>
                         <div className="flex items-center text-span-small-responsive text-gray-500">
-                          <span>{article?.created_at}</span>
+                          <span>{formatDate(article?.created_at, locale)}</span>
                         </div>
                       </div>
                     </div>

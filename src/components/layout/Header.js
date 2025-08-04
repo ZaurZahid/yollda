@@ -142,7 +142,10 @@ const Header = ({
                     ref={modalRef}
                     className="absolute top-16 right-0 rtl:right-auto rtl:left-0 z-50 w-[380px] transition-all duration-300"
                   >
-                    <RegisterBar individual={true} />
+                    <RegisterBar
+                      individual={true}
+                      handleClose={() => setRegisterMethodsOpen(false)}
+                    />
                   </div>
                 )}
               </div>
