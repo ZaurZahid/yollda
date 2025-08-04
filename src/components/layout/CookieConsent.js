@@ -16,7 +16,7 @@ export default function CookiesContent() {
       name: t("cookie.strictly_necessary.name"),
       description: t("cookie.strictly_necessary.description"),
       required: true,
-      enabled: false,
+      enabled: true,
       count: 78,
     },
     {
@@ -325,14 +325,12 @@ export default function CookiesContent() {
                     <button
                       onClick={() => handleCategoryToggle(category.id)}
                       disabled={category.required}
-                      className={`w-12 h-6 rounded-full transition-colors duration-200 ${
-                        category.enabled ? "bg-light-green" : "bg-white/20"
-                      } ${category.required ? "opacity-50" : ""}`}
+                      className={`w-12 h-6 rounded-full transition-colors duration-200 ${category.enabled ? "bg-light-green" : "bg-white/20"
+                        } ${category.required ? "opacity-50" : ""}`}
                     >
                       <div
-                        className={`w-5 h-5 bg-white rounded-full transition-transform duration-200 ${
-                          category.enabled ? "translate-x-6" : "translate-x-0.5"
-                        }`}
+                        className={`w-5 h-5 bg-white rounded-full transition-transform duration-200 ${category.enabled ? "translate-x-6" : "translate-x-0.5"
+                          }`}
                       />
                     </button>
                   </div>
