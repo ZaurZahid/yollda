@@ -14,6 +14,7 @@ const Header = ({
   onOpen,
   isBurgerOpen,
   closeBurgerModal,
+  isFleetLayout,
 }) => {
   const { t } = useTranslation("common");
   //test
@@ -123,39 +124,43 @@ const Header = ({
           >
             <LanguageSwitcher />
 
-            <div className="hidden md:flex items-center space-s-4 md:space-s-6 lg:space-s-8">
-              <h5 className="text-span-responsive font-bold ">
-                {t("buttons.support")}
-              </h5>
-              <div className="ms-4 relative">
-                <Button
-                  text={t("navigation.join")}
-                  onClick={registerMethodsSwitch}
-                  classes={`${
-                    isTransparent
-                      ? "bg-white text-green-950 hover:bg-slate-400 "
-                      : "bg-green-dark hover:green-secondary-dark text-white"
-                  } whitespace-nowrap h-8 `}
-                />
-                {registerMethodsOpen && (
-                  <div
-                    ref={modalRef}
-                    className="absolute top-16 right-0 rtl:right-auto rtl:left-0 z-50 w-[380px] transition-all duration-300"
-                  >
-                    <RegisterBar
-                      individual={true}
-                      handleClose={() => setRegisterMethodsOpen(false)}
+            {!isFleetLayout && (
+              <>
+                <div className="hidden md:flex items-center space-s-4 md:space-s-6 lg:space-s-8">
+                  <h5 className="text-span-responsive font-bold ">
+                    {t("buttons.support")}
+                  </h5>
+                  <div className="ms-4 relative">
+                    <Button
+                      text={t("navigation.join")}
+                      onClick={registerMethodsSwitch}
+                      classes={`${
+                        isTransparent
+                          ? "bg-white text-green-950 hover:bg-slate-400 "
+                          : "bg-green-dark hover:green-secondary-dark text-white"
+                      } whitespace-nowrap h-8 `}
                     />
+                    {registerMethodsOpen && (
+                      <div
+                        ref={modalRef}
+                        className="absolute top-16 right-0 rtl:right-auto rtl:left-0 z-50 w-[380px] transition-all duration-300"
+                      >
+                        <RegisterBar
+                          individual={true}
+                          handleClose={() => setRegisterMethodsOpen(false)}
+                        />
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            </div>
-            <button
-              onClick={onOpen}
-              className={isTransparent ? "text-white" : null}
-            >
-              {isBurgerOpen ? <CrossIcon /> : <NavbarButton />}
-            </button>
+                </div>
+                <button
+                  onClick={onOpen}
+                  className={isTransparent ? "text-white" : null}
+                >
+                  {isBurgerOpen ? <CrossIcon /> : <NavbarButton />}
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>

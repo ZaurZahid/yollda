@@ -9,7 +9,7 @@ import SuperAppSection from "../src/components/about/SuperAppSection";
 import WhatMakeUsSection from "../src/components/about/WhatMakeUsSection";
 import EarnMoneySection from "../src/components/about/EarnMoneySection";
 
-export default function About({
+function About({
   aboutSingleItem,
   aboutCarousel,
   aboutList,
@@ -92,3 +92,5 @@ export async function getServerSideProps({ locale }) {
     };
   }
 }
+
+export default About;

@@ -5,7 +5,7 @@ import CookieConsent from "./CookieConsent";
 import BurgerModal from "./BurgerModal";
 // import JoinListModal from './JoinList';
 
-const Layout = ({ children, theme = "normal" }) => {
+const Layout = ({ children, theme = "normal", isFleetLayout = false }) => {
   const [burgerModal, setBurgerModal] = useState(false);
 
   const burgerModalSwitch = () => {
@@ -26,12 +26,15 @@ const Layout = ({ children, theme = "normal" }) => {
           theme={theme}
           isBurgerOpen={burgerModal}
           closeBurgerModal={onCloseBurgerModal}
+          isFleetLayout={isFleetLayout}
         />
         <main className="w-full mt-20 sm:mt-32 xl:mt-20">{children}</main>
         {/* </div> */}
       </div>
-      <Footer siteData={/* siteData */ ""} />
-      <BurgerModal isOpen={burgerModal} onClose={onCloseBurgerModal} />
+      {!isFleetLayout && <Footer siteData={/* siteData */ ""} />}
+      {!isFleetLayout && (
+        <BurgerModal isOpen={burgerModal} onClose={onCloseBurgerModal} />
+      )}
       <CookieConsent />
     </div>
   );

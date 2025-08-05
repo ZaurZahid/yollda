@@ -14,4 +14,4 @@ bezi yerlerde object?.key yazanda typolar olur, diqqetle yoxla ---- for ex:objec
 ---------------
 CURRENT TODOS
 ---------------
-map key vercelde islemedi
+map key vercelde islemedi -> Enviye keyi qoymamisam  diyesen ayda 1000+ requested cox atanda pulc cixir ona gore :)
