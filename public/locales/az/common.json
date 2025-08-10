@@ -13,7 +13,9 @@
     "contact": "AZContact",
     "join": "AZJoin Us",
     "news": "AZNews",
-    "blogs": "AZBlogs"
+    "blogs": "AZBlogs",
+    "fleet_login": "AZFleet login",
+    "add_company": "AZAdd company"
   },
   "cookie": {
     "banner": {
@@ -560,7 +562,9 @@
     "blogs": "AZThis is descriprtion of all blogs page",
     "single_blog": "AZThis is descipriotn of specific blog page",
     "terms": "AZThis is desciption of terms page",
-    "single_term": "AZThis is desciptuon of specific term page"
+    "single_term": "AZThis is desciptuon of specific term page",
+    "fleet_login": "AZThis is description for fleet login page",
+    "add_company": "AZThis is description for add company page"
   },
   "register_methods": {
     "become_tow_partner": {

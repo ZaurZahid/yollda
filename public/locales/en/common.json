@@ -51,7 +51,9 @@
     "contact": "Contact",
     "join": "Join Us",
     "news": "News",
-    "blogs": "Blogs"
+    "blogs": "Blogs",
+    "fleet_login": "Fleet login",
+    "add_company": "Add company"
   },
   "onboarding": {
     "title_header": "Bringing",
@@ -561,7 +563,9 @@
     "blogs": "This is descriprtion of all blogs page",
     "single_blog": "This is descipriotn of specific blog page",
     "terms": "This is desciption of terms page",
-    "single_term": "This is desciptuon of specific term page"
+    "single_term": "This is desciptuon of specific term page",
+    "fleet_login": "This is description for fleet login page",
+    "add_company": "This is description for add company page"
   },
   "register_methods": {
     "become_tow_partner": {

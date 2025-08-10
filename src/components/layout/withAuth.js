@@ -9,7 +9,7 @@ export default function withAuth(Component) {
 
     useEffect(() => {
       if (!user) {
-        router.replace("/contact");
+        router.replace("/signup");
       }
     }, [user]);
 
