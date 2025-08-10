@@ -8,6 +8,7 @@ import TickCircle from "../ui/icons/TickCircle";
 import ClockIcon from "../ui/icons/ClockIcon";
 import CrossCirlce from "../ui/icons/CrossCircle";
 import DangerIcon from "../ui/icons/DangerIcon";
+import DeleteModal from "./DeleteModal";
 
 const TaskStatus = {
   REVIEW: 0,
@@ -169,7 +170,7 @@ function StepCard({ step, isLast, nextStep }) {
 }
 
 /* ------- Top error item (only shows when hasError is true) ------- */
-function TopErrorItem() {
+function TopErrorItem({ onDeleteClick }) {
   return (
     <div className="flex w-full">
       {/* left rail + bullet */}
@@ -189,10 +190,13 @@ function TopErrorItem() {
             Get ready to activate your fleet
           </h3>
           <p className="text-[14px] font-[500] text-gray-500">
-            Unfortunately, your company account can’t be activated because of
+            Unfortunately, your company account can't be activated because of
             document issues. Please contact Support to resolve this.
           </p>
-          <button className="text-red-600 font-semibold text-[14px] w-fit hover:underline">
+          <button
+            onClick={onDeleteClick}
+            className="text-red-600 font-semibold text-[14px] w-fit hover:underline"
+          >
             Delete application
           </button>
         </div>
@@ -207,6 +211,21 @@ export default function SetupPage() {
 
   // NEW: errors state (true by default)
   const [hasError] = useState(true);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const handleDeleteClick = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    // Handle actual deletion logic here
+    console.log("Application deleted");
+    setIsDeleteModalOpen(false);
+  };
+
+  const handleDeleteCancel = () => {
+    setIsDeleteModalOpen(false);
+  };
 
   return (
     <div className="h-full w-full bg-white">
@@ -218,7 +237,7 @@ export default function SetupPage() {
 
         <section className="mt-4">
           {/* Top error (conditional) */}
-          {hasError && <TopErrorItem />}
+          {hasError && <TopErrorItem onDeleteClick={handleDeleteClick} />}
 
           <div className="space-y-5 flex flex-col mt-5">
             {steps.map((step, i) => (
@@ -261,14 +280,21 @@ export default function SetupPage() {
         {/* Footer note */}
         <p className="text-sm text-gray-600 border-t-2 border-gray-200 py-5">
           Registration with Yollda is no longer of interest? You can{" "}
-          <a
-            href="#"
-            className="text-emerald-500 hover:text-emerald-600 transition-colors"
+          <button
+            onClick={handleDeleteClick}
+            className="text-emerald-500 hover:text-emerald-600 transition-colors underline"
           >
             delete this application
-          </a>
+          </button>
         </p>
       </div>
+
+      {/* Delete Modal */}
+      <DeleteModal
+        isOpen={isDeleteModalOpen}
+        onClose={handleDeleteCancel}
+        onConfirm={handleDeleteConfirm}
+      />
     </div>
   );
 }
