@@ -14,7 +14,7 @@ export default function DeleteModal({ isOpen, onClose, onConfirm }) {
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-6 h-6 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors"
+          className="absolute top-4 right-4 w-6 h-6 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors bg-gray-100 rounded-full"
         >
           <CloseIcon />
         </button>

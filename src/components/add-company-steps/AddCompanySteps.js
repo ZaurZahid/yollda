@@ -26,7 +26,7 @@ const useSteps = () =>
         title: "Add company details",
         description: "Official information that appear on your invoices",
         cta: "Review",
-        status: TaskStatus.ACCEPTED,
+        status: TaskStatus.DECLINED,
         icon: CaseIcon,
       },
       {
@@ -34,7 +34,7 @@ const useSteps = () =>
         title: "Upload documents",
         description: "Required official documents",
         cta: "Review",
-        status: TaskStatus.DECLINED,
+        status: TaskStatus.ACCEPTED,
         icon: FileIcon,
       },
       {
@@ -42,7 +42,7 @@ const useSteps = () =>
         title: "Add your vehicles",
         description: "Official information that appear on your invoices",
         cta: "Accepted",
-        status: TaskStatus.REVIEW,
+        status: TaskStatus.ACCEPTED,
         icon: VehicleIcon,
       },
       {
@@ -50,7 +50,7 @@ const useSteps = () =>
         title: "Add payout details",
         description: "Official information that appear on your invoices",
         cta: "Add info",
-        status: TaskStatus.IDLE,
+        status: TaskStatus.REVIEW,
         icon: CardIcon,
       },
     ],
