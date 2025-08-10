@@ -5,12 +5,18 @@ import InputWrapper from "./InputWrapper";
 const InputType = {
   TEXT: 0,
   SELECT: 1,
+  CHECKBOX: 2,
+  FILE: 3,
 };
 const SingleStep = () => {
   const [formData, setFormData] = useState({
     name: "",
     city: "",
     surname: "",
+    country: "",
+    check: false,
+    check2: false,
+    file: null,
   });
   const [errors, setErrors] = useState({});
   const handleInputChange = (field) => {
@@ -27,7 +33,7 @@ const SingleStep = () => {
     return;
   };
   return (
-    <div className="h-full w-full py-4">
+    <div className="h-full w-full py-4 pb-32">
       <div className="container max-w-[560px] px-2 flex flex-col gap-4  mx-auto h-full">
         {/* Exit button */}
         <div className="flex justify-end items-center">
@@ -57,6 +63,7 @@ const SingleStep = () => {
             type={InputType.TEXT}
             placeholder="First name"
             label="First name"
+            description="This is how we gonna recongnize your family"
             handleInputChange={handleInputChange("name")}
           />
           <InputWrapper
@@ -73,6 +80,39 @@ const SingleStep = () => {
             options={["Baku", "Zaqatala"]}
             handleInputChange={handleInputChange("city")}
             label="Select city"
+          />
+          <InputWrapper
+            value={formData.country}
+            type={InputType.SELECT}
+            placeholder="Select country"
+            options={["Azerbaijan", "Estonia"]}
+            handleInputChange={handleInputChange("country")}
+            label="Select country"
+          />
+          <InputWrapper
+            value={formData.check}
+            type={InputType.CHECKBOX}
+            placeholder="Agree with terms"
+            optionDescription="I'm not the registered owner"
+            handleInputChange={handleInputChange("check")}
+            label="Agree with terms"
+            description="If the vehicle is not registered in your name or you are using it under a Power of Attorney, please tick the box below."
+          />
+          <InputWrapper
+            value={formData.check2}
+            type={InputType.CHECKBOX}
+            placeholder="Agree with terms 2"
+            optionDescription="I'm not the registered owner 2"
+            handleInputChange={handleInputChange("check2")}
+            label="Agree with terms2"
+            description="If the vehicle is not registered in your name or you are using it under a Power of Attorney, please tick the box below second time."
+          />
+          <InputWrapper
+            value={formData.check2}
+            type={InputType.FILE}
+            handleInputChange={handleInputChange("file")}
+            label="Vehicle registration certificate (Front side)*"
+            description="Upload a clear photo of the front of your vehicle's technical passport. All information must be clearly visible."
           />
 
           {/*------------------------------------------- */}
