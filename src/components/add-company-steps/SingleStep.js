@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CloseIcon from "../ui/icons/Close";
 import InputWrapper from "./InputWrapper";
+import FileUploadModal from "./FileUploadModal";
 
 const InputType = {
   TEXT: 0,
@@ -19,6 +20,10 @@ const SingleStep = () => {
     file: null,
   });
   const [errors, setErrors] = useState({});
+  const [fileModal, setFileModal] = useState(true);
+  const handleFileModalOpen = () => {
+    setFileModal((prevSate) => !prevSate);
+  };
   const handleInputChange = (field) => {
     return (value) => {
       setFormData((prev) => ({ ...prev, [field]: value }));
@@ -111,21 +116,31 @@ const SingleStep = () => {
             value={formData.check2}
             type={InputType.FILE}
             handleInputChange={handleInputChange("file")}
+            handleFileModalOpen={handleFileModalOpen}
             label="Vehicle registration certificate (Front side)*"
             description="Upload a clear photo of the front of your vehicle's technical passport. All information must be clearly visible."
           />
 
           {/*------------------------------------------- */}
           <div className="flex justify-center gap-5">
-            <button className="h-[50px] w-full max-w-[235px] text-gray-600 hover:bg-gray-200 transition rounded-2xl bg-gray-100">
+            <button
+              type="button"
+              className="h-[50px] w-full max-w-[235px] text-gray-600 hover:bg-gray-200 transition rounded-2xl bg-gray-100"
+            >
               Previous
             </button>
-            <button className="h-[50px] w-full max-w-[235px] rounded-2xl text-white bg-[#47E373] hover:bg-[#3ed167] transition">
+            <button
+              type="submit"
+              className="h-[50px] w-full max-w-[235px] rounded-2xl text-white bg-[#47E373] hover:bg-[#3ed167] transition"
+            >
               Continue
             </button>
           </div>
         </form>
       </div>
+      {fileModal && (
+        <FileUploadModal isOpen={fileModal} onClose={handleFileModalOpen} />
+      )}
     </div>
   );
 };

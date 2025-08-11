@@ -17,6 +17,7 @@ const InputWrapper = ({
   errors,
   description,
   handleInputChange,
+  handleFileModalOpen,
   optionDescription = "",
   options = [],
   ...props
@@ -203,7 +204,11 @@ const InputWrapper = ({
               {description}
             </p>
           )}
-          <button className="rounded-[10px] py-[10px] px-[16px] bg-gray-100 hover:bg-gray-300 transition text-[#4B5563] text-[14px] max-w-[90px] flex items-center gap-2">
+          <button
+            onClick={handleFileModalOpen}
+            type="button"
+            className="rounded-[10px] py-[10px] px-[16px] bg-gray-100 hover:bg-gray-300 transition text-[#4B5563] text-[14px] max-w-[90px] flex items-center gap-2"
+          >
             <PlusCircleIcon /> Add
           </button>
         </div>
