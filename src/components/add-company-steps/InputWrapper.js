@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import ArrowDown from "../ui/icons/ArrowDown";
 import PlusCircleIcon from "../ui/icons/PlusCircleIcon";
+import TickCircle from "../ui/icons/TickCircle";
+import TrashBinIcon from "../ui/icons/TrashBinIcon";
 
 const InputType = {
   TEXT: 0,
@@ -13,6 +15,9 @@ const InputWrapper = ({
   type = InputType.TEXT,
   value,
   placeholder,
+  fileName,
+  fileExparationDate,
+  handleFileDelete,
   label,
   errors,
   description,
@@ -194,23 +199,47 @@ const InputWrapper = ({
       return (
         <div className="flex flex-col gap-2 border-b-2 border-b-gray-300 pb-5">
           {label && (
-            <label className="font-semibold text-[14px] text-gray-700">
-              {label}
-            </label>
+            <div className="flex justify-between items-center">
+              <label className="font-semibold text-[14px] text-gray-700">
+                {label}
+              </label>
+              {fileName && (
+                <div className="bg-light-secondary-green rounded-[10px] w-[50px] h-[28px] flex justify-center items-center">
+                  <TickCircle fill="white" />
+                </div>
+              )}
+            </div>
           )}
-
           {description && (
             <p className="text-gray-400 text-[14px] font-medium">
               {description}
             </p>
           )}
-          <button
-            onClick={handleFileModalOpen}
-            type="button"
-            className="rounded-[10px] py-[10px] px-[16px] bg-gray-100 hover:bg-gray-300 transition text-[#4B5563] text-[14px] max-w-[90px] flex items-center gap-2"
-          >
-            <PlusCircleIcon /> Add
-          </button>
+          {fileName ? (
+            <div className="flex justify-between items-center">
+              <div className=" flex flex-col ">
+                <p className="text-[14px] font-medium text-gray-600">
+                  {fileName}
+                </p>
+                {fileExparationDate && (
+                  <p className="text-gray-400 font-semibold text-[14px]">
+                    Expires: {fileExparationDate}
+                  </p>
+                )}
+              </div>
+              <button type="button" onClick={handleFileDelete}>
+                <TrashBinIcon />
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={handleFileModalOpen}
+              type="button"
+              className="rounded-[10px] py-[10px] px-[16px] bg-gray-100 hover:bg-gray-300 transition text-[#4B5563] text-[14px] max-w-[90px] flex items-center gap-2"
+            >
+              <PlusCircleIcon /> Add
+            </button>
+          )}
         </div>
       );
 

@@ -7,6 +7,8 @@ import { useTranslation } from "next-i18next";
 import YolldaLogo from "../ui/icons/Yollda";
 import RegisterBar from "./RegisterBar";
 import CrossIcon from "../ui/icons/CrossIcon";
+import UserIcon from "../ui/icons/UserIcon";
+import { useAuth } from "../../contex/AuthContex";
 
 const Header = ({
   logo,
@@ -17,21 +19,43 @@ const Header = ({
   isFleetLayout,
 }) => {
   const { t } = useTranslation("common");
+  const { isAuth } = useAuth();
+
+  const [isUserLogoutMenuOpen, setIsUserLogoutMenuOpen] = useState(true);
+
   //test
   const headerRef = useRef(null);
   const modalRef = useRef(null);
   const logoRef = useRef(null);
+  const logoutRef = useRef(null);
 
   const [isTransparent, setIsTransparent] = useState(theme === "transparent");
 
   const [registerMethodsOpen, setRegisterMethodsOpen] = useState(false);
-
+  const toggleDropdown = () => {
+    setIsUserLogoutMenuOpen((prevState) => !prevState);
+  };
   const registerMethodsSwitch = () => {
     if (isBurgerOpen) {
       closeBurgerModal();
     }
     setRegisterMethodsOpen((prev) => !prev);
   };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (logoutRef.current && !logoutRef.current.contains(event.target)) {
+        setIsUserLogoutMenuOpen(false);
+      }
+    };
+
+    if (isUserLogoutMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isUserLogoutMenuOpen]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -65,7 +89,9 @@ const Header = ({
       logoRef.current.classList.remove("fill-green-dark");
     }
   }, [isBurgerOpen]);
-
+  const handleLogout = () => {
+    return;
+  };
   useEffect(() => {
     const handleScroll = () => {
       if (headerRef.current) {
@@ -124,7 +150,7 @@ const Header = ({
           >
             <LanguageSwitcher />
 
-            {!isFleetLayout && (
+            {!isFleetLayout ? (
               <>
                 <div className="hidden md:flex items-center space-s-4 md:space-s-6 lg:space-s-8">
                   <h5 className="text-span-responsive font-bold ">
@@ -160,6 +186,38 @@ const Header = ({
                   {isBurgerOpen ? <CrossIcon /> : <NavbarButton />}
                 </button>
               </>
+            ) : (
+              isAuth && (
+                <div ref={logoutRef} className="relative">
+                  <button onClick={toggleDropdown}>
+                    <UserIcon />
+                  </button>
+                  {isUserLogoutMenuOpen && (
+                    <div className="absolute right-0 top-12 w-72 bg-white rounded-[15px] shadow-lg border border-gray-200 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                      {/* User Email Section */}
+                      <div className="px-4 py-3 ">
+                        <div className="flex items-center space-x-3">
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium text-gray-500 truncate">
+                              imranovazer@gmail.com
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Logout Button */}
+                      <div className="px-2 py-1">
+                        <button
+                          onClick={handleLogout}
+                          className="flex items-center w-full px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-md transition-colors duration-150 group"
+                        >
+                          <span className="font-medium">Logout</span>
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )
             )}
           </div>
         </div>

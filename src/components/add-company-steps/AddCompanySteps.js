@@ -208,7 +208,7 @@ function TopErrorItem({ onDeleteClick }) {
 /* ------- Page ------- */
 export default function SetupPage() {
   const steps = useSteps();
-
+  const [success, setSuccess] = useState(false);
   // NEW: errors state (true by default)
   const [hasError] = useState(true);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -230,64 +230,84 @@ export default function SetupPage() {
   return (
     <div className="h-full w-full bg-white">
       {/* Main */}
-      <div className="container mx-auto px-6 flex flex-col items-stretch gap-8 max-w-[500px]">
-        <h1 className="mt-6 text-2xl font-semibold text-gray-900">
-          Let's set up your company
-        </h1>
-
-        <section className="mt-4">
-          {/* Top error (conditional) */}
-          {hasError && <TopErrorItem onDeleteClick={handleDeleteClick} />}
-
-          <div className="space-y-5 flex flex-col mt-5">
-            {steps.map((step, i) => (
-              <StepCard
-                key={step.id}
-                step={step}
-                isLast={i === steps.length - 1}
-                nextStep={steps[i + 1]}
+      {success ? (
+        <div className="w-full h-full flex justify-center items-center">
+          <div className="flex w-full flex-col gap-8">
+            <div className="relative flex items-center justify-center h-[300px]">
+              <div className="bg-gray-100 rounded-full w-full max-w-[196px] aspect-square"></div>
+              <img
+                src="/successCharacter.png"
+                className="absolute w-[196px] "
               />
-            ))}
+            </div>
+            <div className="flex flex-col items-center gap-3 text-center">
+              <h1 className="text-2xl font-bold text-gray-900">Success!</h1>
+              <p className="text-gray-500 text-sm max-w-[280px]">
+                Expect to be contacted by Yolida in a few days.
+              </p>
+            </div>
           </div>
+        </div>
+      ) : (
+        <div className="container mx-auto px-6 flex flex-col items-stretch gap-8 max-w-[500px]">
+          <h1 className="mt-6 text-2xl font-semibold text-gray-900">
+            Let's set up your company
+          </h1>
 
-          {/* Final completion step */}
-          <div className="flex w-full mt-7">
-            {/* Timeline rail + bullet */}
-            <div className="relative w-[50px]">
-              <div className="absolute top-0 left-0 w-[38px] h-[38px] bg-gray-200/20 rounded-full flex items-center justify-center">
-                <div className="w-[32px] h-[32px] bg-gray-100 rounded-full z-20 flex justify-center items-center shadow-sm">
-                  <FlashIcon />
+          <section className="mt-4">
+            {/* Top error (conditional) */}
+            {hasError && <TopErrorItem onDeleteClick={handleDeleteClick} />}
+
+            <div className="space-y-5 flex flex-col mt-5">
+              {steps.map((step, i) => (
+                <StepCard
+                  key={step.id}
+                  step={step}
+                  isLast={i === steps.length - 1}
+                  nextStep={steps[i + 1]}
+                />
+              ))}
+            </div>
+
+            {/* Final completion step */}
+            <div className="flex w-full mt-7">
+              {/* Timeline rail + bullet */}
+              <div className="relative w-[50px]">
+                <div className="absolute top-0 left-0 w-[38px] h-[38px] bg-gray-200/20 rounded-full flex items-center justify-center">
+                  <div className="w-[32px] h-[32px] bg-gray-100 rounded-full z-20 flex justify-center items-center shadow-sm">
+                    <FlashIcon />
+                  </div>
+                </div>
+              </div>
+
+              {/* Card */}
+              <div className="rounded-[26px] p-4 flex flex-col gap-3 w-full bg-gray-50">
+                <div className="flex flex-col gap-3">
+                  <h3 className="text-gray-800 text-[20px] font-[600]">
+                    Get ready to activate your fleet
+                  </h3>
+                  <p className="text-[16px] font-[500] text-gray-500">
+                    After everything is completed, your account will be
+                    activated on Yollda Fleet and you will be able to manage
+                    your drivers and vehicles.
+                  </p>
                 </div>
               </div>
             </div>
+          </section>
 
-            {/* Card */}
-            <div className="rounded-[26px] p-4 flex flex-col gap-3 w-full bg-gray-50">
-              <div className="flex flex-col gap-3">
-                <h3 className="text-gray-800 text-[20px] font-[600]">
-                  Get ready to activate your fleet
-                </h3>
-                <p className="text-[16px] font-[500] text-gray-500">
-                  After everything is completed, your account will be activated
-                  on Yollda Fleet and you will be able to manage your drivers
-                  and vehicles.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Footer note */}
-        <p className="text-sm text-gray-600 border-t-2 border-gray-200 py-5">
-          Registration with Yollda is no longer of interest? You can{" "}
-          <button
-            onClick={handleDeleteClick}
-            className="text-emerald-500 hover:text-emerald-600 transition-colors underline"
-          >
-            delete this application
-          </button>
-        </p>
-      </div>
+          {/* Footer note */}
+          <p className="text-sm text-gray-600 border-t-2 border-gray-200 py-5">
+            Registration with Yollda is no longer of interest? You can{" "}
+            <button
+              onClick={handleDeleteClick}
+              className="text-emerald-500 hover:text-emerald-600 transition-colors underline"
+            >
+              delete this application
+            </button>
+          </p>
+        </div>
+      )}
 
       {/* Delete Modal */}
       <DeleteModal

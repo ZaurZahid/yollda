@@ -20,9 +20,12 @@ const SingleStep = () => {
     file: null,
   });
   const [errors, setErrors] = useState({});
-  const [fileModal, setFileModal] = useState(true);
+  const [fileModal, setFileModal] = useState(false);
   const handleFileModalOpen = () => {
     setFileModal((prevSate) => !prevSate);
+  };
+  const handleFileDelete = () => {
+    return;
   };
   const handleInputChange = (field) => {
     return (value) => {
@@ -119,6 +122,16 @@ const SingleStep = () => {
             handleFileModalOpen={handleFileModalOpen}
             label="Vehicle registration certificate (Front side)*"
             description="Upload a clear photo of the front of your vehicle's technical passport. All information must be clearly visible."
+          />
+          <InputWrapper
+            value={formData.check2}
+            type={InputType.FILE}
+            fileName="aaaaabbbbbcccc111122222333.jpeg"
+            fileExparationDate="01.12.2025"
+            handleFileDelete={handleFileDelete}
+            handleInputChange={handleInputChange("file")}
+            label="Contract*"
+            description="Contract between yollda and fleet company."
           />
 
           {/*------------------------------------------- */}
