@@ -4,15 +4,15 @@ import { useEffect } from "react";
 
 export default function withAuth(Component) {
   return function ProtectedPage(props) {
-    const { user } = useAuth();
+    const { isAuth, loading } = useAuth();
     const router = useRouter();
 
     useEffect(() => {
-      if (!user) {
+      if (!loading && !isAuth) {
         router.replace("/signup");
       }
-    }, [user]);
-
-    return user ? <Component {...props} /> : null;
+    }, [isAuth, loading]);
+    if (loading) return <div>Loading...</div>;
+    return isAuth ? <Component {...props} /> : null;
   };
 }

@@ -9,6 +9,8 @@ import RegisterBar from "./RegisterBar";
 import CrossIcon from "../ui/icons/CrossIcon";
 import UserIcon from "../ui/icons/UserIcon";
 import { useAuth } from "../../contex/AuthContex";
+import axiosInstance from "../../axios";
+import { useRouter } from "next/router";
 
 const Header = ({
   logo,
@@ -19,9 +21,9 @@ const Header = ({
   isFleetLayout,
 }) => {
   const { t } = useTranslation("common");
-  const { isAuth } = useAuth();
-
-  const [isUserLogoutMenuOpen, setIsUserLogoutMenuOpen] = useState(true);
+  const { isAuth, userData, logOut } = useAuth();
+  const router = useRouter();
+  const [isUserLogoutMenuOpen, setIsUserLogoutMenuOpen] = useState(false);
 
   //test
   const headerRef = useRef(null);
@@ -89,8 +91,12 @@ const Header = ({
       logoRef.current.classList.remove("fill-green-dark");
     }
   }, [isBurgerOpen]);
-  const handleLogout = () => {
-    return;
+  const handleLogout = async () => {
+    try {
+      const res = await axiosInstance.post("/api/v1/account/logout/");
+      logOut();
+      router.push("/signup");
+    } catch (error) {}
   };
   useEffect(() => {
     const handleScroll = () => {
@@ -199,7 +205,7 @@ const Header = ({
                         <div className="flex items-center space-x-3">
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium text-gray-500 truncate">
-                              imranovazer@gmail.com
+                              {userData?.email}
                             </p>
                           </div>
                         </div>

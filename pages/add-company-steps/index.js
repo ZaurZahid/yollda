@@ -1,9 +1,9 @@
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
-
 import Layout from "../../src/components/layout/Layout";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import SetupPage from "../../src/components/add-company-steps/AddCompanySteps";
+import withAuth from "../../src/components/layout/withAuth";
 
 const AddCompanyStepsPage = ({ error }) => {
   const { t } = useTranslation("common");
@@ -37,4 +37,4 @@ export async function getServerSideProps({ locale }) {
     };
   }
 }
-export default AddCompanyStepsPage;
+export default withAuth(AddCompanyStepsPage);

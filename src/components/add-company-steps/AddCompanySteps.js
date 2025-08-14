@@ -9,7 +9,6 @@ import ClockIcon from "../ui/icons/ClockIcon";
 import CrossCirlce from "../ui/icons/CrossCircle";
 import DangerIcon from "../ui/icons/DangerIcon";
 import DeleteModal from "./DeleteModal";
-
 const TaskStatus = {
   REVIEW: 0,
   ACCEPTED: 1,

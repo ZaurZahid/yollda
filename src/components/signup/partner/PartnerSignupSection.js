@@ -3,18 +3,7 @@ import LinkIcon from "./../../ui/icons/Link";
 import ArrowDown from "../../ui/icons/ArrowDown";
 import { useTranslation } from "next-i18next";
 import { useSearchParams } from "next/navigation";
-
-const cities = [
-  "Baku",
-  "Istanbul",
-  "Tbilisi",
-  "Almaty",
-  "New York",
-  "London",
-  "Berlin",
-  "Paris",
-  "Other",
-];
+import { useRouter } from "next/router";
 
 export default function PartnerSignupSection({
   isSubmitted,
@@ -22,6 +11,7 @@ export default function PartnerSignupSection({
   countriesData: { results: countriesList },
 }) {
   const { t } = useTranslation("common");
+  const router = useRouter();
 
   const params = useSearchParams();
   const services = [
@@ -62,9 +52,10 @@ export default function PartnerSignupSection({
     agreeToTerms: false,
     agreeToPromotions: false,
   });
-
+  const [error, setError] = useState("");
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [cities, setCities] = useState([]);
   const [isCountryCodeOpen, setIsCountryCodeOpen] = useState(false);
   const [isCountryOpen, setIsCountryOpen] = useState(false);
   const [isCityOpen, setIsCityOpen] = useState(false);
@@ -74,6 +65,20 @@ export default function PartnerSignupSection({
   const countryDropdownRef = useRef(null);
   const cityDropdownRef = useRef(null);
   const servicesDropdownRef = useRef(null);
+
+  useEffect(() => {
+    const fetchCities = async () => {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_APP_API_URL}/api/v1/account/locations/?country_id=${formData.country}`
+        );
+        const data = await res.json();
+        setCities(data);
+      } catch (error) {}
+    };
+
+    if (formData.country) fetchCities();
+  }, [formData.country]);
 
   useEffect(() => {
     setFormData((prevState) => ({
@@ -173,6 +178,15 @@ export default function PartnerSignupSection({
     }
   };
 
+  const handleFieldReset = (field) => {
+    setFormData((prev) => ({ ...prev, [field]: "" }));
+
+    // Clear error when user starts typing/selecting
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: undefined }));
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -181,19 +195,41 @@ export default function PartnerSignupSection({
     }
 
     setIsSubmitting(true);
-
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
       // Here you would make the actual API call
-      // const response = await fetch('/api/partner-signup', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData)
-      // });
-
-      setIsSubmitted(true);
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_APP_API_URL}/api/v1/account/check-user/`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            phone_prefix: formData.countryCode.slice(1),
+            phone: formData.phoneNumber,
+            country: formData.country,
+            city: formData.city,
+            email: formData.email,
+          }),
+        }
+      );
+      const responseData = await response.json();
+      if (response.ok) {
+        router.push(
+          `/fleet-login?token=${
+            responseData?.token
+          }&prefix=${formData.countryCode.slice(1)}&phone=${
+            formData.phoneNumber
+          }`
+        );
+        //no need for now as we redirect
+        // setIsSubmitted(true);
+      } else {
+        if (responseData?.message?.[0]) {
+          setError(responseData?.message?.[0]);
+        }
+        if (responseData?.error) {
+          setError(responseData?.error);
+        }
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
       // Handle error (show error message)
@@ -205,7 +241,7 @@ export default function PartnerSignupSection({
   const mapCountryCodeToCountryName = useMemo(() => {
     if (formData.country) {
       const foundCountry = countriesList?.find(
-        (country) => formData.country === country.code
+        (country) => formData.country === country.id
       );
       return foundCountry?.name;
     }
@@ -215,6 +251,10 @@ export default function PartnerSignupSection({
   const selectedCountryCode = useMemo(() => {
     return countriesList?.find((c) => c.phone_code === formData.countryCode);
   }, [formData.countryCode]);
+
+  const selectedCity = useMemo(() => {
+    return cities?.find((city) => city.id === formData.city);
+  }, [formData.city]);
 
   const selectedServiceType = useMemo(() => {
     return services?.find((c) => c.type === formData.service_type);
@@ -494,7 +534,8 @@ export default function PartnerSignupSection({
                                 key={country.id}
                                 type="button"
                                 onClick={() => {
-                                  handleInputChange("country", country.code);
+                                  handleInputChange("country", country.id);
+                                  handleFieldReset("city");
                                   setIsCountryOpen(false);
                                 }}
                                 className="w-full px-4 py-3 text-left hover:bg-gray-200 transition-colors duration-200 text-span-responsive first:rounded-t-xl last:rounded-b-xl text-gray-700"
@@ -536,7 +577,7 @@ export default function PartnerSignupSection({
                               formData.city ? "text-gray-900" : "text-gray-500"
                             }`}
                           >
-                            {formData.city ||
+                            {selectedCity?.name ||
                               t("signup_page.signup_section.form.city")}
                           </span>
                           <ArrowDown
@@ -551,15 +592,15 @@ export default function PartnerSignupSection({
                           <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg z-30 max-h-60 overflow-y-auto custom-contact-scrollbar">
                             {cities.map((city) => (
                               <button
-                                key={city}
+                                key={city?.id}
                                 type="button"
                                 onClick={() => {
-                                  handleInputChange("city", city);
+                                  handleInputChange("city", city?.id);
                                   setIsCityOpen(false);
                                 }}
                                 className="w-full px-4 py-3 text-left hover:bg-gray-200 transition-colors duration-200 text-span-responsive first:rounded-t-xl last:rounded-b-xl text-gray-700"
                               >
-                                {city}
+                                {city?.name}
                               </button>
                             ))}
                           </div>
@@ -722,6 +763,11 @@ export default function PartnerSignupSection({
                         </p>
                       </div>
                     </div>
+                    {error && (
+                      <p className="text-red-500 text-span-small-responsive mt-1">
+                        {error}
+                      </p>
+                    )}
 
                     {/* Submit Button */}
                     <button
