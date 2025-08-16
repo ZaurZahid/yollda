@@ -39,9 +39,22 @@ const FileUploadModal = ({ isOpen, onClose, onConfirm }) => {
     fileInputRef.current?.click();
   };
 
+  const formatDate = (date) => {
+    if (!date) return null;
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
   const handleConfirm = () => {
-    onConfirm(selectedFile, expirationDate);
-    handleClose();
+    if (expirationDate) {
+      const formattedDate = formatDate(expirationDate);
+
+      onConfirm(selectedFile, formattedDate);
+    } else {
+      onConfirm(selectedFile);
+    }
   };
 
   const handleClose = () => {

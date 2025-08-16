@@ -5,15 +5,17 @@ import TickCircle from "../ui/icons/TickCircle";
 import TrashBinIcon from "../ui/icons/TrashBinIcon";
 
 const InputType = {
-  TEXT: 0,
-  SELECT: 1,
-  CHECKBOX: 2,
-  FILE: 3,
+  TEXT: "text",
+  SELECT: "select",
+  CHECKBOX: "checkbox",
+  FILE: "file",
 };
 
 const InputWrapper = ({
   type = InputType.TEXT,
   value,
+  fieldName,
+  formData,
   placeholder,
   fileName,
   fileExparationDate,
@@ -22,6 +24,7 @@ const InputWrapper = ({
   errors,
   description,
   handleInputChange,
+  handleCheckBoxChange,
   handleFileModalOpen,
   optionDescription = "",
   options = [],
@@ -29,7 +32,6 @@ const InputWrapper = ({
 }) => {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const dropDownRef = useRef(null);
-
   switch (type) {
     case InputType.TEXT:
       return (
@@ -88,7 +90,8 @@ const InputWrapper = ({
                   value ? "text-gray-900" : "text-gray-500"
                 }`}
               >
-                {value || placeholder}
+                {options?.find((option) => option?.key === value)?.title ||
+                  placeholder}
               </span>
               <ArrowDown
                 strokeColor={`stroke-gray-500`}
@@ -103,15 +106,15 @@ const InputWrapper = ({
                 {type === InputType.SELECT &&
                   options?.map((option) => (
                     <button
-                      key={option}
+                      key={option?.key}
                       type="button"
                       onClick={() => {
-                        handleInputChange(option);
+                        handleInputChange(option?.key);
                         setIsDropDownOpen(false);
                       }}
                       className="w-full px-4 py-3 text-left hover:bg-gray-200 transition-colors duration-200 text-span-responsive first:rounded-t-xl last:rounded-b-xl text-gray-700"
                     >
-                      {option}
+                      {option?.title}
                     </button>
                   ))}
               </div>
@@ -145,49 +148,59 @@ const InputWrapper = ({
             </p>
           )}
 
-          <div className="relative flex gap-1 mt-1">
-            <input
-              type="checkbox"
-              checked={value}
-              onChange={(e) => handleInputChange(e.target.checked)}
-              className="sr-only"
-            />
-            <button
-              type="button"
-              onClick={() => handleInputChange(!value)}
-              className={`w-5 h-5 rounded border-2 transition-all duration-200 flex items-center justify-center ${
-                value
-                  ? "bg-light-green border-light-green"
-                  : errors
-                  ? "border-red-400"
-                  : "border-gray-300 hover:border-light-green"
-              }`}
-            >
-              {value && (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-3 h-3 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={3}
+          {options?.map((option) => {
+            const checked = formData[fieldName]
+              ?.split(",")
+              ?.includes(option.key);
+
+            return (
+              <div key={option.key} className="relative flex gap-1 mt-1">
+                {/* hidden input for accessibility */}
+                <input
+                  type="checkbox"
+                  checked={checked}
+                  readOnly
+                  className="sr-only"
+                />
+
+                {/* visible button that toggles this specific key */}
+                <button
+                  type="button"
+                  onClick={() => handleCheckBoxChange(option.key)} // pass the option key, not boolean
+                  className={`w-5 h-5 rounded border-2 transition-all duration-200 flex items-center justify-center ${
+                    checked
+                      ? "bg-light-green border-light-green"
+                      : errors
+                      ? "border-red-400"
+                      : "border-gray-300 hover:border-light-green"
+                  }`}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              )}
-            </button>
-            {optionDescription && (
-              <div>
-                <p className="text-span-small-responsive text-gray-500 leading-relaxed">
-                  {optionDescription}
-                </p>
+                  {checked && (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-3 h-3 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={3}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  )}
+                </button>
+
+                <div>
+                  <p className="text-span-small-responsive text-gray-500 leading-relaxed">
+                    {option?.title}
+                  </p>
+                </div>
               </div>
-            )}
-          </div>
+            );
+          })}
           {errors && (
             <p className="text-red-500 text-span-small-responsive mt-1">
               {errors}

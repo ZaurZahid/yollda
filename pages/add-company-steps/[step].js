@@ -20,6 +20,7 @@ const StepPage = ({ error }) => {
 };
 export async function getServerSideProps({ params, locale }) {
   const { step } = params;
+
   try {
     return {
       props: {

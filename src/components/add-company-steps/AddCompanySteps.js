@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import CaseIcon from "../ui/icons/CaseIcon";
 import FileIcon from "../ui/icons/FileIcon";
 import VehicleIcon from "../ui/icons/VehicleIcon";
@@ -9,8 +9,10 @@ import ClockIcon from "../ui/icons/ClockIcon";
 import CrossCirlce from "../ui/icons/CrossCircle";
 import DangerIcon from "../ui/icons/DangerIcon";
 import DeleteModal from "./DeleteModal";
+import axiosInstance from "../../axios";
+import Link from "next/link";
 const TaskStatus = {
-  REVIEW: 0,
+  REVIEW: "review",
   ACCEPTED: 1,
   IDLE: 2,
   DECLINED: 3,
@@ -73,9 +75,7 @@ const getTimelineGradient = (currentStepStatus, nextStepStatus) => {
 };
 
 /* ------- Step card ------- */
-function StepCard({ step, isLast, nextStep }) {
-  const Icon = step.icon;
-
+function StepCard({ step, Icon, isLast, nextStep }) {
   const getStepStyles = (status) => {
     switch (status) {
       case TaskStatus.ACCEPTED:
@@ -105,7 +105,7 @@ function StepCard({ step, isLast, nextStep }) {
     }
   };
 
-  const stepStyles = getStepStyles(step.status);
+  const stepStyles = getStepStyles(step?.status?.status);
 
   return (
     <div className="flex w-full">
@@ -124,7 +124,7 @@ function StepCard({ step, isLast, nextStep }) {
         {!isLast && (
           <div
             className={`absolute top-[19px] left-[16px] w-[6px] h-[calc(100%+19px)] ${getTimelineGradient(
-              step.status,
+              step.status.status,
               nextStep?.status
             )} rounded-full`}
           />
@@ -140,28 +140,41 @@ function StepCard({ step, isLast, nextStep }) {
           </p>
         </div>
 
-        {step.status === TaskStatus.IDLE && (
-          <button className="rounded-[16px] text-[12px] text-gray-600 font-[600] hover:bg-gray-200 bg-gray-100 py-[6px] px-[16px] w-fit transition-all duration-200 hover:shadow-sm">
-            {step.cta}
-          </button>
-        )}
-        {step.status === TaskStatus.DECLINED && (
-          <button className="rounded-[16px] text-[12px] text-red-600 font-[600] hover:bg-red-100 bg-red-50 py-[6px] px-[16px] w-fit transition-all duration-200 flex items-center gap-2 hover:shadow-sm">
+        {step?.status?.status === TaskStatus.IDLE ||
+          (step?.status?.status === null && (
+            <Link
+              href={`/add-company-steps/${step.id}`}
+              className="rounded-[16px] text-[12px] text-gray-600 font-[600] hover:bg-gray-200 bg-gray-100 py-[6px] px-[16px] w-fit transition-all duration-200 hover:shadow-sm"
+            >
+              Add info
+            </Link>
+          ))}
+        {step?.status?.status === TaskStatus.DECLINED && (
+          <Link
+            href={`/add-company-steps/${step.id}`}
+            className="rounded-[16px] text-[12px] text-red-600 font-[600] hover:bg-red-100 bg-red-50 py-[6px] px-[16px] w-fit transition-all duration-200 flex items-center gap-2 hover:shadow-sm"
+          >
             <CrossCirlce color="#DC2626" />
-            {step.cta}
-          </button>
+            Declined
+          </Link>
         )}
-        {step.status === TaskStatus.ACCEPTED && (
-          <button className="rounded-[16px] text-[12px] text-emerald-600 font-[600] hover:bg-emerald-100 bg-emerald-50 py-[6px] px-[16px] w-fit transition-all duration-200 flex items-center gap-2 hover:shadow-sm">
+        {step?.status?.status === TaskStatus.ACCEPTED && (
+          <Link
+            href={`/add-company-steps/${step.id}`}
+            className="rounded-[16px] text-[12px] text-emerald-600 font-[600] hover:bg-emerald-100 bg-emerald-50 py-[6px] px-[16px] w-fit transition-all duration-200 flex items-center gap-2 hover:shadow-sm"
+          >
             <TickCircle color="#059669" />
-            {step.cta}
-          </button>
+            Accepted
+          </Link>
         )}
-        {step.status === TaskStatus.REVIEW && (
-          <button className="rounded-[16px] text-[12px] text-amber-600 font-[600] hover:bg-amber-100 bg-amber-50 py-[6px] px-[16px] w-fit transition-all duration-200 flex items-center gap-2 hover:shadow-sm">
+        {step?.status?.status === TaskStatus.REVIEW && (
+          <Link
+            href={`/add-company-steps/${step.id}`}
+            className="rounded-[16px] text-[12px] text-amber-600 font-[600] hover:bg-amber-100 bg-amber-50 py-[6px] px-[16px] w-fit transition-all duration-200 flex items-center gap-2 hover:shadow-sm"
+          >
             <ClockIcon color="#D97706" />
-            {step.cta}
-          </button>
+            Review
+          </Link>
         )}
       </div>
     </div>
@@ -206,7 +219,8 @@ function TopErrorItem({ onDeleteClick }) {
 
 /* ------- Page ------- */
 export default function SetupPage() {
-  const steps = useSteps();
+  const mockSteps = useSteps();
+  const [stepsData, setStepsData] = useState();
   const [success, setSuccess] = useState(false);
   // NEW: errors state (true by default)
   const [hasError] = useState(true);
@@ -225,6 +239,19 @@ export default function SetupPage() {
   const handleDeleteCancel = () => {
     setIsDeleteModalOpen(false);
   };
+
+  useEffect(() => {
+    const getSteps = async () => {
+      try {
+        const res = await axiosInstance("/api/v1/account/onboarding/", {
+          headers: { Country: "AZ" },
+        });
+        setStepsData(res.data);
+      } catch (error) {}
+    };
+
+    getSteps();
+  }, []);
 
   return (
     <div className="h-full w-full bg-white">
@@ -250,7 +277,7 @@ export default function SetupPage() {
       ) : (
         <div className="container mx-auto px-6 flex flex-col items-stretch gap-8 max-w-[500px]">
           <h1 className="mt-6 text-2xl font-semibold text-gray-900">
-            Let's set up your company
+            {stepsData?.title}
           </h1>
 
           <section className="mt-4">
@@ -258,12 +285,13 @@ export default function SetupPage() {
             {hasError && <TopErrorItem onDeleteClick={handleDeleteClick} />}
 
             <div className="space-y-5 flex flex-col mt-5">
-              {steps.map((step, i) => (
+              {stepsData?.steps?.map((step, i) => (
                 <StepCard
                   key={step.id}
+                  Icon={mockSteps[i].icon}
                   step={step}
-                  isLast={i === steps.length - 1}
-                  nextStep={steps[i + 1]}
+                  isLast={i === stepsData?.steps?.length - 1}
+                  nextStep={stepsData?.steps?.[i + 1]}
                 />
               ))}
             </div>
