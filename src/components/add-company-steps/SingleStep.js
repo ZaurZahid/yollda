@@ -18,8 +18,6 @@ const SingleStep = () => {
   const [fileModal, setFileModal] = useState(false);
   const [fileToBeUploaded, setFileToBeUploaded] = useState("");
   const [stepNotFound, setStepNotFound] = useState(false);
-
-  /** Fetch Step Data */
   useEffect(() => {
     if (!step) return;
 
@@ -95,6 +93,19 @@ const SingleStep = () => {
       console.error("Save error:", error);
     }
   };
+  const isFieldVisible = useCallback(
+    (field) => {
+      const rules = field.rules;
+      if (!rules) return true;
+
+      const targetFieldValue = formData[rules.visible_on_key];
+      if (!targetFieldValue) return false;
+
+      // Check for single or comma-separated values (especially for checkboxes)
+      return targetFieldValue.split(",").includes(rules.visible_on_value);
+    },
+    [formData]
+  );
 
   const handleFileUpload = async (selectedFile, expirationDate) => {
     try {
@@ -117,6 +128,28 @@ const SingleStep = () => {
       setFileToBeUploaded("");
     }
   };
+
+  useEffect(() => {
+    if (!stepData) return;
+
+    const visibleFieldKeys = stepData.fields
+      .filter(isFieldVisible)
+      .map((f) => f.field_name);
+
+    setFormData((prev) => {
+      const newFormData = { ...prev };
+      let changed = false;
+
+      Object.keys(newFormData).forEach((key) => {
+        if (!visibleFieldKeys.includes(key)) {
+          delete newFormData[key];
+          changed = true;
+        }
+      });
+
+      return changed ? newFormData : prev; // avoid unnecessary state updates
+    });
+  }, [stepData, isFieldVisible]); // 🚫 removed formData
 
   const onClose = () => router.push("/add-company-steps");
 
@@ -188,7 +221,7 @@ const SingleStep = () => {
 
         {/* Form */}
         <form className="flex flex-col gap-8">
-          {stepData?.fields.map((field) => (
+          {stepData?.fields?.filter(isFieldVisible).map((field) => (
             <InputWrapper
               key={field.id}
               type={field.field_type}

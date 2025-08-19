@@ -69,7 +69,9 @@ const InputWrapper = ({
   /** ---- SELECT DROPDOWN ---- */
   if (type === InputType.SELECT) {
     const selectedOption =
-      options.find((option) => option.key === value)?.title || placeholder;
+      options.find((option) => option.key === value)?.title ||
+      placeholder ||
+      "Select";
 
     return (
       <div className="flex flex-col gap-2">
