@@ -1,123 +1,172 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { useRouter } from "next/router";
 import CloseIcon from "../ui/icons/Close";
 import InputWrapper from "./InputWrapper";
 import FileUploadModal from "./FileUploadModal";
-import { useRouter } from "next/router";
 import axiosInstance from "../../axios";
+import LoadingScreen from "../ui/LoadingScreen";
+import CrossCirlce from "../ui/icons/CrossCircle";
 
 const SingleStep = () => {
   const router = useRouter();
-
   const { step } = router.query;
 
+  const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({});
-  const [stepData, setStepData] = useState();
+  const [stepData, setStepData] = useState(null);
   const [errors, setErrors] = useState({});
   const [fileModal, setFileModal] = useState(false);
-  const [fileTobeUploaded, setFileToBeUploaded] = useState("");
+  const [fileToBeUploaded, setFileToBeUploaded] = useState("");
+  const [stepNotFound, setStepNotFound] = useState(false);
+
+  /** Fetch Step Data */
   useEffect(() => {
+    if (!step) return;
+
+    let isMounted = true;
+
     const fetchStepData = async () => {
       try {
-        if (step) {
-          const res = await axiosInstance(`/api/v1/account/step/${step}`);
-          setStepData(res.data);
-          const updatedFormData = {};
-          res?.data?.fields.forEach(
-            (field) =>
-              (updatedFormData[field?.field_name] = field?.added_data?.value)
+        const { data } = await axiosInstance(`/api/v1/account/step/${step}`);
+
+        if (!isMounted) return;
+
+        if (data) {
+          setStepData(data);
+          setFormData(
+            Object.fromEntries(
+              data.fields.map((f) => [f.field_name, f.added_data?.value || ""])
+            )
           );
-          setFormData(updatedFormData);
+        } else {
+          setStepNotFound(true);
         }
-      } catch (error) {}
+      } catch (err) {
+        console.error(err);
+        if (isMounted) setStepNotFound(true);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
     };
 
     fetchStepData();
+    return () => {
+      isMounted = false;
+    };
   }, [step]);
-  const handleFileDelete = () => {
-    return;
-  };
-  const handleInputChange = (field) => {
-    return (value) => {
-      setFormData((prev) => ({ ...prev, [field]: value }));
 
-      // Clear error when user starts typing/selecting
+  /** Handlers */
+  const handleInputChange = useCallback(
+    (field) => (value) => {
+      setFormData((prev) => ({ ...prev, [field]: value }));
       if (errors[field]) {
         setErrors((prev) => ({ ...prev, [field]: undefined }));
       }
-    };
-  };
+    },
+    [errors]
+  );
 
-  const handleCheckBoxChange = (field) => {
-    return (key) => {
+  const handleCheckBoxChange = useCallback(
+    (field) => (key) => {
       setFormData((prev) => {
-        const existing = prev[field] ? prev[field].split(",") : [];
-        let updated;
-
-        if (existing.includes(key)) {
-          // uncheck → remove key
-          updated = existing.filter((k) => k !== key);
-        } else {
-          // check → add key
-          updated = [...existing, key];
-        }
-
+        const existing = prev[field]?.split(",") || [];
+        const updated = existing.includes(key)
+          ? existing.filter((k) => k !== key)
+          : [...existing, key];
         return { ...prev, [field]: updated.join(",") };
       });
 
       if (errors[field]) {
         setErrors((prev) => ({ ...prev, [field]: undefined }));
       }
-    };
-  };
+    },
+    [errors]
+  );
 
   const handleSaveData = async () => {
     try {
-      const dataToBeSent = new FormData();
-      dataToBeSent.append("form_data", JSON.stringify(formData));
-      dataToBeSent.append("step_id", step);
-      const res = await axiosInstance.post(
-        "/api/v1/account/step-submission/",
-        dataToBeSent
-      );
+      const payload = new FormData();
+      payload.append("form_data", JSON.stringify(formData));
+      payload.append("step_id", step);
+
+      await axiosInstance.post("/api/v1/account/step-submission/", payload);
       router.push("/add-company-steps");
-    } catch (error) {}
+    } catch (error) {
+      console.error("Save error:", error);
+    }
   };
 
   const handleFileUpload = async (selectedFile, expirationDate) => {
     try {
-      const formData = new FormData();
-      formData.append("field_key", fileTobeUploaded);
-      formData.append("file", selectedFile);
-      formData.append("sign_up_step_id", step);
-      if (expirationDate) formData.append("expiry_date", expirationDate);
+      const payload = new FormData();
+      payload.append("field_key", fileToBeUploaded);
+      payload.append("file", selectedFile);
+      payload.append("sign_up_step_id", step);
+      if (expirationDate) payload.append("expiry_date", expirationDate);
 
-      const res = await axiosInstance.post(
+      const { data } = await axiosInstance.post(
         "/api/v1/account/upload-file/",
-        formData
+        payload
       );
+
+      handleInputChange(fileToBeUploaded)(data?.uuid);
     } catch (error) {
+      console.error("File upload error:", error);
     } finally {
-      handleFileModalClose();
+      setFileModal(false);
+      setFileToBeUploaded("");
     }
   };
 
-  const handleFileModalOpen = (fileName) => {
-    setFileToBeUploaded(fileName);
-    setFileModal(true);
-  };
-  const handleFileModalClose = () => {
-    setFileToBeUploaded("");
-    setFileModal(false);
-  };
-  const onClose = () => {
-    router.push("/add-company-steps");
-    return;
-  };
+  const onClose = () => router.push("/add-company-steps");
+
+  /** Loading & Not Found State */
+  if (loading) return <LoadingScreen size="lg" />;
+  if (stepNotFound)
+    return (
+      <div className="h-full w-full py-4 pb-32">
+        <div className="container max-w-[560px] px-2 flex flex-col gap-4 mx-auto h-full">
+          {/* Exit button */}
+          <div className="flex justify-end">
+            <button
+              onClick={onClose}
+              className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors bg-gray-100 rounded-full"
+            >
+              <CloseIcon />
+            </button>
+          </div>
+
+          {/* Not Found Content */}
+          <div className="flex flex-col items-center justify-center flex-1 text-center">
+            <div className="h-[120px] w-[120px] bg-gray-200 rounded-full flex items-center justify-center mb-6">
+              <CrossCirlce size={120} />
+            </div>
+
+            <h1 className="font-bold text-gray-800 text-[28px] mb-4">
+              Step Not Found
+            </h1>
+
+            <p className="font-medium text-gray-500 mb-8 max-w-md">
+              The step you're looking for doesn't exist or has been removed.
+              Please return to the company setup steps.
+            </p>
+
+            <button
+              onClick={onClose}
+              className="h-[50px] w-full max-w-[300px] rounded-2xl text-white bg-[#47E373] hover:bg-[#3ed167] transition font-medium"
+            >
+              Go to Company Steps
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+
   return (
     <div className="h-full w-full py-4 pb-32">
-      <div className="container max-w-[560px] px-2 flex flex-col gap-4  mx-auto h-full">
+      <div className="container max-w-[560px] px-2 flex flex-col gap-4 mx-auto h-full">
         {/* Exit button */}
-        <div className="flex justify-end items-center">
+        <div className="flex justify-end">
           <button
             onClick={onClose}
             className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors bg-gray-100 rounded-full"
@@ -125,56 +174,51 @@ const SingleStep = () => {
             <CloseIcon />
           </button>
         </div>
-        {/* Step image???? */}
-        <div className="flex  items-center">
+
+        {/* Step Info */}
+        <div className="flex items-center">
           <div className="h-[71px] w-[71px] bg-[#D9D9D9] rounded-2xl"></div>
         </div>
-        {/* Step Title */}
         <h1 className="font-bold text-gray-800 text-[28px]">
-          {stepData?.title || "Some random title"}
+          {stepData?.title || "Step Title"}
         </h1>
-        {/* Step description */}
-        <h1 className="font-medium text-gray-500 ">
-          {stepData?.description || "Some random step description."}
-        </h1>
-        {/* Main form section */}
-        <form className="flex flex-col gap-8">
-          {/*------------------------------------------- */}
+        <p className="font-medium text-gray-500">
+          {stepData?.description || "Step description."}
+        </p>
 
+        {/* Form */}
+        <form className="flex flex-col gap-8">
           {stepData?.fields.map((field) => (
             <InputWrapper
-              fieldName={`${field?.field_name}`}
-              formData={formData}
               key={field.id}
-              type={field?.field_type}
-              label={field?.title}
-              placeholder={field?.placeholder}
-              description={field?.help_text || field?.description}
-              value={formData?.[field?.field_name]}
-              handleInputChange={handleInputChange(`${field?.field_name}`)}
-              options={field?.options}
-              handleFileModalOpen={() =>
-                handleFileModalOpen(`${field?.field_name}`)
-              }
-              handleCheckBoxChange={handleCheckBoxChange(
-                `${field?.field_name}`
-              )}
+              type={field.field_type}
+              label={field.title}
+              placeholder={field.placeholder}
+              description={field.help_text || field.description}
+              value={formData[field.field_name]}
+              handleInputChange={handleInputChange(field.field_name)}
+              addedData={field.added_data}
+              options={field.options}
+              handleFileModalOpen={() => {
+                setFileToBeUploaded(field.field_name);
+                setFileModal(true);
+              }}
+              handleCheckBoxChange={handleCheckBoxChange(field.field_name)}
             />
           ))}
 
-          {/*------------------------------------------- */}
+          {/* Buttons */}
           <div className="flex justify-center gap-5">
             <button
-              onClick={onClose}
               type="button"
+              onClick={onClose}
               className="h-[50px] w-full max-w-[235px] text-gray-600 hover:bg-gray-200 transition rounded-2xl bg-gray-100"
             >
               Previous
             </button>
             <button
-              onClick={handleSaveData}
-              // type="submit"
               type="button"
+              onClick={handleSaveData}
               className="h-[50px] w-full max-w-[235px] rounded-2xl text-white bg-[#47E373] hover:bg-[#3ed167] transition"
             >
               Continue
@@ -182,11 +226,12 @@ const SingleStep = () => {
           </div>
         </form>
       </div>
+
       {fileModal && (
         <FileUploadModal
           onConfirm={handleFileUpload}
           isOpen={fileModal}
-          onClose={handleFileModalClose}
+          onClose={() => setFileModal(false)}
         />
       )}
     </div>

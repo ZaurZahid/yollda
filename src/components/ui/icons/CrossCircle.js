@@ -1,12 +1,7 @@
-const CrossCirlce = ({
-  width = 20,
-  height = 20,
-  fill = "#FE4E4E",
-  ...props
-}) => (
+const CrossCirlce = ({ size = 20, fill = "#FE4E4E", ...props }) => (
   <svg
-    width={width}
-    height={height}
+    width={size}
+    height={size}
     viewBox="0 0 20 20"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

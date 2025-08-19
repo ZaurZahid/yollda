@@ -11,6 +11,7 @@ import DangerIcon from "../ui/icons/DangerIcon";
 import DeleteModal from "./DeleteModal";
 import axiosInstance from "../../axios";
 import Link from "next/link";
+import LoadingScreen from "../ui/LoadingScreen";
 const TaskStatus = {
   REVIEW: "review",
   ACCEPTED: 1,
@@ -134,9 +135,11 @@ function StepCard({ step, Icon, isLast, nextStep }) {
       {/* Card */}
       <div className="rounded-[26px] p-4 shadow-lg flex flex-col gap-3 w-full bg-white border border-gray-100">
         <div className="flex flex-col gap-3">
-          <h3 className="text-gray-800 text-[20px] font-[600]">{step.title}</h3>
+          <h3 className="text-gray-800 text-[20px] font-[600]">
+            {step?.title}
+          </h3>
           <p className="text-[16px] font-[500] text-gray-500">
-            {step.description}
+            {step?.description}
           </p>
         </div>
 
@@ -222,8 +225,9 @@ export default function SetupPage() {
   const mockSteps = useSteps();
   const [stepsData, setStepsData] = useState();
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(true);
   // NEW: errors state (true by default)
-  const [hasError] = useState(true);
+  const [hasError] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const handleDeleteClick = () => {
@@ -247,7 +251,10 @@ export default function SetupPage() {
           headers: { Country: "AZ" },
         });
         setStepsData(res.data);
-      } catch (error) {}
+      } catch (error) {
+      } finally {
+        setLoading(false);
+      }
     };
 
     getSteps();
@@ -280,48 +287,50 @@ export default function SetupPage() {
             {stepsData?.title}
           </h1>
 
-          <section className="mt-4">
-            {/* Top error (conditional) */}
-            {hasError && <TopErrorItem onDeleteClick={handleDeleteClick} />}
+          {loading ? (
+            <LoadingScreen size="lg" />
+          ) : (
+            <section className="mt-4">
+              {/* Top error (conditional) */}
+              {hasError && <TopErrorItem onDeleteClick={handleDeleteClick} />}
 
-            <div className="space-y-5 flex flex-col mt-5">
-              {stepsData?.steps?.map((step, i) => (
-                <StepCard
-                  key={step.id}
-                  Icon={mockSteps[i].icon}
-                  step={step}
-                  isLast={i === stepsData?.steps?.length - 1}
-                  nextStep={stepsData?.steps?.[i + 1]}
-                />
-              ))}
-            </div>
+              <div className="space-y-5 flex flex-col mt-5">
+                {stepsData?.steps?.map((step, i) => (
+                  <StepCard
+                    key={step.id}
+                    Icon={mockSteps[i].icon}
+                    step={step}
+                    isLast={i === stepsData?.steps?.length - 1}
+                    nextStep={stepsData?.steps?.[i + 1]}
+                  />
+                ))}
+              </div>
 
-            {/* Final completion step */}
-            <div className="flex w-full mt-7">
-              {/* Timeline rail + bullet */}
-              <div className="relative w-[50px]">
-                <div className="absolute top-0 left-0 w-[38px] h-[38px] bg-gray-200/20 rounded-full flex items-center justify-center">
-                  <div className="w-[32px] h-[32px] bg-gray-100 rounded-full z-20 flex justify-center items-center shadow-sm">
-                    <FlashIcon />
+              {/* Final completion step */}
+              <div className="flex w-full mt-7">
+                {/* Timeline rail + bullet */}
+                <div className="relative w-[50px]">
+                  <div className="absolute top-0 left-0 w-[38px] h-[38px] bg-gray-200/20 rounded-full flex items-center justify-center">
+                    <div className="w-[32px] h-[32px] bg-gray-100 rounded-full z-20 flex justify-center items-center shadow-sm">
+                      <FlashIcon />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card */}
+                <div className="rounded-[26px] p-4 flex flex-col gap-3 w-full bg-gray-50">
+                  <div className="flex flex-col gap-3">
+                    <h3 className="text-gray-800 text-[20px] font-[600]">
+                      {stepsData?.bottom_title}
+                    </h3>
+                    <p className="text-[16px] font-[500] text-gray-500">
+                      {stepsData?.bottom_description}
+                    </p>
                   </div>
                 </div>
               </div>
-
-              {/* Card */}
-              <div className="rounded-[26px] p-4 flex flex-col gap-3 w-full bg-gray-50">
-                <div className="flex flex-col gap-3">
-                  <h3 className="text-gray-800 text-[20px] font-[600]">
-                    Get ready to activate your fleet
-                  </h3>
-                  <p className="text-[16px] font-[500] text-gray-500">
-                    After everything is completed, your account will be
-                    activated on Yollda Fleet and you will be able to manage
-                    your drivers and vehicles.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
+            </section>
+          )}
 
           {/* Footer note */}
           <p className="text-sm text-gray-600 border-t-2 border-gray-200 py-5">

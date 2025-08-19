@@ -8,7 +8,7 @@ const FormState = {
 
 function FleetOtp() {
   const router = useRouter();
-  const { isAuth, loginUser, loading } = useAuth();
+  const { isAuth, loginUser, loading, userData, logOut } = useAuth();
   const { token: otpToken } = router.query;
   const { phone } = router.query; // get ?phone=... from URL
   const { prefix } = router.query; // get ?phone=... from URL
@@ -18,17 +18,21 @@ function FleetOtp() {
   const [timer, setTimer] = useState(60); // Timer state for 60 seconds
   const timerRef = useRef(null); // Ref to store timer interval
 
-  // Start timer when component mounts
   useEffect(() => {
+    if (!phone && !prefix) {
+      router.push("/signup");
+    }
     if (!loading && isAuth) {
-      if (document.referrer) {
-        router.back();
-      } else {
-        router.push("/add-company-steps");
-      }
+      // if (document.referrer) {
+      //   router.back();
+      // } else {
+      //   router.push("/add-company-steps");
+      // }
+      setFromState(FormState.ACCOUNT_CONFLICT);
     }
   }, [isAuth, loading]);
 
+  // Start timer when component mounts
   useEffect(() => {
     startTimer();
     // Cleanup timer on component unmount
@@ -266,12 +270,19 @@ function FleetOtp() {
               <h1 className="text-2xl font-semibold text-gray-900">
                 Account conflict
               </h1>
-              <p className="mt-3 text-gray-600 text-sm leading-relaxed">
+              {/* <p className="mt-3 text-gray-600 text-sm leading-relaxed">
                 Your phone number{" "}
                 <span className="font-semibold text-gray-900">
                   {phone || "—"}
                 </span>{" "}
                 is linked to an existing account. How would you like to proceed?
+              </p> */}
+              <p className="mt-3 text-gray-600 text-sm leading-relaxed">
+                Your device already logged in with{" "}
+                <span className="font-semibold text-gray-900">
+                  +{userData?.phone_prefix + userData?.phone || "—"}
+                </span>{" "}
+                phone number.
               </p>
             </div>
 
@@ -279,7 +290,7 @@ function FleetOtp() {
             <div className="space-y-3">
               <button
                 type="button"
-                onClick={() => console.log("Complete existing")}
+                onClick={() => router.push("/add-company-steps")}
                 className="w-full h-11 rounded-[10px] bg-green-500 text-white font-medium hover:bg-green-600 transition"
               >
                 Complete existing registration
@@ -287,10 +298,13 @@ function FleetOtp() {
 
               <button
                 type="button"
-                onClick={() => console.log("Create new")}
+                onClick={() => {
+                  logOut();
+                  setFromState(FormState.ENTER_CODE);
+                }}
                 className="w-full h-11 rounded-[10px] bg-gray-100 text-gray-700 font-medium hover:bg-gray-200 transition"
               >
-                Create new account
+                Login to another account
               </button>
             </div>
           </div>
