@@ -11,6 +11,7 @@ import UserIcon from "../ui/icons/UserIcon";
 import { useAuth } from "../../contex/AuthContex";
 import axiosInstance from "../../axios";
 import { useRouter } from "next/router";
+import useIsMobile from "../../hooks/useIsMobile";
 
 const Header = ({
   logo,
@@ -25,24 +26,25 @@ const Header = ({
   const router = useRouter();
   const [isUserLogoutMenuOpen, setIsUserLogoutMenuOpen] = useState(false);
 
-  //test
   const headerRef = useRef(null);
   const modalRef = useRef(null);
   const logoRef = useRef(null);
   const logoutRef = useRef(null);
 
   const [isTransparent, setIsTransparent] = useState(theme === "transparent");
-
   const [registerMethodsOpen, setRegisterMethodsOpen] = useState(false);
+
+  const isMobile = useIsMobile();
+
   const toggleDropdown = () => {
     setIsUserLogoutMenuOpen((prevState) => !prevState);
   };
+
   const registerMethodsSwitch = () => {
-    if (isBurgerOpen) {
-      closeBurgerModal();
-    }
+    if (isBurgerOpen) closeBurgerModal();
     setRegisterMethodsOpen((prev) => !prev);
   };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (logoutRef.current && !logoutRef.current.contains(event.target)) {
@@ -91,28 +93,29 @@ const Header = ({
       logoRef.current.classList.remove("fill-green-dark");
     }
   }, [isBurgerOpen]);
+
   const handleLogout = async () => {
     try {
-      const res = await axiosInstance.post("/api/v1/account/logout/");
+      await axiosInstance.post("/api/v1/account/logout/");
       logOut();
       router.push("/signup");
-    } catch (error) {}
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
   };
+
   useEffect(() => {
     const handleScroll = () => {
       if (headerRef.current) {
         if (window.scrollY > 0) {
-          headerRef.current.classList.add(
-            /* "bg-white", */ "shadow-md",
-            "bg-white"
-          );
+          headerRef.current.classList.add("shadow-md", "bg-white");
           if (theme === "transparent") {
             logoRef.current.classList.add("fill-green-dark");
             logoRef.current.classList.remove("fill-white");
             setIsTransparent(false);
           }
         } else {
-          headerRef.current.classList.remove(/* "bg-white", */ "shadow-md");
+          headerRef.current.classList.remove("shadow-md");
           if (theme === "transparent") {
             headerRef.current.classList.remove("bg-white");
           }
@@ -127,7 +130,6 @@ const Header = ({
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isBurgerOpen]);
 
@@ -150,7 +152,7 @@ const Header = ({
           </Link>
 
           <div
-            className={`flex  items-center space-s-4 md:space-s-6 lg:space-s-8  ${
+            className={`flex items-center space-s-4 md:space-s-6 lg:space-s-8 ${
               isTransparent ? "text-white" : "text-black"
             }`}
           >
@@ -159,7 +161,7 @@ const Header = ({
             {!isFleetLayout ? (
               <>
                 <div className="hidden md:flex items-center space-s-4 md:space-s-6 lg:space-s-8">
-                  <h5 className="text-span-responsive font-bold ">
+                  <h5 className="text-span-responsive font-bold">
                     {t("buttons.support")}
                   </h5>
                   <div className="ms-4 relative">
@@ -187,11 +189,15 @@ const Header = ({
                 </div>
                 <button
                   onClick={onOpen}
-                  className={isTransparent ? "text-white" : null}
+                  className={isTransparent ? "text-white" : ""}
                 >
                   {isBurgerOpen ? <CrossIcon /> : <NavbarButton />}
                 </button>
               </>
+            ) : isMobile ? (
+              <button onClick={onOpen} className="fleet-sidebar-toggle">
+                {isBurgerOpen ? <CrossIcon /> : <NavbarButton />}
+              </button>
             ) : (
               isAuth && (
                 <div ref={logoutRef} className="relative">
@@ -200,8 +206,7 @@ const Header = ({
                   </button>
                   {isUserLogoutMenuOpen && (
                     <div className="absolute right-0 top-12 w-72 bg-white rounded-[15px] shadow-lg border border-gray-200 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                      {/* User Email Section */}
-                      <div className="px-4 py-3 ">
+                      <div className="px-4 py-3">
                         <div className="flex items-center space-x-3">
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium text-gray-500 truncate">
@@ -210,8 +215,6 @@ const Header = ({
                           </div>
                         </div>
                       </div>
-
-                      {/* Logout Button */}
                       <div className="px-2 py-1">
                         <button
                           onClick={handleLogout}

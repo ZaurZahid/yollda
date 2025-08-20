@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import CookieConsent from "./CookieConsent";
 import BurgerModal from "./BurgerModal";
+import FleetSidebar from "./FleetSidebar";
 // import JoinListModal from './JoinList';
 
 const Layout = ({ children, theme = "normal", isFleetLayout = false }) => {
@@ -32,7 +33,9 @@ const Layout = ({ children, theme = "normal", isFleetLayout = false }) => {
         {/* </div> */}
       </div>
       {!isFleetLayout && <Footer siteData={/* siteData */ ""} />}
-      {!isFleetLayout && (
+      {isFleetLayout ? (
+        <FleetSidebar isOpen={burgerModal} onClose={onCloseBurgerModal} />
+      ) : (
         <BurgerModal isOpen={burgerModal} onClose={onCloseBurgerModal} />
       )}
       <CookieConsent />
