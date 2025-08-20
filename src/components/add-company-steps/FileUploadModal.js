@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import CloseIcon from "../ui/icons/Close";
 
 const FileUploadModal = ({ isOpen, onClose, onConfirm }) => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -183,13 +184,21 @@ const FileUploadModal = ({ isOpen, onClose, onConfirm }) => {
         }
       `}</style>
 
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-        <div className="bg-white rounded-3xl shadow-2xl w-full max-w-[510px] relative">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 sm:p-4">
+        <div className="bg-white sm:rounded-3xl shadow-2xl w-full h-full sm:h-fit sm:max-w-[510px] relative">
           {/* Header */}
           <div className="px-8 pt-8 pb-6">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-3 leading-tight">
-              Upload document
-            </h2>
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-2xl font-semibold text-gray-900  leading-tight">
+                Upload document
+              </h2>
+              <button
+                onClick={onClose}
+                className="w-6 h-6 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors bg-gray-100 rounded-full flex-shrink-0"
+              >
+                <CloseIcon />
+              </button>
+            </div>
             <p className="text-[15px] text-gray-500 leading-relaxed">
               Check readability, make sure the document is fully visible, the
               details are clear to read, without blur or glare
