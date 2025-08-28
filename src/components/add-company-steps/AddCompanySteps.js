@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "next-i18next";
 import CaseIcon from "../ui/icons/CaseIcon";
 import FileIcon from "../ui/icons/FileIcon";
 import VehicleIcon from "../ui/icons/VehicleIcon";
@@ -12,6 +13,7 @@ import DeleteModal from "./DeleteModal";
 import axiosInstance from "../../axios";
 import Link from "next/link";
 import LoadingScreen from "../ui/LoadingScreen";
+
 const TaskStatus = {
   REVIEW: "review",
   ACCEPTED: 1,
@@ -24,35 +26,15 @@ const useSteps = () =>
   useMemo(
     () => [
       {
-        id: "company",
-        title: "Add company details",
-        description: "Official information that appear on your invoices",
-        cta: "Review",
-        status: TaskStatus.DECLINED,
         icon: CaseIcon,
       },
       {
-        id: "documents",
-        title: "Upload documents",
-        description: "Required official documents",
-        cta: "Review",
-        status: TaskStatus.ACCEPTED,
         icon: FileIcon,
       },
       {
-        id: "vehicles",
-        title: "Add your vehicles",
-        description: "Official information that appear on your invoices",
-        cta: "Accepted",
-        status: TaskStatus.ACCEPTED,
         icon: VehicleIcon,
       },
       {
-        id: "payout",
-        title: "Add payout details",
-        description: "Official information that appear on your invoices",
-        cta: "Add info",
-        status: TaskStatus.REVIEW,
         icon: CardIcon,
       },
     ],
@@ -77,6 +59,7 @@ const getTimelineGradient = (currentStepStatus, nextStepStatus) => {
 
 /* ------- Step card ------- */
 function StepCard({ step, Icon, isLast, nextStep }) {
+  const { t } = useTranslation();
   const getStepStyles = (status) => {
     switch (status) {
       case TaskStatus.ACCEPTED:
@@ -149,7 +132,7 @@ function StepCard({ step, Icon, isLast, nextStep }) {
               href={`/add-company-steps/${step.id}`}
               className="rounded-[16px] text-[12px] text-gray-600 font-[600] hover:bg-gray-200 bg-gray-100 py-[6px] px-[16px] w-fit transition-all duration-200 hover:shadow-sm"
             >
-              Add info
+              {t("add_company_steps.statuses.addInfo")}
             </Link>
           ))}
         {step?.status?.status === TaskStatus.DECLINED && (
@@ -158,7 +141,7 @@ function StepCard({ step, Icon, isLast, nextStep }) {
             className="rounded-[16px] text-[12px] text-red-600 font-[600] hover:bg-red-100 bg-red-50 py-[6px] px-[16px] w-fit transition-all duration-200 flex items-center gap-2 hover:shadow-sm"
           >
             <CrossCirlce color="#DC2626" />
-            Declined
+            {t("add_company_steps.statuses.declined")}
           </Link>
         )}
         {step?.status?.status === TaskStatus.ACCEPTED && (
@@ -167,7 +150,7 @@ function StepCard({ step, Icon, isLast, nextStep }) {
             className="rounded-[16px] text-[12px] text-emerald-600 font-[600] hover:bg-emerald-100 bg-emerald-50 py-[6px] px-[16px] w-fit transition-all duration-200 flex items-center gap-2 hover:shadow-sm"
           >
             <TickCircle color="#059669" />
-            Accepted
+            {t("add_company_steps.statuses.accepted")}
           </Link>
         )}
         {step?.status?.status === TaskStatus.REVIEW && (
@@ -176,7 +159,7 @@ function StepCard({ step, Icon, isLast, nextStep }) {
             className="rounded-[16px] text-[12px] text-amber-600 font-[600] hover:bg-amber-100 bg-amber-50 py-[6px] px-[16px] w-fit transition-all duration-200 flex items-center gap-2 hover:shadow-sm"
           >
             <ClockIcon color="#D97706" />
-            Review
+            {t("add_company_steps.statuses.review")}
           </Link>
         )}
       </div>
@@ -186,6 +169,7 @@ function StepCard({ step, Icon, isLast, nextStep }) {
 
 /* ------- Top error item (only shows when hasError is true) ------- */
 function TopErrorItem({ onDeleteClick }) {
+  const { t } = useTranslation();
   return (
     <div className="flex w-full">
       {/* left rail + bullet */}
@@ -202,17 +186,16 @@ function TopErrorItem({ onDeleteClick }) {
       <div className="rounded-[26px] p-4 flex flex-col gap-3 w-full bg-red-50 ">
         <div className="flex flex-col gap-2">
           <h3 className="text-gray-800 text-[18px] font-[500]">
-            Get ready to activate your fleet
+            {t("add_company_steps.error.topTitle")}
           </h3>
           <p className="text-[14px] font-[500] text-gray-500">
-            Unfortunately, your company account can't be activated because of
-            document issues. Please contact Support to resolve this.
+            {t("add_company_steps.error.topMessage")}
           </p>
           <button
             onClick={onDeleteClick}
             className="text-red-600 font-semibold text-[14px] w-fit hover:underline"
           >
-            Delete application
+            {t("add_company_steps.error.deleteBtn")}
           </button>
         </div>
       </div>
@@ -226,6 +209,7 @@ export default function SetupPage() {
   const [stepsData, setStepsData] = useState();
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation("common");
   // NEW: errors state (true by default)
   const [hasError] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -274,9 +258,11 @@ export default function SetupPage() {
               />
             </div>
             <div className="flex flex-col items-center gap-3 text-center">
-              <h1 className="text-2xl font-bold text-gray-900">Success!</h1>
+              <h1 className="text-2xl font-bold text-gray-900">
+                {t("add_company_steps.success.title")}
+              </h1>
               <p className="text-gray-500 text-sm max-w-[280px]">
-                Expect to be contacted by Yolida in a few days.
+                {t("add_company_steps.success.message")}
               </p>
             </div>
           </div>
@@ -334,12 +320,12 @@ export default function SetupPage() {
 
           {/* Footer note */}
           <p className="text-sm text-gray-600 border-t-2 border-gray-200 py-5">
-            Registration with Yollda is no longer of interest? You can{" "}
+            {t("add_company_steps.footer.text")}{" "}
             <button
               onClick={handleDeleteClick}
               className="text-emerald-500 hover:text-emerald-600 transition-colors underline"
             >
-              delete this application
+              {t("add_company_steps.footer.deleteLink")}
             </button>
           </p>
         </div>

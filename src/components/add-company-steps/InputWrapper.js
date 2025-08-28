@@ -1,4 +1,5 @@
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState } from "react";
+import { useTranslation } from "next-i18next";
 import ArrowDown from "../ui/icons/ArrowDown";
 import PlusCircleIcon from "../ui/icons/PlusCircleIcon";
 import TickCircle from "../ui/icons/TickCircle";
@@ -28,7 +29,7 @@ const InputWrapper = ({
 }) => {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const dropDownRef = useRef(null);
-
+  const { t } = useTranslation("common");
   /** Common helper for description and errors */
   const renderDescriptionAndError = () => (
     <>
@@ -230,7 +231,7 @@ const InputWrapper = ({
               </a>
               {addedData?.expiry_date && (
                 <p className="text-gray-400 font-semibold text-[14px]">
-                  Expires: {addedData.expiry_date}
+                  {t("expires")} : {addedData.expiry_date}
                 </p>
               )}
             </div>
@@ -242,9 +243,9 @@ const InputWrapper = ({
           <button
             onClick={handleFileModalOpen}
             type="button"
-            className="rounded-[10px] py-[10px] px-[16px] bg-gray-100 hover:bg-gray-300 transition text-[#4B5563] text-[14px] max-w-[90px] flex items-center gap-2"
+            className="rounded-[10px] py-[10px] px-[16px] bg-gray-100 hover:bg-gray-300 transition text-[#4B5563] text-[14px]  w-fit flex items-center gap-2"
           >
-            <PlusCircleIcon /> Add
+            <PlusCircleIcon /> {t("buttons.add")}
           </button>
         )}
       </div>

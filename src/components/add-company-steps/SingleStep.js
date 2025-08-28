@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import CloseIcon from "../ui/icons/Close";
 import InputWrapper from "./InputWrapper";
 import FileUploadModal from "./FileUploadModal";
@@ -9,6 +10,7 @@ import CrossCirlce from "../ui/icons/CrossCircle";
 
 const SingleStep = () => {
   const router = useRouter();
+  const { t } = useTranslation();
   const { step } = router.query;
 
   const [loading, setLoading] = useState(true);
@@ -176,19 +178,18 @@ const SingleStep = () => {
             </div>
 
             <h1 className="font-bold text-gray-800 text-[28px] mb-4">
-              Step Not Found
+              {t("singleStep.stepNotFound")}
             </h1>
 
             <p className="font-medium text-gray-500 mb-8 max-w-md">
-              The step you're looking for doesn't exist or has been removed.
-              Please return to the company setup steps.
+              {t("singleStep.stepNotFoundDescription")}
             </p>
 
             <button
               onClick={onClose}
               className="h-[50px] w-full max-w-[300px] rounded-2xl text-white bg-[#47E373] hover:bg-[#3ed167] transition font-medium"
             >
-              Go to Company Steps
+              {t("singleStep.goToCompanySteps")}
             </button>
           </div>
         </div>
@@ -213,10 +214,10 @@ const SingleStep = () => {
           <div className="h-[71px] w-[71px] bg-[#D9D9D9] rounded-2xl"></div>
         </div>
         <h1 className="font-bold text-gray-800 text-[28px]">
-          {stepData?.title || "Step Title"}
+          {stepData?.title || t("singleStep.stepTitle")}
         </h1>
         <p className="font-medium text-gray-500">
-          {stepData?.description || "Step description."}
+          {stepData?.description || t("singleStep.stepDescription")}
         </p>
 
         {/* Form */}
@@ -247,14 +248,14 @@ const SingleStep = () => {
               onClick={onClose}
               className="h-[50px] w-full max-w-[235px] text-gray-600 hover:bg-gray-200 transition rounded-2xl bg-gray-100"
             >
-              Previous
+              {t("singleStep.previous")}
             </button>
             <button
               type="button"
               onClick={handleSaveData}
               className="h-[50px] w-full max-w-[235px] rounded-2xl text-white bg-[#47E373] hover:bg-[#3ed167] transition"
             >
-              Continue
+              {t("singleStep.continue")}
             </button>
           </div>
         </form>

@@ -109,7 +109,8 @@
     "subscribe": "AZSubscribe",
     "sending_state": "AZSending...",
     "open_map": "AZOpen map",
-    "select": "AZSelect"
+    "select": "AZSelect",
+    "add": "AZAdd"
   },
   "form": {
     "name": "AZYour Full Name",
@@ -594,5 +595,53 @@
     "26-50": "26-50",
     "51-100": "51-100",
     "100+": "100+"
+  },
+  "expires": "AZExpires",
+  "add_company_steps": {
+    "success": {
+      "title": "AZSuccess!",
+      "message": "AZExpect to be contacted by Yolida in a few days."
+    },
+    "error": {
+      "topTitle": "AZGet ready to activate your fleet",
+      "topMessage": "AZUnfortunately, your company account can't be activated because of document issues. Please contact Support to resolve this.",
+      "deleteBtn": "AZDelete application"
+    },
+    "footer": {
+      "text": "Yollda ilə qeydiyyat artıq maraqlı deyil? Siz",
+      "deleteLink": "bu müraciəti silə bilərsiniz"
+    },
+    "statuses": {
+      "accepted": "Təsdiqləndi",
+      "declined": "İmtina edildi",
+      "review": "Yoxlayın",
+      "addInfo": "Məlumat əlavə et"
+    }
+  },
+  "deleteModal": {
+    "title": "Müraciəti silmək istəyirsiniz?",
+    "description": "Davam etsəniz, bu müraciətlə bağlı bütün məlumatlar və yüklənmiş sənədlər silinəcək.",
+    "cancel": "Ləğv et",
+    "confirm": "Sil"
+  },
+  "uploadModal": {
+    "title": "Sənəd yüklə",
+    "description": "Oxunaqlılığı yoxlayın, sənədin tam görünür və təfərrüatların aydın oxuna bildiyinə əmin olun. Bulanıq və ya parıltı olmamalıdır.",
+    "dropPrompt": "Yükləmək üçün sənədi bura atın",
+    "orChoose": "və ya cihazınızdan seçin",
+    "browse": "Fayllara bax",
+    "expirationDate": "Son istifadə tarixi",
+    "placeholderDate": "GG.AA.İİ",
+    "cancel": "Ləğv et",
+    "confirm": "Təsdiqlə"
+  },
+  "singleStep": {
+    "stepNotFound": "Addım Tapılmadı",
+    "stepNotFoundDescription": "Axtardığınız addım mövcud deyil və ya silinmişdir. Zəhmət olmasa şirkət qurulması addımlarına qayıdın.",
+    "goToCompanySteps": "Şirkət Addımlarına Qayıt",
+    "stepTitle": "Addım Başlığı",
+    "stepDescription": "Addım təsviri.",
+    "previous": "Əvvəlki",
+    "continue": "Davam et"
   }
 }

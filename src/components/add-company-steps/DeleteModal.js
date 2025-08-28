@@ -1,8 +1,11 @@
 import React from "react";
 import CloseIcon from "../ui/icons/Close";
+import { useTranslation } from "next-i18next";
 
 export default function DeleteModal({ isOpen, onClose, onConfirm }) {
   if (!isOpen) return null;
+
+  const { t } = useTranslation("common");
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -14,7 +17,7 @@ export default function DeleteModal({ isOpen, onClose, onConfirm }) {
         {/* Header with close button */}
         <div className="flex items-center justify-between p-6 pb-0">
           <h2 className="text-[20px] font-[600] text-gray-900">
-            Delete application?
+            {t("deleteModal.title")}
           </h2>
           <button
             onClick={onClose}
@@ -27,25 +30,24 @@ export default function DeleteModal({ isOpen, onClose, onConfirm }) {
         {/* Content */}
         <div className="flex-1 px-6 py-6">
           <p className="text-[14px] text-gray-600 leading-[1.4]">
-            Proceeding will remove all current data and uploaded documents
-            associated with this application.
+            {t("deleteModal.description")}
           </p>
         </div>
 
-        {/* Buttons - Fixed at bottom on mobile, inline on desktop */}
+        {/* Buttons */}
         <div className="p-6 pt-0 mt-auto">
-          <div className="flex   gap-3  sm:justify-end">
+          <div className="flex gap-3 sm:justify-end">
             <button
               onClick={onClose}
               className="w-full sm:w-auto px-6 py-2.5 text-[14px] font-[500] text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-[12px] transition-colors order-2 sm:order-1"
             >
-              Cancel
+              {t("deleteModal.cancel")}
             </button>
             <button
               onClick={onConfirm}
               className="w-full sm:w-auto px-6 py-2.5 text-[14px] font-[500] text-white bg-red-500 hover:bg-red-600 rounded-[12px] transition-colors order-1 sm:order-2"
             >
-              Delete
+              {t("deleteModal.confirm")}
             </button>
           </div>
         </div>

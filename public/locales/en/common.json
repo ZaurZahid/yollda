@@ -109,7 +109,8 @@
     "subscribe": "Subscribe",
     "sending_state": "Sending...",
     "open_map": "Open map",
-    "select": "Select"
+    "select": "Select",
+    "add": "Add"
   },
   "form": {
     "name": "Your Full Name",
@@ -595,5 +596,53 @@
     "26-50": "26-50",
     "51-100": "51-100",
     "100+": "100+"
+  },
+  "expires": "Expires",
+  "add_company_steps": {
+    "success": {
+      "title": "Success!",
+      "message": "Expect to be contacted by Yolida in a few days."
+    },
+    "error": {
+      "topTitle": "Get ready to activate your fleet",
+      "topMessage": "Unfortunately, your company account can't be activated because of document issues. Please contact Support to resolve this.",
+      "deleteBtn": "Delete application"
+    },
+    "footer": {
+      "text": "Registration with Yollda is no longer of interest? You can",
+      "deleteLink": "delete this application"
+    },
+    "statuses": {
+      "accepted": "Accepted",
+      "declined": "Declined",
+      "review": "Review",
+      "addInfo": "Add info"
+    }
+  },
+  "deleteModal": {
+    "title": "Delete application?",
+    "description": "Proceeding will remove all current data and uploaded documents associated with this application.",
+    "cancel": "Cancel",
+    "confirm": "Delete"
+  },
+  "uploadModal": {
+    "title": "Upload document",
+    "description": "Check readability, make sure the document is fully visible, the details are clear to read, without blur or glare",
+    "dropPrompt": "Drop a file here to upload",
+    "orChoose": "or choose from your device",
+    "browse": "Browse files",
+    "expirationDate": "Expiration date",
+    "placeholderDate": "MM.dd.yy",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
+  "singleStep": {
+    "stepNotFound": "Step Not Found",
+    "stepNotFoundDescription": "The step you're looking for doesn't exist or has been removed. Please return to the company setup steps.",
+    "goToCompanySteps": "Go to Company Steps",
+    "stepTitle": "Step Title",
+    "stepDescription": "Step description.",
+    "previous": "Previous",
+    "continue": "Continue"
   }
 }

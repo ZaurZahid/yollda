@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useTranslation } from "next-i18next";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import CloseIcon from "../ui/icons/Close";
@@ -7,6 +8,7 @@ const FileUploadModal = ({ isOpen, onClose, onConfirm }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [expirationDate, setExpirationDate] = useState();
   const [isDragOver, setIsDragOver] = useState(false);
+  const { t } = useTranslation();
   const fileInputRef = useRef(null);
 
   const handleDragOver = (e) => {
@@ -190,7 +192,7 @@ const FileUploadModal = ({ isOpen, onClose, onConfirm }) => {
           <div className="px-8 pt-8 pb-6">
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-2xl font-semibold text-gray-900  leading-tight">
-                Upload document
+                {t("uploadModal.title")}
               </h2>
               <button
                 onClick={onClose}
@@ -200,8 +202,7 @@ const FileUploadModal = ({ isOpen, onClose, onConfirm }) => {
               </button>
             </div>
             <p className="text-[15px] text-gray-500 leading-relaxed">
-              Check readability, make sure the document is fully visible, the
-              details are clear to read, without blur or glare
+              {t("uploadModal.description")}
             </p>
           </div>
 
@@ -254,10 +255,10 @@ const FileUploadModal = ({ isOpen, onClose, onConfirm }) => {
                   <div className="space-y-4">
                     <div className="space-y-2">
                       <p className="text-[15px] font-medium text-gray-700">
-                        Drop a file here to upload
+                        {t("uploadModal.dropPrompt")}
                       </p>
                       <p className="text-[14px] text-gray-500">
-                        or choose from your device
+                        {t("uploadModal.orChoose")}
                       </p>
                     </div>
                   </div>
@@ -267,7 +268,7 @@ const FileUploadModal = ({ isOpen, onClose, onConfirm }) => {
                   onClick={handleBrowseClick}
                   className="px-6 py-2.5 bg-gray-100   rounded-xl text-[14px] font-medium text-gray-600 hover:bg-gray-200  transition-all duration-200"
                 >
-                  Browse files
+                  {t("uploadModal.browse")}
                 </button>
               </div>
             </div>
@@ -275,7 +276,7 @@ const FileUploadModal = ({ isOpen, onClose, onConfirm }) => {
             {/* Expiration Date */}
             <div className="space-y-3">
               <label className="block text-[15px] font-medium text-gray-900">
-                Expiration date
+                {t("uploadModal.expirationDate")}
               </label>
 
               <div className="relative">
@@ -307,14 +308,14 @@ const FileUploadModal = ({ isOpen, onClose, onConfirm }) => {
                 onClick={handleClose}
                 className="flex-1 h-12 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-xl transition-colors text-[15px]"
               >
-                Cancel
+                {t("uploadModal.cancel")}
               </button>
               <button
                 onClick={handleConfirm}
                 disabled={!selectedFile}
                 className="flex-1 h-12 bg-green-500 hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-medium rounded-xl transition-colors text-[15px]"
               >
-                Confirm
+                {t("uploadModal.confirm")}
               </button>
             </div>
           </div>
